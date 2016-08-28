@@ -37,6 +37,8 @@ public class ArtworkDTO implements Serializable{
     private String name;
     private String image;
     private Long price;
+    private int width; //ancho
+    private int height; //alto
 
     /**
      * @generated
@@ -56,6 +58,8 @@ public class ArtworkDTO implements Serializable{
         this.name=entity.getName();
         this.image=entity.getImage();
         this.price=entity.getPrice();
+        this.width=entity.getWidth();
+        this.height=entity.getHeight();
        }
     }
 
@@ -71,6 +75,8 @@ public class ArtworkDTO implements Serializable{
         entity.setName(this.getName());
         entity.setImage(this.getImage());
         entity.setPrice(this.getPrice());
+        entity.setWidth(this.getWidth());
+        entity.setHeight(this.getHeight());
     return entity;
     }
 
@@ -153,5 +159,46 @@ public class ArtworkDTO implements Serializable{
     public void setPrice(Long price) {
         this.price = price;
     }
-
+    
+    /**
+     * Obtiene el atributo width.
+     *
+     * @return atributo width.
+     * @generated
+     */
+    public int getWidth() {
+        return width;
+    }
+    
+     /**
+     * Establece el valor del atributo width.
+     *
+     * @param width nuevo valor del atributo
+     * @generated
+     */
+    public void setWidth(int width) {
+        this.width = width;
+    }
+    
+     /**
+     * Obtiene el atributo height.
+     *
+     * @return atributo height.
+     * @generated
+     */
+    public int getHeight() {
+        return height;
+    }
+    
+     /**
+     * Establece el valor del atributo height.
+     *
+     * @param height nuevo valor del atributo
+     * @generated
+     */
+    public void setHeight(int height) {
+        this.height = height;
+    }
+    
+    
 }

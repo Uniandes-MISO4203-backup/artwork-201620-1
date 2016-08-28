@@ -1,4 +1,4 @@
-/*
+    /*
 The MIT License (MIT)
 
 Copyright (c) 2015 Los Andes University
@@ -42,7 +42,17 @@ SOFTWARE.
                 displayName: 'Price',
                 type: 'Long',
                 required: true
-            }        }
+            },
+            width: {
+                displayName: 'Width',
+                type: 'Integer',
+                required: true
+            } ,
+            height: {
+                displayName: 'Height',
+                type: 'Integer',
+                required: true
+            }         }
     });
 
     mod.config(['$stateProvider',

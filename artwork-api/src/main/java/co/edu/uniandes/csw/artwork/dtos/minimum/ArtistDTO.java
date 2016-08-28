@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.artwork.dtos.minimum;
 
 import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
@@ -35,6 +36,7 @@ public class ArtistDTO implements Serializable{
 
     private Long id;
     private String name;
+    private long appraisal; //Nuevo campo de avaluo
 
     /**
      * @generated
@@ -50,8 +52,14 @@ public class ArtistDTO implements Serializable{
      */
     public ArtistDTO(ArtistEntity entity) {
 	   if (entity!=null){
+               long avaluo=0;
         this.id=entity.getId();
         this.name=entity.getName();
+        //Calculo del avaluo a partir del precio de las obras de arte
+        for(ArtworkEntity artworkEntity : entity.getArtworks()){
+            avaluo+=artworkEntity.getPrice();
+        }
+        this.appraisal=avaluo;
        }
     }
 
@@ -107,5 +115,24 @@ public class ArtistDTO implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
-
+    
+    /**
+     * Obtiene el atributo appraisal.
+     *
+     * @return atributo appraisal.
+     * @generated
+     */
+    public long getAppraisal() {
+        return appraisal;
+    }
+    
+    /**
+     * Establece el valor del atributo appraisal(avaluo).
+     *
+     * @param appraisal nuevo valor del atributo
+     * @generated
+     */
+    public void setAppraisal(long appraisal) {
+        this.appraisal = appraisal;
+    }
 }
