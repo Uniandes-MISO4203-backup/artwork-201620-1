@@ -52,6 +52,7 @@ import javax.ws.rs.WebApplicationException;
  * URI: clients/{wishListId: \\d+}/wishList/
  * @generated
  */
+@Path("/comments")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class CommentResource {
@@ -86,7 +87,7 @@ public class CommentResource {
      * @generated
      */
     @GET
-    
+   
     public List<CommentDetailDTO> getComments(){
         if (page != null && maxRecords != null) {
             this.response.setIntHeader("X-Total-Count", commentLogic.countItems());

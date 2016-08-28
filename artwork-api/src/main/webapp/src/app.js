@@ -33,7 +33,9 @@ SOFTWARE.
         'productModule',
         'categoryModule',
         'authModule',
-        'roleModule'
+        'roleModule',
+        'commentModule'
+        
     ]);
 
     mod.config(['$logProvider', function ($logProvider) {
@@ -98,7 +100,9 @@ SOFTWARE.
                         label: 'Product',
                         icon: 'list-alt',
                         state: 'productList'                    
-                    }]
+                    }
+                    
+                ]
             });
         }]);
 
