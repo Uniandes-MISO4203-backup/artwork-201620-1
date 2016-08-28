@@ -23,57 +23,56 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.dtos.minimum;
 
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
 import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
-import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * @generated
  */
 @XmlRootElement
-public class ClientDTO implements Serializable{
+public class QualificationDTO implements Serializable{
 
     private Long id;
     private String name;
-    @PodamExclude
-    private List<QualificationDTO> qualifications = new ArrayList<>();
+    private int qualification;
+    private ArtworkDTO artwork;
+    private ClientDTO client;
 
     /**
      * @generated
      */
-    public ClientDTO() {
+    public QualificationDTO() {
     }
 
     /**
-     * Crea un objeto ClientDTO a partir de un objeto ClientEntity.
+     * Crea un objeto QualificationDTO a partir de un objeto QualificationEntity.
      *
-     * @param entity Entidad ClientEntity desde la cual se va a crear el nuevo objeto.
+     * @param entity Entidad QualificationEntity desde la cual se va a crear el nuevo objeto.
      * @generated
      */
-    public ClientDTO(ClientEntity entity) {
+    public QualificationDTO(QualificationEntity entity) {
 	   if (entity!=null){
-        this.id=entity.getId();
-        this.name=entity.getName();
+            this.id=entity.getId();
+            this.name=entity.getName();
+            this.qualification = entity.getQualification();            
        }
     }
 
     /**
-     * Convierte un objeto ClientDTO a ClientEntity.
+     * Convierte un objeto QualificationDTO a QualificationEntity.
      *
-     * @return Nueva objeto ClientEntity.
+     * @return Nueva objeto QualificationEntity.
      * @generated
      */
-    public ClientEntity toEntity() {
-        ClientEntity entity = new ClientEntity();
+    public QualificationEntity toEntity() {
+        QualificationEntity entity = new QualificationEntity();
         entity.setId(this.getId());
         entity.setName(this.getName());
-    return entity;
+        entity.setQualification(qualification);
+        return entity;
     }
 
     /**
@@ -115,20 +114,53 @@ public class ClientDTO implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
-
-    /**
-     * Devuelve las calificaciones realizadas por el usuario a las obras de arte.
-     * @return the qualifications
+    
+     /**
+     * Devuelve la calificación dada a la obra de arte por el usuario.
+     * @return the qualification
      */
-    public List<QualificationDTO> getQualifications() {
-        return qualifications;
+    public int getQualification() {
+        return qualification;
     }
 
     /**
-     * Establece las calificaciones realizadas por el usuario a las obras de arte.
-     * @param qualifications the qualifications to set
+     * Establece la calificación dada a la obra de arte por el usuario.
+     * @param qualification the qualification to set
      */
-    public void setQualifications(List<QualificationDTO> qualifications) {
-        this.qualifications = qualifications;
+    public void setQualification(int qualification) {
+        this.qualification = qualification;
     }
+    
+    /**
+     * Devuelve la obra de arte asociada a esta calificación.
+     * @return the artwork
+     */
+    public ArtworkDTO getArtwork() {
+        return artwork;
+    }
+
+    /**
+     * Establece la obra de arte asociada a esta calificación.
+     * @param artwork the artwork to set
+     */
+    public void setArtwork(ArtworkDTO artwork) {
+        this.artwork = artwork;
+    }
+
+    /**
+     * Devuelve el cliente que da la calificación a la obra de arte.
+     * @return the client
+     */
+    public ClientDTO getClient() {
+        return client;
+    }
+
+    /**
+     * Establece el cliente que da la calificación a la obra de arte.
+     * @param client the client to set
+     */
+    public void setClient(ClientDTO client) {
+        this.client = client;
+    }
+
 }
