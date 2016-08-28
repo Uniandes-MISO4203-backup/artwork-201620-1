@@ -2,6 +2,8 @@
 <div class="list">            
     <div ng-if="true" class="col-md-2 well" >
         <h4>Categorías</h4>
+        <input type="text" class="form-control" ng-model="artistInput">
+        <button class="btn-default" ng-click="filtrarPorArtista(artistInput)">Filtrar</button>
         <span style="cursor: pointer" class="glyphicon glyphicon-repeat" ng-click="filtrar('')"></span>
         <ul style="list-style:none">
             <li ng-repeat="category in categorys"><a ng-click="filtrar(category.id)" style="cursor: pointer">{{category.name}}</a></li>
@@ -23,5 +25,5 @@
             </div>
             </div>
         </div>
-    </div>    
+    </div> 
 </div>

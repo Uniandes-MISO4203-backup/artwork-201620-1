@@ -24,8 +24,14 @@ SOFTWARE.
 package co.edu.uniandes.csw.artwork.dtos.minimum;
 
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
+import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * @generated
@@ -37,8 +43,13 @@ public class ArtworkDTO implements Serializable{
     private String name;
     private String image;
     private Long price;
+
     private int width; //ancho
     private int height; //alto
+
+    @PodamExclude
+    private List<QualificationDTO> qualifications = new ArrayList<>();
+
 
     /**
      * @generated
@@ -199,6 +210,21 @@ public class ArtworkDTO implements Serializable{
     public void setHeight(int height) {
         this.height = height;
     }
-    
-    
+
+    /**
+     * Devuelve las calificaciones realizadas por los usuarios la obra de arte.
+     * @return the qualifications
+     */
+    public List<QualificationDTO> getQualifications() {
+        return qualifications;
+    }
+
+    /**
+     * Establece las calificaciones realizadas por los usuarios la obra de arte.
+     * @param qualifications the qualifications to set
+     */
+    public void setQualifications(List<QualificationDTO> qualifications) {
+        this.qualifications = qualifications;
+    }
+
 }

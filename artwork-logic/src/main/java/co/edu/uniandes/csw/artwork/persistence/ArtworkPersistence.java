@@ -82,4 +82,10 @@ public class ArtworkPersistence extends CrudPersistence<ArtworkEntity> {
         }
         return q.getResultList();
     }
+
+    public List<ArtworkEntity> getArtworksFromArtist(String artist) {
+        TypedQuery<ArtworkEntity> q = em.createQuery("select p from ArtworkEntity p where (p.artist.name like :artistName)", ArtworkEntity.class);
+        q.setParameter("artistName", "%" + artist + "%");
+        return q.getResultList();
+    }
 }

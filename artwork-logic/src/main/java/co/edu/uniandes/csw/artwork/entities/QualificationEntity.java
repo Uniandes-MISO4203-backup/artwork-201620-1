@@ -27,60 +27,73 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import co.edu.uniandes.csw.crud.spi.entity.BaseEntity;
 import uk.co.jemos.podam.common.PodamExclude;
-import javax.persistence.OneToMany;
-import java.util.List;
-import java.util.ArrayList;
-import javax.persistence.CascadeType;
+import javax.persistence.ManyToOne;
 
 /**
  * @generated
  */
 @Entity
-public class ClientEntity extends BaseEntity implements Serializable {
+public class QualificationEntity extends BaseEntity implements Serializable {
 
-    @PodamExclude
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ItemEntity> wishList = new ArrayList<>();
-
-    @PodamExclude
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<QualificationEntity> qualifications = new ArrayList<>();
+    private int qualification;
     
-    /**
-     * Obtiene la colección de wishList.
-     *
-     * @return colección wishList.
-     * @generated
-     */
-    public List<ItemEntity> getWishList() {
-        return wishList;
-    }
-
-    /**
-     * Establece el valor de la colección de wishList.
-     *
-     * @param wishList nuevo valor de la colección.
-     * @generated
-     */
-    public void setWishList(List<ItemEntity> wishlist) {
-        this.wishList = wishlist;
-    }
-
-    /**
-     * Devuelve las calificaciones realizadas por el usuario a las obras de arte.
-     * @return the qualifications
-     */
-    public List<QualificationEntity> getQualifications() {
-        return qualifications;
-    }
-
-    /**
-     * Establece las calificaciones realizadas por el usuario a las obras de arte.
-     * @param qualifications the qualifications to set
-     */
-    public void setQualifications(List<QualificationEntity> qualifications) {
-        this.qualifications = qualifications;
-    }
+    @PodamExclude
+    @ManyToOne
+    private ArtworkEntity artwork;
     
+    @PodamExclude
+    @ManyToOne
+    private ClientEntity client;
+
+    /**
+     * Devuelve la calificación dada a la obra de arte por el usuario.
+     * @return the qualification
+     */
+    public int getQualification() {
+        return qualification;
+    }
+
+    /**
+     * Establece la calificación dada a la obra de arte por el usuario.
+     * @param qualification the qualification to set
+     */
+    public void setQualification(int qualification) {
+        this.qualification = qualification;
+    }
+
+    /**
+     * Devuelve la obra de arte asociada a esta calificación.
+     * @return the artwork
+     */
+    public ArtworkEntity getArtwork() {
+        return artwork;
+    }
+
+    /**
+     * Establece la obra de arte asociada a esta calificación.
+     * @param artwork the artwork to set
+     */
+    public void setArtwork(ArtworkEntity artwork) {
+        this.artwork = artwork;
+    }
+
+    /**
+     * Devuelve el cliente que da la calificación a la obra de arte.
+     * @return the client
+     */
+    public ClientEntity getClient() {
+        return client;
+    }
+
+    /**
+     * Establece el cliente que da la calificación a la obra de arte.
+     * @param client the client to set
+     */
+    public void setClient(ClientEntity client) {
+        this.client = client;
+    }
+
+    
+
     
 }

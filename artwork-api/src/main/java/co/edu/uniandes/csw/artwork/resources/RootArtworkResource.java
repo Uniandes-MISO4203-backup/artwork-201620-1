@@ -51,6 +51,7 @@ public class RootArtworkResource {
     @Context private HttpServletResponse response;
     @QueryParam("page") private Integer page;
     @QueryParam("limit") private Integer maxRecords;
+    @QueryParam("artist") private String artist;
 
    
     /**
@@ -80,6 +81,10 @@ public class RootArtworkResource {
         if (page != null && maxRecords != null) {
             this.response.setIntHeader("X-Total-Count", ArtworkLogic.countArtworks());
             return listEntity2DTO(ArtworkLogic.getArtworks(page, maxRecords,null));
+        }
+        else if(artist != null && artist.length() > 0){
+            this.response.setIntHeader("X-Total-Count", ArtworkLogic.countArtworks());
+            return listEntity2DTO(ArtworkLogic.getArtworksFromArtist(artist));
         }
         return listEntity2DTO(ArtworkLogic.getArtworks(null,null,null));
     }

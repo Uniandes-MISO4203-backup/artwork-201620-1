@@ -29,6 +29,7 @@ import co.edu.uniandes.csw.artwork.persistence.ArtworkPersistence;
 import co.edu.uniandes.csw.artwork.api.IArtistLogic;
 import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
 import co.edu.uniandes.csw.artwork.entities.CategoryEntity;
+import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -240,5 +241,27 @@ public class ArtworkLogic implements IArtworkLogic {
         CategoryEntity categoryEntity = new CategoryEntity();
         categoryEntity.setId(categoryId);
         entity.getCategory().remove(categoryEntity);
+    }
+    
+    /**
+     * Devuelve las obras de arte del artista dado
+     * @param artist El nombre del artista
+     * @return La lista de obras de arte del artista
+     */
+    @Override
+    public List<ArtworkEntity> getArtworksFromArtist(String artist) {
+        return persistence.getArtworksFromArtist(artist);
+    }
+    
+    /**
+     * Devuelve la lista de calificaciones que los clientes han realizado de
+     * la obra de arte.
+     * @param artworkId El identificador de la obra de arte
+     * @return La lista de calificaciones de la obra de arte
+     */
+    @Override
+    public List<QualificationEntity> getQualifications(Long artworkId){
+        ArtworkEntity entity = getArtwork(artworkId);
+        return entity.getQualifications();
     }
 }
