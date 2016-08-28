@@ -23,24 +23,15 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.api;
 
-import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
-import co.edu.uniandes.csw.artwork.entities.CategoryEntity;
 import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
 import java.util.List;
 
-public interface IArtworkLogic {
-    public int countArtworks();
-    public List<ArtworkEntity> getArtworks(Long artistid);
-    public List<ArtworkEntity> getArtworks(Integer page, Integer maxRecords, Long artistid);
-    public List<ArtworkEntity> getArtworkByCategory(Integer page, Integer maxRecords, Long categoryid);
-    public ArtworkEntity getArtwork(Long artworkid);
-    public ArtworkEntity createArtwork(Long artistid, ArtworkEntity entity);
-    public ArtworkEntity updateArtwork(Long artistid, ArtworkEntity entity);
-    public void deleteArtwork(Long id);
-    public List<CategoryEntity> listCategory(Long artworkId);
-    public CategoryEntity getCategory(Long artworkId, Long categoryId);
-    public CategoryEntity addCategory(Long artworkId, Long categoryId);
-    public List<CategoryEntity> replaceCategory(Long artworkId, List<CategoryEntity> list);
-    public void removeCategory(Long artworkId, Long categoryId);
-    public List<QualificationEntity> getQualifications(Long artworkId);
+public interface IQualificationLogic {
+    public int countQualifications();
+    public List<QualificationEntity> getQualifications();
+    public List<QualificationEntity> getQualifications(Integer page, Integer maxRecords);
+    public QualificationEntity getQualification(Long id);
+    public QualificationEntity createQualification(QualificationEntity entity); 
+    public QualificationEntity updateQualification(QualificationEntity entity);
+    public void deleteQualification(Long id);
 }
