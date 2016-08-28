@@ -22,20 +22,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 (function (ng) {
-    var mod = ng.module('itemModule', ['ngCrud', 'ui.router']);
+    var mod = ng.module('qualificationModule', ['ngCrud', 'ui.router']);
 
-    mod.constant('itemModel', {
-        name: 'item',
-        displayName: 'Item',
-		url: 'wishList',
+    mod.constant('qualificationModel', {
+        name: 'qualification',
+        displayName: 'Qualification',
+		url: 'qualification',
         fields: {            name: {
                 displayName: 'Name',
                 type: 'String',
-                required: true
+                required: false
             },
-            qty: {
-                displayName: 'Qty',
-                type: 'Long',
+            qualification: {
+                displayName: 'Qualification',
+                type: 'Integer',
                 required: true
             },
             artwork: {
@@ -45,111 +45,12 @@ SOFTWARE.
                 options: [],
                 required: true
             },
-            product: {
-                displayName: 'Product',
+            client: {
+                displayName: 'Client',
                 type: 'Reference',
-                model: 'productModel',
+                model: 'clientModel',
                 options: [],
                 required: true
             }        }
     });
-
-    mod.config(['$stateProvider',
-        function($sp){
-            var basePath = 'src/modules/item/';
-            var baseInstancePath = basePath + 'instance/';
-
-            $sp.state('item', {
-                url: '/wishList?page&limit',
-                abstract: true,
-                parent: 'clientDetail',
-                views: {
-                     clientChieldView: {
-                        templateUrl: basePath + 'item.tpl.html',
-                        controller: 'itemCtrl'
-                    }
-                },
-                resolve: {
-                    references: ['$q', 'Restangular', function ($q, r) {
-                            return $q.all({
-                                artwork: r.all('artworks').getList()
-,                                 product: r.all('products').getList()
-                            });
-                        }],
-                    model: 'itemModel',
-                    items: ['client', '$stateParams', 'model', function (client, $params, model) {
-                            return client.getList(model.url, $params);
-                        }]                }
-            });
-            $sp.state('itemList', {
-                url: '/list',
-                parent: 'item',
-                views: {
-                    itemView: {
-                        templateUrl: basePath + 'list/item.list.tpl.html',
-                        controller: 'itemListCtrl',
-                        controllerAs: 'ctrl'
-                    }
-                }
-            });
-            $sp.state('itemNew', {
-                url: '/new',
-                parent: 'item',
-                views: {
-                    itemView: {
-                        templateUrl: basePath + 'new/item.new.tpl.html',
-                        controller: 'itemNewCtrl',
-                        controllerAs: 'ctrl'
-                    }
-                }
-            });
-            $sp.state('itemInstance', {
-                url: '/{itemId:int}',
-                abstract: true,
-                parent: 'item',
-                views: {
-                    itemView: {
-                        template: '<div ui-view="itemInstanceView"></div>'
-                    }
-                },
-                resolve: {
-                    item: ['items', '$stateParams', function (items, $params) {
-                            return items.get($params.itemId);
-                        }]
-                }
-            });
-            $sp.state('itemDetail', {
-                url: '/details',
-                parent: 'itemInstance',
-                views: {
-                    itemInstanceView: {
-                        templateUrl: baseInstancePath + 'detail/item.detail.tpl.html',
-                        controller: 'itemDetailCtrl'
-                    }
-                }
-            });
-            $sp.state('itemEdit', {
-                url: '/edit',
-                sticky: true,
-                parent: 'itemInstance',
-                views: {
-                    itemInstanceView: {
-                        templateUrl: baseInstancePath + 'edit/item.edit.tpl.html',
-                        controller: 'itemEditCtrl',
-                        controllerAs: 'ctrl'
-                    }
-                }
-            });
-            $sp.state('itemDelete', {
-                url: '/delete',
-                parent: 'itemInstance',
-                views: {
-                    itemInstanceView: {
-                        templateUrl: baseInstancePath + 'delete/item.delete.tpl.html',
-                        controller: 'itemDeleteCtrl',
-                        controllerAs: 'ctrl'
-                    }
-                }
-            });
-	}]);
 })(window.angular);

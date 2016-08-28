@@ -75,7 +75,7 @@ public class QualificationResource {
      * @return Lista de QualificationDetailDTO convertida.
      * @generated
      */
-    private List<QualificationDetailDTO> listEntity2DTO(List<QualificationEntity> entityList){
+    protected static List<QualificationDetailDTO> listEntity2DTO(List<QualificationEntity> entityList){
         List<QualificationDetailDTO> list = new ArrayList<>();
         for (QualificationEntity entity : entityList) {
             list.add(new QualificationDetailDTO(entity));
@@ -108,22 +108,7 @@ public class QualificationResource {
         } 
         return null;
         
-    }
-    
-    /**
-     * Obtiene la lista de los registros de Qualification
-     *
-     * @param artworkid Id de la obra de arte 
-     * @return Colección de objetos de QualificationDetailDTO
-     * @generated
-     */
-    @GET
-    @Path("artwork/{artworkid: \\d+}")
-    public List<QualificationDetailDTO> getQualificationsArtwork(@PathParam("artworkid") Long artworkid) {
-                
-        return listEntity2DTO(qualificationLogic.getQualificationsArtwork(artworkid));
-        
-    }
+    }    
 
     /**
      * Obtiene los datos de una instancia de Qualification a partir de su ID
@@ -185,6 +170,6 @@ public class QualificationResource {
         if (qualification== null) {
             throw new WebApplicationException(404);
         }
-    }
+    }    
     
 }

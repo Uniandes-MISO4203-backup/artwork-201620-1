@@ -27,6 +27,7 @@ import co.edu.uniandes.csw.artwork.api.IArtworkLogic;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.persistence.ArtworkPersistence;
 import co.edu.uniandes.csw.artwork.api.IArtistLogic;
+import co.edu.uniandes.csw.artwork.api.IClientLogic;
 import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
 import co.edu.uniandes.csw.artwork.entities.CategoryEntity;
 import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
@@ -44,7 +45,7 @@ public class ArtworkLogic implements IArtworkLogic {
     @Inject private ArtworkPersistence persistence;
 
     @Inject
-    private IArtistLogic artistLogic;
+    private IArtistLogic artistLogic;    
 
     /**
      * Obtiene el número de registros de Artwork.
@@ -254,4 +255,5 @@ public class ArtworkLogic implements IArtworkLogic {
         ArtworkEntity entity = getArtwork(artworkId);
         return entity.getQualifications();
     }
+       
 }

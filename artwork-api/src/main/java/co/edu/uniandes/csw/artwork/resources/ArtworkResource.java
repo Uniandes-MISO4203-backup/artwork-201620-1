@@ -40,6 +40,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import co.edu.uniandes.csw.artwork.api.IArtworkLogic;
 import co.edu.uniandes.csw.artwork.dtos.detail.ArtworkDetailDTO;
+import co.edu.uniandes.csw.artwork.dtos.detail.QualificationDetailDTO;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import java.util.ArrayList;
 import javax.ws.rs.WebApplicationException;
@@ -162,5 +163,21 @@ public class ArtworkResource {
         existsArtwork(artworksId);
         return ArtworkCategoryResource.class;
     }
+    
+    /**
+     * Obtiene la lista de los registros de Qualification
+     *
+     * @param artworkid Id de la obra de arte 
+     * @return Colección de objetos de QualificationDetailDTO
+     * @generated
+     */
+    @GET
+    @Path("artwork/{artworkid: \\d+}")
+    public List<QualificationDetailDTO> getQualificationsArtwork(@PathParam("artworkid") Long artworkid) {
+                
+        return QualificationResource.listEntity2DTO(artworkLogic.getQualifications(artworkid));
+        
+    }
+    
     
 }
