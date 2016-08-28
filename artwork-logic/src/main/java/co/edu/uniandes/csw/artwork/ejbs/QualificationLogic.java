@@ -61,6 +61,18 @@ public class QualificationLogic implements IQualificationLogic {
     public List<QualificationEntity> getQualifications() {
         return persistence.findAll();
     }
+    
+    /**
+     * Obtiene la lista de los registros de Qualification de la obra de arte.
+     *
+     * @param idArtwork Id de la obra de arte a consultar las calificaciones
+     * @return Colección de objetos de QualificationEntity.
+     * @generated
+     */
+    @Override
+    public List<QualificationEntity> getQualificationsArtwork(Long idArtwork) {
+        return persistence.findAll(null, null, idArtwork);
+    }
 
     /**
      * Obtiene la lista de los registros de Qualification indicando los datos para la paginación.

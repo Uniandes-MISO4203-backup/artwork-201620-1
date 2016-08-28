@@ -27,8 +27,11 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
+import co.edu.uniandes.csw.artwork.entities.CommentEntity;
 import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
 import co.edu.uniandes.csw.crud.spi.persistence.CrudPersistence;
+import java.util.List;
+import javax.persistence.TypedQuery;
 
 /**
  * @generated
@@ -54,5 +57,14 @@ public class QualificationPersistence extends CrudPersistence<QualificationEntit
     protected Class<QualificationEntity> getEntityClass() {
         return QualificationEntity.class;
     }
-
+    
+    public List<QualificationEntity> findAll(Integer page, Integer maxRecords,Long artworkid){
+      TypedQuery<QualificationEntity> q = em.createQuery("select p from QualificationEntity p where (p.artwork.id = :artworkid)", QualificationEntity.class);
+        q.setParameter("artworkid", artworkid);
+        if (page != null && maxRecords != null) {
+            q.setFirstResult((page - 1) * maxRecords);
+            q.setMaxResults(maxRecords);
+        }
+        return q.getResultList();
+    }
 }

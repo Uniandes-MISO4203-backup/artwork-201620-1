@@ -21,18 +21,48 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package co.edu.uniandes.csw.artwork.api;
+package co.edu.uniandes.csw.artwork.dtos.detail;
 
+import co.edu.uniandes.csw.artwork.dtos.minimum.*;
 import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
-import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
 
-public interface IQualificationLogic {
-    public int countQualifications();
-    public List<QualificationEntity> getQualifications();
-    public List<QualificationEntity> getQualificationsArtwork(Long idArtwork);
-    public List<QualificationEntity> getQualifications(Integer page, Integer maxRecords);
-    public QualificationEntity getQualification(Long id);
-    public QualificationEntity createQualification(QualificationEntity entity); 
-    public QualificationEntity updateQualification(QualificationEntity entity);
-    public void deleteQualification(Long id);
+/**
+ * @generated
+ */
+@XmlRootElement
+public class QualificationDetailDTO extends QualificationDTO{
+
+
+
+    /**
+     * @generated
+     */
+    public QualificationDetailDTO() {
+        super();
+    }
+
+    /**
+     * Crea un objeto QualificationDetailDTO a partir de un objeto QualificationEntity incluyendo los atributos de QualificationDTO.
+     *
+     * @param entity Entidad QualificationEntity desde la cual se va a crear el nuevo objeto.
+     * @generated
+     */
+    public QualificationDetailDTO(QualificationEntity entity) {
+        super(entity);
+        
+    }
+
+    /**
+     * Convierte un objeto QualificationDetailDTO a QualificationEntity incluyendo los atributos de QualificationDTO.
+     *
+     * @return Nueva objeto QualificationEntity.
+     * @generated
+     */
+    @Override
+    public QualificationEntity toEntity() {
+        QualificationEntity entity = super.toEntity();
+        return entity;
+    }
+
 }
