@@ -11,7 +11,47 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div><h1>Comment List</h1></div>
-        <div>{{model}}</div>
+        
+        <div ><h1>{{records[0].name}}</h1></div>
+        <div class="caption row">
+        <div class='col-md-4'>
+        <div class="well " ><img src="{{records[0].image}}"  style="padding-left:8%; "/></div>
+        <div class="col-md-6 row" align="center"">
+            <strong> rate this artwork:</strong><p><p></p>
+            <a href="#">nice <span class="badge">5</span></a>
+            <a href="#">horrible <span class="badge">5</span></a><br>
+        </div>
+        </div>
+            <div class="col-md-6">
+               <form>
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <input type="email" class="form-control" id="email">
+  </div>
+  <div class="form-group">
+    <label for="comment">comment here:</label>
+    <input type="text" class="form-control" id="comment">
+  </div>
+  
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+
+            </div>
+    </div>
+        <hr>
+        <div class="caption row">
+           
+        <div class="col-md-12" style="overflow-y: scroll; padding: 5%; height: 200px;">
+            <h1>comentarios acacomentarios acacomentarios acacomentarios acacomentarios acacomentarios aca</h1>
+               <h1>comentarios aca</h1>
+                  <h1>comentarios aca</h1>
+                     <h1>comentarios aca</h1>
+                        <h1>comentarios aca</h1>
+                           <h1>comentarios aca</h1>
+                           
+                  
+        </div>
+            </div>
     </body>
 </html>
