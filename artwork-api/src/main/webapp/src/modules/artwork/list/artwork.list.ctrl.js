@@ -28,6 +28,7 @@ SOFTWARE.
     mod.controller("artworkListCtrl", ["$scope", '$state', 'artworks', '$stateParams','Restangular',
         function ($scope, $state, artworks, $params,Restangular) {
             $scope.records = artworks;
+            $scope.artistInput = "";
 
             //Paginación
             this.itemsPerPage = $params.limit;
@@ -45,9 +46,14 @@ SOFTWARE.
             };
             $scope.filtrar = function (parentCategory) {
                 $scope.getCategorys(parentCategory);
-                Restangular.all("artworks").customGET(parentCategory).then(function (response) {                    
-                        $scope.records=response;
+                Restangular.all("artworks").customGET(parentCategory).then(function (response) {  
+                    $scope.records=response;
                 });
+            };
+            $scope.filtrarPorArtista = function(artist){
+                Restangular.all("artworks").customGET("",{artist:artist}).then(function (response) {                    
+                    $scope.records=response;
+                }); 
             };
             $scope.getCategorys("");
 

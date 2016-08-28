@@ -241,4 +241,8 @@ public class ArtworkLogic implements IArtworkLogic {
         categoryEntity.setId(categoryId);
         entity.getCategory().remove(categoryEntity);
     }
+    @Override
+    public List<ArtworkEntity> getArtworksFromArtist(String artist) {
+        return persistence.getArtworksFromArtist(artist);
+    }
 }
