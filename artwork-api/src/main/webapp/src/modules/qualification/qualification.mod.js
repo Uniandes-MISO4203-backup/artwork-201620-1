@@ -22,59 +22,110 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 (function (ng) {
-    var mod = ng.module('qualificationModule', ['ngCrud', 'ui.router']);
+    var mod = ng.module('artistModule', ['ngCrud', 'ui.router']);
 
-    mod.constant('qualificationModel', {
-        name: 'qualification',
-        displayName: 'Qualification',
-        url: 'qualification',
-        fields: {            
-            name: {
+    mod.constant('artistModel', {
+        name: 'artist',
+        displayName: 'Artist',
+		url: 'artists',
+        fields: {            name: {
                 displayName: 'Name',
                 type: 'String',
-                required: false
-            },
-            qualification: {
-                displayName: 'Qualification',
-                type: 'Integer',
-                required: true
-            },
-            artwork: {
-                displayName: 'Artwork',
-                type: 'Reference',
-                model: 'artworkModel',
-                options: [],
-                required: true
-            },
-            client: {
-                displayName: 'Client',
-                type: 'Reference',
-                model: 'clientModel',
-                options: [],
                 required: true
             }        }
     });
-    
-    $sp.state('qualificationList', {
-                url: '/list',
-                parent: 'qualification',
+
+    mod.config(['$stateProvider',
+        function($sp){
+            var basePath = 'src/modules/artist/';
+            var baseInstancePath = basePath + 'instance/';
+
+            $sp.state('artist', {
+                url: '/artists?page&limit',
+                abstract: true,
+                
                 views: {
-                    qualificationView: {
-                        templateUrl: basePath + 'list/qualification.list.tpl.html',
-                        controller: 'qualificationListCtrl',
+                     mainView: {
+                        templateUrl: basePath + 'artist.tpl.html',
+                        controller: 'artistCtrl'
+                    }
+                },
+                resolve: {
+                    model: 'artistModel',
+                    artists: ['Restangular', 'model', '$stateParams', function (r, model, $params) {
+                            return r.all(model.url).getList($params);
+                        }]
+                }
+            });
+            $sp.state('artistList', {
+                url: '/list',
+                parent: 'artist',
+                views: {
+                    artistView: {
+                        templateUrl: basePath + 'list/artist.list.tpl.html',
+                        controller: 'artistListCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
             });
-    $sp.state('qualificationNew', {
-        url: '/new',
-        parent: 'qualification',
-        views: {
-            qualificationView: {
-                templateUrl: basePath + 'new/qualification.new.tpl.html',
-                controller: 'qualificationNewCtrl',
-                controllerAs: 'ctrl'
-            }
-        }
-    });
+            $sp.state('artistNew', {
+                url: '/new',
+                parent: 'artist',
+                views: {
+                    artistView: {
+                        templateUrl: basePath + 'new/artist.new.tpl.html',
+                        controller: 'artistNewCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            });
+            $sp.state('artistInstance', {
+                url: '/{artistId:int}',
+                abstract: true,
+                parent: 'artist',
+                views: {
+                    artistView: {
+                        template: '<div ui-view="artistInstanceView"></div>'
+                    }
+                },
+                resolve: {
+                    artist: ['artists', '$stateParams', function (artists, $params) {
+                            return artists.get($params.artistId);
+                        }]
+                }
+            });
+            $sp.state('artistDetail', {
+                url: '/details',
+                parent: 'artistInstance',
+                views: {
+                    artistInstanceView: {
+                        templateUrl: baseInstancePath + 'detail/artist.detail.tpl.html',
+                        controller: 'artistDetailCtrl'
+                    }
+                }
+            });
+            $sp.state('artistEdit', {
+                url: '/edit',
+                sticky: true,
+                parent: 'artistInstance',
+                views: {
+                    artistInstanceView: {
+                        templateUrl: baseInstancePath + 'edit/artist.edit.tpl.html',
+                        controller: 'artistEditCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            });
+            $sp.state('artistDelete', {
+                url: '/delete',
+                parent: 'artistInstance',
+                views: {
+                    artistInstanceView: {
+                        templateUrl: baseInstancePath + 'delete/artist.delete.tpl.html',
+                        controller: 'artistDeleteCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            });
+	}]);
 })(window.angular);

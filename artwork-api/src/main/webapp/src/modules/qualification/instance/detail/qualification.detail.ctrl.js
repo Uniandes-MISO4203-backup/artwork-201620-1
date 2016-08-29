@@ -25,20 +25,10 @@ SOFTWARE.
 
     var mod = ng.module("artistModule");
 
-    mod.controller("artistListCtrl", ["$scope", '$state', 'artists', '$stateParams','$rootScope',
-        function ($scope, $state, artists, $params,$rootScope) {
-            $scope.records = artists;
+    mod.controller("artistDetailCtrl", ['$scope', "$state", "artist",'$rootScope',
+        function ($scope, $state, artist,$rootScope) {
+            $scope.currentRecord = artist;
             var roles = $rootScope.roles;
-
-            //Paginación
-            this.itemsPerPage = $params.limit;
-            this.currentPage = $params.page;
-            this.totalItems = artists.totalRecords;
-
-            this.pageChanged = function () {
-                $state.go('artistList', {page: this.currentPage});
-            };
-
             $scope.actions = {
                 create: {
                     displayName: 'Create',
@@ -50,42 +40,42 @@ SOFTWARE.
                         return (roles.indexOf("admin") !== -1);
                     }
                 },
+                edit: {
+                    displayName: 'Edit',
+                    icon: 'edit',
+                    fn: function () {
+                        $state.go('artistEdit');
+                    }
+                },
+                delete: {
+                    displayName: 'Delete',
+                    icon: 'minus',
+                    fn: function () {
+                        $state.go('artistDelete');
+                    },
+                    show: function () {
+                        return (roles.indexOf("admin") !== -1);
+                    }
+                },
                 refresh: {
                     displayName: 'Refresh',
                     icon: 'refresh',
                     fn: function () {
                         $state.reload();
                     }
-                }            };
-            $scope.recordActions = {
-                detail: {
-                    displayName: 'Detail',
-                    icon: 'eye-open',
-                    fn: function (rc) {
-                        $state.go('artistDetail', {artistId: rc.id});
-                    },
-                    show: function () {
-                        return true;
+                },
+                list: {
+                    displayName: 'List',
+                    icon: 'th-list',
+                    fn: function () {
+                        $state.go('artistList');
                     }
                 },
-                edit: {
-                    displayName: 'Edit',
-                    icon: 'edit',
-                    fn: function (rc) {
-                        $state.go('artistEdit', {artistId: rc.id});
-                    },
-                    show: function () {
-                        return true;
-                    }
-                },
-                delete: {
-                    displayName: 'Delete',
-                    icon: 'minus',
-                    fn: function (rc) {
-                        $state.go('artistDelete', {artistId: rc.id});
-                    },
-                    show: function () {
-                        return (roles.indexOf("admin") !== -1);
+                artworks: {
+                    displayName: 'Artworks',
+                    icon: 'link',
+                    fn: function () {
+                        $state.go('artworkList');
                     }
                 }
             };

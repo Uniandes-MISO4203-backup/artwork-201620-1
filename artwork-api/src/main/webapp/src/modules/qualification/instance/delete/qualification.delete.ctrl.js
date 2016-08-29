@@ -1,4 +1,4 @@
-<!--
+/*
 The MIT License (MIT)
 
 Copyright (c) 2015 Los Andes University
@@ -20,20 +20,16 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
--->
-<div ng-messages="artistForm.$error" multiple>
-    <ng-message when="required">
-        <alert type="warning">Please, Fill the required fields!</alert>
-    </ng-message>
-    <ng-message when="url">
-        <alert type="warning">Image field must be a URL</alert>
-    </ng-message>
-</div>
-<header>
-    <toolbar name="model.name" display-name="model.displayName" actions='actions'></toolbar>
-</header>
-<form novalidate name="artistForm" role="form">
-    <fieldset>
-        <crud-form fields='model.fields' record='currentRecord' lists-of-values="references"></crud-form>
-    </fieldset>
-</form>
+*/
+(function (ng) {
+
+    var mod = ng.module("artistModule");
+
+    mod.controller("artistDeleteCtrl", ["$state", "artist", function ($state, artist) {
+            this.confirmDelete = function () {
+                artist.remove().then(function () {
+                    $state.go('artistList', null, {reload: true});
+                });
+            };
+        }]);
+})(window.angular);
