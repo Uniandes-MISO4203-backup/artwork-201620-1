@@ -5,7 +5,7 @@
  */
 (function (ng){
     
-    var mod = ng.module('commentModule', ['ngCrud', 'ui.router']);
+    var mod = ng.module('commentModule', ['ngCrud', 'ui.router','artworkModule' ]);
     
     mod.constant('commentModel', {
         name: 'comment',
@@ -50,10 +50,14 @@
                        templateUrl: basePath + 'comment.tpl.html',
                        controller: 'commentCtrl'
                        
-                   }}
+                   }},
+                resolve: {
+                    model: 'artworkModel',
+                    artworks: ['Restangular', 'model', '$stateParams', function (r, model, $params) {
+                            return r.all(model.url).getList($params);
+                        }]                }
           
             
-               
                
                
             });
@@ -65,11 +69,16 @@
                        templateUrl: basePath + 'list/comment.list.tpl.html',
                        controller : 'commentListCtrl'
                    }
-               }
-               
                    
-               
-           });   
+               },
+                resolve: {
+                    model: 'commentModel',
+                    comments: ['Restangular', '$stateParams', function (r, $params) {
+                            return r.all('/comments').getList($params);
+                        }]                }
+                
+           }); 
+           
         }
     ]);
 })(window.angular);

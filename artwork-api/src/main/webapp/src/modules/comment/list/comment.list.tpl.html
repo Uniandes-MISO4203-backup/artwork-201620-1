@@ -22,21 +22,19 @@ and open the template in the editor.
             <a href="#">horrible <span class="badge">5</span></a><br>
         </div>
         </div>
-            <div class="col-md-6">
+                <div class="col-md-6">
                <form>
   <div class="form-group">
     <label for="email">Email address:</label>
-    <input type="email" class="form-control" id="email">
+    <input type="email" class="form-control" id="email" ng-model="comment.email">
   </div>
   <div class="form-group">
     <label for="comment">comment here:</label>
-    <input type="text" class="form-control" id="comment">
+    <input type="text" class="form-control" id="comment" ng-model="comment.description">
   </div>
   
-  <button type="submit" class="btn btn-default">Submit</button>
+                   <button type="submit" class="btn btn-default" ng-click="submitComment(comment)">Submit</button>
 </form>
-
-
             </div>
     </div>
         <hr>

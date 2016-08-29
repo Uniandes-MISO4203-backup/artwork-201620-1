@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 (function (ng) {
-    var mod = ng.module('artworkModule', ['ngCrud', 'ui.router']);
+    var mod = ng.module('artworkModule', ['ngCrud', 'ui.router' ]);
 
     mod.constant('artworkModel', {
         name: 'artwork',
@@ -120,6 +120,7 @@ SOFTWARE.
                     }
                 }
             });
+           
             $sp.state('artworkEdit', {
                 url: '/edit',
                 sticky: true,
@@ -200,5 +201,6 @@ SOFTWARE.
                             return r.all(model.url).getList($params);
                         }]                }
             });
+           
 	}]);
 })(window.angular);

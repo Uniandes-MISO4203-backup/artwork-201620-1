@@ -41,6 +41,8 @@ public class ClientEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemEntity> wishList = new ArrayList<>();
+    
+     
 
     @PodamExclude
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -81,6 +83,5 @@ public class ClientEntity extends BaseEntity implements Serializable {
     public void setQualifications(List<QualificationEntity> qualifications) {
         this.qualifications = qualifications;
     }
-    
-    
+        
 }

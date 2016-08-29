@@ -70,6 +70,13 @@ SOFTWARE.
                     fn: function () {
                         $state.go('artworkCategoryList');
                     }
+                },
+                comment: {
+                    displayName: 'Comment',
+                    icon: 'thumbs-up',
+                    fn: function () {
+                        $state.go('comment');
+                    }
                 }
             };
         }]);

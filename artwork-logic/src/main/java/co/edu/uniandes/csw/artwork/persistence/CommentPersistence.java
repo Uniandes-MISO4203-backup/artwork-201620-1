@@ -39,13 +39,16 @@ public class CommentPersistence extends CrudPersistence<CommentEntity> {
 
     @PersistenceContext(unitName="ArtworkPU")
     protected EntityManager em;
+public CommentPersistence(){
 
+}
     /**
      * @generated
      */
     @Override
     protected EntityManager getEntityManager() {
         return em;
+        
     }
 
     /**
@@ -56,13 +59,10 @@ public class CommentPersistence extends CrudPersistence<CommentEntity> {
         return CommentEntity.class;
     }
 
-   public List<CommentEntity> findAll(Integer page, Integer maxRecords,Long artworkid){
+   public List<CommentEntity> findAll(Long artworkid){
       TypedQuery<CommentEntity> q = em.createQuery("select p from CommentEntity p where (p.artwork.id = :artworkid)", CommentEntity.class);
         q.setParameter("artworkid", artworkid);
-        if (page != null && maxRecords != null) {
-            q.setFirstResult((page - 1) * maxRecords);
-            q.setMaxResults(maxRecords);
-        }
+        
         return q.getResultList();
     }
 }
