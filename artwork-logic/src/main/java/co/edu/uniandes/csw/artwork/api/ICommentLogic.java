@@ -29,6 +29,7 @@ import java.util.List;
 public interface ICommentLogic {
     public int countComments();
     public List<CommentEntity> getComments(Long artworkid);
-    public CommentEntity createComment(CommentEntity entity);
+    public CommentEntity createComment(Long artworkid, CommentEntity entity);
+    
     
 }

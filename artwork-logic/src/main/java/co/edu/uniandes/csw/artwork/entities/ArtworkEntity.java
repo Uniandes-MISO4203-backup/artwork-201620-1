@@ -51,8 +51,9 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
     @ManyToOne
     private ArtistEntity artist;
    
-    @PodamExclude
-    @OneToMany(mappedBy = "artwork", cascade = CascadeType.ALL, orphanRemoval = true)
+    
+      @PodamExclude
+    @OneToMany(mappedBy = "artwork" )
     private List<CommentEntity> comments = new ArrayList<>();
     /**
      * Obtiene el atributo image.
@@ -147,4 +148,9 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
     public void setComments(List<CommentEntity> comments) {
         this.comments = comments;
     }
+
+    /**
+     * @return the comments
+     */
+   
 }

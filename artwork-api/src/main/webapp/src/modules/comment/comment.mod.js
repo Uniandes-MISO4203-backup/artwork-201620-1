@@ -28,14 +28,7 @@
                 model: 'artworkModel',
                 options: [],
                 required: true
-            },
-            client: {
-                displayName: 'Client',
-                type: 'Reference',
-                model: 'clientModel',
-                options: [],
-                required: true
-            }        }
+            }}
     });
     mod.config(['$stateProvider',
         function ($sp){

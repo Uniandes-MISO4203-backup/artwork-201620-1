@@ -57,6 +57,7 @@ public class ArtworkPersistence extends CrudPersistence<ArtworkEntity> {
     }
 
     public ArtworkEntity find(Long artistid, Long artworkid) {
+        System.out.println(artworkid);
         TypedQuery<ArtworkEntity> q = em.createQuery("select p from ArtworkEntity p where (p.artist.id = :artistid) and (p.id = :artworkid)", ArtworkEntity.class);
         q.setParameter("artistid", artistid);
         q.setParameter("artworkid", artworkid);

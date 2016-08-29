@@ -21,8 +21,7 @@ public class CommentDetailDTO extends CommentDTO{
     
     @PodamExclude
     private ArtworkDTO artwork;
-    @PodamExclude
-    private ClientDTO client;
+    
 
     
     public CommentDetailDTO() {
@@ -34,9 +33,7 @@ public class CommentDetailDTO extends CommentDTO{
         if (entity.getArtwork()!=null){
         this.artwork = new ArtworkDTO(entity.getArtwork());
         }
-        if (entity.getClient()!=null){
-        this.client = new ClientDTO(entity.getClient());
-        }
+       
     }
     
     public CommentEntity toEntity() {
@@ -44,9 +41,7 @@ public class CommentDetailDTO extends CommentDTO{
         if (this.getArtwork()!=null){
         entity.setArtwork(this.getArtwork().toEntity());
         }
-        if (this.getClient()!=null){
-        entity.setClient(this.getClient().toEntity());
-        }
+       
        
         return entity;
     }
@@ -67,14 +62,5 @@ public class CommentDetailDTO extends CommentDTO{
     /**
      * @return the client
      */
-    public ClientDTO getClient() {
-        return client;
-    }
-
-    /**
-     * @param client the client to set
-     */
-    public void setClient(ClientDTO client) {
-        this.client = client;
-    }
+   
 }

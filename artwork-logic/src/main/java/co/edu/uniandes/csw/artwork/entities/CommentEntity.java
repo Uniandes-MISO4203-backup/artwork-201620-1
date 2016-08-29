@@ -41,9 +41,7 @@ public class CommentEntity extends BaseEntity implements Serializable {
     @ManyToOne
     private ArtworkEntity artwork;
 
-    @PodamExclude
-    @ManyToOne
-    private ClientEntity client;
+    
 
     
 
@@ -89,19 +87,7 @@ public class CommentEntity extends BaseEntity implements Serializable {
      * @return atributo client.
      * @generated
      */
-    public ClientEntity getClient() {
-        return client;
-    }
-
-    /**
-     * Establece el valor del atributo client.
-     *
-     * @param client nuevo valor del atributo
-     * @generated
-     */
-    public void setClient(ClientEntity client) {
-        this.client = client;
-    }
+   
 
     /**
      * @return the comment

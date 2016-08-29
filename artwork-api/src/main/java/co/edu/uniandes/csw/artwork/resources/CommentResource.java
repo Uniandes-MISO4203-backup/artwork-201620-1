@@ -60,7 +60,7 @@ public class CommentResource {
     @Inject private ICommentLogic commentLogic;
     @Context private HttpServletResponse response;
     
-    @PathParam("artworksId") private Long artworksId;
+    @PathParam("artworkId") private Long artworkId;
 
    
     /**
@@ -89,12 +89,13 @@ public class CommentResource {
    
     public List<CommentDetailDTO> getComments(){
          
-            return listEntity2DTO(commentLogic.getComments(artworksId));
+            return listEntity2DTO(commentLogic.getComments(artworkId));
     }
     @POST
     @StatusCreated
     public CommentDetailDTO createComment(CommentDetailDTO dto) {
-        return new CommentDetailDTO(commentLogic.createComment(dto.toEntity()));
+        
+        return new CommentDetailDTO(commentLogic.createComment(artworkId,dto.toEntity()));
     }
     
 }
