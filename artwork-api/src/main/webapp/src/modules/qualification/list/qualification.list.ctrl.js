@@ -23,20 +23,20 @@ SOFTWARE.
 */
 (function (ng) {
 
-    var mod = ng.module("artistModule");
+    var mod = ng.module("qualificationModule");
 
-    mod.controller("artistListCtrl", ["$scope", '$state', 'artists', '$stateParams','$rootScope',
-        function ($scope, $state, artists, $params,$rootScope) {
-            $scope.records = artists;
+    mod.controller("qualificationListCtrl", ["$scope", '$state', 'qualifications', '$stateParams','$rootScope',
+        function ($scope, $state, qualifications, $params,$rootScope) {
+            $scope.records = qualifications;
             var roles = $rootScope.roles;
 
             //Paginación
             this.itemsPerPage = $params.limit;
             this.currentPage = $params.page;
-            this.totalItems = artists.totalRecords;
+            this.totalItems = qualifications.totalRecords;
 
             this.pageChanged = function () {
-                $state.go('artistList', {page: this.currentPage});
+                $state.go('qualificationList', {page: this.currentPage});
             };
 
             $scope.actions = {
@@ -44,7 +44,7 @@ SOFTWARE.
                     displayName: 'Create',
                     icon: 'plus',
                     fn: function () {
-                        $state.go('artistNew');
+                        $state.go('qualificationNew');
                     },
                     show: function () {
                         return (roles.indexOf("admin") !== -1);
@@ -62,7 +62,7 @@ SOFTWARE.
                     displayName: 'Detail',
                     icon: 'eye-open',
                     fn: function (rc) {
-                        $state.go('artistDetail', {artistId: rc.id});
+                        $state.go('qualificationDetail', {qualificationId: rc.id});
                     },
                     show: function () {
                         return true;
@@ -72,7 +72,7 @@ SOFTWARE.
                     displayName: 'Edit',
                     icon: 'edit',
                     fn: function (rc) {
-                        $state.go('artistEdit', {artistId: rc.id});
+                        $state.go('qualificationEdit', {qualificationId: rc.id});
                     },
                     show: function () {
                         return true;
@@ -82,7 +82,7 @@ SOFTWARE.
                     displayName: 'Delete',
                     icon: 'minus',
                     fn: function (rc) {
-                        $state.go('artistDelete', {artistId: rc.id});
+                        $state.go('qualificationDelete', {qualificationId: rc.id});
                     },
                     show: function () {
                         return (roles.indexOf("admin") !== -1);

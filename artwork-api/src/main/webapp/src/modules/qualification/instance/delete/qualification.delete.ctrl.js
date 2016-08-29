@@ -23,12 +23,12 @@ SOFTWARE.
 */
 (function (ng) {
 
-    var mod = ng.module("artistModule");
+    var mod = ng.module("qualificationModule");
 
-    mod.controller("artistDeleteCtrl", ["$state", "artist", function ($state, artist) {
+    mod.controller("qualificationDeleteCtrl", ["$state", "qualification", function ($state, qualification) {
             this.confirmDelete = function () {
-                artist.remove().then(function () {
-                    $state.go('artistList', null, {reload: true});
+                qualification.remove().then(function () {
+                    $state.go('qualificationList', null, {reload: true});
                 });
             };
         }]);

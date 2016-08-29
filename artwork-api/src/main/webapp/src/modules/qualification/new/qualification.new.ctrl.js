@@ -24,28 +24,42 @@ SOFTWARE.
 
 (function (ng) {
 
-    var mod = ng.module("artistModule");
+    var mod = ng.module("qualificationModule");
 
-    mod.controller("artistNewCtrl", ["$scope", "$state", "artists",
-        function ($scope, $state, artists) {
+    mod.controller("qualificationNewCtrl", ["$scope", "$state", "$stateParams", "qualifications","artworks",
+        function ($scope, $state, $stateParams, qualifications, artworks) {
             $scope.currentRecord = {};
+            console.log("lista arworks aaaa:");
+                                for(i = 0; i < artworks.length; i++){
+                                    console.log(artworks[i]);
+                                }
+            console.log("Identificador"+$stateParams.artworkId)
+            /*var artSelection = $scope.records.filter(function (art) {
+                return art.id == $stateParams.artworkId;
+            });
+            /*
+            $scope.artName = artSelection[0].name;
+            $scope.artImage = artSelection[0].image;
+            console.log($scope.artName);
+            console.log($scope.artImage);*/
             $scope.actions = {
                 save: {
                     displayName: 'Save',
                     icon: 'save',
                     fn: function () {
-                        if ($scope.artistForm.$valid) {
-                            artists.post($scope.currentRecord).then(function (rc) {
-                                $state.go('artistDetail', {artistId: rc.id}, {reload: true});
+                        console.log();
+                        /*if ($scope.qualificationForm.$valid) {
+                            qualifications.post($scope.currentRecord).then(function (rc) {
+                                $state.go('qualificationDetail', {qualificationId: rc.id}, {reload: true});
                             });
-                        }
+                        }*/
                     }
                 },
                 cancel: {
                     displayName: 'Cancel',
                     icon: 'remove',
                     fn: function () {
-                        $state.go('artistList');
+                        $state.go('qualificationList');
                     }
                 }
             };

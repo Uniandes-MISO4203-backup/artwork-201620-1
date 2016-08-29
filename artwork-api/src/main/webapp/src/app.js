@@ -100,8 +100,7 @@ SOFTWARE.
                         label: 'Product',
                         icon: 'list-alt',
                         state: 'productList'                    
-                    }
-                    
+                    }                    
                 ]
             });
         }]);

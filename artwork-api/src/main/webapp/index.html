@@ -116,6 +116,12 @@ SOFTWARE.
         <script src="src/modules/qualification/qualification.ctrl.js"></script>
         <script src="src/modules/qualification/list/qualification.list.ctrl.js"></script>
         <script src="src/modules/qualification/new/qualification.new.ctrl.js" ></script>
+        <script src="src/modules/qualification/qualification.ctrl.js"></script>
+        <script src="src/modules/qualification/instance/delete/qualification.delete.ctrl.js"></script>
+        <script src="src/modules/qualification/instance/detail/qualification.detail.ctrl.js"></script>
+        <script src="src/modules/qualification/instance/edit/qualification.edit.ctrl.js"></script>
+        <script src="src/modules/qualification/list/qualification.list.ctrl.js"></script>
+        <script src="src/modules/qualification/new/qualification.new.ctrl.js"></script>
         <!-- /include -->
         <!-- endbuild -->
 
@@ -143,6 +149,7 @@ SOFTWARE.
                                 <li ng-if="artist"><a ui-sref="artistList">Artist</a></li>
                                 <li ng-if="product"><a ui-sref="productList">Product</a></li>
                                 <li ng-if="category"><a ui-sref="categoryList">Category</a></li>
+                                <li ng-if="category"><a ui-sref="qualificationList">Qualification</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <login-button></login-button>

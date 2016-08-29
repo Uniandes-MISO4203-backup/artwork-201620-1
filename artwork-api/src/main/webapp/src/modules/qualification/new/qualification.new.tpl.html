@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -->
-<div ng-messages="artistForm.$error" multiple>
+<div ng-messages="qualificationForm.$error" multiple>
     <ng-message when="required">
         <alert type="warning">Please, Fill the required fields!</alert>
     </ng-message>
@@ -32,7 +32,7 @@ SOFTWARE.
 <header>
     <toolbar name="model.name" display-name="model.displayName" actions='actions'></toolbar>
 </header>
-<form novalidate name="artistForm" role="form">
+<form novalidate name="qualificationForm" role="form">
     <fieldset>
         <crud-form fields='model.fields' record='currentRecord' lists-of-values="references"></crud-form>
     </fieldset>

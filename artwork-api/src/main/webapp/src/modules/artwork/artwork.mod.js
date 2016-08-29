@@ -42,14 +42,7 @@ SOFTWARE.
                 displayName: 'Price',
                 type: 'Long',
                 required: true
-            }        }
-        ,
-        childs: {
-                name: 'artworkQualifications',
-                displayName: 'Qualifications',
-                //template: '', //override generic template
-                ctrl: 'qualificationCtrl'
-            }
+            }        }        
     });
 
     mod.config(['$stateProvider',

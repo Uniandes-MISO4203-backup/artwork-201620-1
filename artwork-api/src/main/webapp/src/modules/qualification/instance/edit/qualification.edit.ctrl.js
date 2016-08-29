@@ -23,19 +23,19 @@ SOFTWARE.
 */
 (function (ng) {
 
-    var mod = ng.module("artistModule");
+    var mod = ng.module("qualificationModule");
 
-    mod.controller("artistEditCtrl", ["$scope", "$state", "artist",
-        function ($scope, $state, artist) {
-            $scope.currentRecord = artist;
+    mod.controller("qualificationEditCtrl", ["$scope", "$state", "qualification",
+        function ($scope, $state, qualification) {
+            $scope.currentRecord = qualification;
             $scope.actions = {
                 save: {
                     displayName: 'Save',
                     icon: 'save',
                     fn: function () {
-                        if ($scope.artistForm.$valid) {
+                        if ($scope.qualificationForm.$valid) {
                             $scope.currentRecord.put().then(function (rc) {
-                                $state.go('artistDetail', {artistId: rc.id}, {reload: true});
+                                $state.go('qualificationDetail', {qualificationId: rc.id}, {reload: true});
                             });
                         }
                     }
@@ -44,7 +44,7 @@ SOFTWARE.
                     displayName: 'Cancel',
                     icon: 'remove',
                     fn: function () {
-                        $state.go('artistDetail');
+                        $state.go('qualificationDetail');
                     }
                 }
             };

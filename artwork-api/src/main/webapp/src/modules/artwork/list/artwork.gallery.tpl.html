@@ -16,11 +16,11 @@
                 </div>
             </div>
             <div class="caption" >
-                <p><strong>Name: </strong> {{artwork.id}}</p>
+                <p><strong>Id: </strong> {{artwork.id}}</p>
                 <p><strong>Name: </strong> {{artwork.name}}</p>
-                <p><strong>Price: </strong> {{artwork.price| currency}}</p> 
-                
+                <p><strong>Price: </strong> {{artwork.price| currency}}</p>                 
             </div>
+                <a ui-sref="qualificationNew({artworkId:artwork.id})" ><p>Calificar</p></a>
             </div>
         </div>
     </div>    

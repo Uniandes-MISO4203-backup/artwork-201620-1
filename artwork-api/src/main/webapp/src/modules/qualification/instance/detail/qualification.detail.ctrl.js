@@ -23,18 +23,18 @@ SOFTWARE.
 */
 (function (ng) {
 
-    var mod = ng.module("artistModule");
+    var mod = ng.module("qualificationModule");
 
-    mod.controller("artistDetailCtrl", ['$scope', "$state", "artist",'$rootScope',
-        function ($scope, $state, artist,$rootScope) {
-            $scope.currentRecord = artist;
+    mod.controller("qualificationDetailCtrl", ['$scope', "$state", "qualification",'$rootScope',
+        function ($scope, $state, qualification,$rootScope) {
+            $scope.currentRecord = qualification;
             var roles = $rootScope.roles;
             $scope.actions = {
                 create: {
                     displayName: 'Create',
                     icon: 'plus',
                     fn: function () {
-                        $state.go('artistNew');
+                        $state.go('qualificationNew');
                     },
                     show: function () {
                         return (roles.indexOf("admin") !== -1);
@@ -44,14 +44,14 @@ SOFTWARE.
                     displayName: 'Edit',
                     icon: 'edit',
                     fn: function () {
-                        $state.go('artistEdit');
+                        $state.go('qualificationEdit');
                     }
                 },
                 delete: {
                     displayName: 'Delete',
                     icon: 'minus',
                     fn: function () {
-                        $state.go('artistDelete');
+                        $state.go('qualificationDelete');
                     },
                     show: function () {
                         return (roles.indexOf("admin") !== -1);
@@ -68,14 +68,7 @@ SOFTWARE.
                     displayName: 'List',
                     icon: 'th-list',
                     fn: function () {
-                        $state.go('artistList');
-                    }
-                },
-                artworks: {
-                    displayName: 'Artworks',
-                    icon: 'link',
-                    fn: function () {
-                        $state.go('artworkList');
+                        $state.go('qualificationList');
                     }
                 }
             };
