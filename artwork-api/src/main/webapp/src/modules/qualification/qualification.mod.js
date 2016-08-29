@@ -27,8 +27,9 @@ SOFTWARE.
     mod.constant('qualificationModel', {
         name: 'qualification',
         displayName: 'Qualification',
-		url: 'qualification',
-        fields: {            name: {
+        url: 'qualification',
+        fields: {            
+            name: {
                 displayName: 'Name',
                 type: 'String',
                 required: false
@@ -52,5 +53,28 @@ SOFTWARE.
                 options: [],
                 required: true
             }        }
+    });
+    
+    $sp.state('qualificationList', {
+                url: '/list',
+                parent: 'qualification',
+                views: {
+                    qualificationView: {
+                        templateUrl: basePath + 'list/qualification.list.tpl.html',
+                        controller: 'qualificationListCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            });
+    $sp.state('qualificationNew', {
+        url: '/new',
+        parent: 'qualification',
+        views: {
+            qualificationView: {
+                templateUrl: basePath + 'new/qualification.new.tpl.html',
+                controller: 'qualificationNewCtrl',
+                controllerAs: 'ctrl'
+            }
+        }
     });
 })(window.angular);
