@@ -42,6 +42,7 @@ public class ArtworkDTO implements Serializable{
     private String image;
     private Long price;
 
+
     @PodamExclude
     private List<QualificationDTO> qualifications = new ArrayList<>();
 
@@ -63,6 +64,7 @@ public class ArtworkDTO implements Serializable{
         this.name=entity.getName();
         this.image=entity.getImage();
         this.price=entity.getPrice();
+        
        
         
        }
@@ -178,4 +180,6 @@ public class ArtworkDTO implements Serializable{
     public void setQualifications(List<QualificationDTO> qualifications) {
         this.qualifications = qualifications;
     }
+
+   
 }

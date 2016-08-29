@@ -25,7 +25,7 @@ package co.edu.uniandes.csw.artwork.dtos.detail;
 
 import co.edu.uniandes.csw.artwork.dtos.minimum.*;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
-import co.edu.uniandes.csw.artwork.entities.CommentEntity;
+ 
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -40,8 +40,9 @@ public class ArtworkDetailDTO extends ArtworkDTO{
 
     @PodamExclude
     private ArtistDTO artist;
-    @PodamExclude
-    private List<CommentDTO> comments = new ArrayList<>();
+    
+   
+    
     /**
      * @generated
      */
@@ -59,10 +60,7 @@ public class ArtworkDetailDTO extends ArtworkDTO{
         super(entity);
         if (entity.getArtist()!=null){
         this.artist = new ArtistDTO(entity.getArtist());
-        if (entity.getComments()!= null ){
-            for (CommentEntity comment : entity.getComments())
-        this.comments.add(new CommentDTO(comment));
-        }
+        
         }
         
     }
@@ -102,5 +100,10 @@ public class ArtworkDetailDTO extends ArtworkDTO{
     public void setArtist(ArtistDTO artist) {
         this.artist = artist;
     }
+
+    /**
+     * @return the comments
+     */
+    
 
 }
