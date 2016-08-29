@@ -59,8 +59,7 @@ public class CommentResource {
 
     @Inject private ICommentLogic commentLogic;
     @Context private HttpServletResponse response;
-    @QueryParam("page") private Integer page;
-    @QueryParam("limit") private Integer maxRecords;
+    
     @PathParam("artworksId") private Long artworksId;
 
    
@@ -89,12 +88,13 @@ public class CommentResource {
     @GET
    
     public List<CommentDetailDTO> getComments(){
-        if (page != null && maxRecords != null) {
-            this.response.setIntHeader("X-Total-Count", commentLogic.countItems());
-            return listEntity2DTO(commentLogic.getComments(page, maxRecords, artworksId));
-        }
-        return listEntity2DTO(commentLogic.getComments(page, maxRecords,artworksId));
+         
+            return listEntity2DTO(commentLogic.getComments(artworksId));
     }
-    
+    @POST
+    @StatusCreated
+    public CommentDetailDTO createComment(CommentDetailDTO dto) {
+        return new CommentDetailDTO(commentLogic.createComment(dto.toEntity()));
+    }
     
 }

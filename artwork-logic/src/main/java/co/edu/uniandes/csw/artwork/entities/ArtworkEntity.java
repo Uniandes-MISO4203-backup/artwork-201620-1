@@ -31,6 +31,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.List;
 import java.util.ArrayList;
+import javax.persistence.CascadeType;
 
 /**
  * @generated
@@ -49,7 +50,10 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToOne
     private ArtistEntity artist;
-
+   
+    @PodamExclude
+    @OneToMany(mappedBy = "artwork", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CommentEntity> comments = new ArrayList<>();
     /**
      * Obtiene el atributo image.
      *
@@ -128,5 +132,19 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
      */
     public void setCategory(List<CategoryEntity> category) {
         this.category = category;
+    }
+
+    /**
+     * @return the comments
+     */
+    public List<CommentEntity> getComments() {
+        return comments;
+    }
+
+    /**
+     * @param comments the comments to set
+     */
+    public void setComments(List<CommentEntity> comments) {
+        this.comments = comments;
     }
 }

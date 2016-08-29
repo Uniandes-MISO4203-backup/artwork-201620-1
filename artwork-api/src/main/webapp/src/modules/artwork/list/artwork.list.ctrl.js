@@ -24,11 +24,15 @@ SOFTWARE.
 (function (ng) {
 
     var mod = ng.module("artworkModule");
+   
 
     mod.controller("artworkListCtrl", ["$scope", '$state', 'artworks', '$stateParams','Restangular',
         function ($scope, $state, artworks, $params,Restangular) {
             $scope.records = artworks;
-
+           
+        
+           
+          
             //Paginación
             this.itemsPerPage = $params.limit;
             this.currentPage = $params.page;
@@ -79,6 +83,7 @@ SOFTWARE.
                 }
 
             };
+            
             $scope.recordActions = {
                 detail: {
                     displayName: 'Detail',

@@ -41,6 +41,8 @@ public class ClientEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemEntity> wishList = new ArrayList<>();
+    
+     
 
     /**
      * Obtiene la colección de wishList.
@@ -61,4 +63,9 @@ public class ClientEntity extends BaseEntity implements Serializable {
     public void setWishList(List<ItemEntity> wishlist) {
         this.wishList = wishlist;
     }
+
+    /**
+     * @return the comments
+     */
+   
 }

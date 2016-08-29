@@ -26,6 +26,9 @@ package co.edu.uniandes.csw.artwork.dtos.minimum;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * @generated
@@ -37,6 +40,7 @@ public class ArtworkDTO implements Serializable{
     private String name;
     private String image;
     private Long price;
+  
 
     /**
      * @generated
@@ -56,6 +60,8 @@ public class ArtworkDTO implements Serializable{
         this.name=entity.getName();
         this.image=entity.getImage();
         this.price=entity.getPrice();
+       
+        
        }
     }
 
@@ -153,5 +159,10 @@ public class ArtworkDTO implements Serializable{
     public void setPrice(Long price) {
         this.price = price;
     }
+
+    /**
+     * @return the comments
+     */
+   
 
 }

@@ -34,7 +34,7 @@ SOFTWARE.
         'categoryModule',
         'authModule',
         'roleModule',
-        'commentModule'
+        'commentModule' 
         
     ]);
 
@@ -110,6 +110,7 @@ SOFTWARE.
      * When there's an error changing state, ui-router doesn't raise an error
      * This configuration allows to print said errors
      */
+  
     mod.run(['$rootScope', '$log', function ($rootScope, $log) {
             $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
                 $log.warn(error);

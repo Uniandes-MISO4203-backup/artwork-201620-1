@@ -21,13 +21,19 @@ public class CommentLogic implements ICommentLogic {
 @Inject private CommentPersistence persistence;
    
      @Override
-    public int countItems() {
+    public int countComments() {
         return persistence.count(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<CommentEntity> getComments(Integer page, Integer maxRecords, Long artworkid) {
-        return persistence.findAll(page, maxRecords, artworkid); //To change body of generated methods, choose Tools | Templates.
+    public List<CommentEntity> getComments(Long artworkid){ 
+        return persistence.findAll(artworkid); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CommentEntity createComment(CommentEntity entity) {
+        persistence.create(entity); 
+    return entity;//To change body of generated methods, choose Tools | Templates.
     }
     
 }
