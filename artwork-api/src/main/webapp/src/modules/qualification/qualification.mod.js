@@ -26,25 +26,17 @@
 
     mod.constant('qualificationModel', {
         name: 'qualification',
-        displayName: 'Artist',
+        displayName: 'Qualification',
         url: 'qualifications',
-        fields: {/*
-            name: {
-                displayName: 'Name',
-                type: 'String',
-                required: false
-            },*/
+        fields: {
             qualification: {
                 displayName: 'Qualification',
                 type: 'Integer',
                 required: true
             },
-            client: {
-                name: 'client',
-                displayName: 'Client',
-                type: 'Reference',
-                url: 'clients',
-                options: [],
+            userClient: {
+                displayName: 'User',
+                type: 'String',
                 required: true
             },
             artwork: {
@@ -54,7 +46,7 @@
                 url: 'artworks',
                 options: [],
                 required: true
-            }            
+            }
         }
     });
 
@@ -73,26 +65,14 @@
                     }
                 },
                 resolve: {
-                    /*references: ['$q', 'Restangular', function ($q, r) {
-                                console.log("Caragando adfafasdfsdf");
-                                var artworks = r.all('artworks').getList();
-                                console.log("lista arworks:");
-                                for(i = 0; i < artworks.length; i++){
-                                    console.log(artworks[i]);
-                                }
-                                
-                            return $q.all({
-                                artwork: r.all('artworks').getList()
-                            });
-                        }],*/
                     model: 'qualificationModel',
                     qualifications: ['Restangular', 'model', '$stateParams', function (r, model, $params) {
                             return r.all(model.url).getList($params);
-                        }],
-                    modela: 'artworkModel',
-                    artworks: ['Restangular', 'modela', '$stateParams', function (r, model, $params) {
-                            return r.all(model.url).getList();
-                        }]
+                        }]/*,
+                    modelArtwork: 'artworkModel',
+                    artworks: ['Restangular', 'modelArtwork', '$stateParams', function (r, modelArtwork, $params) {
+                            return r.all(modelArtwork.url).getList();
+                        }]*/
                 }
             });
             $sp.state('qualificationList', {
@@ -114,19 +94,8 @@
                         templateUrl: basePath + 'new/qualification.new.tpl.html',
                         controller: 'qualificationNewCtrl',
                         controllerAs: 'ctrl'
-                    },
-                resolve: {                    
-                    modela: 'artworkModel',
-                    artworks: ['Restangular', 'modela', '$stateParams', function (r, model, $params) {
-                            return r.all(model.url).getList();
-                        }]
+                    }
                 }
-                }/*,
-                resolve: {
-                    qualification: ['qualifications', '$stateParams', function (qualifications, $params) {
-                            return qualifications.get($params.qualificationId);
-                        }]
-                }*/
             });
             $sp.state('qualificationInstance', {
                 url: '/{qualificationId:int}',

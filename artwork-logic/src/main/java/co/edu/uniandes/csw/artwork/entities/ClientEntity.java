@@ -36,18 +36,11 @@ import javax.persistence.CascadeType;
  * @generated
  */
 @Entity
-public class ClientEntity extends BaseEntity implements Serializable {
-
+public class ClientEntity extends BaseEntity implements Serializable {    
+    
     @PodamExclude
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ItemEntity> wishList = new ArrayList<>();
-    
-    
-     
-
-    @PodamExclude
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<QualificationEntity> qualifications = new ArrayList<>();
+    private List<ItemEntity> wishList = new ArrayList<>();    
     
     /**
      * Obtiene la colección de wishList.
@@ -67,22 +60,6 @@ public class ClientEntity extends BaseEntity implements Serializable {
      */
     public void setWishList(List<ItemEntity> wishlist) {
         this.wishList = wishlist;
-    }
-
-    /**
-     * Devuelve las calificaciones realizadas por el usuario a las obras de arte.
-     * @return the qualifications
-     */
-    public List<QualificationEntity> getQualifications() {
-        return qualifications;
-    }
-
-    /**
-     * Establece las calificaciones realizadas por el usuario a las obras de arte.
-     * @param qualifications the qualifications to set
-     */
-    public void setQualifications(List<QualificationEntity> qualifications) {
-        this.qualifications = qualifications;
-    }
-        
+    }    
+    
 }

@@ -3,7 +3,10 @@
     mod.controller('roleCtrl', ['$rootScope', 'Restangular','$state', function ($rootScope, Restangular) {
 
         $rootScope.auth = function () {
-                Restangular.all("users").customGET('me').then(function (response) {
+                var user = Restangular.all("users").customGET('me');
+                $rootScope.usuario = user;
+                console.log("USUARIO: "+user);
+                user.then(function (response) {
                     if (response == null) {
                         $rootScope.category = false;
                         $rootScope.artist = false;

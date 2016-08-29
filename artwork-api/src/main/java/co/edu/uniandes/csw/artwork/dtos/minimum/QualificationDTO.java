@@ -23,8 +23,6 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.dtos.minimum;
 
-import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
-import co.edu.uniandes.csw.artwork.entities.ClientEntity;
 import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
@@ -36,10 +34,9 @@ import java.io.Serializable;
 public class QualificationDTO implements Serializable{
 
     private Long id;
-    private String name;
+    private String userClient;
     private int qualification;
     private ArtworkDTO artwork;
-    private ClientDTO client;
 
     /**
      * @generated
@@ -56,7 +53,6 @@ public class QualificationDTO implements Serializable{
     public QualificationDTO(QualificationEntity entity) {
 	   if (entity!=null){
             this.id=entity.getId();
-            this.name=entity.getName();
             this.qualification = entity.getQualification();            
        }
     }
@@ -70,7 +66,7 @@ public class QualificationDTO implements Serializable{
     public QualificationEntity toEntity() {
         QualificationEntity entity = new QualificationEntity();
         entity.setId(this.getId());
-        entity.setName(this.getName());
+        entity.setName("");
         entity.setQualification(qualification);
         return entity;
     }
@@ -93,26 +89,6 @@ public class QualificationDTO implements Serializable{
      */
     public void setId(Long id) {
         this.id = id;
-    }
-
-    /**
-     * Obtiene el atributo name.
-     *
-     * @return atributo name.
-     * @generated
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Establece el valor del atributo name.
-     *
-     * @param name nuevo valor del atributo
-     * @generated
-     */
-    public void setName(String name) {
-        this.name = name;
     }
     
      /**
@@ -148,19 +124,17 @@ public class QualificationDTO implements Serializable{
     }
 
     /**
-     * Devuelve el cliente que da la calificación a la obra de arte.
-     * @return the client
+     * @return the userClient
      */
-    public ClientDTO getClient() {
-        return client;
+    public String getUserClient() {
+        return userClient;
     }
 
     /**
-     * Establece el cliente que da la calificación a la obra de arte.
-     * @param client the client to set
+     * @param userClient the userClient to set
      */
-    public void setClient(ClientDTO client) {
-        this.client = client;
-    }
+    public void setUserClient(String userClient) {
+        this.userClient = userClient;
+    }        
 
 }

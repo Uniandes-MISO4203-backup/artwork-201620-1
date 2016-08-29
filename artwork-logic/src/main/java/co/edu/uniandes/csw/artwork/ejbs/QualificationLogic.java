@@ -24,12 +24,12 @@ SOFTWARE.
 package co.edu.uniandes.csw.artwork.ejbs;
 
 import co.edu.uniandes.csw.artwork.api.IQualificationLogic;
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
 import co.edu.uniandes.csw.artwork.persistence.QualificationPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.NoResultException;
 
 /**
  * @generated
@@ -135,4 +135,23 @@ public class QualificationLogic implements IQualificationLogic {
         persistence.delete(id);
     }
   
+    /**
+     * 
+     * @param artwork
+     * @param userClient
+     * @param qualification
+     * @return 
+     */
+    @Override
+    public QualificationEntity createQualification(ArtworkEntity artwork, String userClient, Integer qualification){
+        QualificationEntity entity = new QualificationEntity();
+        entity.setArtwork(artwork);
+        entity.setName("");
+        entity.setQualification(qualification);
+        entity.setUserClient(userClient);
+        
+        persistence.create(entity);
+        
+        return entity;
+    }
 }

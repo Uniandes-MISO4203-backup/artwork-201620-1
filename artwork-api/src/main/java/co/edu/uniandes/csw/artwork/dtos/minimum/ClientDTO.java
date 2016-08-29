@@ -41,8 +41,6 @@ public class ClientDTO implements Serializable{
 
     private Long id;
     private String name;
-    @PodamExclude
-    private List<QualificationDTO> qualifications = new ArrayList<>();
 
     /**
      * @generated
@@ -116,19 +114,4 @@ public class ClientDTO implements Serializable{
         this.name = name;
     }
 
-    /**
-     * Devuelve las calificaciones realizadas por el usuario a las obras de arte.
-     * @return the qualifications
-     */
-    public List<QualificationDTO> getQualifications() {
-        return qualifications;
-    }
-
-    /**
-     * Establece las calificaciones realizadas por el usuario a las obras de arte.
-     * @param qualifications the qualifications to set
-     */
-    public void setQualifications(List<QualificationDTO> qualifications) {
-        this.qualifications = qualifications;
-    }
 }
