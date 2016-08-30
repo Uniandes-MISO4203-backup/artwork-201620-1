@@ -37,12 +37,11 @@ and open the template in the editor.
         <div class="caption row">
 
             <div class="col-md-12" style="overflow-y: scroll; padding: 5%; height: 200px;">
-                <h1>comentarios acacomentarios acacomentarios acacomentarios acacomentarios acacomentarios aca</h1>
-                <h1>comentarios aca</h1>
-                <h1>comentarios aca</h1>
-                <h1>comentarios aca</h1>
-                <h1>comentarios aca</h1>
-                <h1>comentarios aca</h1>
+                <ul class="unstyled">
+                    <li ng-repeat="comment in comments">
+                        {{comment.comment}} - {{comment.name}}
+                    </li> 
+                </ul>
 
 
             </div>
