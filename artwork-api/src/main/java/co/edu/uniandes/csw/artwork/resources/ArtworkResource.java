@@ -57,7 +57,7 @@ public class ArtworkResource {
     @Context private HttpServletResponse response;
     @QueryParam("page") private Integer page;
     @QueryParam("limit") private Integer maxRecords;
-    @PathParam("artistsId") private Long artistsId;
+    @PathParam("artistsId") private Long artistsId;    
 
    
     /**
@@ -164,20 +164,7 @@ public class ArtworkResource {
         return ArtworkCategoryResource.class;
     }
     
-    /**
-     * Obtiene la lista de los registros de Qualification
-     *
-     * @param artworkid Id de la obra de arte 
-     * @return Colección de objetos de QualificationDetailDTO
-     * @generated
-     */
-    @GET
-    @Path("artwork/{artworkid: \\d+}")
-    public List<QualificationDetailDTO> getQualificationsArtwork(@PathParam("artworkid") Long artworkid) {
-                
-        return QualificationResource.listEntity2DTO(artworkLogic.getQualifications(artworkid));
-        
-    }
+    
     
     
 }

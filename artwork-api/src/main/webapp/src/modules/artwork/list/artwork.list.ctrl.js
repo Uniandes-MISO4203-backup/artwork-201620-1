@@ -26,19 +26,55 @@ SOFTWARE.
     var mod = ng.module("artworkModule");
    
 
-    mod.controller("artworkListCtrl", ["$scope", '$state', 'artworks', '$stateParams','Restangular',
-        function ($scope, $state, artworks, $params,Restangular) {
+    mod.controller("artworkListCtrl", ["$rootScope","$scope", '$state', 'artworks', '$stateParams','Restangular',
+        function ($rootScope, $scope, $state, artworks, $params,Restangular) {
             $scope.records = artworks;
-           
-        
-           
-          
+
             //Paginación
             this.itemsPerPage = $params.limit;
             this.currentPage = $params.page;
             this.totalItems = artworks.totalRecords;
             
             $scope.categorys = [];
+            $scope.qualifications = [];           
+            
+            $scope.isArtworkNotQualificated = function(artworkId){
+                userClient = $rootScope.usuario.$object.email;
+                var qual = [];
+                for(var i = 0; i < $scope.qualifications.length; i++ ){
+                    var calificacion = $scope.qualifications[i];
+                    if(calificacion.artwork.id===artworkId && calificacion.userClient===userClient){
+                        return false;
+                    }
+                }                
+                return true;
+            };
+            
+            $scope.getArtworkQualifications = function(artworkId){
+                var qual = [];
+                for(var i = 0; i < $scope.qualifications.length; i++ ){
+                    var calificacion = $scope.qualifications[i];
+                    console.log(calificacion);
+                    if(calificacion.artwork.id===artworkId){
+                        qual.push(calificacion);
+                    }
+                }                
+                return qual;
+            };
+            
+            
+            $scope.getQualifications = function (artworkId) {
+                console.log("Obteniendo qualifications");
+                Restangular.all("qualifications").customGET('').then(function (response) {
+                    console.log("AFDSFFFFFF");
+                    console.log(response);
+                    if (response.length>0) {
+                        console.log("Respuesta");
+                        console.log(response);
+                        $scope.qualifications = response;
+                    } 
+                });
+            };
             
             $scope.getCategorys = function (parentCategory) {
                 Restangular.all("categorys").customGET('parents/'+parentCategory).then(function (response) {
@@ -54,6 +90,7 @@ SOFTWARE.
                 });
             };
             $scope.getCategorys("");
+            $scope.getQualifications();
 
             this.pageChanged = function () {
                 $state.go('artworkList', {page: this.currentPage});

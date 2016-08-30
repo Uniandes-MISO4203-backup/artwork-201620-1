@@ -186,4 +186,19 @@ public class QualificationResource {
         }
     }    
     
+    /**
+     * Obtiene la lista de los registros de Qualification
+     *
+     * @param artworkid Id de la obra de arte 
+     * @return Colección de objetos de QualificationDetailDTO
+     * @generated
+     */
+    @GET
+    @Path("/artwork")
+    public List<QualificationDetailDTO> getQualificationsArtwork() {
+                
+        return QualificationResource.listEntity2DTO(artworkLogic.getQualifications(artworkId));
+        
+    }
+    
 }

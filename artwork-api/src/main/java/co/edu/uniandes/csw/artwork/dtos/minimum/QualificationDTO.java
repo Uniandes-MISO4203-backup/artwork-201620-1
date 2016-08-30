@@ -53,7 +53,9 @@ public class QualificationDTO implements Serializable{
     public QualificationDTO(QualificationEntity entity) {
 	   if (entity!=null){
             this.id=entity.getId();
-            this.qualification = entity.getQualification();            
+            this.qualification = entity.getQualification();  
+            this.artwork = new ArtworkDTO(entity.getArtwork());
+            this.userClient = entity.getUserClient();
        }
     }
 
