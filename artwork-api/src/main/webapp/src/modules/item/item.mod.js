@@ -73,7 +73,6 @@ SOFTWARE.
                     references: ['$q', 'Restangular', function ($q, r) {
                             return $q.all({
                                 artwork: r.all('artworks').getList()
-,                                 product: r.all('products').getList()
                             });
                         }],
                     model: 'itemModel',

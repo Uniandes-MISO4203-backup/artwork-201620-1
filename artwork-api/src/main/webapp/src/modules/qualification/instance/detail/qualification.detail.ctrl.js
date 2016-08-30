@@ -23,31 +23,38 @@ SOFTWARE.
 */
 (function (ng) {
 
-    var mod = ng.module("artworkModule");
+    var mod = ng.module("qualificationModule");
 
-    mod.controller("artworkDetailCtrl", ['$scope', "$state", "artwork",
-        function ($scope, $state, artwork) {
-            $scope.currentRecord = artwork;
+    mod.controller("qualificationDetailCtrl", ['$scope', "$state", "qualification",'$rootScope',
+        function ($scope, $state, qualification,$rootScope) {
+            $scope.currentRecord = qualification;
+            var roles = $rootScope.roles;
             $scope.actions = {
                 create: {
                     displayName: 'Create',
                     icon: 'plus',
                     fn: function () {
-                        $state.go('artworkNew');
+                        $state.go('qualificationNew');
+                    },
+                    show: function () {
+                        return (roles.indexOf("admin") !== -1);
                     }
                 },
                 edit: {
                     displayName: 'Edit',
                     icon: 'edit',
                     fn: function () {
-                        $state.go('artworkEdit');
+                        $state.go('qualificationEdit');
                     }
                 },
                 delete: {
                     displayName: 'Delete',
                     icon: 'minus',
                     fn: function () {
-                        $state.go('artworkDelete');
+                        $state.go('qualificationDelete');
+                    },
+                    show: function () {
+                        return (roles.indexOf("admin") !== -1);
                     }
                 },
                 refresh: {
@@ -61,21 +68,7 @@ SOFTWARE.
                     displayName: 'List',
                     icon: 'th-list',
                     fn: function () {
-                        $state.go('artworkList');
-                    }
-                },
-                category: {
-                    displayName: 'Category',
-                    icon: 'link',
-                    fn: function () {
-                        $state.go('artworkCategoryList');
-                    }
-                },
-                comment: {
-                    displayName: 'Comment',
-                    icon: 'thumbs-up',
-                    fn: function () {
-                        $state.go('comment');
+                        $state.go('qualificationList');
                     }
                 }
             };

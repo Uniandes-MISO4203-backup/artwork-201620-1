@@ -26,6 +26,7 @@ package co.edu.uniandes.csw.artwork.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import co.edu.uniandes.csw.crud.spi.entity.BaseEntity;
+import javax.persistence.Column;
 import uk.co.jemos.podam.common.PodamExclude;
 import javax.persistence.ManyToOne;
 
@@ -37,13 +38,14 @@ public class QualificationEntity extends BaseEntity implements Serializable {
 
     private int qualification;
     
-    @PodamExclude
-    @ManyToOne
-    private ArtworkEntity artwork;
+    /**
+     * Nombre de usuario del cliente en stormpath
+     */
+    private String userClient;
     
     @PodamExclude
     @ManyToOne
-    private ClientEntity client;
+    private ArtworkEntity artwork;   
 
     /**
      * Devuelve la calificación dada a la obra de arte por el usuario.
@@ -78,22 +80,18 @@ public class QualificationEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * Devuelve el cliente que da la calificación a la obra de arte.
-     * @return the client
+     * @return the userClient
      */
-    public ClientEntity getClient() {
-        return client;
+    public String getUserClient() {
+        return userClient;
     }
 
     /**
-     * Establece el cliente que da la calificación a la obra de arte.
-     * @param client the client to set
+     * @param userClient the userClient to set
      */
-    public void setClient(ClientEntity client) {
-        this.client = client;
-    }
-
-    
+    public void setUserClient(String userClient) {
+        this.userClient = userClient;
+    }    
 
     
 }

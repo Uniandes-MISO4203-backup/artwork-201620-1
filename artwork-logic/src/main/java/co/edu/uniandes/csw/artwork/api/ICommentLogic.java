@@ -27,7 +27,9 @@ import co.edu.uniandes.csw.artwork.entities.CommentEntity;
 import java.util.List;
 
 public interface ICommentLogic {
-    public int countItems();
-    public List<CommentEntity> getComments(Integer page, Integer maxRecords, Long artworkid);
+    public int countComments();
+    public List<CommentEntity> getComments(Long artworkid);
+    public CommentEntity createComment(Long artworkid, CommentEntity entity);
+    
     
 }

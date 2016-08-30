@@ -23,6 +23,7 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.resources;
 
+import co.edu.uniandes.csw.artwork.api.IArtworkLogic;
 import co.edu.uniandes.csw.auth.provider.StatusCreated;
 import java.util.List;
 import javax.inject.Inject;
@@ -40,6 +41,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import co.edu.uniandes.csw.artwork.api.IQualificationLogic;
 import co.edu.uniandes.csw.artwork.dtos.detail.QualificationDetailDTO;
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
 import co.edu.uniandes.csw.auth.stormpath.Utils;
 import com.stormpath.sdk.account.Account;
@@ -62,10 +64,14 @@ public class QualificationResource {
     private static final String ARTIST_HREF = "https://api.stormpath.com/v1/groups/K4yTGg11sCUoGBbJe0GJ3";
 
     @Inject private IQualificationLogic qualificationLogic;
+    @Inject private IArtworkLogic artworkLogic;
     @Context private HttpServletResponse response;
     @Context private HttpServletRequest req;
     @QueryParam("page") private Integer page;
     @QueryParam("limit") private Integer maxRecords;
+    @QueryParam("qualification") private Integer qualification;
+    @QueryParam("artworkId") private Long artworkId;
+    @QueryParam("userClient") private String userClient;
 
    
     /**
@@ -75,7 +81,7 @@ public class QualificationResource {
      * @return Lista de QualificationDetailDTO convertida.
      * @generated
      */
-    private List<QualificationDetailDTO> listEntity2DTO(List<QualificationEntity> entityList){
+    protected static List<QualificationDetailDTO> listEntity2DTO(List<QualificationEntity> entityList){
         List<QualificationDetailDTO> list = new ArrayList<>();
         for (QualificationEntity entity : entityList) {
             list.add(new QualificationDetailDTO(entity));
@@ -108,22 +114,7 @@ public class QualificationResource {
         } 
         return null;
         
-    }
-    
-    /**
-     * Obtiene la lista de los registros de Qualification
-     *
-     * @param artworkid Id de la obra de arte 
-     * @return Colección de objetos de QualificationDetailDTO
-     * @generated
-     */
-    @GET
-    @Path("artwork/{artworkid: \\d+}")
-    public List<QualificationDetailDTO> getQualificationsArtwork(@PathParam("artworkid") Long artworkid) {
-                
-        return listEntity2DTO(qualificationLogic.getQualificationsArtwork(artworkid));
-        
-    }
+    }    
 
     /**
      * Obtiene los datos de una instancia de Qualification a partir de su ID
@@ -149,6 +140,14 @@ public class QualificationResource {
     @StatusCreated
     public QualificationDetailDTO createQualification(QualificationDetailDTO dto) {
         return new QualificationDetailDTO(qualificationLogic.createQualification(dto.toEntity()));
+    }
+    
+    @POST
+    @StatusCreated
+    @Path("/crear")
+    public QualificationDetailDTO createQualification() {
+        ArtworkEntity artwork = artworkLogic.getArtwork(artworkId);
+        return new QualificationDetailDTO(qualificationLogic.createQualification(artwork, userClient, qualification));
     }
 
     /**
@@ -185,6 +184,21 @@ public class QualificationResource {
         if (qualification== null) {
             throw new WebApplicationException(404);
         }
+    }    
+    
+    /**
+     * Obtiene la lista de los registros de Qualification
+     *
+     * @param artworkid Id de la obra de arte 
+     * @return Colección de objetos de QualificationDetailDTO
+     * @generated
+     */
+    @GET
+    @Path("/artwork")
+    public List<QualificationDetailDTO> getQualificationsArtwork() {
+                
+        return QualificationResource.listEntity2DTO(artworkLogic.getQualifications(artworkId));
+        
     }
     
 }

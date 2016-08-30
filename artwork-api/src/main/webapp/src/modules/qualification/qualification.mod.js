@@ -1,155 +1,149 @@
 /*
-The MIT License (MIT)
-
-Copyright (c) 2015 Los Andes University
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-*/
+ The MIT License (MIT)
+ 
+ Copyright (c) 2015 Los Andes University
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+ */
 (function (ng) {
-    var mod = ng.module('itemModule', ['ngCrud', 'ui.router']);
+    var mod = ng.module('qualificationModule', ['ngCrud', 'ui.router']);
 
-    mod.constant('itemModel', {
-        name: 'item',
-        displayName: 'Item',
-		url: 'wishList',
-        fields: {            name: {
-                displayName: 'Name',
+    mod.constant('qualificationModel', {
+        name: 'qualification',
+        displayName: 'Qualification',
+        url: 'qualifications',
+        fields: {
+            qualification: {
+                displayName: 'Qualification',
+                type: 'Integer',
+                required: true
+            },
+            userClient: {
+                displayName: 'User',
                 type: 'String',
                 required: true
             },
-            qty: {
-                displayName: 'Qty',
-                type: 'Long',
-                required: true
-            },
             artwork: {
+                name: 'artwork',
                 displayName: 'Artwork',
                 type: 'Reference',
-                model: 'artworkModel',
+                url: 'artworks',
                 options: [],
                 required: true
-            },
-            product: {
-                displayName: 'Product',
-                type: 'Reference',
-                model: 'productModel',
-                options: [],
-                required: true
-            }        }
+            }
+        }
     });
 
     mod.config(['$stateProvider',
-        function($sp){
-            var basePath = 'src/modules/item/';
+        function ($sp) {
+            var basePath = 'src/modules/qualification/';
             var baseInstancePath = basePath + 'instance/';
 
-            $sp.state('item', {
-                url: '/wishList?page&limit',
+            $sp.state('qualification', {
+                url: '/qualifications?page&limit',
                 abstract: true,
-                parent: 'clientDetail',
                 views: {
-                     clientChieldView: {
-                        templateUrl: basePath + 'item.tpl.html',
-                        controller: 'itemCtrl'
+                    mainView: {
+                        templateUrl: basePath + 'qualification.tpl.html',
+                        controller: 'qualificationCtrl'
                     }
                 },
                 resolve: {
-                    references: ['$q', 'Restangular', function ($q, r) {
-                            return $q.all({
-                                artwork: r.all('artworks').getList()
-,                                 product: r.all('products').getList()
-                            });
-                        }],
-                    model: 'itemModel',
-                    items: ['client', '$stateParams', 'model', function (client, $params, model) {
-                            return client.getList(model.url, $params);
-                        }]                }
+                    model: 'qualificationModel',
+                    qualifications: ['Restangular', 'model', '$stateParams', function (r, model, $params) {
+                            return r.all(model.url).getList($params);
+                        }]/*,
+                    modelArtwork: 'artworkModel',
+                    artworks: ['Restangular', 'modelArtwork', '$stateParams', function (r, modelArtwork, $params) {
+                            return r.all(modelArtwork.url).getList();
+                        }]*/
+                }
             });
-            $sp.state('itemList', {
+            $sp.state('qualificationList', {
                 url: '/list',
-                parent: 'item',
+                parent: 'qualification',
                 views: {
-                    itemView: {
-                        templateUrl: basePath + 'list/item.list.tpl.html',
-                        controller: 'itemListCtrl',
+                    qualificationView: {
+                        templateUrl: basePath + 'list/qualification.list.tpl.html',
+                        controller: 'qualificationListCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
             });
-            $sp.state('itemNew', {
-                url: '/new',
-                parent: 'item',
+            $sp.state('qualificationNew', {
+                url: '/new/:artworkId',
+                parent: 'qualification',
                 views: {
-                    itemView: {
-                        templateUrl: basePath + 'new/item.new.tpl.html',
-                        controller: 'itemNewCtrl',
+                    qualificationView: {
+                        templateUrl: basePath + 'new/qualification.new.tpl.html',
+                        controller: 'qualificationNewCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
             });
-            $sp.state('itemInstance', {
-                url: '/{itemId:int}',
+            $sp.state('qualificationInstance', {
+                url: '/{qualificationId:int}',
                 abstract: true,
-                parent: 'item',
+                parent: 'qualification',
                 views: {
-                    itemView: {
-                        template: '<div ui-view="itemInstanceView"></div>'
+                    qualificationView: {
+                        template: '<div ui-view="qualificationInstanceView"></div>'
                     }
                 },
                 resolve: {
-                    item: ['items', '$stateParams', function (items, $params) {
-                            return items.get($params.itemId);
+                    qualification: ['qualifications', '$stateParams', function (qualifications, $params) {
+                            return qualifications.get($params.qualificationId);
                         }]
                 }
             });
-            $sp.state('itemDetail', {
+            $sp.state('qualificationDetail', {
                 url: '/details',
-                parent: 'itemInstance',
+                parent: 'qualificationInstance',
                 views: {
-                    itemInstanceView: {
-                        templateUrl: baseInstancePath + 'detail/item.detail.tpl.html',
-                        controller: 'itemDetailCtrl'
+                    qualificationInstanceView: {
+                        templateUrl: baseInstancePath + 'detail/qualification.detail.tpl.html',
+                        controller: 'qualificationDetailCtrl'
                     }
                 }
             });
-            $sp.state('itemEdit', {
+            $sp.state('qualificationEdit', {
                 url: '/edit',
                 sticky: true,
-                parent: 'itemInstance',
+                parent: 'qualificationInstance',
                 views: {
-                    itemInstanceView: {
-                        templateUrl: baseInstancePath + 'edit/item.edit.tpl.html',
-                        controller: 'itemEditCtrl',
+                    qualificationInstanceView: {
+                        templateUrl: baseInstancePath + 'edit/qualification.edit.tpl.html',
+                        controller: 'qualificationEditCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
             });
-            $sp.state('itemDelete', {
+            $sp.state('qualificationDelete', {
                 url: '/delete',
-                parent: 'itemInstance',
+                parent: 'qualificationInstance',
                 views: {
-                    itemInstanceView: {
-                        templateUrl: baseInstancePath + 'delete/item.delete.tpl.html',
-                        controller: 'itemDeleteCtrl',
+                    qualificationInstanceView: {
+                        templateUrl: baseInstancePath + 'delete/qualification.delete.tpl.html',
+                        controller: 'qualificationDeleteCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
             });
-	}]);
+        }]);
 })(window.angular);

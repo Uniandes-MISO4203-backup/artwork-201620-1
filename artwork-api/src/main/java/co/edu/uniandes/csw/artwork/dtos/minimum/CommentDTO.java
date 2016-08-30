@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.artwork.dtos.minimum;
 import co.edu.uniandes.csw.artwork.entities.CommentEntity;
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlRootElement;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -19,6 +20,8 @@ public class CommentDTO implements Serializable {
     private String name;
     private String comment;
     
+    
+    
    public CommentDTO() {
     } 
    
@@ -27,6 +30,7 @@ public class CommentDTO implements Serializable {
         this.id=entity.getId();
         this.name=entity.getName();
         this.comment=entity.getComment();
+       
        }
     }
     public CommentEntity toEntity() {
@@ -34,6 +38,7 @@ public class CommentDTO implements Serializable {
         entity.setId(this.getId());
         entity.setName(this.getName());
         entity.setComment(this.getComment());
+       
     return entity;
     }
 
@@ -78,4 +83,14 @@ public class CommentDTO implements Serializable {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+    /**
+     * @return the artwork
+     */
+   
+
+    /**
+     * @return the artwork
+     */
+   
 }

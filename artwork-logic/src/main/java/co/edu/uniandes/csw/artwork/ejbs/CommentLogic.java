@@ -5,7 +5,10 @@
  */
 package co.edu.uniandes.csw.artwork.ejbs;
 
+import co.edu.uniandes.csw.artwork.api.IArtistLogic;
+import co.edu.uniandes.csw.artwork.api.IArtworkLogic;
 import co.edu.uniandes.csw.artwork.api.ICommentLogic;
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.CommentEntity;
 import co.edu.uniandes.csw.artwork.persistence.CommentPersistence;
 import java.util.List;
@@ -19,15 +22,26 @@ import javax.inject.Inject;
 @Stateless
 public class CommentLogic implements ICommentLogic {
 @Inject private CommentPersistence persistence;
+
+@Inject
+    private IArtworkLogic artworkLogic;
    
      @Override
-    public int countItems() {
+    public int countComments() {
         return persistence.count(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<CommentEntity> getComments(Integer page, Integer maxRecords, Long artworkid) {
-        return persistence.findAll(page, maxRecords, artworkid); //To change body of generated methods, choose Tools | Templates.
+    public List<CommentEntity> getComments(Long artworkid){ 
+        return persistence.findAll(artworkid); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CommentEntity createComment(Long artworkId,CommentEntity entity) {
+        ArtworkEntity artwork = artworkLogic.getArtwork(artworkId);
+        entity.setArtwork(artwork);
+        entity = persistence.create(entity);
+    return entity;//To change body of generated methods, choose Tools | Templates.
     }
     
 }

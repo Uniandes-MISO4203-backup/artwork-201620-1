@@ -1,4 +1,4 @@
-/*
+<!--
 The MIT License (MIT)
 
 Copyright (c) 2015 Los Andes University
@@ -20,46 +20,16 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
-package co.edu.uniandes.csw.artwork.entities;
-
-import java.io.Serializable;
-import javax.persistence.Entity;
-import co.edu.uniandes.csw.crud.spi.entity.BaseEntity;
-import uk.co.jemos.podam.common.PodamExclude;
-import javax.persistence.OneToMany;
-import java.util.List;
-import java.util.ArrayList;
-import javax.persistence.CascadeType;
-
-/**
- * @generated
- */
-@Entity
-public class ClientEntity extends BaseEntity implements Serializable {    
-    
-    @PodamExclude
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ItemEntity> wishList = new ArrayList<>();    
-    
-    /**
-     * Obtiene la colección de wishList.
-     *
-     * @return colección wishList.
-     * @generated
-     */
-    public List<ItemEntity> getWishList() {
-        return wishList;
-    }
-
-    /**
-     * Establece el valor de la colección de wishList.
-     *
-     * @param wishList nuevo valor de la colección.
-     * @generated
-     */
-    public void setWishList(List<ItemEntity> wishlist) {
-        this.wishList = wishlist;
-    }    
-    
-}
+-->
+<header>
+    <toolbar name="model.name" display-name="model.displayName" actions='actions'></toolbar>
+</header>
+<div  class="container-fluid well">
+    <div class="col-md-12">
+        <p>
+        <label><strong>Name: </strong></label><span id="name"> {{currentRecord.name}}</span>
+        </p>
+    </div>
+</div>
+<div ui-view="qualificationChieldView"></div>
+<!-- TODO -->

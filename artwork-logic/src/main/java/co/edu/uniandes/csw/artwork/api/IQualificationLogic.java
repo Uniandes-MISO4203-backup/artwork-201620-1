@@ -23,6 +23,7 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.api;
 
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public interface IQualificationLogic {
     public List<QualificationEntity> getQualifications(Integer page, Integer maxRecords);
     public QualificationEntity getQualification(Long id);
     public QualificationEntity createQualification(QualificationEntity entity); 
+    public QualificationEntity createQualification(ArtworkEntity artworkId, String userClient, Integer qualification);
     public QualificationEntity updateQualification(QualificationEntity entity);
     public void deleteQualification(Long id);
 }

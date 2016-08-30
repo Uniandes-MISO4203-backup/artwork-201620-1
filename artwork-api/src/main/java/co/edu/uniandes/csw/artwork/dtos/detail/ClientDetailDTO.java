@@ -25,7 +25,10 @@ package co.edu.uniandes.csw.artwork.dtos.detail;
 
 import co.edu.uniandes.csw.artwork.dtos.minimum.*;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * @generated
@@ -33,8 +36,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class ClientDetailDTO extends ClientDTO{
 
-
-
+  
+ 
     /**
      * @generated
      */
@@ -64,5 +67,15 @@ public class ClientDetailDTO extends ClientDTO{
         ClientEntity entity = super.toEntity();
         return entity;
     }
+
+    /**
+     * @return the comment
+     */
+   
+
+    /**
+     * @return the comments
+     */
+    
 
 }

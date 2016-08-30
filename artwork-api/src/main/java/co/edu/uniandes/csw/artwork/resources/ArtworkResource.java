@@ -40,6 +40,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import co.edu.uniandes.csw.artwork.api.IArtworkLogic;
 import co.edu.uniandes.csw.artwork.dtos.detail.ArtworkDetailDTO;
+import co.edu.uniandes.csw.artwork.dtos.detail.QualificationDetailDTO;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import java.util.ArrayList;
 import javax.ws.rs.WebApplicationException;
@@ -56,7 +57,7 @@ public class ArtworkResource {
     @Context private HttpServletResponse response;
     @QueryParam("page") private Integer page;
     @QueryParam("limit") private Integer maxRecords;
-    @PathParam("artistsId") private Long artistsId;
+    @PathParam("artistsId") private Long artistsId;    
 
    
     /**
@@ -162,5 +163,8 @@ public class ArtworkResource {
         existsArtwork(artworksId);
         return ArtworkCategoryResource.class;
     }
+    
+    
+    
     
 }

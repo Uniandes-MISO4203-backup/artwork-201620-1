@@ -29,8 +29,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -71,6 +69,7 @@ public class ArtworkDTO implements Serializable{
         this.price=entity.getPrice();
         this.width=entity.getWidth();
         this.height=entity.getHeight();
+
        }
     }
 

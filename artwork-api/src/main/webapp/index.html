@@ -63,9 +63,14 @@ SOFTWARE.
         <!-- include: "type": "js", "files": "<%= meta.includeJsFiles %>" -->
         <script src="src/app.js"></script>
         <script src="src/auth.js"></script>
+        
         <script src="src/modules/client/client.mod.js"></script>
         <script src="src/modules/item/item.mod.js"></script>
         <script src="src/modules/artwork/artwork.mod.js"></script>
+        <script src="src/modules/comment/comment.mod.js"></script>
+        <script src="src/modules/comment/comment.ctrl.js"></script>
+        <script src="src/modules/comment/list/comment.list.ctrl.js"></script>
+        <script src="src/modules/comment/new/comment.new.ctrl.js" ></script>
         <script src="src/modules/artist/artist.mod.js"></script>
         <script src="src/modules/product/product.mod.js"></script>
         <script src="src/modules/category/category.mod.js"></script>
@@ -107,6 +112,16 @@ SOFTWARE.
         <script src="src/modules/category/instance/edit/category.edit.ctrl.js"></script>
         <script src="src/modules/category/list/category.list.ctrl.js"></script>
         <script src="src/modules/category/new/category.new.ctrl.js"></script>
+        <script src="src/modules/qualification/qualification.mod.js"></script>
+        <script src="src/modules/qualification/qualification.ctrl.js"></script>
+        <script src="src/modules/qualification/list/qualification.list.ctrl.js"></script>
+        <script src="src/modules/qualification/new/qualification.new.ctrl.js" ></script>
+        <script src="src/modules/qualification/qualification.ctrl.js"></script>
+        <script src="src/modules/qualification/instance/delete/qualification.delete.ctrl.js"></script>
+        <script src="src/modules/qualification/instance/detail/qualification.detail.ctrl.js"></script>
+        <script src="src/modules/qualification/instance/edit/qualification.edit.ctrl.js"></script>
+        <script src="src/modules/qualification/list/qualification.list.ctrl.js"></script>
+        <script src="src/modules/qualification/new/qualification.new.ctrl.js"></script>
         <!-- /include -->
         <!-- endbuild -->
 
@@ -143,6 +158,7 @@ SOFTWARE.
                 </nav>
             </div>
             <div ui-view="mainView"></div>
+            
         </div>
     </body>
 </html>
