@@ -1,5 +1,5 @@
 {
-    "name": "Artwork",
+    "name": "artwork",
     "license": "MIT",
     "dependencies": {
         "ng-crud": "^0.2.0",

@@ -2,10 +2,17 @@
 <div class="list">            
     <div ng-if="true" class="col-md-2 well" >
         <h4>Categorías</h4>
-        <span style="cursor: pointer" class="glyphicon glyphicon-repeat" ng-click="filtrar('')"></span>
-        <ul style="list-style:none">
-            <li ng-repeat="category in categorys"><a ng-click="filtrar(category.id)" style="cursor: pointer">{{category.name}}</a></li>
-        </ul>
+        <div class="row" style="display:inline-flex">
+            <input type="text" class="col-md-8 form-control" ng-model="artistInput">
+            <button class="col-md-4 btn-default" ng-click="filtrarPorArtista(artistInput)">Filtrar</button>
+        </div>
+        <div class="row">
+            <span style="cursor: pointer" class="glyphicon glyphicon-repeat" ng-click="filtrar('')"></span>
+            <ul style="list-style:none">
+                <li ng-repeat="category in categorys"><a ng-click="filtrar(category.id)" style="cursor: pointer">{{category.name}}</a></li>
+            </ul>
+        </div>
+        
     </div>
     <div class="col-md-10">
         <div ng-repeat="artwork in records">
@@ -18,8 +25,10 @@
             <div class="caption" >
                 <p><strong>Name: </strong> {{artwork.name}}</p>
                 <p><strong>Price: </strong> {{artwork.price| currency}}</p>              
+                <p><strong>Width: </strong> {{artwork.width}}cm</p>
+                <p><strong>Height: </strong> {{artwork.height}}cm</p>
             </div>
             </div>
         </div>
-    </div>    
+    </div> 
 </div>

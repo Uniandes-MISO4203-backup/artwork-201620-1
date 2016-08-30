@@ -244,6 +244,16 @@ public class ArtworkLogic implements IArtworkLogic {
     }
     
     /**
+     * Devuelve las obras de arte del artista dado
+     * @param artist El nombre del artista
+     * @return La lista de obras de arte del artista
+     */
+    @Override
+    public List<ArtworkEntity> getArtworksFromArtist(String artist) {
+        return persistence.getArtworksFromArtist(artist);
+    }
+    
+    /**
      * Devuelve la lista de calificaciones que los clientes han realizado de
      * la obra de arte.
      * @param artworkId El identificador de la obra de arte

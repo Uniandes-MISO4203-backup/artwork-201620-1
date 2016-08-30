@@ -32,7 +32,16 @@ SOFTWARE.
                 displayName: 'Name',
                 type: 'String',
                 required: true
-            }        }
+            }      
+            ,  appraisal: {
+                    displayName: 'Avaluo',
+                    type: 'Computed',
+                    required: false,
+                    fn: function (record){
+                        return record.appraisal;
+                    }
+             }
+        }
     });
 
     mod.config(['$stateProvider',

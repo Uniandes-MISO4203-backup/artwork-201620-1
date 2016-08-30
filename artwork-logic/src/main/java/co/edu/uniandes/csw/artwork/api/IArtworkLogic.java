@@ -42,5 +42,7 @@ public interface IArtworkLogic {
     public CategoryEntity addCategory(Long artworkId, Long categoryId);
     public List<CategoryEntity> replaceCategory(Long artworkId, List<CategoryEntity> list);
     public void removeCategory(Long artworkId, Long categoryId);
+
+    public List<ArtworkEntity> getArtworksFromArtist(String artist);
     public List<QualificationEntity> getQualifications(Long artworkId);
 }

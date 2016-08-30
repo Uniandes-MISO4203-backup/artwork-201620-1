@@ -42,7 +42,10 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
     private String image;
 
     private Long price;
-
+        
+    private int width; //ancho
+    private int height; //alto
+    
     @PodamExclude
     @OneToMany
     private List<CategoryEntity> category = new ArrayList<>();
@@ -135,6 +138,22 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
         this.category = category;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+        
     /**
      * Devuelve las calificaciones realizadas por los usuarios la obra de arte.
      * @return the qualifications
