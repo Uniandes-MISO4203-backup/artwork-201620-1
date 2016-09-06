@@ -42,8 +42,8 @@ public class ArtworkDTO implements Serializable{
     private String image;
     private Long price;
 
-    private int width; //ancho
-    private int height; //alto
+    private Integer width; //ancho
+    private Integer height; //alto
 
     @PodamExclude
     private List<QualificationDTO> qualifications = new ArrayList<>();
@@ -176,7 +176,7 @@ public class ArtworkDTO implements Serializable{
      * @return atributo width.
      * @generated
      */
-    public int getWidth() {
+    public Integer getWidth() {
         return width;
     }
     
@@ -186,7 +186,7 @@ public class ArtworkDTO implements Serializable{
      * @param width nuevo valor del atributo
      * @generated
      */
-    public void setWidth(int width) {
+    public void setWidth(Integer width) {
         this.width = width;
     }
     
@@ -196,7 +196,7 @@ public class ArtworkDTO implements Serializable{
      * @return atributo height.
      * @generated
      */
-    public int getHeight() {
+    public Integer getHeight() {
         return height;
     }
     
@@ -206,7 +206,7 @@ public class ArtworkDTO implements Serializable{
      * @param height nuevo valor del atributo
      * @generated
      */
-    public void setHeight(int height) {
+    public void setHeight(Integer height) {
         this.height = height;
     }
 

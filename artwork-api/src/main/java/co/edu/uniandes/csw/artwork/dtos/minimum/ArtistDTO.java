@@ -36,7 +36,7 @@ public class ArtistDTO implements Serializable{
 
     private Long id;
     private String name;
-    private long appraisal; //Nuevo campo de avaluo
+    private Long appraisal; //Nuevo campo de avaluo
 
     /**
      * @generated
@@ -52,7 +52,7 @@ public class ArtistDTO implements Serializable{
      */
     public ArtistDTO(ArtistEntity entity) {
 	   if (entity!=null){
-               long avaluo=0;
+               Long avaluo=0L;
         this.id=entity.getId();
         this.name=entity.getName();
         //Calculo del avaluo a partir del precio de las obras de arte

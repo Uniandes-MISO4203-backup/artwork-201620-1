@@ -43,8 +43,8 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
 
     private Long price;
         
-    private int width; //ancho
-    private int height; //alto
+    private Integer width; //ancho
+    private Integer height; //alto
     
     @PodamExclude
     @OneToMany
@@ -143,19 +143,19 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
         this.category = category;
     }
 
-    public int getWidth() {
+    public Integer getWidth() {
         return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(Integer width) {
         this.width = width;
     }
 
-    public int getHeight() {
+    public Integer getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(Integer height) {
         this.height = height;
     }
         
