@@ -26,6 +26,7 @@ SOFTWARE.
         //'ngCrudMock',
         'ngCrud',
         'ui.router',
+        'adminModule',
         'clientModule',
         'itemModule',
         'artworkModule',
