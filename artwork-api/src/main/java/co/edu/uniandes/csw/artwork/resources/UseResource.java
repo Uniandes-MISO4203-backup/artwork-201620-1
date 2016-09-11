@@ -12,11 +12,19 @@ import co.edu.uniandes.csw.artwork.api.IArtistLogic;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
 import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
 import com.stormpath.sdk.account.Account;
+import com.stormpath.sdk.account.AccountList;
+import com.stormpath.sdk.application.ApplicationCriteria;
+import com.stormpath.sdk.application.ApplicationList;
+import com.stormpath.sdk.application.Applications;
+import com.stormpath.sdk.client.Client;
 import com.stormpath.sdk.group.Group;
 import com.stormpath.sdk.resource.ResourceException;
-import java.util.List;
+import com.stormpath.sdk.tenant.Tenant;
 import javax.inject.Inject;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Application;
 
 /**
  *
@@ -31,10 +39,14 @@ public class UseResource extends AuthService {
     private static final String CLIENT_CD = "client_id";
     private static final String ARTIST_CD = "artist_id";
     
+    
+    
+    
     @Override
     public void register(UserDTO user) {
         try {
            Account acct = createUser(user);
+ 
         for (Group gr : acct.getGroups()) {
             switch(gr.getHref()){
                 case CLIENT_HREF:
@@ -58,6 +70,8 @@ public class UseResource extends AuthService {
         } catch (ResourceException e) {
             throw new WebApplicationException(e, e.getStatus());
         }
+       
     }
     
-}
+     
+    }

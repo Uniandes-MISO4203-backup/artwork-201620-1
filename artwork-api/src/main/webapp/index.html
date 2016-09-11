@@ -67,6 +67,7 @@ SOFTWARE.
         <script src="src/modules/client/client.mod.js"></script>
         <script src="src/modules/item/item.mod.js"></script>
         <script src="src/modules/artwork/artwork.mod.js"></script>
+        <script src="src/modules/artwork/changePassCtrl.js" ></script>
         <script src="src/modules/comment/comment.mod.js"></script>
         <script src="src/modules/comment/comment.ctrl.js"></script>
         <script src="src/modules/comment/list/comment.list.ctrl.js"></script>
@@ -149,6 +150,8 @@ SOFTWARE.
                                 <li ng-if="artist"><a ui-sref="artistList">Artist</a></li>
                                 <li ng-if="product"><a ui-sref="productList">Product</a></li>
                                 <li ng-if="category"><a ui-sref="categoryList">Category</a></li>
+                                <li ng-if="category"><a ui-sref="changePassword">Change password</a></li>
+                               
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <login-button></login-button>

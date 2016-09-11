@@ -204,6 +204,15 @@ SOFTWARE.
                             return r.all(model.url).getList($params);
                         }]                }
             });
-           
+            
+          $sp.state('changePassword',{
+             url:'/change',
+             views: {
+                 mainView: {
+                     templateUrl: basePath + 'changePassword.tpl.html',
+                     controller : 'changePassCtrl'
+                 }
+             }
+          });
 	}]);
 })(window.angular);

@@ -63,6 +63,7 @@ SOFTWARE.
         }]);
 
     mod.config(['authServiceProvider', function (auth) {
+            
             auth.setValues({
                 apiUrl: 'api/users/',
                 successState: 'artworkGallery'
