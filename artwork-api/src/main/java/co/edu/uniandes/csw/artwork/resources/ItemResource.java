@@ -148,4 +148,15 @@ public class ItemResource {
         itemLogic.deleteItem(itemId);
     }
     
+    @POST
+    @Path("/shoppingcart")
+    public ItemDetailDTO createItemInShoppingCart(Long clientid, ItemEntity entity){
+        return new ItemDetailDTO(itemLogic.createItemInShoppingCart(clientid, entity));
+    }
+    
+    @GET
+    @Path("/shoppingcart")
+    public List<ItemDetailDTO> getShoppingCartItems(Long clientId){
+        return listEntity2DTO(itemLogic.getShoppingCartItems(clientId));
+    }   
 }
