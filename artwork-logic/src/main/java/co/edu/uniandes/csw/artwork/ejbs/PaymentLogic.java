@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.artwork.api.IPaymentLogic;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
 import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
 import co.edu.uniandes.csw.artwork.persistence.PaymentPersistence;
+import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
@@ -53,6 +54,7 @@ public class PaymentLogic implements IPaymentLogic {
     public PaymentEntity createPayment(Long clientid, PaymentEntity entity) {
         ClientEntity client = clientLogic.getClient(clientid);
         entity.setClient(client);
+        entity.setDate(Calendar.getInstance().getTime());
         entity = persistence.create(entity);
         return entity;
     }
