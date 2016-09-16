@@ -5,8 +5,9 @@
  */
 (function (ng) {
     var mod = ng.module('commentModule');
-    mod.controller('commentListCtrl', ["$scope", "$state", "$stateParams", 'comments', 'model',
-        function ($scope, $state, $stateParams, comments, model) {
+    mod.controller('commentListCtrl', ["$scope", "$stateParams", 'comments', 'artwork','client','itemModel',
+        function ($scope, $stateParams, comments, artwork, client, itemModel) {
+            console.log(client);
             var getAllComments = function (id) {
                 comments.customGET("", {artworkId: id}).then(function (response) {
                     $scope.comments = response;
@@ -26,16 +27,20 @@
                 $scope.commentSent.name = comment.email;
                 $scope.commentSent.comment = comment.description;
                 $scope.commentSent.artwork = $scope.artId;
-                console.log(JSON.stringify($scope.commentSent));
                 comments.post(angular.toJson($scope.commentSent), {artworkId: $scope.artId}).then(function(){
                     getAllComments($scope.artId);
                 });
             };
-
             
-
-
-
+            $scope.addToCart = function(){
+                itemModel['name'] = artwork[0].name;
+                itemModel['qty'] = $scope.quantity;
+                itemModel['artwork'] = artwork[0];
+                client[0].post("shopping/cart", JSON.stringify(model));
+                client[0].getList("shopping/cart").then(function(response){
+                   console.log(response); 
+                });
+            };
         }
     ]);
 })(window.angular);
