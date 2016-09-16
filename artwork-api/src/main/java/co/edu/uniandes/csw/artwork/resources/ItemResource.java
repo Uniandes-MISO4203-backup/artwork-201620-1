@@ -42,6 +42,7 @@ import co.edu.uniandes.csw.artwork.api.IItemLogic;
 import co.edu.uniandes.csw.artwork.dtos.detail.ItemDetailDTO;
 import co.edu.uniandes.csw.artwork.entities.ItemEntity;
 import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.WebApplicationException;
 
 /**
@@ -57,7 +58,8 @@ public class ItemResource {
     @QueryParam("page") private Integer page;
     @QueryParam("limit") private Integer maxRecords;
     @PathParam("clientsId") private Long clientsId;
-
+    @Context
+    private HttpServletRequest request;
    
     /**
      * Convierte una lista de ItemEntity a una lista de ItemDetailDTO
@@ -149,14 +151,14 @@ public class ItemResource {
     }
     
     @POST
-    @Path("/shoppingcart")
-    public ItemDetailDTO createItemInShoppingCart(Long clientid, ItemEntity entity){
-        return new ItemDetailDTO(itemLogic.createItemInShoppingCart(clientid, entity));
+    @Path("/cart")
+    public ItemDetailDTO createItemInShoppingCart(ItemDetailDTO dto){
+        return new ItemDetailDTO(itemLogic.createItemInShoppingCart(clientsId, dto.toEntity()));
     }
     
     @GET
-    @Path("/shoppingcart")
-    public List<ItemDetailDTO> getShoppingCartItems(Long clientId){
-        return listEntity2DTO(itemLogic.getShoppingCartItems(clientId));
+    @Path("/cart")
+    public List<ItemDetailDTO> getShoppingCartItems(){
+        return listEntity2DTO(itemLogic.getShoppingCartItems(clientsId));
     }   
 }

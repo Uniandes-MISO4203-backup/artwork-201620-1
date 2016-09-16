@@ -39,7 +39,7 @@ public class PaymentResource {
     @Context private HttpServletResponse response;
     @QueryParam("page") private Integer page;
     @QueryParam("limit") private Integer maxRecords;
-    @PathParam("clientsId") private Long clientsId;
+    @QueryParam("clientsId") private Long clientsId;
     
      /**
      * Convierte una lista de PaymentEntity a una lista de PaymentDTO
