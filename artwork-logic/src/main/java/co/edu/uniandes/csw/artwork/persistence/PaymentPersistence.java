@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.artwork.entities.ItemEntity;
 import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
 import co.edu.uniandes.csw.crud.spi.persistence.CrudPersistence;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -17,7 +18,9 @@ import javax.persistence.TypedQuery;
  *
  * @author s.florez10
  */
+@Stateless
 public class PaymentPersistence extends CrudPersistence<PaymentEntity>{
+    
     @PersistenceContext(unitName="ArtworkPU")
     protected EntityManager em;
     
@@ -52,5 +55,14 @@ public class PaymentPersistence extends CrudPersistence<PaymentEntity>{
             q.setMaxResults(maxRecords);
         }
         return q.getResultList();
+    }
+    
+    @Override
+    public PaymentEntity create(PaymentEntity entity){
+        em.persist(entity);
+        TypedQuery<ItemEntity> q = em.createQuery("update ItemEntity p set p.shoppingCart = false where (p.shoppingCart = :shoppingCart)", ItemEntity.class);
+        q.setParameter("shoppingCart", true);
+        q.executeUpdate();
+        return entity;
     }
 }

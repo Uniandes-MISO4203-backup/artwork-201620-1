@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.crud.spi.entity.BaseEntity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -27,7 +28,7 @@ public class PaymentEntity extends BaseEntity implements Serializable {
     private ClientEntity client;
     
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "payment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemEntity> items;
     
     @Temporal(TemporalType.DATE)
