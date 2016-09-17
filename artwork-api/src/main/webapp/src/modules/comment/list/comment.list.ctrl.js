@@ -36,9 +36,9 @@
                 itemModel['name'] = artwork[0].name;
                 itemModel['qty'] = $scope.quantity;
                 itemModel['artwork'] = artwork[0];
-                client[0].post("shopping/cart", JSON.stringify(model));
+                client[0].post("shopping/cart", JSON.stringify(itemModel));
                 client[0].getList("shopping/cart").then(function(response){
-                   console.log(response); 
+                   $scope.cartAdded=true;
                 });
             };
         }

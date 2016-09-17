@@ -25,7 +25,7 @@ public class PaymentDetailDTO extends PaymentDTO{
     private ClientDTO client;
     
     @PodamExclude
-    private List<ItemDTO> items;
+    private List<ItemDetailDTO> items;
     
     public PaymentDetailDTO(){
         super();
@@ -45,7 +45,7 @@ public class PaymentDetailDTO extends PaymentDTO{
         if (entity.getItems()!=null){
             this.items = new ArrayList<>();
             entity.getItems().stream().forEach((item) -> {
-                items.add(new ItemDTO(item));
+                items.add(new ItemDetailDTO(item));
             });
         }
     }
@@ -98,7 +98,7 @@ public class PaymentDetailDTO extends PaymentDTO{
      * @return atributo imtes.
      * @generated
      */
-    public List<ItemDTO> getItems() {
+    public List<ItemDetailDTO> getItems() {
         return items;
     }
 
@@ -108,7 +108,7 @@ public class PaymentDetailDTO extends PaymentDTO{
      * @param items nuevo valor del atributo
      * @generated
      */
-    public void setItems(List<ItemDTO> items) {
+    public void setItems(List<ItemDetailDTO> items) {
         this.items = items;
     }
 

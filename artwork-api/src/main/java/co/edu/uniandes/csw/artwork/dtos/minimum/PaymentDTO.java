@@ -7,11 +7,13 @@ package co.edu.uniandes.csw.artwork.dtos.minimum;
 import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
 import java.io.Serializable;
 import java.util.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author s.florez10
  */
+@XmlRootElement
 public class PaymentDTO implements Serializable{
     private Long id;
     private String name;

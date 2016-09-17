@@ -33,7 +33,8 @@ SOFTWARE.
             
             $scope.makePurchase = function(){
                 payments.post(angular.toJson($scope.purchase), {clientsId: client[0].id}).then(function(response){
-                    console.log(response);
+                    $scope.showSuccess("Compra realizada");
+                    $scope.purchase["items"] = [];
                 });
             }
             this.closeAlert = function (index) {
