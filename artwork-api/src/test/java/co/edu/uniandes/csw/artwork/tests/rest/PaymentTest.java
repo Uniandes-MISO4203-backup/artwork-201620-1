@@ -25,10 +25,9 @@ package co.edu.uniandes.csw.artwork.tests.rest;
 
 import co.edu.uniandes.csw.auth.model.UserDTO;
 import co.edu.uniandes.csw.auth.security.JWT;
-import co.edu.uniandes.csw.artwork.entities.ItemEntity;
-import co.edu.uniandes.csw.artwork.entities.ClientEntity;
-import co.edu.uniandes.csw.artwork.dtos.minimum.ItemDTO;
-import co.edu.uniandes.csw.artwork.resources.ItemResource;
+import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
+import co.edu.uniandes.csw.artwork.dtos.minimum.PaymentDTO;
+import co.edu.uniandes.csw.artwork.resources.PaymentResource;
 import co.edu.uniandes.csw.artwork.tests.Utils;
 import java.io.File;
 import java.io.IOException;
@@ -63,10 +62,10 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /*
- * Testing URI: clients/{wishListId: \\d+}/wishList/
+ * Testing URI: payments/
  */
 @RunWith(Arquillian.class)
-public class ItemTest {
+public class PaymentTest {
 
     private WebTarget target;
     private final String apiPath = Utils.apiPath;
@@ -78,12 +77,10 @@ public class ItemTest {
     private final int Created = Status.CREATED.getStatusCode();
     private final int OkWithoutContent = Status.NO_CONTENT.getStatusCode();
 
-    private final static List<ItemEntity> oraculo = new ArrayList<>();
+    private final static List<PaymentEntity> oraculo = new ArrayList<>();
 
-    private final String clientPath = "clients";
-    private final String itemPath = "wishList";
+    private final String paymentPath = "payments";
 
-    ClientEntity fatherClientEntity;
 
     @ArquillianResource
     private URL deploymentURL;
@@ -96,7 +93,7 @@ public class ItemTest {
                         .importRuntimeDependencies().resolve()
                         .withTransitivity().asFile())
                 // Se agregan los compilados de los paquetes de servicios
-                .addPackage(ItemResource.class.getPackage())
+                .addPackage(PaymentResource.class.getPackage())
                 // El archivo que contiene la configuracion a la base de datos.
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 // El archivo beans.xml es necesario para injeccion de dependencias.
@@ -118,8 +115,7 @@ public class ItemTest {
     private UserTransaction utx;
 
     private void clearData() {
-        em.createQuery("delete from ItemEntity").executeUpdate();
-        em.createQuery("delete from ClientEntity").executeUpdate();
+        em.createQuery("delete from PaymentEntity").executeUpdate();
         oraculo.clear();
     }
 
@@ -129,16 +125,11 @@ public class ItemTest {
      * @generated
      */
     public void insertData() {
-        fatherClientEntity = factory.manufacturePojo(ClientEntity.class);
-        fatherClientEntity.setId(1L);
-        em.persist(fatherClientEntity);
-
         for (int i = 0; i < 3; i++) {            
-            ItemEntity item = factory.manufacturePojo(ItemEntity.class);
-            item.setId(i + 1L);
-            item.setClient(fatherClientEntity);
-            em.persist(item);
-            oraculo.add(item);
+            PaymentEntity payment = factory.manufacturePojo(PaymentEntity.class);
+            payment.setId(i + 1L);
+            em.persist(payment);
+            oraculo.add(payment);
         }
     }
 
@@ -163,9 +154,7 @@ public class ItemTest {
             }
         }
         target = createWebTarget()
-                .path(clientPath)
-                .path(fatherClientEntity.getId().toString())
-                .path(itemPath);
+                .path(paymentPath);
     }
 
     /**
@@ -191,104 +180,101 @@ public class ItemTest {
     }
 
     /**
-     * Prueba para crear un Item
+     * Prueba para crear un Payment
      *
      * @generated
      */
     @Test
-    public void createItemTest() throws IOException {
-        ItemDTO item = factory.manufacturePojo(ItemDTO.class);
+    public void createPaymentTest() throws IOException {
+        PaymentDTO payment = factory.manufacturePojo(PaymentDTO.class);
         Cookie cookieSessionId = login(username, password);
 
         Response response = target
             .request().cookie(cookieSessionId)
-            .post(Entity.entity(item, MediaType.APPLICATION_JSON));
+            .post(Entity.entity(payment, MediaType.APPLICATION_JSON));
 
-        ItemDTO  itemTest = (ItemDTO) response.readEntity(ItemDTO.class);
+        PaymentDTO  paymentTest = (PaymentDTO) response.readEntity(PaymentDTO.class);
 
+        System.out.println(response.getStatus());
         Assert.assertEquals(Created, response.getStatus());
 
-        Assert.assertEquals(item.getName(), itemTest.getName());
-        Assert.assertEquals(item.getQty(), itemTest.getQty());
+        Assert.assertEquals(payment.getName(), paymentTest.getName());
 
-        ItemEntity entity = em.find(ItemEntity.class, itemTest.getId());
+        PaymentEntity entity = em.find(PaymentEntity.class, paymentTest.getId());
         Assert.assertNotNull(entity);
     }
 
     /**
-     * Prueba para consultar un Item
+     * Prueba para consultar un Payment
      *
      * @generated
      */
     @Test
-    public void getItemByIdTest() {
+    public void getPaymentByIdTest() {
         Cookie cookieSessionId = login(username, password);
 
-        ItemDTO itemTest = target
+        PaymentDTO paymentTest = target
             .path(oraculo.get(0).getId().toString())
-            .request().cookie(cookieSessionId).get(ItemDTO.class);
+            .request().cookie(cookieSessionId).get(PaymentDTO.class);
         
-        Assert.assertEquals(itemTest.getId(), oraculo.get(0).getId());
-        Assert.assertEquals(itemTest.getName(), oraculo.get(0).getName());
-        Assert.assertEquals(itemTest.getQty(), oraculo.get(0).getQty());
+        Assert.assertEquals(paymentTest.getId(), oraculo.get(0).getId());
+        Assert.assertEquals(paymentTest.getName(), oraculo.get(0).getName());
     }
 
     /**
-     * Prueba para consultar la lista de Items
+     * Prueba para consultar la lista de Payments
      *
      * @generated
      */
     @Test
-    public void listItemTest() throws IOException {
+    public void listPaymentTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
 
         Response response = target
             .request().cookie(cookieSessionId).get();
 
-        String listItem = response.readEntity(String.class);
-        List<ItemDTO> listItemTest = new ObjectMapper().readValue(listItem, List.class);
+        String listPayment = response.readEntity(String.class);
+        List<PaymentDTO> listPaymentTest = new ObjectMapper().readValue(listPayment, List.class);
         Assert.assertEquals(Ok, response.getStatus());
-        Assert.assertEquals(3, listItemTest.size());
+        Assert.assertEquals(3, listPaymentTest.size());
     }
 
     /**
-     * Prueba para actualizar un Item
+     * Prueba para actualizar un Payment
      *
      * @generated
      */
     @Test
-    public void updateItemTest() throws IOException {
+    public void updatePaymentTest() throws IOException {
         Cookie cookieSessionId = login(username, password);
-        ItemDTO item = new ItemDTO(oraculo.get(0));
+        PaymentDTO payment = new PaymentDTO(oraculo.get(0));
 
-        ItemDTO itemChanged = factory.manufacturePojo(ItemDTO.class);
+        PaymentDTO paymentChanged = factory.manufacturePojo(PaymentDTO.class);
 
-        item.setName(itemChanged.getName());
-        item.setQty(itemChanged.getQty());
+        payment.setName(paymentChanged.getName());
 
         Response response = target
-            .path(item.getId().toString())
+            .path(payment.getId().toString())
             .request().cookie(cookieSessionId)
-            .put(Entity.entity(item, MediaType.APPLICATION_JSON));
+            .put(Entity.entity(payment, MediaType.APPLICATION_JSON));
 
-        ItemDTO itemTest = (ItemDTO) response.readEntity(ItemDTO.class);
+        PaymentDTO paymentTest = (PaymentDTO) response.readEntity(PaymentDTO.class);
 
         Assert.assertEquals(Ok, response.getStatus());
-        Assert.assertEquals(item.getName(), itemTest.getName());
-        Assert.assertEquals(item.getQty(), itemTest.getQty());
+        Assert.assertEquals(payment.getName(), paymentTest.getName());
     }
 
     /**
-     * Prueba para eliminar un Item
+     * Prueba para eliminar un Payment
      *
      * @generated
      */
     @Test
-    public void deleteItemTest() {
+    public void deletePaymentTest() {
         Cookie cookieSessionId = login(username, password);
-        ItemDTO item = new ItemDTO(oraculo.get(0));
+        PaymentDTO payment = new PaymentDTO(oraculo.get(0));
         Response response = target
-            .path(item.getId().toString())
+            .path(payment.getId().toString())
             .request().cookie(cookieSessionId).delete();
 
         Assert.assertEquals(OkWithoutContent, response.getStatus());
