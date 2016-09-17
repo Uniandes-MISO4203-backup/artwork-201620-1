@@ -29,27 +29,27 @@ SOFTWARE.
         displayName: 'Admin',
 		url: 'admins',
         fields: {            userName: {
-                displayName: 'userName',
+                displayName: 'UserName',
                 type: 'String',
                 required: true
             } 
             ,  email: {
-                displayName: 'email',
+                displayName: 'Email',
                 type: 'String',
                 required: true
             }
             ,  givenName: {
-                displayName: 'givenName',
+                displayName: 'Name',
                 type: 'String',
                 required: true
             }
             ,  middleName: {
-                displayName: 'middleName',
+                displayName: 'MiddleName',
                 type: 'String',
                 required: true
             }
             ,  surName: {
-                displayName: 'roles',
+                displayName: 'Roles',
                 type: 'String',
                 required: true
             }
