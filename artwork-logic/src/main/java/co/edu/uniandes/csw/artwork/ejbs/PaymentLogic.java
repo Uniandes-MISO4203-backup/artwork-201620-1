@@ -28,8 +28,6 @@ public class PaymentLogic implements IPaymentLogic {
 
     @Inject
     private IClientLogic clientLogic;
-    @Inject
-    private IItemLogic itemLogic;
     
     @Override
     public int countPayments() {
