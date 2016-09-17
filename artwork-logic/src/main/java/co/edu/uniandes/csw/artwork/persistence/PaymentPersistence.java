@@ -59,7 +59,7 @@ public class PaymentPersistence extends CrudPersistence<PaymentEntity>{
     
     @Override
     public PaymentEntity create(PaymentEntity entity){
-        em.persist(entity);
+        super.create(entity);
         TypedQuery<ItemEntity> q = em.createQuery("update ItemEntity p set p.shoppingCart = false where (p.shoppingCart = :shoppingCart)", ItemEntity.class);
         q.setParameter("shoppingCart", true);
         q.executeUpdate();

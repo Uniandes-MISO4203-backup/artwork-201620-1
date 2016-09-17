@@ -6,10 +6,13 @@
 package co.edu.uniandes.csw.artwork.ejbs;
 
 import co.edu.uniandes.csw.artwork.api.IClientLogic;
+import co.edu.uniandes.csw.artwork.api.IItemLogic;
 import co.edu.uniandes.csw.artwork.api.IPaymentLogic;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
+import co.edu.uniandes.csw.artwork.entities.ItemEntity;
 import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
 import co.edu.uniandes.csw.artwork.persistence.PaymentPersistence;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
@@ -25,6 +28,8 @@ public class PaymentLogic implements IPaymentLogic {
 
     @Inject
     private IClientLogic clientLogic;
+    @Inject
+    private IItemLogic itemLogic;
     
     @Override
     public int countPayments() {

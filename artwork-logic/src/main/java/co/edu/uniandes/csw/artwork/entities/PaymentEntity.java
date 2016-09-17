@@ -28,7 +28,7 @@ public class PaymentEntity extends BaseEntity implements Serializable {
     private ClientEntity client;
     
     @PodamExclude
-    @OneToMany(mappedBy = "payment", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany
     private List<ItemEntity> items;
     
     @Temporal(TemporalType.DATE)

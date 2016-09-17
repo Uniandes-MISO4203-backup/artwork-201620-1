@@ -150,5 +150,5 @@ public class ItemEntity extends BaseEntity implements Serializable {
      */
     public void setProduct(ProductEntity product) {
         this.product = product;
-    }
+    }    
 }
