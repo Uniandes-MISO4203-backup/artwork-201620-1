@@ -23,17 +23,13 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.test.logic;
 
-import co.edu.uniandes.csw.artwork.ejbs.ItemLogic;
-import co.edu.uniandes.csw.artwork.api.IItemLogic;
-import co.edu.uniandes.csw.artwork.entities.ItemEntity;
+import co.edu.uniandes.csw.artwork.ejbs.PaymentLogic;
+import co.edu.uniandes.csw.artwork.api.IPaymentLogic;
+import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
+import co.edu.uniandes.csw.artwork.persistence.PaymentPersistence;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
-import co.edu.uniandes.csw.artwork.persistence.ItemPersistence;
-import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
-import co.edu.uniandes.csw.artwork.entities.ClientEntity;
-import co.edu.uniandes.csw.artwork.entities.ProductEntity;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -54,13 +50,12 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @generated
  */
 @RunWith(Arquillian.class)
-public class ItemLogicTest {
+public class PaymentLogicTest {
 
     /**
      * @generated
      */
     ClientEntity fatherEntity;
-
     /**
      * @generated
      */
@@ -70,7 +65,7 @@ public class ItemLogicTest {
      * @generated
      */
     @Inject
-    private IItemLogic itemLogic;
+    private IPaymentLogic paymentLogic;
 
     /**
      * @generated
@@ -87,22 +82,7 @@ public class ItemLogicTest {
     /**
      * @generated
      */
-    private List<ItemEntity> data = new ArrayList<ItemEntity>();
-
-    /**
-     * @generated
-     */
-    private List<ArtworkEntity> artworkData = new ArrayList<>();
-
-    /**
-     * @generated
-     */
-    private List<ClientEntity> clientData = new ArrayList<>();
-
-    /**
-     * @generated
-     */
-    private List<ProductEntity> productData = new ArrayList<>();
+    private List<PaymentEntity> data = new ArrayList<PaymentEntity>();
 
     /**
      * @generated
@@ -110,10 +90,10 @@ public class ItemLogicTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(ItemEntity.class.getPackage())
-                .addPackage(ItemLogic.class.getPackage())
-                .addPackage(IItemLogic.class.getPackage())
-                .addPackage(ItemPersistence.class.getPackage())
+                .addPackage(PaymentEntity.class.getPackage())
+                .addPackage(PaymentLogic.class.getPackage())
+                .addPackage(IPaymentLogic.class.getPackage())
+                .addPackage(PaymentPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -147,9 +127,7 @@ public class ItemLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from ItemEntity").executeUpdate();
-        em.createQuery("delete from ArtworkEntity").executeUpdate();
-        em.createQuery("delete from ClientEntity").executeUpdate();
-        em.createQuery("delete from ProductEntity").executeUpdate();
+        em.createQuery("delete from PaymentEntity").executeUpdate();
     }
 
     /**
@@ -158,61 +136,43 @@ public class ItemLogicTest {
      * @generated
      */
     private void insertData() {
-        for (int i = 0; i < 3; i++) {
-            ArtworkEntity artwork = factory.manufacturePojo(ArtworkEntity.class);
-            em.persist(artwork);
-            artworkData.add(artwork);
-        }
-        for (int i = 0; i < 3; i++) {
-            ProductEntity product = factory.manufacturePojo(ProductEntity.class);
-            em.persist(product);
-            productData.add(product);
-        }
-
         fatherEntity = factory.manufacturePojo(ClientEntity.class);
         fatherEntity.setId(1L);
         em.persist(fatherEntity);
-        boolean inCart = false;
-        for (int i = 0; i < 4; i++) {
-            ItemEntity entity = factory.manufacturePojo(ItemEntity.class);
+        for (int i = 0; i < 3; i++) {
+            PaymentEntity entity = factory.manufacturePojo(PaymentEntity.class);
             entity.setClient(fatherEntity);
-            entity.setShoppingCart(inCart);
-            entity.setArtwork(artworkData.get(0));
-            entity.setProduct(productData.get(0));
-
             em.persist(entity);
             data.add(entity);
-            inCart = !inCart;
         }
     }
-   /**
-     * Prueba para crear un Item
+    /**
+     * Prueba para crear un Payment
      *
      * @generated
      */
     @Test
-    public void createItemTest() {
-        ItemEntity newEntity = factory.manufacturePojo(ItemEntity.class);
-        ItemEntity result = itemLogic.createItem(fatherEntity.getId(), newEntity);
+    public void createPaymentTest() {
+        PaymentEntity newEntity = factory.manufacturePojo(PaymentEntity.class);
+        PaymentEntity result = paymentLogic.createPayment(fatherEntity.getId(), newEntity);
         Assert.assertNotNull(result);
-        ItemEntity entity = em.find(ItemEntity.class, result.getId());
+        PaymentEntity entity = em.find(PaymentEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getQty(), entity.getQty());
     }
 
     /**
-     * Prueba para consultar la lista de Items
+     * Prueba para consultar la lista de Payments
      *
      * @generated
      */
     @Test
-    public void getItemsTest() {
-        List<ItemEntity> list = itemLogic.getItems(fatherEntity.getId());
+    public void getPaymentsTest() {
+        List<PaymentEntity> list = paymentLogic.getPayments(fatherEntity.getId());
         Assert.assertEquals(data.size(), list.size());
-        for (ItemEntity entity : list) {
+        for (PaymentEntity entity : list) {
             boolean found = false;
-            for (ItemEntity storedEntity : data) {
+            for (PaymentEntity storedEntity : data) {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
@@ -223,91 +183,50 @@ public class ItemLogicTest {
 
     
     /**
-     * Prueba para consultar un Item
+     * Prueba para consultar un Payment
      *
      * @generated
      */
     @Test
-    public void getItemTest() {
-        ItemEntity entity = data.get(0);
-        ItemEntity resultEntity = itemLogic.getItem(entity.getId());
+    public void getPaymentTest() {
+        PaymentEntity entity = data.get(0);
+        PaymentEntity resultEntity = paymentLogic.getPayment(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
-        Assert.assertEquals(entity.getQty(), resultEntity.getQty());
     }
 
     /**
-     * Prueba para eliminar un Item
+     * Prueba para eliminar un Payment
      *
      * @generated
      */
     @Test
-    public void deleteItemTest() {
-        ItemEntity entity = data.get(1);
-        itemLogic.deleteItem(entity.getId());
-        ItemEntity deleted = em.find(ItemEntity.class, entity.getId());
+    public void deletePaymentTest() {
+        PaymentEntity entity = data.get(1);
+        paymentLogic.deletePayment(entity.getId());
+        PaymentEntity deleted = em.find(PaymentEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     /**
-     * Prueba para actualizar un Item
+     * Prueba para actualizar un Payment
      *
      * @generated
      */
     @Test
-    public void updateItemTest() {
-        ItemEntity entity = data.get(0);
-        ItemEntity pojoEntity = factory.manufacturePojo(ItemEntity.class);
+    public void updatePaymentTest() {
+        PaymentEntity entity = data.get(0);
+        PaymentEntity pojoEntity = factory.manufacturePojo(PaymentEntity.class);
 
         pojoEntity.setId(entity.getId());
 
-        itemLogic.updateItem(fatherEntity.getId(), pojoEntity);
+        paymentLogic.updatePayment(fatherEntity.getId(), pojoEntity);
 
-        ItemEntity resp = em.find(ItemEntity.class, entity.getId());
+        PaymentEntity resp = em.find(PaymentEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
-        Assert.assertEquals(pojoEntity.getQty(), resp.getQty());
     }
-    
-    /**
-     * Prueba para crear un Item
-     *
-     * @generated
-     */
-    @Test
-    public void createItemInShoppingCartTest() {
-        ItemEntity newEntity = factory.manufacturePojo(ItemEntity.class);
-        ItemEntity result = itemLogic.createItemInShoppingCart(fatherEntity.getId(), newEntity);
-        Assert.assertNotNull(result);
-        ItemEntity entity = em.find(ItemEntity.class, result.getId());
-        Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getQty(), entity.getQty());
-        Assert.assertTrue(newEntity.getShoppingCart());
-    }
-    
-     /**
-     * Prueba para consultar la lista de Items
-     *
-     * @generated
-     */
-    @Test
-    public void getShoppingCartItemsTest() {
-        List<ItemEntity> list = itemLogic.getShoppingCartItems(fatherEntity.getId());
-        Assert.assertEquals(data.size()/2, list.size());
-        for (ItemEntity entity : list) {
-            boolean found = false;
-            for (ItemEntity storedEntity : data) {
-                if (entity.getId().equals(storedEntity.getId()) && storedEntity.getShoppingCart()) {
-                    found = true;
-                }
-            }
-            Assert.assertTrue(found);
-        }
-    }
-    
-    
 }
 

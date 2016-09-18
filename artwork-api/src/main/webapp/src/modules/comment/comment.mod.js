@@ -5,7 +5,7 @@
  */
 (function (ng){
     
-    var mod = ng.module('commentModule', ['ngCrud', 'ui.router','artworkModule' ]);
+    var mod = ng.module('commentModule', ['ngCrud', 'ui.router','artworkModule','itemModule' ]);
     
     mod.constant('commentModel', {
         name: 'comment',
@@ -48,7 +48,7 @@
                     model: 'artworkModel',
                     artworks: ['Restangular', 'model', '$stateParams', function (r, model, $params) {
                             return r.all(model.url).getList($params);
-                        }]                }
+                        }],               }
           
             
                
@@ -68,7 +68,15 @@
                     model: 'commentModel',
                     comments: ['Restangular', '$stateParams', function (r, $params) {
                             return r.all('/comments').getList($params);
-                        }]                }
+                    }],
+                    artwork:['Restangular', '$stateParams', function (r, $params) {
+                        return r.one('/artworks', $params.artworkId).get();
+                    }],
+                    client:['Restangular', '$stateParams', function (r) {
+                            return r.all("clients").getList();
+                    }],
+                    itemModel:'itemModel'
+                }
                 
            }); 
            

@@ -36,7 +36,8 @@ SOFTWARE.
         'authModule',
         'roleModule',
         'commentModule',
-        'qualificationModule'        
+        'qualificationModule',
+        'shoppingCartModule'
     ]);
 
     mod.config(['$logProvider', function ($logProvider) {

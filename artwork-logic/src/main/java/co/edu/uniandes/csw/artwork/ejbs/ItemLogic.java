@@ -141,5 +141,15 @@ public class ItemLogic implements IItemLogic {
         ItemEntity old = getItem(id);
         persistence.delete(old.getId());
     }
-  
+
+    @Override
+    public ItemEntity createItemInShoppingCart(Long clientid, ItemEntity entity) {
+        entity.setShoppingCart(true);
+        return createItem(clientid, entity);
+    }
+
+    @Override
+    public List<ItemEntity> getShoppingCartItems(Long clientId) {
+        return persistence.getShoppingCartItems(clientId);
+    }
 }
