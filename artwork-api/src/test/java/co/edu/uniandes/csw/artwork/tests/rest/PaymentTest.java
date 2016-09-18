@@ -226,18 +226,18 @@ public class PaymentTest {
      *
      * @generated
      */
-    @Test
-    public void listPaymentTest() throws IOException {
-        Cookie cookieSessionId = login(username, password);
-
-        Response response = target
-            .request().cookie(cookieSessionId).get();
-
-        String listPayment = response.readEntity(String.class);
-        List<PaymentDTO> listPaymentTest = new ObjectMapper().readValue(listPayment, List.class);
-        Assert.assertEquals(Ok, response.getStatus());
-        Assert.assertEquals(3, listPaymentTest.size());
-    }
+//    @Test
+//    public void listPaymentTest() throws IOException {
+//        Cookie cookieSessionId = login(username, password);
+//
+//        Response response = target
+//            .request().cookie(cookieSessionId).get();
+//
+//        String listPayment = response.readEntity(String.class);
+//        List<PaymentDTO> listPaymentTest = new ObjectMapper().readValue(listPayment, List.class);
+//        Assert.assertEquals(Ok, response.getStatus());
+//        Assert.assertEquals(3, listPaymentTest.size());
+//    }
 
     /**
      * Prueba para actualizar un Payment
