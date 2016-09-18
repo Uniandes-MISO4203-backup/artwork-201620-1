@@ -103,12 +103,20 @@ public class QualificationResource {
             Account account = Utils.getClient().getResource(accountHref, Account.class);
             for (Group gr : account.getGroups()) {
                 switch (gr.getHref()) {
-                    case ADMIN_HREF:
+//                    case ADMIN_HREF:
+//                        if (page != null && maxRecords != null) {
+//                            this.response.setIntHeader("X-Total-Count", qualificationLogic.countQualifications());
+//                            return listEntity2DTO(qualificationLogic.getQualifications(page, maxRecords));
+//                        }
+//                        return listEntity2DTO(qualificationLogic.getQualifications());    
+                    case CLIENT_HREF:
                         if (page != null && maxRecords != null) {
                             this.response.setIntHeader("X-Total-Count", qualificationLogic.countQualifications());
                             return listEntity2DTO(qualificationLogic.getQualifications(page, maxRecords));
                         }
-                        return listEntity2DTO(qualificationLogic.getQualifications());                        
+                        return listEntity2DTO(qualificationLogic.getQualifications());
+                    default:
+                        return new ArrayList<>();
                 }
             }
         } 
