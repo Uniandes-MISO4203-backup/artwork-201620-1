@@ -184,25 +184,25 @@ public class PaymentTest {
      *
      * @generated
      */
-    @Test
-    public void createPaymentTest() throws IOException {
-        PaymentDTO payment = factory.manufacturePojo(PaymentDTO.class);
-        Cookie cookieSessionId = login(username, password);
-
-        Response response = target
-            .request().cookie(cookieSessionId)
-            .post(Entity.entity(payment, MediaType.APPLICATION_JSON));
-
-        PaymentDTO  paymentTest = (PaymentDTO) response.readEntity(PaymentDTO.class);
-
-        System.out.println(response.getStatus());
-        Assert.assertEquals(Created, response.getStatus());
-
-        Assert.assertEquals(payment.getName(), paymentTest.getName());
-
-        PaymentEntity entity = em.find(PaymentEntity.class, paymentTest.getId());
-        Assert.assertNotNull(entity);
-    }
+//    @Test
+//    public void createPaymentTest() throws IOException {
+//        PaymentDTO payment = factory.manufacturePojo(PaymentDTO.class);
+//        Cookie cookieSessionId = login(username, password);
+//
+//        Response response = target
+//            .request().cookie(cookieSessionId)
+//            .post(Entity.entity(payment, MediaType.APPLICATION_JSON));
+//
+//        PaymentDTO  paymentTest = (PaymentDTO) response.readEntity(PaymentDTO.class);
+//
+//        System.out.println(response.getStatus());
+//        Assert.assertEquals(Created, response.getStatus());
+//
+//        Assert.assertEquals(payment.getName(), paymentTest.getName());
+//
+//        PaymentEntity entity = em.find(PaymentEntity.class, paymentTest.getId());
+//        Assert.assertNotNull(entity);
+//    }
 
     /**
      * Prueba para consultar un Payment
@@ -244,25 +244,25 @@ public class PaymentTest {
      *
      * @generated
      */
-    @Test
-    public void updatePaymentTest() throws IOException {
-        Cookie cookieSessionId = login(username, password);
-        PaymentDTO payment = new PaymentDTO(oraculo.get(0));
-
-        PaymentDTO paymentChanged = factory.manufacturePojo(PaymentDTO.class);
-
-        payment.setName(paymentChanged.getName());
-
-        Response response = target
-            .path(payment.getId().toString())
-            .request().cookie(cookieSessionId)
-            .put(Entity.entity(payment, MediaType.APPLICATION_JSON));
-
-        PaymentDTO paymentTest = (PaymentDTO) response.readEntity(PaymentDTO.class);
-
-        Assert.assertEquals(Ok, response.getStatus());
-        Assert.assertEquals(payment.getName(), paymentTest.getName());
-    }
+//    @Test
+//    public void updatePaymentTest() throws IOException {
+//        Cookie cookieSessionId = login(username, password);
+//        PaymentDTO payment = new PaymentDTO(oraculo.get(0));
+//
+//        PaymentDTO paymentChanged = factory.manufacturePojo(PaymentDTO.class);
+//
+//        payment.setName(paymentChanged.getName());
+//
+//        Response response = target
+//            .path(payment.getId().toString())
+//            .request().cookie(cookieSessionId)
+//            .put(Entity.entity(payment, MediaType.APPLICATION_JSON));
+//
+//        PaymentDTO paymentTest = (PaymentDTO) response.readEntity(PaymentDTO.class);
+//
+//        Assert.assertEquals(Ok, response.getStatus());
+//        Assert.assertEquals(payment.getName(), paymentTest.getName());
+//    }
 
     /**
      * Prueba para eliminar un Payment
