@@ -28,10 +28,7 @@ SOFTWARE.
 
     mod.controller("artworkListCtrl", ["$rootScope","$scope", '$state', 'artworks', '$stateParams','Restangular',
         function ($rootScope, $scope, $state, artworks, $params,Restangular) {
-            $scope.recordsId = [];
             $scope.records = artworks;
-            $scope.artistInput = "";
-            $scope.artistsIds = [];
 
             //Paginación
             this.itemsPerPage = $params.limit;
@@ -40,40 +37,6 @@ SOFTWARE.
             
             $scope.categorys = [];
             $scope.qualifications = [];   
-            
-            $scope.getFullRecords = function(){
-                $scope.recordsId = [];                
-                for(var i=0; i<$scope.records.length; i++){
-                    Restangular.all("artists").customGET("artwork/"+$scope.records[i].id).then(function (response) {   
-                        console.log("Obteniendo artista de obra");
-                        console.log(response);
-                        console.log("record:");
-                        console.log($scope.records[i].id);
-                        $scope.recordsId.push({"artworkName":$scope.records[i],"artistId":response.id});
-                    }); 
-                }                
-            };
-            
-            $scope.getArtistsIds = function(){
-                $scope.artistsIds = [];
-                for(var i=0; i<$scope.records.length; i++){
-                    Restangular.all("artists").customGET("artwork/"+$scope.records[i].id).then(function (response) {   
-                        console.log("Obteniendo artista de obra");
-                        console.log(response);
-                        return $scope.artistsIds.push(response.id);
-                    }); 
-                }                
-            };
-            
-            $scope.getArtistId = function(index){
-                for(var i=0; i<$scope.records.length; i++){
-                    Restangular.all("artists").customGET("artwork/"+$scope.records[index].id).then(function (response) {   
-                        console.log("Obteniendo artista de obra");
-                        console.log(response);
-                        return response.id;
-                    }); 
-                }                
-            };
             
             $scope.isArtworkNotQualificated = function(artworkId){
                 userClient = $rootScope.usuario.$object.email;
@@ -135,8 +98,6 @@ SOFTWARE.
             
             $scope.getCategorys("");
             $scope.getQualifications();
-            //$scope.getArtistsIds();
-            $scope.getFullRecords();
 
             this.pageChanged = function () {
                 $state.go('artworkList', {page: this.currentPage});

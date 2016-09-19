@@ -28,7 +28,8 @@ SOFTWARE.
         name: 'artwork',
         displayName: 'Artwork',
 		url: 'artworks',
-        fields: {            name: {
+        fields: {            
+            name: {
                 displayName: 'Name',
                 type: 'String',
                 required: true
@@ -52,7 +53,15 @@ SOFTWARE.
                 displayName: 'Height',
                 type: 'Integer',
                 required: true
-            }         }
+            } ,        
+            artist: {
+                displayName: 'Parent Category',
+                type: 'Reference',
+                model: 'artistModel',
+                options: [],
+                required: false
+            }        
+        }
     });
 
     mod.config(['$stateProvider',
@@ -70,11 +79,12 @@ SOFTWARE.
                         controller: 'artworkCtrl'
                     }
                 },
-                resolve: {
+                resolve: {                    
                     model: 'artworkModel',
-                    artworks: ['artist', '$stateParams', 'model', function (artist, $params, model) {
+                    artworks: ['artist', '$stateParams', 'model', function (artist, $params, model) {                            
                             return artist.getList(model.url, $params);
-                        }]                }
+                        }]
+                }
             });
             $sp.state('artworkList', {
                 url: '/list',
@@ -199,10 +209,22 @@ SOFTWARE.
                     }
                 },
                 resolve: {
+                    references: ['$q', 'Restangular', function ($q, r) {
+                            return $q.all({
+                                artist: r.all('artists').getList()
+                            });
+                        }],
                     model: 'artworkModel',
                     artworks: ['Restangular', 'model', '$stateParams', function (r, model, $params) {
-                            return r.all(model.url).getList($params);
-                        }]                }
+                            var artworks = r.all(model.url).getList($params);
+                            console.log("Artworks: "+artworks);                            
+                            for(var i=0;i<artworks.length;i++){
+                                artworks[i].artistId = artist.id;
+                            }
+                            return artworks;
+                            return ;
+                        }]                
+                }
             });
             
           $sp.state('changePassword',{
