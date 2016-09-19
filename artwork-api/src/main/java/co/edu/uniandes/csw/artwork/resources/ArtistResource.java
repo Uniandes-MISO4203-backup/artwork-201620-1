@@ -39,6 +39,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import co.edu.uniandes.csw.artwork.api.IArtistLogic;
+import co.edu.uniandes.csw.artwork.api.IArtworkLogic;
 import co.edu.uniandes.csw.artwork.dtos.detail.ArtistDetailDTO;
 import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
 import co.edu.uniandes.csw.auth.stormpath.Utils;
@@ -60,6 +61,7 @@ public class ArtistResource {
     private static final String ADMIN_HREF = "https://api.stormpath.com/v1/groups/7luSBhdqfQi2FUjUZAIhp7";  
     
     @Inject private IArtistLogic artistLogic;
+    @Inject private IArtworkLogic artworkLogic;
     @Context private HttpServletResponse response;
     @Context private HttpServletRequest req;
     @QueryParam("page") private Integer page;

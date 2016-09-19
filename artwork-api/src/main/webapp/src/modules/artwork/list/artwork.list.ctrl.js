@@ -29,7 +29,6 @@ SOFTWARE.
     mod.controller("artworkListCtrl", ["$rootScope","$scope", '$state', 'artworks', '$stateParams','Restangular',
         function ($rootScope, $scope, $state, artworks, $params,Restangular) {
             $scope.records = artworks;
-            $scope.artistInput = "";
 
             //Paginación
             this.itemsPerPage = $params.limit;
@@ -37,7 +36,7 @@ SOFTWARE.
             this.totalItems = artworks.totalRecords;
             
             $scope.categorys = [];
-            $scope.qualifications = [];           
+            $scope.qualifications = [];   
             
             $scope.isArtworkNotQualificated = function(artworkId){
                 userClient = $rootScope.usuario.$object.email;
@@ -67,7 +66,6 @@ SOFTWARE.
             $scope.getQualifications = function (artworkId) {
                 console.log("Obteniendo qualifications");
                 Restangular.all("qualifications").customGET('').then(function (response) {
-                    console.log("AFDSFFFFFF");
                     console.log(response);
                     if (response.length>0) {
                         console.log("Respuesta");
