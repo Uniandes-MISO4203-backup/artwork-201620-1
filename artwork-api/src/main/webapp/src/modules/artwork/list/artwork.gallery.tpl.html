@@ -14,7 +14,7 @@
         </div>       
     </div>
     <div class="col-md-10">
-        <div ng-repeat="artwork in records">
+        <div ng-repeat="art in recordsId">
             <div style="box-shadow: 2px 2px 5px gray; border-radius: 5px;margin: 5px" class="col-md-4 col-sm-6 col-lg-3 well">
                 <div class="col-md-12">
                     <div class="img-thumbnail" >
@@ -22,12 +22,13 @@
                     </div>
                 </div>
                 <div class="caption" >
-                    <p><strong>Name: </strong> {{artwork.name}}</p>
-                    <p><strong>Price: </strong> {{artwork.price| currency}}</p>              
-                    <p><strong>Width: </strong> {{artwork.width}}cm</p>
-                    <p><strong>Height: </strong> {{artwork.height}}cm</p>
+                    <p><strong>Name: </strong> {{art.artworkName}}</p>
+                    <p><strong>Price: </strong> {{art.artwork.price| currency}}</p>              
+                    <p><strong>Width: </strong> {{art.artwork.width}}cm</p>
+                    <p><strong>Height: </strong> {{art.artwork.height}}cm</p>                    
+                    <a ui-sref="artistDetail({artistId:artwork.artistId})" ><p>Ver detalles del artista</p></a>
                 </div>
-                <div ng-if="isArtworkNotQualificated(artwork.id)">
+                <div ng-if="isArtworkNotQualificated(artwork.id)">                    
                     <a ui-sref="qualificationNew({artworkId:artwork.id})" ><p>Calificar</p></a>
                 </div>
                 <div>
