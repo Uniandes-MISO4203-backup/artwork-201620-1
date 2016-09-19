@@ -183,18 +183,4 @@ public class ArtistResource {
         return ArtworkResource.class;
     }
     
-    /**
-     * Obtiene los datos de una instancia de Artist a partir de su ID
-     *
-     * @param id Identificador de la instancia a consultar
-     * @return Instancia de ArtistDetailDTO con los datos del Artist consultado
-     * @generated
-     */
-    @GET
-    @Path("artwork/{artworkId: \\d+}")
-    public ArtistDetailDTO getArtistArtwork(@PathParam("artworkId") Long id) {
-
-        return new ArtistDetailDTO(artworkLogic.getArtwork(id).getArtist());
-    }
-    
 }
