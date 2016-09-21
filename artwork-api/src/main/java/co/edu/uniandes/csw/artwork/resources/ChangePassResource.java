@@ -36,6 +36,7 @@ public class ChangePassResource {
         String accountHref = req.getRemoteUser();
         if (accountHref != null) {
             Account account = Utils.getClient().getResource(accountHref, Account.class);
+            
             account.setPassword(newpass).save();
         }
     }

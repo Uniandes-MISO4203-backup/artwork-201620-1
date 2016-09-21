@@ -36,7 +36,10 @@ SOFTWARE.
         'authModule',
         'roleModule',
         'commentModule',
-        'qualificationModule'        
+        'qualificationModule',
+        'userModule'
+        
+        
     ]);
 
     mod.config(['$logProvider', function ($logProvider) {

@@ -3,10 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 (function (ng) {
-    var mod = ng.module('artworkModule');
+    var mod = ng.module('userModule');
 
-    mod.controller('changePassCtrl', ['$scope', '$http', '$rootScope', '$state',
+    mod.controller('userEditCtrl', ['$scope', '$http', '$rootScope', '$state',
         function ($scope, $http, $rootScope, $state) {
             this.closeAlert = function (index) {
                 $scope.alerts.splice(index, 1);
@@ -58,6 +63,7 @@
                         $http.get('api/users/logout').then(function () {
                             $rootScope.$broadcast('logged-out');
                             $state.go('login');
+                            
                           
                             
                         });
@@ -68,6 +74,8 @@
         }
     ]);
 })(window.angular);
+
+
 
 
 

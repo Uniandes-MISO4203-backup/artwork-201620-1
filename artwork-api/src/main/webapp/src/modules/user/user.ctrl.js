@@ -22,9 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 (function (ng) {
-    var mod = ng.module('artworkModule');
+    var mod = ng.module('userModule');
 
-    mod.controller('artworkCtrl', ['$scope', 'model',
+    mod.controller('userCtrl','userModel' ['$scope', 'model',
         function ($scope, model) {
             $scope.model = model;
             //Alertas
@@ -44,7 +44,9 @@ SOFTWARE.
                     $scope.alerts.push({type: type, msg: msg});
                 }
             }
-           
+            $scope.changePassword = function(password){
+              console.log(password.new);  
+            };
             $scope.showError = function (msg) {
                 showMessage(msg, "danger");
             };

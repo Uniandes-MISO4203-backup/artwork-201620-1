@@ -89,6 +89,7 @@ SOFTWARE.
                     }
                 }
             });
+           
 //            $sp.state('artistNew', {
 //                url: '/new',
 //                parent: 'artist',
