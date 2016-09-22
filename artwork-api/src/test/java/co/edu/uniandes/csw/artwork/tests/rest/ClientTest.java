@@ -46,6 +46,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.eclipse.jetty.util.log.Log;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -146,11 +147,11 @@ public class ClientTest {
             insertData();
             utx.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.getLog().warn(e);
             try {
                 utx.rollback();
             } catch (Exception e1) {
-                e1.printStackTrace();
+                Log.getLog().warn(e1);
             }
         }
         target = createWebTarget()

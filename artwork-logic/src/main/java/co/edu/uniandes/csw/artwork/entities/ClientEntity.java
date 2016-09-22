@@ -40,7 +40,11 @@ public class ClientEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ItemEntity> wishList = new ArrayList<>();    
+    private List<ItemEntity> wishList = new ArrayList<>();   
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PaymentEntity> payments = new ArrayList<>();    
     
     /**
      * Obtiene la colección de wishList.
@@ -58,8 +62,28 @@ public class ClientEntity extends BaseEntity implements Serializable {
      * @param wishList nuevo valor de la colección.
      * @generated
      */
-    public void setWishList(List<ItemEntity> wishlist) {
-        this.wishList = wishlist;
-    }    
+    public void setWishList(List<ItemEntity> wishList) {
+        this.wishList = wishList;
+    }  
+    
+     /**
+     * Obtiene la colección de payments.
+     *
+     * @return colección payments.
+     * @generated
+     */
+    public List<PaymentEntity> getPayments() {
+        return payments;
+    }
+    
+    /**
+     * Establece el valor de la colección de payments.
+     *
+     * @param payments nuevo valor de la colección.
+     * @generated
+     */
+    public void setPayments(List<PaymentEntity> payments) {
+        this.payments = payments;
+    }  
     
 }

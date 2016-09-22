@@ -75,6 +75,8 @@ SOFTWARE.
         <script src="src/modules/user/user.ctrl.js"></script>
         <script src="src/modules/comment/comment.mod.js"></script>
         <script src="src/modules/comment/comment.ctrl.js"></script>
+        <script src="src/modules/shoppingCart/shoppingCart.mod.js"></script>
+        <script src="src/modules/shoppingCart/shoppingCart.ctrl.js"></script>
         <script src="src/modules/comment/list/comment.list.ctrl.js"></script>
         <script src="src/modules/comment/new/comment.new.ctrl.js" ></script>
         <script src="src/modules/artist/artist.mod.js"></script>
@@ -160,7 +162,7 @@ SOFTWARE.
                                 <li ng-if="category"><a ui-sref="categoryList">Category</a></li>
                                 <li ng-if="category"><a ui-sref="adminList">Administration</a></li>
                                 <li ng-if="category"><a ui-sref="userChangePass">Change password</a></li>
-                               
+                                <li ng-if="client"><a ui-sref="shoppingCart">Shopping Cart</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <login-button></login-button>

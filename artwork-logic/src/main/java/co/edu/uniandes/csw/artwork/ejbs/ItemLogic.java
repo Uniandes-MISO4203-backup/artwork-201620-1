@@ -94,7 +94,7 @@ public class ItemLogic implements IItemLogic {
         try {
             return persistence.find(itemid);
         }catch(NoResultException e){
-            throw new IllegalArgumentException("El Item no existe");
+            throw new IllegalArgumentException(e);
         }
     }
 
@@ -141,5 +141,15 @@ public class ItemLogic implements IItemLogic {
         ItemEntity old = getItem(id);
         persistence.delete(old.getId());
     }
-  
+
+    @Override
+    public ItemEntity createItemInShoppingCart(Long clientid, ItemEntity entity) {
+        entity.setShoppingCart(true);
+        return createItem(clientid, entity);
+    }
+
+    @Override
+    public List<ItemEntity> getShoppingCartItems(Long clientId) {
+        return persistence.getShoppingCartItems(clientId);
+    }
 }

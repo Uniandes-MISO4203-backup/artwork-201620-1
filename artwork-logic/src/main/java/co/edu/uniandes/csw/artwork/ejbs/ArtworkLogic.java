@@ -27,7 +27,6 @@ import co.edu.uniandes.csw.artwork.api.IArtworkLogic;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.persistence.ArtworkPersistence;
 import co.edu.uniandes.csw.artwork.api.IArtistLogic;
-import co.edu.uniandes.csw.artwork.api.IClientLogic;
 import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
 import co.edu.uniandes.csw.artwork.entities.CategoryEntity;
 import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
@@ -116,7 +115,7 @@ public class ArtworkLogic implements IArtworkLogic {
         try {
             return persistence.find(artworkid);
         }catch(NoResultException e){
-            throw new IllegalArgumentException("El Artwork no existe");
+            throw new IllegalArgumentException(e);
         }
     }
 

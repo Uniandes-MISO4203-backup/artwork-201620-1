@@ -72,4 +72,10 @@ public class ItemPersistence extends CrudPersistence<ItemEntity> {
         }
         return q.getResultList();
     }
+
+    public List<ItemEntity> getShoppingCartItems(Long clientId) {
+        TypedQuery<ItemEntity> q = em.createQuery("select p from ItemEntity p where (p.client.id = :clientid) and p.shoppingCart = true", ItemEntity.class);
+        q.setParameter("clientid", clientId);
+        return q.getResultList();
+    }
 }

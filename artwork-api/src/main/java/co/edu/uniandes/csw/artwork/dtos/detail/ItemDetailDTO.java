@@ -149,5 +149,5 @@ public class ItemDetailDTO extends ItemDTO{
     public void setProduct(ProductDTO product) {
         this.product = product;
     }
-
+    
 }

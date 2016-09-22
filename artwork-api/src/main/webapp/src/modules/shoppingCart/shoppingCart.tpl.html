@@ -1,4 +1,4 @@
-/*
+<!--
 The MIT License (MIT)
 
 Copyright (c) 2015 Los Andes University
@@ -20,20 +20,23 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
-package co.edu.uniandes.csw.artwork.api;
+-->
 
-import co.edu.uniandes.csw.artwork.entities.ItemEntity;
-import java.util.List;
-
-public interface IItemLogic {
-    public int countItems();
-    public List<ItemEntity> getItems(Long clientid);
-    public List<ItemEntity> getItems(Integer page, Integer maxRecords, Long clientid);
-    public ItemEntity getItem(Long itemid);
-    public ItemEntity createItem(Long clientid, ItemEntity entity);
-    public ItemEntity updateItem(Long clientid, ItemEntity entity);
-    public void deleteItem(Long id);
-    public ItemEntity createItemInShoppingCart(Long clientid, ItemEntity entity);
-    public List<ItemEntity> getShoppingCartItems(Long clientId);
-}
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)">{{alert.msg}} </alert>
+<div class="col-md-10">
+    <table class="table table-bordered table-striped">
+   <tr>
+    <th>Pieza</th>
+    <th>Cantidad</th>
+    <th>Precio Unitario</th>
+    <th>Total</th>
+  </tr>
+  <tr ng-repeat="item in purchase.items">
+    <td>{{item.name}}</td>
+    <td>{{item.qty}}</td>
+    <td>${{item.artwork.price}}</td>
+    <td>${{item.qty*item.artwork.price}}</td>
+  </tr>
+</table>
+</div>
+<button ng-disabled="purchase.items.length === 0" class="col-md-2 btn btn-info" ng-click="makePurchase()">comprar</button>

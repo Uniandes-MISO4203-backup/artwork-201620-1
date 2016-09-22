@@ -36,6 +36,8 @@ import javax.persistence.ManyToOne;
 public class ItemEntity extends BaseEntity implements Serializable {
 
     private Long qty;
+    
+    private Boolean shoppingCart;
 
     @PodamExclude
     @ManyToOne
@@ -48,6 +50,7 @@ public class ItemEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToOne
     private ProductEntity product;
+    
 
     /**
      * Obtiene el atributo qty.
@@ -67,6 +70,26 @@ public class ItemEntity extends BaseEntity implements Serializable {
      */
     public void setQty(Long qty){
         this.qty = qty;
+    }
+    
+    /**
+     * Obtiene el atributo shoppingCart.
+     *
+     * @return atributo sohppingCart.
+     * @generated
+     */
+    public Boolean getShoppingCart(){
+        return shoppingCart;
+    }
+
+    /**
+     * Establece el valor del atributo shoppingCart.
+     *
+     * @param shoppingCart nuevo valor del atributo
+     * @generated
+     */
+    public void setShoppingCart(Boolean shoppingCart){
+        this.shoppingCart = shoppingCart;
     }
 
     /**
@@ -127,5 +150,5 @@ public class ItemEntity extends BaseEntity implements Serializable {
      */
     public void setProduct(ProductEntity product) {
         this.product = product;
-    }
+    }    
 }
