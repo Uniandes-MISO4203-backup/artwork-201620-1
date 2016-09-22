@@ -57,6 +57,13 @@ public class PaymentPersistence extends CrudPersistence<PaymentEntity>{
         return q.getResultList();
     }
     
+    /**
+     * Crea un nuevo Payment en la base de datos.
+     *
+     * @param entity Entidad a persistir.
+     * @return Payment persistido.
+     * @generated
+     */
     @Override
     public PaymentEntity create(PaymentEntity entity){
         super.create(entity);
