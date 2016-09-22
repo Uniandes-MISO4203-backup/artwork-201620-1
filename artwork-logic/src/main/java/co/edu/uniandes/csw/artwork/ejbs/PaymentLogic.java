@@ -66,7 +66,8 @@ public class PaymentLogic implements IPaymentLogic {
          try {
             return persistence.find(paymentId);
         }catch(NoResultException e){
-            throw new IllegalArgumentException("El pago no existe");
+            
+            throw new IllegalArgumentException(e);
         }
     }
 
