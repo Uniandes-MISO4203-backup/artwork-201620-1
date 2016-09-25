@@ -25,7 +25,6 @@ package co.edu.uniandes.csw.artwork.test.logic;
 
 import co.edu.uniandes.csw.artwork.ejbs.CategoryLogic;
 import co.edu.uniandes.csw.artwork.api.ICategoryLogic;
-import co.edu.uniandes.csw.artwork.entities.CategoryEntity;
 import co.edu.uniandes.csw.artwork.persistence.CategoryPersistence;
 import co.edu.uniandes.csw.artwork.entities.CategoryEntity;
 import java.util.ArrayList;

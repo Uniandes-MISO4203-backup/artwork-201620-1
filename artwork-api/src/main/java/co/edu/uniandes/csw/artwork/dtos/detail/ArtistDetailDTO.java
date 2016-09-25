@@ -61,8 +61,8 @@ public class ArtistDetailDTO extends ArtistDTO{
      */
     @Override
     public ArtistEntity toEntity() {
-        ArtistEntity entity = super.toEntity();
-        return entity;
+        return super.toEntity();
+        
     }
 
 }

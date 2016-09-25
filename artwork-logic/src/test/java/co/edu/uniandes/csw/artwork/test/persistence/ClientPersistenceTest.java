@@ -23,7 +23,6 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.test.persistence;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
-import co.edu.uniandes.csw.artwork.entities.ItemEntity;
 import co.edu.uniandes.csw.artwork.persistence.ClientPersistence;
 import java.util.ArrayList;
 import java.util.List;

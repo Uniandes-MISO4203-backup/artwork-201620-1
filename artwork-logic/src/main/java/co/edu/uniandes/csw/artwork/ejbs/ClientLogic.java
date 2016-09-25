@@ -29,7 +29,6 @@ import co.edu.uniandes.csw.artwork.persistence.ClientPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.NoResultException;
 
 /**
  * @generated

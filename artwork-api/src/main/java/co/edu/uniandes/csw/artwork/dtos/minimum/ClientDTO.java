@@ -24,14 +24,8 @@ SOFTWARE.
 package co.edu.uniandes.csw.artwork.dtos.minimum;
 
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
-import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
-import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * @generated

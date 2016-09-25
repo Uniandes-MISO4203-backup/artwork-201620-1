@@ -27,7 +27,6 @@ import co.edu.uniandes.csw.artwork.ejbs.ArtistLogic;
 import co.edu.uniandes.csw.artwork.api.IArtistLogic;
 import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
 import co.edu.uniandes.csw.artwork.persistence.ArtistPersistence;
-import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import java.util.ArrayList;
 import java.util.List;
 

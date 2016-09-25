@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.artwork.dtos.detail;
 
 import co.edu.uniandes.csw.artwork.dtos.minimum.ArtworkDTO;
-import co.edu.uniandes.csw.artwork.dtos.minimum.ClientDTO;
 import co.edu.uniandes.csw.artwork.dtos.minimum.CommentDTO;
 import co.edu.uniandes.csw.artwork.entities.CommentEntity;
 import javax.xml.bind.annotation.XmlRootElement;

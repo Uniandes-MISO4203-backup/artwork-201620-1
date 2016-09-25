@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.artwork.dtos.detail;
 
 import co.edu.uniandes.csw.artwork.dtos.minimum.ClientDTO;
-import co.edu.uniandes.csw.artwork.dtos.minimum.ItemDTO;
 import co.edu.uniandes.csw.artwork.dtos.minimum.PaymentDTO;
 import co.edu.uniandes.csw.artwork.entities.ItemEntity;
 import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
