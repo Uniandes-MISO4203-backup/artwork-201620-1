@@ -27,7 +27,6 @@ import co.edu.uniandes.csw.artwork.ejbs.ClientLogic;
 import co.edu.uniandes.csw.artwork.api.IClientLogic;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
 import co.edu.uniandes.csw.artwork.persistence.ClientPersistence;
-import co.edu.uniandes.csw.artwork.entities.ItemEntity;
 import java.util.ArrayList;
 import java.util.List;
 

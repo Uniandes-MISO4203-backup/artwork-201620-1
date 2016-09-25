@@ -26,14 +26,12 @@ package co.edu.uniandes.csw.artwork.test.logic;
 import co.edu.uniandes.csw.artwork.ejbs.ItemLogic;
 import co.edu.uniandes.csw.artwork.api.IItemLogic;
 import co.edu.uniandes.csw.artwork.entities.ItemEntity;
-import co.edu.uniandes.csw.artwork.entities.ClientEntity;
 import co.edu.uniandes.csw.artwork.persistence.ItemPersistence;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
 import co.edu.uniandes.csw.artwork.entities.ProductEntity;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;

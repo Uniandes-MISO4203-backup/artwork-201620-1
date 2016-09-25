@@ -28,7 +28,6 @@ import co.edu.uniandes.csw.auth.security.JWT;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
 import co.edu.uniandes.csw.artwork.entities.CategoryEntity;
-import co.edu.uniandes.csw.artwork.dtos.minimum.ArtworkDTO;
 import co.edu.uniandes.csw.artwork.dtos.minimum.CategoryDTO;
 import co.edu.uniandes.csw.artwork.resources.ArtworkResource;
 import co.edu.uniandes.csw.artwork.tests.Utils;

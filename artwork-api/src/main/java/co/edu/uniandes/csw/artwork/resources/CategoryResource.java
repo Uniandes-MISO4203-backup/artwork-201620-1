@@ -42,7 +42,6 @@ import co.edu.uniandes.csw.artwork.api.ICategoryLogic;
 import co.edu.uniandes.csw.artwork.dtos.detail.CategoryDetailDTO;
 import co.edu.uniandes.csw.artwork.entities.CategoryEntity;
 import java.util.ArrayList;
-import javax.ws.rs.WebApplicationException;
 
 /**
  * URI: categorys/

@@ -8,7 +8,6 @@ package co.edu.uniandes.csw.artwork.dtos.minimum;
 import co.edu.uniandes.csw.artwork.entities.CommentEntity;
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlRootElement;
-import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *

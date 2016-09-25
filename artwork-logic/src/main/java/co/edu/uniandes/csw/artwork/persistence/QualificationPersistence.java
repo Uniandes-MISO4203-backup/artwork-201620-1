@@ -26,8 +26,6 @@ package co.edu.uniandes.csw.artwork.persistence;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import co.edu.uniandes.csw.artwork.entities.ClientEntity;
-import co.edu.uniandes.csw.artwork.entities.CommentEntity;
 import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
 import co.edu.uniandes.csw.crud.spi.persistence.CrudPersistence;
 import java.util.List;
