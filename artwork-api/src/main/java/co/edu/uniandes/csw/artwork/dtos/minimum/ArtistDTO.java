@@ -34,105 +34,105 @@ import java.io.Serializable;
 @XmlRootElement
 public class ArtistDTO implements Serializable{
 
-    private Long id;
-    private String name;
-    private Long appraisal; //Nuevo campo de avaluo
+ private Long id;
+ private String name;
+ private Long appraisal; //Nuevo campo de avaluo
 
-    /**
-     * @generated
-     */
-    public ArtistDTO() {
-    }
+ /**
+  * @generated
+  */
+ public ArtistDTO() {
+ }
 
-    /**
-     * Crea un objeto ArtistDTO a partir de un objeto ArtistEntity.
-     *
-     * @param entity Entidad ArtistEntity desde la cual se va a crear el nuevo objeto.
-     * @generated
-     */
-    public ArtistDTO(ArtistEntity entity) {
+ /**
+  * Crea un objeto ArtistDTO a partir de un objeto ArtistEntity.
+  *
+  * @param entity Entidad ArtistEntity desde la cual se va a crear el nuevo objeto.
+  * @generated
+  */
+ public ArtistDTO(ArtistEntity entity) {
 	   if (entity!=null){
-               Long avaluo=0L;
-        this.id=entity.getId();
-        this.name=entity.getName();
-        //Calculo del avaluo a partir del precio de las obras de arte
-        for(ArtworkEntity artworkEntity : entity.getArtworks()){
-            avaluo+=artworkEntity.getPrice();
-        }
-        this.appraisal=avaluo;
-       }
+      Long avaluo=0L;
+  this.id=entity.getId();
+  this.name=entity.getName();
+  //Calculo del avaluo a partir del precio de las obras de arte
+  for(ArtworkEntity artworkEntity : entity.getArtworks()){
+   avaluo+=artworkEntity.getPrice();
+  }
+  this.appraisal=avaluo;
     }
+ }
 
-    /**
-     * Convierte un objeto ArtistDTO a ArtistEntity.
-     *
-     * @return Nueva objeto ArtistEntity.
-     * @generated
-     */
-    public ArtistEntity toEntity() {
-        ArtistEntity entity = new ArtistEntity();
-        entity.setId(this.getId());
-        entity.setName(this.getName());
-    return entity;
-    }
+ /**
+  * Convierte un objeto ArtistDTO a ArtistEntity.
+  *
+  * @return Nueva objeto ArtistEntity.
+  * @generated
+  */
+ public ArtistEntity toEntity() {
+  ArtistEntity entity = new ArtistEntity();
+  entity.setId(this.getId());
+  entity.setName(this.getName());
+ return entity;
+ }
 
-    /**
-     * Obtiene el atributo id.
-     *
-     * @return atributo id.
-     * @generated
-     */
-    public Long getId() {
-        return id;
-    }
+ /**
+  * Obtiene el atributo id.
+  *
+  * @return atributo id.
+  * @generated
+  */
+ public Long getId() {
+  return id;
+ }
 
-    /**
-     * Establece el valor del atributo id.
-     *
-     * @param id nuevo valor del atributo
-     * @generated
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+ /**
+  * Establece el valor del atributo id.
+  *
+  * @param id nuevo valor del atributo
+  * @generated
+  */
+ public void setId(Long id) {
+  this.id = id;
+ }
 
-    /**
-     * Obtiene el atributo name.
-     *
-     * @return atributo name.
-     * @generated
-     */
-    public String getName() {
-        return name;
-    }
+ /**
+  * Obtiene el atributo name.
+  *
+  * @return atributo name.
+  * @generated
+  */
+ public String getName() {
+  return name;
+ }
 
-    /**
-     * Establece el valor del atributo name.
-     *
-     * @param name nuevo valor del atributo
-     * @generated
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    /**
-     * Obtiene el atributo appraisal.
-     *
-     * @return atributo appraisal.
-     * @generated
-     */
-    public long getAppraisal() {
-        return appraisal;
-    }
-    
-    /**
-     * Establece el valor del atributo appraisal(avaluo).
-     *
-     * @param appraisal nuevo valor del atributo
-     * @generated
-     */
-    public void setAppraisal(long appraisal) {
-        this.appraisal = appraisal;
-    }
+ /**
+  * Establece el valor del atributo name.
+  *
+  * @param name nuevo valor del atributo
+  * @generated
+  */
+ public void setName(String name) {
+  this.name = name;
+ }
+ 
+ /**
+  * Obtiene el atributo appraisal.
+  *
+  * @return atributo appraisal.
+  * @generated
+  */
+ public long getAppraisal() {
+  return appraisal;
+ }
+ 
+ /**
+  * Establece el valor del atributo appraisal(avaluo).
+  *
+  * @param appraisal nuevo valor del atributo
+  * @generated
+  */
+ public void setAppraisal(long appraisal) {
+  this.appraisal = appraisal;
+ }
 }

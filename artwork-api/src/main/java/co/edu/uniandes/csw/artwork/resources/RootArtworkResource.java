@@ -52,7 +52,7 @@ public class RootArtworkResource {
     @QueryParam("page") private Integer page;
     @QueryParam("limit") private Integer maxRecords;
     @QueryParam("artist") private String artist;
-
+    private static final String X_COUNT="X-Total-Count";
    
     /**
      * Convierte una lista de ArtworkEntity a una lista de ArtworkBasicDTO
@@ -79,11 +79,11 @@ public class RootArtworkResource {
     @GET
     public List<ArtworkDetailDTO> getArtworks() {
         if (page != null && maxRecords != null) {
-            this.response.setIntHeader("X-Total-Count", ArtworkLogic.countArtworks());
+            this.response.setIntHeader(X_COUNT, ArtworkLogic.countArtworks());
             return listEntity2DTO(ArtworkLogic.getArtworks(page, maxRecords,null));
         }
         else if(artist != null && artist.length() > 0){
-            this.response.setIntHeader("X-Total-Count", ArtworkLogic.countArtworks());
+            this.response.setIntHeader(X_COUNT, ArtworkLogic.countArtworks());
             return listEntity2DTO(ArtworkLogic.getArtworksFromArtist(artist));
         }
         return listEntity2DTO(ArtworkLogic.getArtworks(null,null,null));
@@ -100,7 +100,7 @@ public class RootArtworkResource {
     @Path("{categoryid: \\d+}")
     public List<ArtworkDetailDTO> getArtworkByCategory(@PathParam("categoryid") Long categoryid) {
         if (page != null && maxRecords != null) {
-            this.response.setIntHeader("X-Total-Count", ArtworkLogic.countArtworks());
+            this.response.setIntHeader(X_COUNT, ArtworkLogic.countArtworks());
             return listEntity2DTO(ArtworkLogic.getArtworkByCategory(page, maxRecords,categoryid));
         }
         return listEntity2DTO(ArtworkLogic.getArtworkByCategory(null,null,categoryid));
