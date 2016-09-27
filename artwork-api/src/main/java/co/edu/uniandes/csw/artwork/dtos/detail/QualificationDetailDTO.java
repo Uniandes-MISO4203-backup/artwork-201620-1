@@ -61,8 +61,8 @@ public class QualificationDetailDTO extends QualificationDTO{
      */
     @Override
     public QualificationEntity toEntity() {
-        return super.toEntity();
-       
+        QualificationEntity entity = super.toEntity();
+        return entity;
     }
 
 }
