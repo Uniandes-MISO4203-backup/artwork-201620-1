@@ -70,18 +70,18 @@ public class ArtworkCategoryTest {
 
     private WebTarget target;
     private PodamFactory factory = new PodamFactoryImpl();
-    private final String apiPath = Utils.apiPath;
-    private final String username = Utils.username;
-    private final String password = Utils.password;
+    private static final String API_PATH = Utils.apiPath;
+    private static final String USERNAME = Utils.username;
+    private static final String PASSWORD = Utils.password;
 
-    private final int Ok = Status.OK.getStatusCode();
-    private final int OkWithoutContent = Status.NO_CONTENT.getStatusCode();
+    private static final int OK = Status.OK.getStatusCode();
+    private static final int OK_WITHOUT_CONTENT = Status.NO_CONTENT.getStatusCode();
 
-    private final static List<CategoryEntity> oraculo = new ArrayList<>();
+    private static final List<CategoryEntity> oraculo = new ArrayList<>();
 
-    private final String artistPath = "artists";
-    private final String artworkPath = "artworks";
-    private final String categoryPath = "category";
+    private static  final String ARTIST_PATH = "artists";
+    private static  final String ARTWORK_PATH = "artworks";
+    private static final String CATEGORY_PATH = "category";
 
     private ArtistEntity fatherArtistEntity;
     private ArtworkEntity fatherArtworkEntity;
@@ -115,7 +115,7 @@ public class ArtworkCategoryTest {
     }
 
     private WebTarget createWebTarget() {
-        return ClientBuilder.newClient().target(deploymentURL.toString()).path(apiPath);
+        return ClientBuilder.newClient().target(deploymentURL.toString()).path(API_PATH);
     }
 
     
@@ -173,11 +173,11 @@ public class ArtworkCategoryTest {
             }
         }
         target = createWebTarget()
-                .path(artistPath)
+                .path(ARTIST_PATH)
                 .path(fatherArtistEntity.getId().toString())
-                .path(artworkPath)
+                .path(ARTWORK_PATH)
                 .path(fatherArtworkEntity.getId().toString())
-                .path(categoryPath);
+                .path(CATEGORY_PATH);
     }
 
     /**
@@ -198,7 +198,7 @@ public class ArtworkCategoryTest {
                 .path("login")
                 .request()
                 .post(Entity.entity(user, MediaType.APPLICATION_JSON));
-        if (response.getStatus() == Ok) {
+        if (response.getStatus() == OK) {
             return response.getCookies().get(JWT.cookieName);
         } else {
             return null;
@@ -212,7 +212,7 @@ public class ArtworkCategoryTest {
      */
     @Test
     public void addCategoryTest() {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         CategoryDTO category = new CategoryDTO(oraculo.get(2));
 
@@ -221,7 +221,7 @@ public class ArtworkCategoryTest {
                 .post(Entity.entity(category, MediaType.APPLICATION_JSON));
 
         CategoryDTO categoryTest = (CategoryDTO) response.readEntity(CategoryDTO.class);
-        Assert.assertEquals(Ok, response.getStatus());
+        Assert.assertEquals(OK, response.getStatus());
         Assert.assertEquals(category.getId(), categoryTest.getId());
     }
 
@@ -232,14 +232,14 @@ public class ArtworkCategoryTest {
      */
     @Test
     public void listCategoryTest() throws IOException {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         Response response = target
                 .request().cookie(cookieSessionId).get();
 
         String categoryList = response.readEntity(String.class);
         List<CategoryDTO> categoryListTest = new ObjectMapper().readValue(categoryList, List.class);
-        Assert.assertEquals(Ok, response.getStatus());
+        Assert.assertEquals(OK, response.getStatus());
         Assert.assertEquals(2, categoryListTest.size());
     }
 
@@ -250,7 +250,7 @@ public class ArtworkCategoryTest {
      */
     @Test
     public void getCategoryTest() throws IOException {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
         CategoryDTO category = new CategoryDTO(oraculo.get(0));
 
         CategoryDTO categoryTest = target.path(category.getId().toString())
@@ -267,12 +267,12 @@ public class ArtworkCategoryTest {
      */
     @Test
     public void removeCategoryTest() {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         CategoryDTO category = new CategoryDTO(oraculo.get(0));
 
         Response response = target.path(category.getId().toString())
                 .request().cookie(cookieSessionId).delete();
-        Assert.assertEquals(OkWithoutContent, response.getStatus());
+        Assert.assertEquals(OK_WITHOUT_CONTENT, response.getStatus());
     }
 }

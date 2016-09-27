@@ -67,27 +67,27 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class ArtistTest {
 
     private WebTarget target;
-    private final String apiPath = Utils.apiPath;
-    private final String username = Utils.username;
-    private final String password = Utils.password;
+    private static final String API_PATH = Utils.apiPath;
+    private static final String USERNAME = Utils.username;
+    private static final String PASSWORD = Utils.password;
     PodamFactory factory = new PodamFactoryImpl();
 
-    private final int Ok = Status.OK.getStatusCode();
-    private final int Created = Status.CREATED.getStatusCode();
-    private final int OkWithoutContent = Status.NO_CONTENT.getStatusCode();
+    private static final int OK = Status.OK.getStatusCode();
+    private static final int CREATED = Status.CREATED.getStatusCode();
+    private static final int OK_WITHOUT_CONTENT = Status.NO_CONTENT.getStatusCode();
 
     private static final List<ArtistEntity> oraculo = new ArrayList<>();
 
-    private final String artistPath = "artists";
+    private static final String ARTIST_PATH = "artists";
+    
+    @ArquillianResource
+    private URL deploymentURL;
     
     @PersistenceContext(unitName = "ArtworkPU")
     private EntityManager em;
 
     @Inject
     private UserTransaction utx;
-
-    @ArquillianResource
-    private URL deploymentURL;
 
     @Deployment
     public static WebArchive createDeployment() {
@@ -109,7 +109,7 @@ public class ArtistTest {
     }
 
     private WebTarget createWebTarget() {
-        return ClientBuilder.newClient().target(deploymentURL.toString()).path(apiPath);
+        return ClientBuilder.newClient().target(deploymentURL.toString()).path(API_PATH);
     }
 
     
@@ -154,7 +154,7 @@ public class ArtistTest {
             }
         }
         target = createWebTarget()
-                .path(artistPath);
+                .path(ARTIST_PATH);
     }
 
     /**
@@ -172,7 +172,7 @@ public class ArtistTest {
         user.setRememberMe(true);
         Response response = createWebTarget().path("users").path("login").request()
                 .post(Entity.entity(user, MediaType.APPLICATION_JSON));
-        if (response.getStatus() == Ok) {
+        if (response.getStatus() == OK) {
             return response.getCookies().get(JWT.cookieName);
         } else {
             return null;
@@ -187,7 +187,7 @@ public class ArtistTest {
     @Test
     public void createArtistTest() throws IOException {
         ArtistDTO artist = factory.manufacturePojo(ArtistDTO.class);
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         Response response = target
             .request().cookie(cookieSessionId)
@@ -195,7 +195,7 @@ public class ArtistTest {
 
         ArtistDTO  artistTest = (ArtistDTO) response.readEntity(ArtistDTO.class);
 
-        Assert.assertEquals(Created, response.getStatus());
+        Assert.assertEquals(CREATED, response.getStatus());
 
         Assert.assertEquals(artist.getName(), artistTest.getName());
 
@@ -210,7 +210,7 @@ public class ArtistTest {
      */
     @Test
     public void getArtistByIdTest() {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         ArtistDTO artistTest = target
             .path(oraculo.get(0).getId().toString())
@@ -227,14 +227,14 @@ public class ArtistTest {
      */
     @Test
     public void listArtistTest() throws IOException {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         Response response = target
             .request().cookie(cookieSessionId).get();
 
         String listArtist = response.readEntity(String.class);
         List<ArtistDTO> listArtistTest = new ObjectMapper().readValue(listArtist, List.class);
-        Assert.assertEquals(Ok, response.getStatus());
+        Assert.assertEquals(OK, response.getStatus());
         Assert.assertEquals(3, listArtistTest.size());
     }
 
@@ -245,7 +245,7 @@ public class ArtistTest {
      */
     @Test
     public void updateArtistTest() throws IOException {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
         ArtistDTO artist = new ArtistDTO(oraculo.get(0));
 
         ArtistDTO artistChanged = factory.manufacturePojo(ArtistDTO.class);
@@ -259,7 +259,7 @@ public class ArtistTest {
 
         ArtistDTO artistTest = (ArtistDTO) response.readEntity(ArtistDTO.class);
 
-        Assert.assertEquals(Ok, response.getStatus());
+        Assert.assertEquals(OK, response.getStatus());
         Assert.assertEquals(artist.getName(), artistTest.getName());
     }
 
@@ -270,12 +270,12 @@ public class ArtistTest {
      */
     @Test
     public void deleteArtistTest() {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
         ArtistDTO artist = new ArtistDTO(oraculo.get(0));
         Response response = target
             .path(artist.getId().toString())
             .request().cookie(cookieSessionId).delete();
 
-        Assert.assertEquals(OkWithoutContent, response.getStatus());
+        Assert.assertEquals(OK_WITHOUT_CONTENT, response.getStatus());
     }
 }
