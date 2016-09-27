@@ -52,19 +52,7 @@ public class QualificationPersistenceTest {
     /**
      * @generated
      */
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(QualificationEntity.class.getPackage())
-                .addPackage(QualificationPersistence.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
-
-    /**
-     * @generated
-     */
-    ArtworkEntity fatherEntity;
+     ArtworkEntity fatherEntity;
 
     /**
      * @generated
@@ -83,6 +71,22 @@ public class QualificationPersistenceTest {
      */
     @Inject
     UserTransaction utx;
+    
+      private List<QualificationEntity> data = new ArrayList<>();
+    
+    @Deployment
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(QualificationEntity.class.getPackage())
+                .addPackage(QualificationPersistence.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    }
+
+    /**
+     * @generated
+     */
+   
 
     /**
      * Configuración inicial de la prueba.
@@ -120,7 +124,7 @@ public class QualificationPersistenceTest {
     /**
      * @generated
      */
-    private List<QualificationEntity> data = new ArrayList<QualificationEntity>();
+  
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.

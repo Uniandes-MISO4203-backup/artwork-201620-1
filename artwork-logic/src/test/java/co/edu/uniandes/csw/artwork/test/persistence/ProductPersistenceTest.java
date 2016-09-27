@@ -51,6 +51,23 @@ public class ProductPersistenceTest {
     /**
      * @generated
      */
+     @Inject
+    private ProductPersistence productPersistence;
+
+    /**
+     * @generated
+     */
+    @PersistenceContext
+    private EntityManager em;
+
+    /**
+     * @generated
+     */
+    @Inject
+    UserTransaction utx;
+    
+    private List<ProductEntity> data = new ArrayList<>();
+    
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -67,20 +84,7 @@ public class ProductPersistenceTest {
     /**
      * @generated
      */
-    @Inject
-    private ProductPersistence productPersistence;
-
-    /**
-     * @generated
-     */
-    @PersistenceContext
-    private EntityManager em;
-
-    /**
-     * @generated
-     */
-    @Inject
-    UserTransaction utx;
+   
 
     /**
      * Configuración inicial de la prueba.
@@ -117,7 +121,7 @@ public class ProductPersistenceTest {
     /**
      * @generated
      */
-    private List<ProductEntity> data = new ArrayList<ProductEntity>();
+    
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.

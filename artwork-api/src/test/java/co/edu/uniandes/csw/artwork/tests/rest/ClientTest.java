@@ -67,19 +67,24 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class ClientTest {
 
     private WebTarget target;
-    private final String apiPath = Utils.apiPath;
-    private final String username = Utils.username;
-    private final String password = Utils.password;
+    private static final String API_PATH = Utils.API_PATH;
+    private static final String USERNAME = Utils.USERNAME;
+    private static final String PASSWORD = Utils.PASSWORD;
     PodamFactory factory = new PodamFactoryImpl();
 
-    private final int Ok = Status.OK.getStatusCode();
-    private final int Created = Status.CREATED.getStatusCode();
-    private final int OkWithoutContent = Status.NO_CONTENT.getStatusCode();
+    private static final int OK = Status.OK.getStatusCode();
+    private static final int CREATED = Status.CREATED.getStatusCode();
+    private static final int OK_WITHOUT_CONTENT = Status.NO_CONTENT.getStatusCode();
 
-    private final static List<ClientEntity> oraculo = new ArrayList<>();
+    private  static final List<ClientEntity> oraculo = new ArrayList<>();
 
-    private final String clientPath = "clients";
+    private static final String CLIENT_PATH = "clients";
+ 
+    @PersistenceContext(unitName = "ArtworkPU")
+    private EntityManager em;
 
+    @Inject
+    private UserTransaction utx;
 
     @ArquillianResource
     private URL deploymentURL;
@@ -104,14 +109,10 @@ public class ClientTest {
     }
 
     private WebTarget createWebTarget() {
-        return ClientBuilder.newClient().target(deploymentURL.toString()).path(apiPath);
+        return ClientBuilder.newClient().target(deploymentURL.toString()).path(API_PATH);
     }
 
-    @PersistenceContext(unitName = "ArtworkPU")
-    private EntityManager em;
-
-    @Inject
-    private UserTransaction utx;
+    
 
     private void clearData() {
         em.createQuery("delete from ClientEntity").executeUpdate();
@@ -153,7 +154,7 @@ public class ClientTest {
             }
         }
         target = createWebTarget()
-                .path(clientPath);
+                .path(CLIENT_PATH);
     }
 
     /**
@@ -171,7 +172,7 @@ public class ClientTest {
         user.setRememberMe(true);
         Response response = createWebTarget().path("users").path("login").request()
                 .post(Entity.entity(user, MediaType.APPLICATION_JSON));
-        if (response.getStatus() == Ok) {
+        if (response.getStatus() == OK) {
             return response.getCookies().get(JWT.cookieName);
         } else {
             return null;
@@ -186,7 +187,7 @@ public class ClientTest {
     @Test
     public void createClientTest() throws IOException {
         ClientDTO client = factory.manufacturePojo(ClientDTO.class);
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         Response response = target
             .request().cookie(cookieSessionId)
@@ -194,7 +195,7 @@ public class ClientTest {
 
         ClientDTO  clientTest = (ClientDTO) response.readEntity(ClientDTO.class);
 
-        Assert.assertEquals(Created, response.getStatus());
+        Assert.assertEquals(CREATED, response.getStatus());
 
         Assert.assertEquals(client.getName(), clientTest.getName());
 
@@ -209,7 +210,7 @@ public class ClientTest {
      */
     @Test
     public void getClientByIdTest() {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         ClientDTO clientTest = target
             .path(oraculo.get(0).getId().toString())
@@ -226,14 +227,14 @@ public class ClientTest {
      */
     @Test
     public void listClientTest() throws IOException {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         Response response = target
             .request().cookie(cookieSessionId).get();
 
         String listClient = response.readEntity(String.class);
         List<ClientDTO> listClientTest = new ObjectMapper().readValue(listClient, List.class);
-        Assert.assertEquals(Ok, response.getStatus());
+        Assert.assertEquals(OK, response.getStatus());
         Assert.assertEquals(3, listClientTest.size());
     }
 
@@ -244,7 +245,7 @@ public class ClientTest {
      */
     @Test
     public void updateClientTest() throws IOException {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
         ClientDTO client = new ClientDTO(oraculo.get(0));
 
         ClientDTO clientChanged = factory.manufacturePojo(ClientDTO.class);
@@ -258,7 +259,7 @@ public class ClientTest {
 
         ClientDTO clientTest = (ClientDTO) response.readEntity(ClientDTO.class);
 
-        Assert.assertEquals(Ok, response.getStatus());
+        Assert.assertEquals(OK, response.getStatus());
         Assert.assertEquals(client.getName(), clientTest.getName());
     }
 
@@ -269,12 +270,12 @@ public class ClientTest {
      */
     @Test
     public void deleteClientTest() {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
         ClientDTO client = new ClientDTO(oraculo.get(0));
         Response response = target
             .path(client.getId().toString())
             .request().cookie(cookieSessionId).delete();
 
-        Assert.assertEquals(OkWithoutContent, response.getStatus());
+        Assert.assertEquals(OK_WITHOUT_CONTENT, response.getStatus());
     }
 }

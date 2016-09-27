@@ -44,7 +44,7 @@ public class LoginPage {
     private WebElement registerBtn;
 
     public void login() {
-        login(Utils.username, Utils.password);
+        login(Utils.USERNAME, Utils.PASSWORD);
     }
 
     public void login(String username, String password) {

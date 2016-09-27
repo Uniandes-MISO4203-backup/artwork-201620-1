@@ -118,26 +118,26 @@ public class CategoryIT {
 
         listPage.create();
 
-        CategoryDTO expected_category = factory.manufacturePojo(CategoryDTO.class);
-        createPage.saveCategory(expected_category);
+        CategoryDTO expectedCategory = factory.manufacturePojo(CategoryDTO.class);
+        createPage.saveCategory(expectedCategory);
 
-        CategoryDTO actual_category = detailPage.getData();
+        CategoryDTO actualCategory = detailPage.getData();
 
-        Assert.assertEquals(expected_category.getName(), actual_category.getName());
+        Assert.assertEquals(expectedCategory.getName(), actualCategory.getName());
     }
 
     @Test
     @InSequence(2)
     public void editCategory(@InitialPage CategoryListPage listPage) {
-        CategoryDTO expected_category = factory.manufacturePojo(CategoryDTO.class);
+        CategoryDTO expectedCategory = factory.manufacturePojo(CategoryDTO.class);
 
         listPage.editCategory(0);
 
-        editPage.saveCategory(expected_category);
+        editPage.saveCategory(expectedCategory);
 
-        CategoryDTO actual_category = detailPage.getData();
+        CategoryDTO actualCategory = detailPage.getData();
 
-        Assert.assertEquals(expected_category.getName(), actual_category.getName());
+        Assert.assertEquals(expectedCategory.getName(), actualCategory.getName());
     }
 
     @Test

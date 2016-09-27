@@ -51,6 +51,23 @@ public class PaymentPersistenceTest {
     /**
      * @generated
      */
+    @Inject
+    private PaymentPersistence paymentPersistence;
+
+    /**
+     * @generated
+     */
+    @PersistenceContext
+    private EntityManager em;
+
+    /**
+     * @generated
+     */
+    @Inject
+    UserTransaction utx;
+    
+       private List<PaymentEntity> data = new ArrayList<>();
+    
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -67,20 +84,7 @@ public class PaymentPersistenceTest {
     /**
      * @generated
      */
-    @Inject
-    private PaymentPersistence paymentPersistence;
-
-    /**
-     * @generated
-     */
-    @PersistenceContext
-    private EntityManager em;
-
-    /**
-     * @generated
-     */
-    @Inject
-    UserTransaction utx;
+    
 
     /**
      * Configuración inicial de la prueba.
@@ -117,7 +121,7 @@ public class PaymentPersistenceTest {
     /**
      * @generated
      */
-    private List<PaymentEntity> data = new ArrayList<PaymentEntity>();
+ 
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.

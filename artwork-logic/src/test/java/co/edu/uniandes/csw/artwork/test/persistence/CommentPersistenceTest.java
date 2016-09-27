@@ -52,19 +52,7 @@ public class CommentPersistenceTest {
     /**
      * @generated
      */
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(CommentEntity.class.getPackage())
-                .addPackage(CommentPersistence.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
-
-    /**
-     * @generated
-     */
-    ArtworkEntity fatherEntity;
+      ArtworkEntity fatherEntity;
 
     /**
      * @generated
@@ -83,7 +71,23 @@ public class CommentPersistenceTest {
      */
     @Inject
     UserTransaction utx;
+    
+    private List<CommentEntity> data = new ArrayList<>();
 
+    
+    @Deployment
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(CommentEntity.class.getPackage())
+                .addPackage(CommentPersistence.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    }
+
+    /**
+     * @generated
+     */
+  
     /**
      * Configuración inicial de la prueba.
      *
@@ -120,7 +124,7 @@ public class CommentPersistenceTest {
     /**
      * @generated
      */
-    private List<CommentEntity> data = new ArrayList<CommentEntity>();
+    
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.

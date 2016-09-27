@@ -52,19 +52,7 @@ public class ItemPersistenceTest {
     /**
      * @generated
      */
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(ItemEntity.class.getPackage())
-                .addPackage(ItemPersistence.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
-
-    /**
-     * @generated
-     */
-    ClientEntity fatherEntity;
+      ClientEntity fatherEntity;
 
     /**
      * @generated
@@ -83,6 +71,22 @@ public class ItemPersistenceTest {
      */
     @Inject
     UserTransaction utx;
+    
+      private List<ItemEntity> data = new ArrayList<>();
+    
+    @Deployment
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(ItemEntity.class.getPackage())
+                .addPackage(ItemPersistence.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    }
+
+    /**
+     * @generated
+     */
+  
 
     /**
      * Configuración inicial de la prueba.
@@ -120,7 +124,7 @@ public class ItemPersistenceTest {
     /**
      * @generated
      */
-    private List<ItemEntity> data = new ArrayList<ItemEntity>();
+  
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.

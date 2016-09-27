@@ -51,6 +51,26 @@ public class CategoryPersistenceTest {
     /**
      * @generated
      */
+    
+    @Inject
+    private CategoryPersistence categoryPersistence;
+
+    /**
+     * @generated
+     */
+    @PersistenceContext
+    private EntityManager em;
+
+    /**
+     * @generated
+     */
+    @Inject
+    UserTransaction utx;
+    
+    private List<CategoryEntity> data = new ArrayList<>();
+
+    
+    
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -67,21 +87,7 @@ public class CategoryPersistenceTest {
     /**
      * @generated
      */
-    @Inject
-    private CategoryPersistence categoryPersistence;
-
-    /**
-     * @generated
-     */
-    @PersistenceContext
-    private EntityManager em;
-
-    /**
-     * @generated
-     */
-    @Inject
-    UserTransaction utx;
-
+    
     /**
      * Configuración inicial de la prueba.
      *
@@ -117,7 +123,7 @@ public class CategoryPersistenceTest {
     /**
      * @generated
      */
-    private List<CategoryEntity> data = new ArrayList<CategoryEntity>();
+    
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
