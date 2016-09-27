@@ -79,14 +79,14 @@ public class RootArtworkResource {
     @GET
     public List<ArtworkDetailDTO> getArtworks() {
         if (page != null && maxRecords != null) {
-            this.response.setIntHeader(X_COUNT, ArtworkLogic.countArtworks());
-            return listEntity2DTO(ArtworkLogic.getArtworks(page, maxRecords,null));
+            this.response.setIntHeader(X_COUNT, artworkLogic.countArtworks());
+            return listEntity2DTO(artworkLogic.getArtworks(page, maxRecords,null));
         }
         else if(artist != null && artist.length() > 0){
-            this.response.setIntHeader(X_COUNT, ArtworkLogic.countArtworks());
-            return listEntity2DTO(ArtworkLogic.getArtworksFromArtist(artist));
+            this.response.setIntHeader(X_COUNT, artworkLogic.countArtworks());
+            return listEntity2DTO(artworkLogic.getArtworksFromArtist(artist));
         }
-        return listEntity2DTO(ArtworkLogic.getArtworks(null,null,null));
+        return listEntity2DTO(artworkLogic.getArtworks(null,null,null));
     }
     
     /**
@@ -100,9 +100,9 @@ public class RootArtworkResource {
     @Path("{categoryid: \\d+}")
     public List<ArtworkDetailDTO> getArtworkByCategory(@PathParam("categoryid") Long categoryid) {
         if (page != null && maxRecords != null) {
-            this.response.setIntHeader(X_COUNT, ArtworkLogic.countArtworks());
-            return listEntity2DTO(ArtworkLogic.getArtworkByCategory(page, maxRecords,categoryid));
+            this.response.setIntHeader(X_COUNT, artworkLogic.countArtworks());
+            return listEntity2DTO(artworkLogic.getArtworkByCategory(page, maxRecords,categoryid));
         }
-        return listEntity2DTO(ArtworkLogic.getArtworkByCategory(null,null,categoryid));
+        return listEntity2DTO(artworkLogic.getArtworkByCategory(null,null,categoryid));
     }
 }
