@@ -118,26 +118,26 @@ public class ProductIT {
 
         listPage.create();
 
-        ProductDTO expected_product = factory.manufacturePojo(ProductDTO.class);
-        createPage.saveProduct(expected_product);
+        ProductDTO expectedProduct = factory.manufacturePojo(ProductDTO.class);
+        createPage.saveProduct(expectedProduct);
 
-        ProductDTO actual_product = detailPage.getData();
+        ProductDTO actualProduct = detailPage.getData();
 
-        Assert.assertEquals(expected_product.getName(), actual_product.getName());
+        Assert.assertEquals(expectedProduct.getName(), actualProduct.getName());
     }
 
     @Test
     @InSequence(2)
     public void editProduct(@InitialPage ProductListPage listPage) {
-        ProductDTO expected_product = factory.manufacturePojo(ProductDTO.class);
+        ProductDTO expectedProduct = factory.manufacturePojo(ProductDTO.class);
 
         listPage.editProduct(0);
 
-        editPage.saveProduct(expected_product);
+        editPage.saveProduct(expectedProduct);
 
-        ProductDTO actual_product = detailPage.getData();
+        ProductDTO actualProduct = detailPage.getData();
 
-        Assert.assertEquals(expected_product.getName(), actual_product.getName());
+        Assert.assertEquals(expectedProduct.getName(), actualProduct.getName());
     }
 
     @Test

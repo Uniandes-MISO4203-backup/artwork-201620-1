@@ -47,7 +47,7 @@ import java.util.ArrayList;
 @Produces(MediaType.APPLICATION_JSON)
 public class RootArtworkResource {
 
-    @Inject private IArtworkLogic ArtworkLogic;
+    @Inject private IArtworkLogic artworkLogic;
     @Context private HttpServletResponse response;
     @QueryParam("page") private Integer page;
     @QueryParam("limit") private Integer maxRecords;
