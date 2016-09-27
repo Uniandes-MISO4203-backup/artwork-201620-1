@@ -24,7 +24,6 @@ SOFTWARE.
 package co.edu.uniandes.csw.artwork.dtos.minimum;
 
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
-import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -37,193 +36,193 @@ import uk.co.jemos.podam.common.PodamExclude;
 @XmlRootElement
 public class ArtworkDTO implements Serializable{
 
-    private Long id;
-    private String name;
-    private String image;
-    private Long price;
+ private Long id;
+ private String name;
+ private String image;
+ private Long price;
 
-    private Integer width; //ancho
-    private Integer height; //alto
+ private Integer width; //ancho
+ private Integer height; //alto
 
-    @PodamExclude
-    private List<QualificationDTO> qualifications = new ArrayList<>();
+ @PodamExclude
+ private List<QualificationDTO> qualifications = new ArrayList<>();
 
 
-    /**
-     * @generated
-     */
-    public ArtworkDTO() {
-    }
+ /**
+  * @generated
+  */
+ public ArtworkDTO() {
+ }
 
-    /**
-     * Crea un objeto ArtworkDTO a partir de un objeto ArtworkEntity.
-     *
-     * @param entity Entidad ArtworkEntity desde la cual se va a crear el nuevo objeto.
-     * @generated
-     */
-    public ArtworkDTO(ArtworkEntity entity) {
+ /**
+  * Crea un objeto ArtworkDTO a partir de un objeto ArtworkEntity.
+  *
+  * @param entity Entidad ArtworkEntity desde la cual se va a crear el nuevo objeto.
+  * @generated
+  */
+ public ArtworkDTO(ArtworkEntity entity) {
 	   if (entity!=null){
-        this.id=entity.getId();
-        this.name=entity.getName();
-        this.image=entity.getImage();
-        this.price=entity.getPrice();
-        this.width=entity.getWidth();
-        this.height=entity.getHeight();
+  this.id=entity.getId();
+  this.name=entity.getName();
+  this.image=entity.getImage();
+  this.price=entity.getPrice();
+  this.width=entity.getWidth();
+  this.height=entity.getHeight();
 
-       }
     }
+ }
 
-    /**
-     * Convierte un objeto ArtworkDTO a ArtworkEntity.
-     *
-     * @return Nueva objeto ArtworkEntity.
-     * @generated
-     */
-    public ArtworkEntity toEntity() {
-        ArtworkEntity entity = new ArtworkEntity();
-        entity.setId(this.getId());
-        entity.setName(this.getName());
-        entity.setImage(this.getImage());
-        entity.setPrice(this.getPrice());
-        entity.setWidth(this.getWidth());
-        entity.setHeight(this.getHeight());
-    return entity;
-    }
+ /**
+  * Convierte un objeto ArtworkDTO a ArtworkEntity.
+  *
+  * @return Nueva objeto ArtworkEntity.
+  * @generated
+  */
+ public ArtworkEntity toEntity() {
+  ArtworkEntity entity = new ArtworkEntity();
+  entity.setId(this.getId());
+  entity.setName(this.getName());
+  entity.setImage(this.getImage());
+  entity.setPrice(this.getPrice());
+  entity.setWidth(this.getWidth());
+  entity.setHeight(this.getHeight());
+ return entity;
+ }
 
-    /**
-     * Obtiene el atributo id.
-     *
-     * @return atributo id.
-     * @generated
-     */
-    public Long getId() {
-        return id;
-    }
+ /**
+  * Obtiene el atributo id.
+  *
+  * @return atributo id.
+  * @generated
+  */
+ public Long getId() {
+  return id;
+ }
 
-    /**
-     * Establece el valor del atributo id.
-     *
-     * @param id nuevo valor del atributo
-     * @generated
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+ /**
+  * Establece el valor del atributo id.
+  *
+  * @param id nuevo valor del atributo
+  * @generated
+  */
+ public void setId(Long id) {
+  this.id = id;
+ }
 
-    /**
-     * Obtiene el atributo name.
-     *
-     * @return atributo name.
-     * @generated
-     */
-    public String getName() {
-        return name;
-    }
+ /**
+  * Obtiene el atributo name.
+  *
+  * @return atributo name.
+  * @generated
+  */
+ public String getName() {
+  return name;
+ }
 
-    /**
-     * Establece el valor del atributo name.
-     *
-     * @param name nuevo valor del atributo
-     * @generated
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+ /**
+  * Establece el valor del atributo name.
+  *
+  * @param name nuevo valor del atributo
+  * @generated
+  */
+ public void setName(String name) {
+  this.name = name;
+ }
 
-    /**
-     * Obtiene el atributo image.
-     *
-     * @return atributo image.
-     * @generated
-     */
-    public String getImage() {
-        return image;
-    }
+ /**
+  * Obtiene el atributo image.
+  *
+  * @return atributo image.
+  * @generated
+  */
+ public String getImage() {
+  return image;
+ }
 
-    /**
-     * Establece el valor del atributo image.
-     *
-     * @param image nuevo valor del atributo
-     * @generated
-     */
-    public void setImage(String image) {
-        this.image = image;
-    }
+ /**
+  * Establece el valor del atributo image.
+  *
+  * @param image nuevo valor del atributo
+  * @generated
+  */
+ public void setImage(String image) {
+  this.image = image;
+ }
 
-    /**
-     * Obtiene el atributo price.
-     *
-     * @return atributo price.
-     * @generated
-     */
-    public Long getPrice() {
-        return price;
-    }
+ /**
+  * Obtiene el atributo price.
+  *
+  * @return atributo price.
+  * @generated
+  */
+ public Long getPrice() {
+  return price;
+ }
 
-    /**
-     * Establece el valor del atributo price.
-     *
-     * @param price nuevo valor del atributo
-     * @generated
-     */
-    public void setPrice(Long price) {
-        this.price = price;
-    }
-    
-    /**
-     * Obtiene el atributo width.
-     *
-     * @return atributo width.
-     * @generated
-     */
-    public Integer getWidth() {
-        return width;
-    }
-    
-     /**
-     * Establece el valor del atributo width.
-     *
-     * @param width nuevo valor del atributo
-     * @generated
-     */
-    public void setWidth(Integer width) {
-        this.width = width;
-    }
-    
-     /**
-     * Obtiene el atributo height.
-     *
-     * @return atributo height.
-     * @generated
-     */
-    public Integer getHeight() {
-        return height;
-    }
-    
-     /**
-     * Establece el valor del atributo height.
-     *
-     * @param height nuevo valor del atributo
-     * @generated
-     */
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
+ /**
+  * Establece el valor del atributo price.
+  *
+  * @param price nuevo valor del atributo
+  * @generated
+  */
+ public void setPrice(Long price) {
+  this.price = price;
+ }
+ 
+ /**
+  * Obtiene el atributo width.
+  *
+  * @return atributo width.
+  * @generated
+  */
+ public Integer getWidth() {
+  return width;
+ }
+ 
+  /**
+  * Establece el valor del atributo width.
+  *
+  * @param width nuevo valor del atributo
+  * @generated
+  */
+ public void setWidth(Integer width) {
+  this.width = width;
+ }
+ 
+  /**
+  * Obtiene el atributo height.
+  *
+  * @return atributo height.
+  * @generated
+  */
+ public Integer getHeight() {
+  return height;
+ }
+ 
+  /**
+  * Establece el valor del atributo height.
+  *
+  * @param height nuevo valor del atributo
+  * @generated
+  */
+ public void setHeight(Integer height) {
+  this.height = height;
+ }
 
-    /**
-     * Devuelve las calificaciones realizadas por los usuarios la obra de arte.
-     * @return the qualifications
-     */
-    public List<QualificationDTO> getQualifications() {
-        return qualifications;
-    }
+ /**
+  * Devuelve las calificaciones realizadas por los usuarios la obra de arte.
+  * @return the qualifications
+  */
+ public List<QualificationDTO> getQualifications() {
+  return qualifications;
+ }
 
-    /**
-     * Establece las calificaciones realizadas por los usuarios la obra de arte.
-     * @param qualifications the qualifications to set
-     */
-    public void setQualifications(List<QualificationDTO> qualifications) {
-        this.qualifications = qualifications;
-    }
+ /**
+  * Establece las calificaciones realizadas por los usuarios la obra de arte.
+  * @param qualifications the qualifications to set
+  */
+ public void setQualifications(List<QualificationDTO> qualifications) {
+  this.qualifications = qualifications;
+ }
 
 }

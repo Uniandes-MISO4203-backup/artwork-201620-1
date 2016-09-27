@@ -42,7 +42,6 @@ import co.edu.uniandes.csw.artwork.api.IProductLogic;
 import co.edu.uniandes.csw.artwork.dtos.detail.ProductDetailDTO;
 import co.edu.uniandes.csw.artwork.entities.ProductEntity;
 import java.util.ArrayList;
-import javax.ws.rs.WebApplicationException;
 
 /**
  * URI: products/

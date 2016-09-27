@@ -39,7 +39,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import co.edu.uniandes.csw.artwork.api.IArtworkLogic;
-import co.edu.uniandes.csw.artwork.dtos.detail.ArtistDetailDTO;
 import co.edu.uniandes.csw.artwork.dtos.detail.ArtworkDetailDTO;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import java.util.ArrayList;

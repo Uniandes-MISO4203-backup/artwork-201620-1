@@ -26,8 +26,6 @@ package co.edu.uniandes.csw.artwork.dtos.detail;
 import co.edu.uniandes.csw.artwork.dtos.minimum.*;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
  
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 import uk.co.jemos.podam.common.PodamExclude;
 

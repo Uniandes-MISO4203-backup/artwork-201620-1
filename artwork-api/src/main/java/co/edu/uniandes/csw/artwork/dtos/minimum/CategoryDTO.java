@@ -33,79 +33,79 @@ import java.io.Serializable;
 @XmlRootElement
 public class CategoryDTO implements Serializable{
 
-    private Long id;
-    private String name;
+ private Long id;
+ private String name;
 
-    /**
-     * @generated
-     */
-    public CategoryDTO() {
-    }
+ /**
+  * @generated
+  */
+ public CategoryDTO() {
+ }
 
-    /**
-     * Crea un objeto CategoryDTO a partir de un objeto CategoryEntity.
-     *
-     * @param entity Entidad CategoryEntity desde la cual se va a crear el nuevo objeto.
-     * @generated
-     */
-    public CategoryDTO(CategoryEntity entity) {
+ /**
+  * Crea un objeto CategoryDTO a partir de un objeto CategoryEntity.
+  *
+  * @param entity Entidad CategoryEntity desde la cual se va a crear el nuevo objeto.
+  * @generated
+  */
+ public CategoryDTO(CategoryEntity entity) {
 	   if (entity!=null){
-        this.id=entity.getId();
-        this.name=entity.getName();
-       }
+  this.id=entity.getId();
+  this.name=entity.getName();
     }
+ }
 
-    /**
-     * Convierte un objeto CategoryDTO a CategoryEntity.
-     *
-     * @return Nueva objeto CategoryEntity.
-     * @generated
-     */
-    public CategoryEntity toEntity() {
-        CategoryEntity entity = new CategoryEntity();
-        entity.setId(this.getId());
-        entity.setName(this.getName());
-    return entity;
-    }
+ /**
+  * Convierte un objeto CategoryDTO a CategoryEntity.
+  *
+  * @return Nueva objeto CategoryEntity.
+  * @generated
+  */
+ public CategoryEntity toEntity() {
+  CategoryEntity entity = new CategoryEntity();
+  entity.setId(this.getId());
+  entity.setName(this.getName());
+ return entity;
+ }
 
-    /**
-     * Obtiene el atributo id.
-     *
-     * @return atributo id.
-     * @generated
-     */
-    public Long getId() {
-        return id;
-    }
+ /**
+  * Obtiene el atributo id.
+  *
+  * @return atributo id.
+  * @generated
+  */
+ public Long getId() {
+  return id;
+ }
 
-    /**
-     * Establece el valor del atributo id.
-     *
-     * @param id nuevo valor del atributo
-     * @generated
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+ /**
+  * Establece el valor del atributo id.
+  *
+  * @param id nuevo valor del atributo
+  * @generated
+  */
+ public void setId(Long id) {
+  this.id = id;
+ }
 
-    /**
-     * Obtiene el atributo name.
-     *
-     * @return atributo name.
-     * @generated
-     */
-    public String getName() {
-        return name;
-    }
+ /**
+  * Obtiene el atributo name.
+  *
+  * @return atributo name.
+  * @generated
+  */
+ public String getName() {
+  return name;
+ }
 
-    /**
-     * Establece el valor del atributo name.
-     *
-     * @param name nuevo valor del atributo
-     * @generated
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+ /**
+  * Establece el valor del atributo name.
+  *
+  * @param name nuevo valor del atributo
+  * @generated
+  */
+ public void setName(String name) {
+  this.name = name;
+ }
 
 }

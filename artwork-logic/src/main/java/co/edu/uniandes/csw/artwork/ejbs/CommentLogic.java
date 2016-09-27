@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.artwork.ejbs;
 
-import co.edu.uniandes.csw.artwork.api.IArtistLogic;
 import co.edu.uniandes.csw.artwork.api.IArtworkLogic;
 import co.edu.uniandes.csw.artwork.api.ICommentLogic;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;

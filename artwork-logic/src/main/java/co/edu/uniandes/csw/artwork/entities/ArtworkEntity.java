@@ -39,154 +39,154 @@ import javax.persistence.CascadeType;
 @Entity
 public class ArtworkEntity extends BaseEntity implements Serializable {
 
-    private String image;
+ private String image;
 
-    private Long price;
-        
-    private Integer width; //ancho
-    private Integer height; //alto
-    
-    @PodamExclude
-    @OneToMany
-    private List<CategoryEntity> category = new ArrayList<>();
+ private Long price;
+  
+ private Integer width; //ancho
+ private Integer height; //alto
+ 
+ @PodamExclude
+ @OneToMany
+ private List<CategoryEntity> category = new ArrayList<>();
 
-    @PodamExclude
-    @ManyToOne
-    private ArtistEntity artist;
-    
-    @PodamExclude
-    @OneToMany(mappedBy = "artwork", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<QualificationEntity> qualifications = new ArrayList<>();
+ @PodamExclude
+ @ManyToOne
+ private ArtistEntity artist;
+ 
+ @PodamExclude
+ @OneToMany(mappedBy = "artwork", cascade = CascadeType.ALL, orphanRemoval = true)
+ private List<QualificationEntity> qualifications = new ArrayList<>();
    
-    
-      @PodamExclude
-    @OneToMany(mappedBy = "artwork" )
-    private List<CommentEntity> comments = new ArrayList<>();
+ 
+   @PodamExclude
+ @OneToMany(mappedBy = "artwork" )
+ private List<CommentEntity> comments = new ArrayList<>();
 	
-    /**
-     * Obtiene el atributo image.
-     *
-     * @return atributo image.
-     * @generated
-     */
-    public String getImage(){
-        return image;
-    }
+ /**
+  * Obtiene el atributo image.
+  *
+  * @return atributo image.
+  * @generated
+  */
+ public String getImage(){
+  return image;
+ }
 
-    /**
-     * Establece el valor del atributo image.
-     *
-     * @param image nuevo valor del atributo
-     * @generated
-     */
-    public void setImage(String image){
-        this.image = image;
-    }
+ /**
+  * Establece el valor del atributo image.
+  *
+  * @param image nuevo valor del atributo
+  * @generated
+  */
+ public void setImage(String image){
+  this.image = image;
+ }
 
-    /**
-     * Obtiene el atributo price.
-     *
-     * @return atributo price.
-     * @generated
-     */
-    public Long getPrice(){
-        return price;
-    }
+ /**
+  * Obtiene el atributo price.
+  *
+  * @return atributo price.
+  * @generated
+  */
+ public Long getPrice(){
+  return price;
+ }
 
-    /**
-     * Establece el valor del atributo price.
-     *
-     * @param price nuevo valor del atributo
-     * @generated
-     */
-    public void setPrice(Long price){
-        this.price = price;
-    }
+ /**
+  * Establece el valor del atributo price.
+  *
+  * @param price nuevo valor del atributo
+  * @generated
+  */
+ public void setPrice(Long price){
+  this.price = price;
+ }
 
-    /**
-     * Obtiene el atributo artist.
-     *
-     * @return atributo artist.
-     * @generated
-     */
-    public ArtistEntity getArtist() {
-        return artist;
-    }
+ /**
+  * Obtiene el atributo artist.
+  *
+  * @return atributo artist.
+  * @generated
+  */
+ public ArtistEntity getArtist() {
+  return artist;
+ }
 
-    /**
-     * Establece el valor del atributo artist.
-     *
-     * @param artist nuevo valor del atributo
-     * @generated
-     */
-    public void setArtist(ArtistEntity artist) {
-        this.artist = artist;
-    }
+ /**
+  * Establece el valor del atributo artist.
+  *
+  * @param artist nuevo valor del atributo
+  * @generated
+  */
+ public void setArtist(ArtistEntity artist) {
+  this.artist = artist;
+ }
 
-    /**
-     * Obtiene la colección de category.
-     *
-     * @return colección category.
-     * @generated
-     */
-    public List<CategoryEntity> getCategory() {
-        return category;
-    }
+ /**
+  * Obtiene la colección de category.
+  *
+  * @return colección category.
+  * @generated
+  */
+ public List<CategoryEntity> getCategory() {
+  return category;
+ }
 
-    /**
-     * Establece el valor de la colección de category.
-     *
-     * @param category nuevo valor de la colección.
-     * @generated
-     */
-    public void setCategory(List<CategoryEntity> category) {
-        this.category = category;
-    }
+ /**
+  * Establece el valor de la colección de category.
+  *
+  * @param category nuevo valor de la colección.
+  * @generated
+  */
+ public void setCategory(List<CategoryEntity> category) {
+  this.category = category;
+ }
 
-    public Integer getWidth() {
-        return width;
-    }
+ public Integer getWidth() {
+  return width;
+ }
 
-    public void setWidth(Integer width) {
-        this.width = width;
-    }
+ public void setWidth(Integer width) {
+  this.width = width;
+ }
 
-    public Integer getHeight() {
-        return height;
-    }
+ public Integer getHeight() {
+  return height;
+ }
 
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-        
-    /**
-     * Devuelve las calificaciones realizadas por los usuarios la obra de arte.
-     * @return the qualifications
-     */
-    public List<QualificationEntity> getQualifications() {
-        return qualifications;
-    }
+ public void setHeight(Integer height) {
+  this.height = height;
+ }
+  
+ /**
+  * Devuelve las calificaciones realizadas por los usuarios la obra de arte.
+  * @return the qualifications
+  */
+ public List<QualificationEntity> getQualifications() {
+  return qualifications;
+ }
 
-    /**
-     * Establece las calificaciones realizadas por los usuarios la obra de arte.
-     * @param qualifications the qualifications to set
-     */
-    public void setQualifications(List<QualificationEntity> qualifications) {
-        this.qualifications = qualifications;
-    }
-        
+ /**
+  * Establece las calificaciones realizadas por los usuarios la obra de arte.
+  * @param qualifications the qualifications to set
+  */
+ public void setQualifications(List<QualificationEntity> qualifications) {
+  this.qualifications = qualifications;
+ }
+  
 	/**
-     * @return the comments
-     */
-    public List<CommentEntity> getComments() {
-        return comments;
-    }
+  * @return the comments
+  */
+ public List<CommentEntity> getComments() {
+  return comments;
+ }
 
-    /**
-     * @param comments the comments to set
-     */
-    public void setComments(List<CommentEntity> comments) {
-        this.comments = comments;
-    }
+ /**
+  * @param comments the comments to set
+  */
+ public void setComments(List<CommentEntity> comments) {
+  this.comments = comments;
+ }
 
 }

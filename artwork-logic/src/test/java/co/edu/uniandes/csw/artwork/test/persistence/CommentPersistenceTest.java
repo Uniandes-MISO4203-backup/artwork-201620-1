@@ -22,10 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.test.persistence;
-import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.CommentEntity;
-import co.edu.uniandes.csw.artwork.persistence.ArtworkPersistence;
 import co.edu.uniandes.csw.artwork.persistence.CommentPersistence;
 import java.util.ArrayList;
 import java.util.List;
