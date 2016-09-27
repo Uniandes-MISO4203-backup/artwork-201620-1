@@ -76,7 +76,7 @@ public class ArtistTest {
     private final int Created = Status.CREATED.getStatusCode();
     private final int OkWithoutContent = Status.NO_CONTENT.getStatusCode();
 
-    private final static List<ArtistEntity> oraculo = new ArrayList<>();
+    private static final List<ArtistEntity> oraculo = new ArrayList<>();
 
     private final String artistPath = "artists";
 
