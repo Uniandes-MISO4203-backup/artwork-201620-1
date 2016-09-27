@@ -118,26 +118,26 @@ public class ClientIT {
 
         listPage.create();
 
-        ClientDTO expected_client = factory.manufacturePojo(ClientDTO.class);
-        createPage.saveClient(expected_client);
+        ClientDTO expectedClient = factory.manufacturePojo(ClientDTO.class);
+        createPage.saveClient(expectedClient);
 
-        ClientDTO actual_client = detailPage.getData();
+        ClientDTO actualClient = detailPage.getData();
 
-        Assert.assertEquals(expected_client.getName(), actual_client.getName());
+        Assert.assertEquals(expectedClient.getName(), actualClient.getName());
     }
 
     @Test
     @InSequence(2)
     public void editClient(@InitialPage ClientListPage listPage) {
-        ClientDTO expected_client = factory.manufacturePojo(ClientDTO.class);
+        ClientDTO expectedClient = factory.manufacturePojo(ClientDTO.class);
 
         listPage.editClient(0);
 
-        editPage.saveClient(expected_client);
+        editPage.saveClient(expectedClient);
 
-        ClientDTO actual_client = detailPage.getData();
+        ClientDTO actualClient = detailPage.getData();
 
-        Assert.assertEquals(expected_client.getName(), actual_client.getName());
+        Assert.assertEquals(expectedClient.getName(), actualClient.getName());
     }
 
     @Test

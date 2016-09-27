@@ -51,6 +51,24 @@ public class ClientPersistenceTest {
     /**
      * @generated
      */
+    @Inject
+    private ClientPersistence clientPersistence;
+
+    /**
+     * @generated
+     */
+    @PersistenceContext
+    private EntityManager em;
+
+    /**
+     * @generated
+     */
+    @Inject
+    UserTransaction utx;
+    
+     private List<ClientEntity> data = new ArrayList<>();
+    
+    
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -67,20 +85,7 @@ public class ClientPersistenceTest {
     /**
      * @generated
      */
-    @Inject
-    private ClientPersistence clientPersistence;
-
-    /**
-     * @generated
-     */
-    @PersistenceContext
-    private EntityManager em;
-
-    /**
-     * @generated
-     */
-    @Inject
-    UserTransaction utx;
+    
 
     /**
      * Configuración inicial de la prueba.
@@ -118,7 +123,7 @@ public class ClientPersistenceTest {
     /**
      * @generated
      */
-    private List<ClientEntity> data = new ArrayList<ClientEntity>();
+   
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.

@@ -118,26 +118,26 @@ public class ArtistIT {
 
         listPage.create();
 
-        ArtistDTO expected_artist = factory.manufacturePojo(ArtistDTO.class);
-        createPage.saveArtist(expected_artist);
+        ArtistDTO expectedArtist = factory.manufacturePojo(ArtistDTO.class);
+        createPage.saveArtist(expectedArtist);
 
-        ArtistDTO actual_artist = detailPage.getData();
+        ArtistDTO actualArtist = detailPage.getData();
 
-        Assert.assertEquals(expected_artist.getName(), actual_artist.getName());
+        Assert.assertEquals(expectedArtist.getName(), actualArtist.getName());
     }
 
     @Test
     @InSequence(2)
     public void editArtist(@InitialPage ArtistListPage listPage) {
-        ArtistDTO expected_artist = factory.manufacturePojo(ArtistDTO.class);
+        ArtistDTO expectedArtist = factory.manufacturePojo(ArtistDTO.class);
 
         listPage.editArtist(0);
 
-        editPage.saveArtist(expected_artist);
+        editPage.saveArtist(expectedArtist);
 
-        ArtistDTO actual_artist = detailPage.getData();
+        ArtistDTO actualArtist = detailPage.getData();
 
-        Assert.assertEquals(expected_artist.getName(), actual_artist.getName());
+        Assert.assertEquals(expectedArtist.getName(), actualArtist.getName());
     }
 
     @Test

@@ -68,24 +68,30 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class ArtworkTest {
 
     private WebTarget target;
-    private final String apiPath = Utils.apiPath;
-    private final String username = Utils.username;
-    private final String password = Utils.password;
+    private static final String API_PATH = Utils.apiPath;
+    private static final String USERNAME = Utils.username;
+    private static final String PASSWORD = Utils.password;
     PodamFactory factory = new PodamFactoryImpl();
 
-    private final int Ok = Status.OK.getStatusCode();
-    private final int Created = Status.CREATED.getStatusCode();
-    private final int OkWithoutContent = Status.NO_CONTENT.getStatusCode();
+    private static final int OK = Status.OK.getStatusCode();
+    private static final int CREATED = Status.CREATED.getStatusCode();
+    private static final int OK_WITHOUT_CONTENT = Status.NO_CONTENT.getStatusCode();
 
-    private final static List<ArtworkEntity> oraculo = new ArrayList<>();
+    private  static final List<ArtworkEntity> oraculo = new ArrayList<>();
 
-    private final String artistPath = "artists";
-    private final String artworkPath = "artworks";
+    private static final String ARTIST_PATH = "artists";
+    private static final String ARTWORK_PATH = "artworks";
 
     ArtistEntity fatherArtistEntity;
 
     @ArquillianResource
     private URL deploymentURL;
+    
+    @PersistenceContext(unitName = "ArtworkPU")
+    private EntityManager em;
+
+    @Inject
+    private UserTransaction utx;
 
     @Deployment
     public static WebArchive createDeployment() {
@@ -107,14 +113,10 @@ public class ArtworkTest {
     }
 
     private WebTarget createWebTarget() {
-        return ClientBuilder.newClient().target(deploymentURL.toString()).path(apiPath);
+        return ClientBuilder.newClient().target(deploymentURL.toString()).path(API_PATH);
     }
 
-    @PersistenceContext(unitName = "ArtworkPU")
-    private EntityManager em;
-
-    @Inject
-    private UserTransaction utx;
+    
 
     private void clearData() {
         em.createQuery("delete from ArtworkEntity").executeUpdate();
@@ -162,9 +164,9 @@ public class ArtworkTest {
             }
         }
         target = createWebTarget()
-                .path(artistPath)
+                .path(ARTIST_PATH)
                 .path(fatherArtistEntity.getId().toString())
-                .path(artworkPath);
+                .path(ARTWORK_PATH);
     }
 
     /**
@@ -182,7 +184,7 @@ public class ArtworkTest {
         user.setRememberMe(true);
         Response response = createWebTarget().path("users").path("login").request()
                 .post(Entity.entity(user, MediaType.APPLICATION_JSON));
-        if (response.getStatus() == Ok) {
+        if (response.getStatus() == OK) {
             return response.getCookies().get(JWT.cookieName);
         } else {
             return null;
@@ -197,7 +199,7 @@ public class ArtworkTest {
     @Test
     public void createArtworkTest() throws IOException {
         ArtworkDTO artwork = factory.manufacturePojo(ArtworkDTO.class);
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         Response response = target
             .request().cookie(cookieSessionId)
@@ -205,7 +207,7 @@ public class ArtworkTest {
 
         ArtworkDTO  artworkTest = (ArtworkDTO) response.readEntity(ArtworkDTO.class);
 
-        Assert.assertEquals(Created, response.getStatus());
+        Assert.assertEquals(CREATED, response.getStatus());
 
         Assert.assertEquals(artwork.getName(), artworkTest.getName());
         Assert.assertEquals(artwork.getImage(), artworkTest.getImage());
@@ -222,7 +224,7 @@ public class ArtworkTest {
      */
     @Test
     public void getArtworkByIdTest() {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         ArtworkDTO artworkTest = target
             .path(oraculo.get(0).getId().toString())
@@ -241,14 +243,14 @@ public class ArtworkTest {
      */
     @Test
     public void listArtworkTest() throws IOException {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         Response response = target
             .request().cookie(cookieSessionId).get();
 
         String listArtwork = response.readEntity(String.class);
         List<ArtworkDTO> listArtworkTest = new ObjectMapper().readValue(listArtwork, List.class);
-        Assert.assertEquals(Ok, response.getStatus());
+        Assert.assertEquals(OK, response.getStatus());
         Assert.assertEquals(3, listArtworkTest.size());
     }
 
@@ -259,7 +261,7 @@ public class ArtworkTest {
      */
     @Test
     public void updateArtworkTest() throws IOException {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
         ArtworkDTO artwork = new ArtworkDTO(oraculo.get(0));
 
         ArtworkDTO artworkChanged = factory.manufacturePojo(ArtworkDTO.class);
@@ -275,7 +277,7 @@ public class ArtworkTest {
 
         ArtworkDTO artworkTest = (ArtworkDTO) response.readEntity(ArtworkDTO.class);
 
-        Assert.assertEquals(Ok, response.getStatus());
+        Assert.assertEquals(OK, response.getStatus());
         Assert.assertEquals(artwork.getName(), artworkTest.getName());
         Assert.assertEquals(artwork.getImage(), artworkTest.getImage());
         Assert.assertEquals(artwork.getPrice(), artworkTest.getPrice());
@@ -288,12 +290,12 @@ public class ArtworkTest {
      */
     @Test
     public void deleteArtworkTest() {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
         ArtworkDTO artwork = new ArtworkDTO(oraculo.get(0));
         Response response = target
             .path(artwork.getId().toString())
             .request().cookie(cookieSessionId).delete();
 
-        Assert.assertEquals(OkWithoutContent, response.getStatus());
+        Assert.assertEquals(OK_WITHOUT_CONTENT, response.getStatus());
     }
 }

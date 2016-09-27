@@ -65,19 +65,24 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class PaymentTest {
 
     private WebTarget target;
-    private final String apiPath = Utils.apiPath;
-    private final String username = Utils.username;
-    private final String password = Utils.password;
+    private static final String API_PATH = Utils.apiPath;
+    private static final String USERNAME = Utils.username;
+    private static final String PASSWORD = Utils.password;
     PodamFactory factory = new PodamFactoryImpl();
 
-    private final int Ok = Status.OK.getStatusCode();
-    private final int Created = Status.CREATED.getStatusCode();
-    private final int OkWithoutContent = Status.NO_CONTENT.getStatusCode();
+    private static final int OK = Status.OK.getStatusCode();
+    private static final int CREATED = Status.CREATED.getStatusCode();
+    private static final int OK_WITHOUT_CONTENT = Status.NO_CONTENT.getStatusCode();
 
     private final static List<PaymentEntity> oraculo = new ArrayList<>();
 
-    private final String paymentPath = "payments";
+    private static final String PAYMENT_PATH = "payments";
+ 
+      @PersistenceContext(unitName = "ArtworkPU")
+    private EntityManager em;
 
+    @Inject
+    private UserTransaction utx;
 
     @ArquillianResource
     private URL deploymentURL;
@@ -102,14 +107,10 @@ public class PaymentTest {
     }
 
     private WebTarget createWebTarget() {
-        return ClientBuilder.newClient().target(deploymentURL.toString()).path(apiPath);
+        return ClientBuilder.newClient().target(deploymentURL.toString()).path(API_PATH);
     }
 
-    @PersistenceContext(unitName = "ArtworkPU")
-    private EntityManager em;
-
-    @Inject
-    private UserTransaction utx;
+  
 
     private void clearData() {
         em.createQuery("delete from PaymentEntity").executeUpdate();
@@ -151,7 +152,7 @@ public class PaymentTest {
             }
         }
         target = createWebTarget()
-                .path(paymentPath);
+                .path(PAYMENT_PATH);
     }
 
     /**
@@ -169,7 +170,7 @@ public class PaymentTest {
         user.setRememberMe(true);
         Response response = createWebTarget().path("users").path("login").request()
                 .post(Entity.entity(user, MediaType.APPLICATION_JSON));
-        if (response.getStatus() == Ok) {
+        if (response.getStatus() == OK) {
             return response.getCookies().get(JWT.cookieName);
         } else {
             return null;
@@ -208,7 +209,7 @@ public class PaymentTest {
      */
     @Test
     public void getPaymentByIdTest() {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         PaymentDTO paymentTest = target
             .path(oraculo.get(0).getId().toString())
@@ -268,12 +269,12 @@ public class PaymentTest {
      */
     @Test
     public void deletePaymentTest() {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
         PaymentDTO payment = new PaymentDTO(oraculo.get(0));
         Response response = target
             .path(payment.getId().toString())
             .request().cookie(cookieSessionId).delete();
 
-        Assert.assertEquals(OkWithoutContent, response.getStatus());
+        Assert.assertEquals(OK_WITHOUT_CONTENT, response.getStatus());
     }
 }

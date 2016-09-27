@@ -52,6 +52,23 @@ public class ArtworkPersistenceTest {
     /**
      * @generated
      */
+     @Inject
+    private ArtworkPersistence artworkPersistence;
+
+    /**
+     * @generated
+     */
+    @PersistenceContext
+    private EntityManager em;
+
+    /**
+     * @generated
+     */
+    @Inject
+    UserTransaction utx;
+    
+      private List<ArtworkEntity> data = new ArrayList<>();
+    
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -69,20 +86,7 @@ public class ArtworkPersistenceTest {
     /**
      * @generated
      */
-    @Inject
-    private ArtworkPersistence artworkPersistence;
-
-    /**
-     * @generated
-     */
-    @PersistenceContext
-    private EntityManager em;
-
-    /**
-     * @generated
-     */
-    @Inject
-    UserTransaction utx;
+   
 
     /**
      * Configuración inicial de la prueba.
@@ -120,7 +124,7 @@ public class ArtworkPersistenceTest {
     /**
      * @generated
      */
-    private List<ArtworkEntity> data = new ArrayList<ArtworkEntity>();
+  
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.

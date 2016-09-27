@@ -67,20 +67,25 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class ProductTest {
 
     private WebTarget target;
-    private final String apiPath = Utils.apiPath;
-    private final String username = Utils.username;
-    private final String password = Utils.password;
+    private static final String API_PATH = Utils.apiPath;
+    private static final String USERNAME = Utils.username;
+    private static final String PASSWORD = Utils.password;
     PodamFactory factory = new PodamFactoryImpl();
 
-    private final int Ok = Status.OK.getStatusCode();
-    private final int Created = Status.CREATED.getStatusCode();
-    private final int OkWithoutContent = Status.NO_CONTENT.getStatusCode();
+    private static final int OK = Status.OK.getStatusCode();
+    private static final int CREATED = Status.CREATED.getStatusCode();
+    private static final int OK_WITHOUT_CONTENT = Status.NO_CONTENT.getStatusCode();
 
     private final static List<ProductEntity> oraculo = new ArrayList<>();
 
-    private final String productPath = "products";
+    private static final String PRODUCT_PATH = "products";
 
+    @PersistenceContext(unitName = "ArtworkPU")
+    private EntityManager em;
 
+    @Inject
+    private UserTransaction utx;
+    
     @ArquillianResource
     private URL deploymentURL;
 
@@ -104,14 +109,10 @@ public class ProductTest {
     }
 
     private WebTarget createWebTarget() {
-        return ClientBuilder.newClient().target(deploymentURL.toString()).path(apiPath);
+        return ClientBuilder.newClient().target(deploymentURL.toString()).path(API_PATH);
     }
 
-    @PersistenceContext(unitName = "ArtworkPU")
-    private EntityManager em;
-
-    @Inject
-    private UserTransaction utx;
+    
 
     private void clearData() {
         em.createQuery("delete from ProductEntity").executeUpdate();
@@ -153,7 +154,7 @@ public class ProductTest {
             }
         }
         target = createWebTarget()
-                .path(productPath);
+                .path(PRODUCT_PATH);
     }
 
     /**
@@ -171,7 +172,7 @@ public class ProductTest {
         user.setRememberMe(true);
         Response response = createWebTarget().path("users").path("login").request()
                 .post(Entity.entity(user, MediaType.APPLICATION_JSON));
-        if (response.getStatus() == Ok) {
+        if (response.getStatus() == OK) {
             return response.getCookies().get(JWT.cookieName);
         } else {
             return null;
@@ -186,7 +187,7 @@ public class ProductTest {
     @Test
     public void createProductTest() throws IOException {
         ProductDTO product = factory.manufacturePojo(ProductDTO.class);
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         Response response = target
             .request().cookie(cookieSessionId)
@@ -194,7 +195,7 @@ public class ProductTest {
 
         ProductDTO  productTest = (ProductDTO) response.readEntity(ProductDTO.class);
 
-        Assert.assertEquals(Created, response.getStatus());
+        Assert.assertEquals(CREATED, response.getStatus());
 
         Assert.assertEquals(product.getName(), productTest.getName());
         Assert.assertEquals(product.getPrice(), productTest.getPrice());
@@ -210,7 +211,7 @@ public class ProductTest {
      */
     @Test
     public void getProductByIdTest() {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         ProductDTO productTest = target
             .path(oraculo.get(0).getId().toString())
@@ -228,14 +229,14 @@ public class ProductTest {
      */
     @Test
     public void listProductTest() throws IOException {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         Response response = target
             .request().cookie(cookieSessionId).get();
 
         String listProduct = response.readEntity(String.class);
         List<ProductDTO> listProductTest = new ObjectMapper().readValue(listProduct, List.class);
-        Assert.assertEquals(Ok, response.getStatus());
+        Assert.assertEquals(OK, response.getStatus());
         Assert.assertEquals(3, listProductTest.size());
     }
 
@@ -246,7 +247,7 @@ public class ProductTest {
      */
     @Test
     public void updateProductTest() throws IOException {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
         ProductDTO product = new ProductDTO(oraculo.get(0));
 
         ProductDTO productChanged = factory.manufacturePojo(ProductDTO.class);
@@ -261,7 +262,7 @@ public class ProductTest {
 
         ProductDTO productTest = (ProductDTO) response.readEntity(ProductDTO.class);
 
-        Assert.assertEquals(Ok, response.getStatus());
+        Assert.assertEquals(OK, response.getStatus());
         Assert.assertEquals(product.getName(), productTest.getName());
         Assert.assertEquals(product.getPrice(), productTest.getPrice());
     }
@@ -273,12 +274,12 @@ public class ProductTest {
      */
     @Test
     public void deleteProductTest() {
-        Cookie cookieSessionId = login(username, password);
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
         ProductDTO product = new ProductDTO(oraculo.get(0));
         Response response = target
             .path(product.getId().toString())
             .request().cookie(cookieSessionId).delete();
 
-        Assert.assertEquals(OkWithoutContent, response.getStatus());
+        Assert.assertEquals(OK_WITHOUT_CONTENT, response.getStatus());
     }
 }
