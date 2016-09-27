@@ -80,7 +80,12 @@ public class ProductTest {
 
     private final String productPath = "products";
 
+    @PersistenceContext(unitName = "ArtworkPU")
+    private EntityManager em;
 
+    @Inject
+    private UserTransaction utx;
+    
     @ArquillianResource
     private URL deploymentURL;
 
@@ -107,11 +112,7 @@ public class ProductTest {
         return ClientBuilder.newClient().target(deploymentURL.toString()).path(apiPath);
     }
 
-    @PersistenceContext(unitName = "ArtworkPU")
-    private EntityManager em;
-
-    @Inject
-    private UserTransaction utx;
+    
 
     private void clearData() {
         em.createQuery("delete from ProductEntity").executeUpdate();

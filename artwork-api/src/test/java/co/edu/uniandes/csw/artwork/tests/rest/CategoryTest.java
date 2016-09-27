@@ -79,6 +79,12 @@ public class CategoryTest {
     private final static List<CategoryEntity> oraculo = new ArrayList<>();
 
     private final String categoryPath = "categorys";
+    
+     @PersistenceContext(unitName = "ArtworkPU")
+    private EntityManager em;
+
+    @Inject
+    private UserTransaction utx;
 
 
     @ArquillianResource
@@ -107,11 +113,7 @@ public class CategoryTest {
         return ClientBuilder.newClient().target(deploymentURL.toString()).path(apiPath);
     }
 
-    @PersistenceContext(unitName = "ArtworkPU")
-    private EntityManager em;
-
-    @Inject
-    private UserTransaction utx;
+   
 
     private void clearData() {
         em.createQuery("delete from CategoryEntity").executeUpdate();

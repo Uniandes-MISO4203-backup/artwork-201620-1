@@ -86,6 +86,12 @@ public class ArtworkTest {
 
     @ArquillianResource
     private URL deploymentURL;
+    
+    @PersistenceContext(unitName = "ArtworkPU")
+    private EntityManager em;
+
+    @Inject
+    private UserTransaction utx;
 
     @Deployment
     public static WebArchive createDeployment() {
@@ -110,11 +116,7 @@ public class ArtworkTest {
         return ClientBuilder.newClient().target(deploymentURL.toString()).path(apiPath);
     }
 
-    @PersistenceContext(unitName = "ArtworkPU")
-    private EntityManager em;
-
-    @Inject
-    private UserTransaction utx;
+    
 
     private void clearData() {
         em.createQuery("delete from ArtworkEntity").executeUpdate();

@@ -48,9 +48,26 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class ArtistPersistenceTest {
 
+    @Inject
+    private ArtistPersistence artistPersistence;
+
     /**
      * @generated
      */
+    @PersistenceContext
+    private EntityManager em;
+
+    /**
+     * @generated
+     */
+    @Inject
+    UserTransaction utx;
+    /**
+     * @generated
+     */
+    
+     private List<ArtistEntity> data = new ArrayList<>();
+    
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -67,20 +84,7 @@ public class ArtistPersistenceTest {
     /**
      * @generated
      */
-    @Inject
-    private ArtistPersistence artistPersistence;
-
-    /**
-     * @generated
-     */
-    @PersistenceContext
-    private EntityManager em;
-
-    /**
-     * @generated
-     */
-    @Inject
-    UserTransaction utx;
+    
 
     /**
      * Configuración inicial de la prueba.
@@ -118,7 +122,7 @@ public class ArtistPersistenceTest {
     /**
      * @generated
      */
-    private List<ArtistEntity> data = new ArrayList<ArtistEntity>();
+   
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.

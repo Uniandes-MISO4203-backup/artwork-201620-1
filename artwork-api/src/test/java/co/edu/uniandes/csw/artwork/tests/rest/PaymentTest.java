@@ -77,7 +77,12 @@ public class PaymentTest {
     private final static List<PaymentEntity> oraculo = new ArrayList<>();
 
     private final String paymentPath = "payments";
+ 
+      @PersistenceContext(unitName = "ArtworkPU")
+    private EntityManager em;
 
+    @Inject
+    private UserTransaction utx;
 
     @ArquillianResource
     private URL deploymentURL;
@@ -105,11 +110,7 @@ public class PaymentTest {
         return ClientBuilder.newClient().target(deploymentURL.toString()).path(apiPath);
     }
 
-    @PersistenceContext(unitName = "ArtworkPU")
-    private EntityManager em;
-
-    @Inject
-    private UserTransaction utx;
+  
 
     private void clearData() {
         em.createQuery("delete from PaymentEntity").executeUpdate();

@@ -83,6 +83,12 @@ public class ItemTest {
     private final String itemPath = "wishList";
 
     ClientEntity fatherClientEntity;
+    
+    @PersistenceContext(unitName = "ArtworkPU")
+    private EntityManager em;
+
+    @Inject
+    private UserTransaction utx;
 
     @ArquillianResource
     private URL deploymentURL;
@@ -110,11 +116,7 @@ public class ItemTest {
         return ClientBuilder.newClient().target(deploymentURL.toString()).path(apiPath);
     }
 
-    @PersistenceContext(unitName = "ArtworkPU")
-    private EntityManager em;
-
-    @Inject
-    private UserTransaction utx;
+    
 
     private void clearData() {
         em.createQuery("delete from ItemEntity").executeUpdate();

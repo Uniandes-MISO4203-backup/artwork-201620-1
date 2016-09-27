@@ -79,7 +79,12 @@ public class ArtistTest {
     private static final List<ArtistEntity> oraculo = new ArrayList<>();
 
     private final String artistPath = "artists";
+    
+    @PersistenceContext(unitName = "ArtworkPU")
+    private EntityManager em;
 
+    @Inject
+    private UserTransaction utx;
 
     @ArquillianResource
     private URL deploymentURL;
@@ -107,11 +112,7 @@ public class ArtistTest {
         return ClientBuilder.newClient().target(deploymentURL.toString()).path(apiPath);
     }
 
-    @PersistenceContext(unitName = "ArtworkPU")
-    private EntityManager em;
-
-    @Inject
-    private UserTransaction utx;
+    
 
     private void clearData() {
         em.createQuery("delete from ArtistEntity").executeUpdate();
