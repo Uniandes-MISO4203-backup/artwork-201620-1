@@ -65,9 +65,9 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class PaymentTest {
 
     private WebTarget target;
-    private final String apiPath = Utils.API_PATH;
-    private final String username = Utils.USERNAME;
-    private final String password = Utils.PASSWORD;
+    private final String apiPath = Utils.apiPath;
+    private final String username = Utils.username;
+    private final String password = Utils.password;
     PodamFactory factory = new PodamFactoryImpl();
 
     private final int Ok = Status.OK.getStatusCode();

@@ -70,9 +70,9 @@ public class ArtworkCategoryTest {
 
     private WebTarget target;
     private PodamFactory factory = new PodamFactoryImpl();
-    private final String apiPath = Utils.API_PATH;
-    private final String username = Utils.USERNAME;
-    private final String password = Utils.PASSWORD;
+    private final String apiPath = Utils.apiPath;
+    private final String username = Utils.username;
+    private final String password = Utils.password;
 
     private final int Ok = Status.OK.getStatusCode();
     private final int OkWithoutContent = Status.NO_CONTENT.getStatusCode();
