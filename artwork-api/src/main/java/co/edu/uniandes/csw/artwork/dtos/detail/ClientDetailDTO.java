@@ -62,8 +62,8 @@ public class ClientDetailDTO extends ClientDTO{
      */
     @Override
     public ClientEntity toEntity() {
-        ClientEntity entity = super.toEntity();
-        return entity;
+        return super.toEntity();
+        
     }
 
     /**

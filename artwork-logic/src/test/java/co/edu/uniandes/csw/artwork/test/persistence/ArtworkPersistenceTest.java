@@ -67,7 +67,9 @@ public class ArtworkPersistenceTest {
     @Inject
     UserTransaction utx;
     
-      private List<ArtworkEntity> data = new ArrayList<>();
+    private List<ArtworkEntity> data = new ArrayList<>();
+    
+    ArtistEntity fatherEntity;
     
     @Deployment
     public static JavaArchive createDeployment() {
@@ -81,7 +83,7 @@ public class ArtworkPersistenceTest {
     /**
      * @generated
      */
-    ArtistEntity fatherEntity;
+    
 
     /**
      * @generated
