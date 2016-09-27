@@ -33,102 +33,102 @@ import java.io.Serializable;
 @XmlRootElement
 public class ProductDTO implements Serializable{
 
-    private Long id;
-    private String name;
-    private Long price;
+ private Long id;
+ private String name;
+ private Long price;
 
-    /**
-     * @generated
-     */
-    public ProductDTO() {
-    }
+ /**
+  * @generated
+  */
+ public ProductDTO() {
+ }
 
-    /**
-     * Crea un objeto ProductDTO a partir de un objeto ProductEntity.
-     *
-     * @param entity Entidad ProductEntity desde la cual se va a crear el nuevo objeto.
-     * @generated
-     */
-    public ProductDTO(ProductEntity entity) {
+ /**
+  * Crea un objeto ProductDTO a partir de un objeto ProductEntity.
+  *
+  * @param entity Entidad ProductEntity desde la cual se va a crear el nuevo objeto.
+  * @generated
+  */
+ public ProductDTO(ProductEntity entity) {
 	   if (entity!=null){
-        this.id=entity.getId();
-        this.name=entity.getName();
-        this.price=entity.getPrice();
-       }
+  this.id=entity.getId();
+  this.name=entity.getName();
+  this.price=entity.getPrice();
     }
+ }
 
-    /**
-     * Convierte un objeto ProductDTO a ProductEntity.
-     *
-     * @return Nueva objeto ProductEntity.
-     * @generated
-     */
-    public ProductEntity toEntity() {
-        ProductEntity entity = new ProductEntity();
-        entity.setId(this.getId());
-        entity.setName(this.getName());
-        entity.setPrice(this.getPrice());
-    return entity;
-    }
+ /**
+  * Convierte un objeto ProductDTO a ProductEntity.
+  *
+  * @return Nueva objeto ProductEntity.
+  * @generated
+  */
+ public ProductEntity toEntity() {
+  ProductEntity entity = new ProductEntity();
+  entity.setId(this.getId());
+  entity.setName(this.getName());
+  entity.setPrice(this.getPrice());
+ return entity;
+ }
 
-    /**
-     * Obtiene el atributo id.
-     *
-     * @return atributo id.
-     * @generated
-     */
-    public Long getId() {
-        return id;
-    }
+ /**
+  * Obtiene el atributo id.
+  *
+  * @return atributo id.
+  * @generated
+  */
+ public Long getId() {
+  return id;
+ }
 
-    /**
-     * Establece el valor del atributo id.
-     *
-     * @param id nuevo valor del atributo
-     * @generated
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+ /**
+  * Establece el valor del atributo id.
+  *
+  * @param id nuevo valor del atributo
+  * @generated
+  */
+ public void setId(Long id) {
+  this.id = id;
+ }
 
-    /**
-     * Obtiene el atributo name.
-     *
-     * @return atributo name.
-     * @generated
-     */
-    public String getName() {
-        return name;
-    }
+ /**
+  * Obtiene el atributo name.
+  *
+  * @return atributo name.
+  * @generated
+  */
+ public String getName() {
+  return name;
+ }
 
-    /**
-     * Establece el valor del atributo name.
-     *
-     * @param name nuevo valor del atributo
-     * @generated
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+ /**
+  * Establece el valor del atributo name.
+  *
+  * @param name nuevo valor del atributo
+  * @generated
+  */
+ public void setName(String name) {
+  this.name = name;
+ }
 
-    /**
-     * Obtiene el atributo price.
-     *
-     * @return atributo price.
-     * @generated
-     */
-    public Long getPrice() {
-        return price;
-    }
+ /**
+  * Obtiene el atributo price.
+  *
+  * @return atributo price.
+  * @generated
+  */
+ public Long getPrice() {
+  return price;
+ }
 
-    /**
-     * Establece el valor del atributo price.
-     *
-     * @param price nuevo valor del atributo
-     * @generated
-     */
-    public void setPrice(Long price) {
-        this.price = price;
-    }
+ /**
+  * Establece el valor del atributo price.
+  *
+  * @param price nuevo valor del atributo
+  * @generated
+  */
+ public void setPrice(Long price) {
+  this.price = price;
+ }
 
 }

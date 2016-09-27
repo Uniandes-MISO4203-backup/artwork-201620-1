@@ -33,102 +33,102 @@ import java.io.Serializable;
 @XmlRootElement
 public class ItemDTO implements Serializable{
 
-    private Long id;
-    private String name;
-    private Long qty;
+ private Long id;
+ private String name;
+ private Long qty;
 
-    /**
-     * @generated
-     */
-    public ItemDTO() {
-    }
+ /**
+  * @generated
+  */
+ public ItemDTO() {
+ }
 
-    /**
-     * Crea un objeto ItemDTO a partir de un objeto ItemEntity.
-     *
-     * @param entity Entidad ItemEntity desde la cual se va a crear el nuevo objeto.
-     * @generated
-     */
-    public ItemDTO(ItemEntity entity) {
+ /**
+  * Crea un objeto ItemDTO a partir de un objeto ItemEntity.
+  *
+  * @param entity Entidad ItemEntity desde la cual se va a crear el nuevo objeto.
+  * @generated
+  */
+ public ItemDTO(ItemEntity entity) {
 	   if (entity!=null){
-        this.id=entity.getId();
-        this.name=entity.getName();
-        this.qty=entity.getQty();
-       }
+  this.id=entity.getId();
+  this.name=entity.getName();
+  this.qty=entity.getQty();
     }
+ }
 
-    /**
-     * Convierte un objeto ItemDTO a ItemEntity.
-     *
-     * @return Nueva objeto ItemEntity.
-     * @generated
-     */
-    public ItemEntity toEntity() {
-        ItemEntity entity = new ItemEntity();
-        entity.setId(this.getId());
-        entity.setName(this.getName());
-        entity.setQty(this.getQty());
-    return entity;
-    }
+ /**
+  * Convierte un objeto ItemDTO a ItemEntity.
+  *
+  * @return Nueva objeto ItemEntity.
+  * @generated
+  */
+ public ItemEntity toEntity() {
+  ItemEntity entity = new ItemEntity();
+  entity.setId(this.getId());
+  entity.setName(this.getName());
+  entity.setQty(this.getQty());
+ return entity;
+ }
 
-    /**
-     * Obtiene el atributo id.
-     *
-     * @return atributo id.
-     * @generated
-     */
-    public Long getId() {
-        return id;
-    }
+ /**
+  * Obtiene el atributo id.
+  *
+  * @return atributo id.
+  * @generated
+  */
+ public Long getId() {
+  return id;
+ }
 
-    /**
-     * Establece el valor del atributo id.
-     *
-     * @param id nuevo valor del atributo
-     * @generated
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+ /**
+  * Establece el valor del atributo id.
+  *
+  * @param id nuevo valor del atributo
+  * @generated
+  */
+ public void setId(Long id) {
+  this.id = id;
+ }
 
-    /**
-     * Obtiene el atributo name.
-     *
-     * @return atributo name.
-     * @generated
-     */
-    public String getName() {
-        return name;
-    }
+ /**
+  * Obtiene el atributo name.
+  *
+  * @return atributo name.
+  * @generated
+  */
+ public String getName() {
+  return name;
+ }
 
-    /**
-     * Establece el valor del atributo name.
-     *
-     * @param name nuevo valor del atributo
-     * @generated
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+ /**
+  * Establece el valor del atributo name.
+  *
+  * @param name nuevo valor del atributo
+  * @generated
+  */
+ public void setName(String name) {
+  this.name = name;
+ }
 
-    /**
-     * Obtiene el atributo qty.
-     *
-     * @return atributo qty.
-     * @generated
-     */
-    public Long getQty() {
-        return qty;
-    }
+ /**
+  * Obtiene el atributo qty.
+  *
+  * @return atributo qty.
+  * @generated
+  */
+ public Long getQty() {
+  return qty;
+ }
 
-    /**
-     * Establece el valor del atributo qty.
-     *
-     * @param qty nuevo valor del atributo
-     * @generated
-     */
-    public void setQty(Long qty) {
-        this.qty = qty;
-    }
+ /**
+  * Establece el valor del atributo qty.
+  *
+  * @param qty nuevo valor del atributo
+  * @generated
+  */
+ public void setQty(Long qty) {
+  this.qty = qty;
+ }
 
 }

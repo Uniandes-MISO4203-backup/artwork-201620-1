@@ -33,110 +33,110 @@ import java.io.Serializable;
 @XmlRootElement
 public class QualificationDTO implements Serializable{
 
-    private Long id;
-    private String userClient;
-    private int qualification;
-    private ArtworkDTO artwork;
+ private Long id;
+ private String userClient;
+ private int qualification;
+ private ArtworkDTO artwork;
 
-    /**
-     * @generated
-     */
-    public QualificationDTO() {
-    }
+ /**
+  * @generated
+  */
+ public QualificationDTO() {
+ }
 
-    /**
-     * Crea un objeto QualificationDTO a partir de un objeto QualificationEntity.
-     *
-     * @param entity Entidad QualificationEntity desde la cual se va a crear el nuevo objeto.
-     * @generated
-     */
-    public QualificationDTO(QualificationEntity entity) {
+ /**
+  * Crea un objeto QualificationDTO a partir de un objeto QualificationEntity.
+  *
+  * @param entity Entidad QualificationEntity desde la cual se va a crear el nuevo objeto.
+  * @generated
+  */
+ public QualificationDTO(QualificationEntity entity) {
 	   if (entity!=null){
-            this.id=entity.getId();
-            this.qualification = entity.getQualification();  
-            this.artwork = new ArtworkDTO(entity.getArtwork());
-            this.userClient = entity.getUserClient();
-       }
+   this.id=entity.getId();
+   this.qualification = entity.getQualification();  
+   this.artwork = new ArtworkDTO(entity.getArtwork());
+   this.userClient = entity.getUserClient();
     }
+ }
 
-    /**
-     * Convierte un objeto QualificationDTO a QualificationEntity.
-     *
-     * @return Nueva objeto QualificationEntity.
-     * @generated
-     */
-    public QualificationEntity toEntity() {
-        QualificationEntity entity = new QualificationEntity();
-        entity.setId(this.getId());
-        entity.setName("");
-        entity.setQualification(qualification);
-        return entity;
-    }
+ /**
+  * Convierte un objeto QualificationDTO a QualificationEntity.
+  *
+  * @return Nueva objeto QualificationEntity.
+  * @generated
+  */
+ public QualificationEntity toEntity() {
+  QualificationEntity entity = new QualificationEntity();
+  entity.setId(this.getId());
+  entity.setName("");
+  entity.setQualification(qualification);
+  return entity;
+ }
 
-    /**
-     * Obtiene el atributo id.
-     *
-     * @return atributo id.
-     * @generated
-     */
-    public Long getId() {
-        return id;
-    }
+ /**
+  * Obtiene el atributo id.
+  *
+  * @return atributo id.
+  * @generated
+  */
+ public Long getId() {
+  return id;
+ }
 
-    /**
-     * Establece el valor del atributo id.
-     *
-     * @param id nuevo valor del atributo
-     * @generated
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-     /**
-     * Devuelve la calificación dada a la obra de arte por el usuario.
-     * @return the qualification
-     */
-    public int getQualification() {
-        return qualification;
-    }
+ /**
+  * Establece el valor del atributo id.
+  *
+  * @param id nuevo valor del atributo
+  * @generated
+  */
+ public void setId(Long id) {
+  this.id = id;
+ }
+ 
+  /**
+  * Devuelve la calificación dada a la obra de arte por el usuario.
+  * @return the qualification
+  */
+ public int getQualification() {
+  return qualification;
+ }
 
-    /**
-     * Establece la calificación dada a la obra de arte por el usuario.
-     * @param qualification the qualification to set
-     */
-    public void setQualification(int qualification) {
-        this.qualification = qualification;
-    }
-    
-    /**
-     * Devuelve la obra de arte asociada a esta calificación.
-     * @return the artwork
-     */
-    public ArtworkDTO getArtwork() {
-        return artwork;
-    }
+ /**
+  * Establece la calificación dada a la obra de arte por el usuario.
+  * @param qualification the qualification to set
+  */
+ public void setQualification(int qualification) {
+  this.qualification = qualification;
+ }
+ 
+ /**
+  * Devuelve la obra de arte asociada a esta calificación.
+  * @return the artwork
+  */
+ public ArtworkDTO getArtwork() {
+  return artwork;
+ }
 
-    /**
-     * Establece la obra de arte asociada a esta calificación.
-     * @param artwork the artwork to set
-     */
-    public void setArtwork(ArtworkDTO artwork) {
-        this.artwork = artwork;
-    }
+ /**
+  * Establece la obra de arte asociada a esta calificación.
+  * @param artwork the artwork to set
+  */
+ public void setArtwork(ArtworkDTO artwork) {
+  this.artwork = artwork;
+ }
 
-    /**
-     * @return the userClient
-     */
-    public String getUserClient() {
-        return userClient;
-    }
+ /**
+  * @return the userClient
+  */
+ public String getUserClient() {
+  return userClient;
+ }
 
-    /**
-     * @param userClient the userClient to set
-     */
-    public void setUserClient(String userClient) {
-        this.userClient = userClient;
-    }        
+ /**
+  * @param userClient the userClient to set
+  */
+ public void setUserClient(String userClient) {
+  this.userClient = userClient;
+ }  
 
 }
