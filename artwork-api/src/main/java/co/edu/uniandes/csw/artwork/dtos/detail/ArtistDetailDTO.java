@@ -36,6 +36,7 @@ public class ArtistDetailDTO extends ArtistDTO{
 
 
     /**
+     * 
      * @generated
      */
     public ArtistDetailDTO() {

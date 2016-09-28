@@ -61,8 +61,8 @@ public class ProductDetailDTO extends ProductDTO{
      */
     @Override
     public ProductEntity toEntity() {
-        ProductEntity entity = super.toEntity();
-        return entity;
+        return super.toEntity();
+        
     }
 
 }

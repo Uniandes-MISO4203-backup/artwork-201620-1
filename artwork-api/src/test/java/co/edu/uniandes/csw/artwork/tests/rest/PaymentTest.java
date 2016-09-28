@@ -74,7 +74,7 @@ public class PaymentTest {
     private static final int CREATED = Status.CREATED.getStatusCode();
     private static final int OK_WITHOUT_CONTENT = Status.NO_CONTENT.getStatusCode();
 
-    private final static List<PaymentEntity> oraculo = new ArrayList<>();
+    private static final  List<PaymentEntity> oraculo = new ArrayList<>();
 
     private static final String PAYMENT_PATH = "payments";
  
