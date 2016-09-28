@@ -1,26 +1,8 @@
 /*
-The MIT License (MIT)
-
-Copyright (c) 2015 Los Andes University
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-*/
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package co.edu.uniandes.csw.artwork.entities;
 
 import java.io.Serializable;
@@ -33,160 +15,78 @@ import java.util.List;
 import java.util.ArrayList;
 import javax.persistence.CascadeType;
 
-/**
- * @generated
- */
+
 @Entity
-public class ArtworkEntity extends BaseEntity implements Serializable {
+public class ArtworkEntity extends BaseEntity implements Serializable{
 
- private String image;
+private String image;
+private Long price;
+private Integer width;
+private Integer height;
 
- private Long price;
-  
- private Integer width; //ancho
- private Integer height; //alto
- 
- @PodamExclude
- @OneToMany
- private List<CategoryEntity> category = new ArrayList<>();
+@PodamExclude
+@OneToMany
+private List<CategoryEntity> category = new ArrayList<>();
 
- @PodamExclude
- @ManyToOne
- private ArtistEntity artist;
- 
- @PodamExclude
- @OneToMany(mappedBy = "artwork", cascade = CascadeType.ALL, orphanRemoval = true)
- private List<QualificationEntity> qualifications = new ArrayList<>();
-   
- 
-   @PodamExclude
- @OneToMany(mappedBy = "artwork" )
- private List<CommentEntity> comments = new ArrayList<>();
-	
- /**
-  * Obtiene el atributo image.
-  *
-  * @return atributo image.
-  * @generated
-  */
- public String getImage(){
-  return image;
- }
+@PodamExclude
+@ManyToOne
+private ArtistEntity artist;
 
- /**
-  * Establece el valor del atributo image.
-  *
-  * @param image nuevo valor del atributo
-  * @generated
-  */
- public void setImage(String image){
-  this.image = image;
- }
+@PodamExclude
+@OneToMany(mappedBy = "artwork", cascade = CascadeType.ALL, orphanRemoval = true)
+private List<QualificationEntity> qualifications = new ArrayList<>();
 
- /**
-  * Obtiene el atributo price.
-  *
-  * @return atributo price.
-  * @generated
-  */
- public Long getPrice(){
-  return price;
- }
+@PodamExclude
+@OneToMany(mappedBy = "artwork")
+private List<CommentEntity> comments = new ArrayList<>();
 
- /**
-  * Establece el valor del atributo price.
-  *
-  * @param price nuevo valor del atributo
-  * @generated
-  */
- public void setPrice(Long price){
-  this.price = price;
- }
-
- /**
-  * Obtiene el atributo artist.
-  *
-  * @return atributo artist.
-  * @generated
-  */
- public ArtistEntity getArtist() {
-  return artist;
- }
-
- /**
-  * Establece el valor del atributo artist.
-  *
-  * @param artist nuevo valor del atributo
-  * @generated
-  */
- public void setArtist(ArtistEntity artist) {
-  this.artist = artist;
- }
-
- /**
-  * Obtiene la colección de category.
-  *
-  * @return colección category.
-  * @generated
-  */
- public List<CategoryEntity> getCategory() {
-  return category;
- }
-
- /**
-  * Establece el valor de la colección de category.
-  *
-  * @param category nuevo valor de la colección.
-  * @generated
-  */
- public void setCategory(List<CategoryEntity> category) {
-  this.category = category;
- }
-
- public Integer getWidth() {
-  return width;
- }
-
- public void setWidth(Integer width) {
-  this.width = width;
- }
-
- public Integer getHeight() {
-  return height;
- }
-
- public void setHeight(Integer height) {
-  this.height = height;
- }
-  
- /**
-  * Devuelve las calificaciones realizadas por los usuarios la obra de arte.
-  * @return the qualifications
-  */
- public List<QualificationEntity> getQualifications() {
-  return qualifications;
- }
-
- /**
-  * Establece las calificaciones realizadas por los usuarios la obra de arte.
-  * @param qualifications the qualifications to set
-  */
- public void setQualifications(List<QualificationEntity> qualifications) {
-  this.qualifications = qualifications;
- }
-  
-	/**
-  * @return the comments
-  */
- public List<CommentEntity> getComments() {
-  return comments;
- }
-
- /**
-  * @param comments the comments to set
-  */
- public void setComments(List<CommentEntity> comments) {
-  this.comments = comments;
- }
+public String getImage(){
+return image;
+}
+public void setImage(String image){
+ this.image = image;
+}
+public Long getPrice(){
+return price;
+}
+public void setPrice(Long price){
+this.price = price;
+}
+public ArtistEntity getArtist(){
+return artist;
+}
+public void setArtist(ArtistEntity artist){
+this.artist = artist;
+}
+public List<CategoryEntity> getCategory(){
+return category;
+}
+public void setCategory(List<CategoryEntity> category){
+this.category = category;
+}
+public Integer getWidth(){
+return width;
+}
+public void setWidth(Integer width){
+this.width = width;
+}
+public Integer getHeight(){
+return height;
+}
+public void setHeight(Integer height){
+this.height = height;
+}
+public List<QualificationEntity> getQualifications(){
+return qualifications;
+}
+public void setQualifications(List<QualificationEntity> qualifications){
+this.qualifications = qualifications;
+}
+public List<CommentEntity> getComments(){
+return comments;
+}
+public void setComments(List<CommentEntity> comments){
+this.comments = comments;
+}
 
 }

@@ -59,10 +59,10 @@ public class QualificationDetailDTO extends QualificationDTO{
      * @return Nueva objeto QualificationEntity.
      * @generated
      */
-    @Override
-    public QualificationEntity toEntity() {
-        return super.toEntity();
+ //   @Override
+ //   public QualificationEntity toEntity() {
+ //       return super.toEntity();
        
-    }
+  //  }
 
 }

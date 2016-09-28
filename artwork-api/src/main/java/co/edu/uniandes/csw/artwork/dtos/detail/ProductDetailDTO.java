@@ -59,10 +59,10 @@ public class ProductDetailDTO extends ProductDTO{
      * @return Nueva objeto ProductEntity.
      * @generated
      */
-    @Override
-    public ProductEntity toEntity() {
-        return super.toEntity();
+  //  @Override
+  //  public ProductEntity toEntity() {
+  //      return super.toEntity();
         
-    }
+ //   }
 
 }
