@@ -92,5 +92,8 @@ public class QualificationEntity extends BaseEntity implements Serializable {
         this.userClient = userClient;
     }    
 
-    
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
+    }
 }

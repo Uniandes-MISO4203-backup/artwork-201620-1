@@ -32,9 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class ProductDetailDTO extends ProductDTO{
-
-
-
+    
     /**
      * @generated
      */

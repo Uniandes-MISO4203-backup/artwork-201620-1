@@ -39,9 +39,12 @@ public class CommentPersistence extends CrudPersistence<CommentEntity> {
 
     @PersistenceContext(unitName="ArtworkPU")
     protected EntityManager em;
-public CommentPersistence(){
-
-}
+    
+    /**
+     * @generated
+     */
+    public CommentPersistence(){
+    }
     /**
      * @generated
      */

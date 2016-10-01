@@ -65,15 +65,4 @@ public class ClientDetailDTO extends ClientDTO{
         ClientEntity entity = super.toEntity();
         return entity;
     }
-
-    /**
-     * @return the comment
-     */
-   
-
-    /**
-     * @return the comments
-     */
-    
-
 }

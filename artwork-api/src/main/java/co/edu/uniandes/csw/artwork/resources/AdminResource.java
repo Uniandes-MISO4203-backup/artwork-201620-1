@@ -49,10 +49,7 @@ import com.stormpath.sdk.account.AccountList;
 @Path("/admins")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class AdminResource {
-    private static final String CLIENT_HREF = "https://api.stormpath.com/v1/groups/8hCxfQfGQ1EvhrCX9yXsL";
-    private static final String ARTIST_HREF = "https://api.stormpath.com/v1/groups/K4yTGg11sCUoGBbJe0GJ3";
-    private static final String ADMIN_HREF = "https://api.stormpath.com/v1/groups/7luSBhdqfQi2FUjUZAIhp7";  
+public class AdminResource { 
     
     @Context private HttpServletResponse response;
     @Context private HttpServletRequest req;
@@ -71,19 +68,12 @@ public class AdminResource {
         List<UserDTO> userDTOs = new ArrayList<UserDTO>();
         UserDTO userDTO;
         Subject currentUser = SecurityUtils.getSubject();
-//        StringBuilder stringBuilder = new StringBuilder("");
         if (currentUser != null){
             AccountList accounts = getApplication().getAccounts();
             for (Account account : accounts) {
                 userDTO = new UserDTO(account);
                 userDTOs.add(userDTO);
-//                for (String rol : userDTO.getRoles()){
-//                    stringBuilder.append(rol+", ");
-//                }
-                
                 userDTO.setSurName(String.join(", ", userDTO.getRoles()));
-//                userDTO.setSurName(stringBuilder.toString().substring(0,stringBuilder.toString().lastIndexOf(", ")));
-//                System.out.println("Cuenta: "+account.getUsername());
             }
         }
         return userDTOs;

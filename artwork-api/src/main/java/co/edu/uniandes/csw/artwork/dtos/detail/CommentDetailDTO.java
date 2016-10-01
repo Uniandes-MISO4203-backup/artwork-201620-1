@@ -21,8 +21,6 @@ public class CommentDetailDTO extends CommentDTO{
     @PodamExclude
     private ArtworkDTO artwork;
     
-
-    
     public CommentDetailDTO() {
         super();
     }
@@ -40,8 +38,6 @@ public class CommentDetailDTO extends CommentDTO{
         if (this.getArtwork()!=null){
         entity.setArtwork(this.getArtwork().toEntity());
         }
-       
-       
         return entity;
     }
     /**
@@ -57,9 +53,4 @@ public class CommentDetailDTO extends CommentDTO{
     public void setArtwork(ArtworkDTO artwork) {
         this.artwork = artwork;
     }
-
-    /**
-     * @return the client
-     */
-   
 }

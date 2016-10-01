@@ -1,9 +1,4 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -34,7 +29,6 @@
                 showMessage(msg, "success");
             };
             $scope.changePassword = function (password) {
-
                 var req = {
                     method: 'POST',
                     url: 'api/change',
@@ -63,11 +57,7 @@
                         $http.get('api/users/logout').then(function () {
                             $rootScope.$broadcast('logged-out');
                             $state.go('login');
-                            
-                          
-                            
                         });
-                        
                     });
                 }
             };

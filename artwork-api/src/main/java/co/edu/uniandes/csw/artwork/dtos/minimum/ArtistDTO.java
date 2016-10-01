@@ -32,16 +32,15 @@ import java.io.Serializable;
  * @generated
  */
 @XmlRootElement
-public class ArtistDTO implements Serializable{
+public class ArtistDTO extends BaseDTO implements Serializable{
 
- private Long id;
- private String name;
  private Long appraisal; //Nuevo campo de avaluo
 
  /**
   * @generated
   */
  public ArtistDTO() {
+     super();
  }
 
  /**
@@ -74,46 +73,6 @@ public class ArtistDTO implements Serializable{
   entity.setId(this.getId());
   entity.setName(this.getName());
  return entity;
- }
-
- /**
-  * Obtiene el atributo id.
-  *
-  * @return atributo id.
-  * @generated
-  */
- public Long getId() {
-  return id;
- }
-
- /**
-  * Establece el valor del atributo id.
-  *
-  * @param id nuevo valor del atributo
-  * @generated
-  */
- public void setId(Long id) {
-  this.id = id;
- }
-
- /**
-  * Obtiene el atributo name.
-  *
-  * @return atributo name.
-  * @generated
-  */
- public String getName() {
-  return name;
- }
-
- /**
-  * Establece el valor del atributo name.
-  *
-  * @param name nuevo valor del atributo
-  * @generated
-  */
- public void setName(String name) {
-  this.name = name;
  }
  
  /**

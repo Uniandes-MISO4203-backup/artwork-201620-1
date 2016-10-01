@@ -41,26 +41,6 @@ public class CommentEntity extends BaseEntity implements Serializable {
     @ManyToOne
     private ArtworkEntity artwork;
 
-    
-
-    
-
-    /**
-     * Obtiene el atributo qty.
-     *
-     * @return atributo qty.
-     * @generated
-     */
-    
-
-    /**
-     * Establece el valor del atributo qty.
-     *
-     * @param qty nuevo valor del atributo
-     * @generated
-     */
-    
-
     /**
      * Obtiene el atributo artwork.
      *
@@ -82,14 +62,6 @@ public class CommentEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * Obtiene el atributo client.
-     *
-     * @return atributo client.
-     * @generated
-     */
-   
-
-    /**
      * @return the comment
      */
     public String getComment() {
@@ -103,11 +75,9 @@ public class CommentEntity extends BaseEntity implements Serializable {
         this.comment = comment;
     }
 
-    /**
-     * Obtiene el atributo product.
-     *
-     * @return atributo product.
-     * @generated
-     */
-   
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

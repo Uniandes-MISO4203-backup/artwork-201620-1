@@ -31,10 +31,7 @@ import java.io.Serializable;
  * @generated
  */
 @XmlRootElement
-public class ClientDTO implements Serializable{
-
- private Long id;
- private String name;
+public class ClientDTO extends BaseDTO implements Serializable{
 
  /**
   * @generated
@@ -67,45 +64,4 @@ public class ClientDTO implements Serializable{
   entity.setName(this.getName());
  return entity;
  }
-
- /**
-  * Obtiene el atributo id.
-  *
-  * @return atributo id.
-  * @generated
-  */
- public Long getId() {
-  return id;
- }
-
- /**
-  * Establece el valor del atributo id.
-  *
-  * @param id nuevo valor del atributo
-  * @generated
-  */
- public void setId(Long id) {
-  this.id = id;
- }
-
- /**
-  * Obtiene el atributo name.
-  *
-  * @return atributo name.
-  * @generated
-  */
- public String getName() {
-  return name;
- }
-
- /**
-  * Establece el valor del atributo name.
-  *
-  * @param name nuevo valor del atributo
-  * @generated
-  */
- public void setName(String name) {
-  this.name = name;
- }
-
 }

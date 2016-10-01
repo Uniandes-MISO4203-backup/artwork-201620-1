@@ -4,46 +4,31 @@
  * and open the template in the editor.
  */
 
-(function (ng){
+(function (ng) {
     var mod = ng.module('commentModule');
     
-   
-           
-           mod.controller('commentCtrl', ['$scope', '$state', 'artworks', '$stateParams','Restangular',
+    mod.controller('commentCtrl', ['$scope', '$state', 'artworks', '$stateParams', 'Restangular',
         function ($scope, $state, artworks, $params, Restangular) {
             $scope.records = artworks;
-           
-          console.log(artworks);
             //Paginación
             this.itemsPerPage = $params.limit;
             this.currentPage = $params.page;
             this.totalItems = artworks.totalRecords;
-            
             $scope.categorys = [];
-            
             $scope.getCategorys = function (parentCategory) {
-                Restangular.all("categorys").customGET('parents/'+parentCategory).then(function (response) {
-                    if (response.length>0) {
-                        $scope.categorys=response;
-                    } 
+                Restangular.all("categorys").customGET('parents/' + parentCategory).then(function (response) {
+                    if (response.length > 0) {
+                        $scope.categorys = response;
+                    }
                 });
             };
             $scope.filtrar = function (parentCategory) {
                 $scope.getCategorys(parentCategory);
-                Restangular.all("artworks").customGET(parentCategory).then(function (response) {                    
-                        $scope.records=response;
+                Restangular.all("artworks").customGET(parentCategory).then(function (response) {
+                    $scope.records = response;
                 });
             };
             $scope.getCategorys("");
-
-           
-           
-           
-    
-    
-  $state.go('commentList');
-    
-    
-}]);
-    
-    })(window.angular);
+            $state.go('commentList');
+        }]);
+})(window.angular);

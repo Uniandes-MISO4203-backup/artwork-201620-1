@@ -29,7 +29,6 @@
     mod.controller("qualificationNewCtrl", ["$rootScope", "$scope", "$state", "$stateParams", "qualifications",
         function ($rootScope, $scope, $state, $stateParams, qualifications) {
             $scope.currentRecord = {};
-
             $scope.actions = {
                 save: {
                     displayName: 'Save',
@@ -40,7 +39,6 @@
                         data.userClient = $rootScope.usuario.$object.email;
                         data.qualification = $scope.model.fields.qualification;
                         qualifications.customPOST({}, 'crear', data, {}).then(function (rc) {
-                            console.log("Qualification inserted: " + rc.id);
                             $state.go('artworkGallery', {qualificationId: rc.id}, {reload: true});
                         });
                     }

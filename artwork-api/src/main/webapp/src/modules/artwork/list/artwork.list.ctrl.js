@@ -22,10 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 (function (ng) {
-
+    
     var mod = ng.module("artworkModule");
-   
-
     mod.controller("artworkListCtrl", ["$rootScope","$scope", '$state', 'artworks', '$stateParams','Restangular',
         function ($rootScope, $scope, $state, artworks, $params,Restangular) {
             $scope.records = artworks;
@@ -34,55 +32,42 @@ SOFTWARE.
             this.itemsPerPage = $params.limit;
             this.currentPage = $params.page;
             this.totalItems = artworks.totalRecords;
-            
             $scope.categorys = [];
-            $scope.qualifications = [];   
-            
+            $scope.qualifications = [];
             $scope.isArtworkNotQualificated = function(artworkId){
-                userClient = $rootScope.usuario.$object.email;
-                var qual = [];
+                var userClient = $rootScope.usuario.$object.email;
                 for(var i = 0; i < $scope.qualifications.length; i++ ){
                     var calificacion = $scope.qualifications[i];
                     if(calificacion.artwork.id===artworkId && calificacion.userClient===userClient){
                         return false;
                     }
-                }                
+                }
                 return true;
             };
-            
             $scope.getArtworkQualifications = function(artworkId){
                 var qual = [];
                 for(var i = 0; i < $scope.qualifications.length; i++ ){
                     var calificacion = $scope.qualifications[i];
-                    console.log(calificacion);
                     if(calificacion.artwork.id===artworkId){
                         qual.push(calificacion);
                     }
-                }                
+                }
                 return qual;
             };
-            
-            
-            $scope.getQualifications = function (artworkId) {
-                console.log("Obteniendo qualifications");
+            $scope.getQualifications = function () {
                 Restangular.all("qualifications").customGET('').then(function (response) {
-                    console.log(response);
                     if (response.length>0) {
-                        console.log("Respuesta");
-                        console.log(response);
                         $scope.qualifications = response;
                     } 
                 });
             };
-            
             $scope.getCategorys = function (parentCategory) {
                 Restangular.all("categorys").customGET('parents/'+parentCategory).then(function (response) {
                     if (response.length>0) {
                         $scope.categorys=response;
-                    } 
+                    }
                 });
             };
-            
             $scope.filtrar = function (parentCategory) {
                 $scope.getCategorys(parentCategory);
                 Restangular.all("artworks").customGET(parentCategory).then(function (response) {                    
@@ -127,7 +112,6 @@ SOFTWARE.
                 }
 
             };
-            
             $scope.recordActions = {
                 detail: {
                     displayName: 'Detail',

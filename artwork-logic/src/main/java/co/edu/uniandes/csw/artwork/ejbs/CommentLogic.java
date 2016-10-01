@@ -38,9 +38,10 @@ public class CommentLogic implements ICommentLogic {
     @Override
     public CommentEntity createComment(Long artworkId,CommentEntity entity) {
         ArtworkEntity artwork = artworkLogic.getArtwork(artworkId);
-        entity.setArtwork(artwork);
-        entity = persistence.create(entity);
-    return entity;//To change body of generated methods, choose Tools | Templates.
+        CommentEntity commentEntity = entity;
+        commentEntity.setArtwork(artwork);
+        commentEntity = persistence.create(entity);
+        return commentEntity;
     }
     
 }
