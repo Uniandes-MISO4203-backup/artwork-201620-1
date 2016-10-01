@@ -60,8 +60,6 @@ import javax.ws.rs.WebApplicationException;
 public class QualificationResource {
 
     private static final String CLIENT_HREF = "https://api.stormpath.com/v1/groups/8hCxfQfGQ1EvhrCX9yXsL";
-    private static final String ADMIN_HREF = "https://api.stormpath.com/v1/groups/7luSBhdqfQi2FUjUZAIhp7";
-    private static final String ARTIST_HREF = "https://api.stormpath.com/v1/groups/K4yTGg11sCUoGBbJe0GJ3";
 
     @Inject private IQualificationLogic qualificationLogic;
     @Inject private IArtworkLogic artworkLogic;
@@ -102,25 +100,18 @@ public class QualificationResource {
         if (accountHref != null) {
             Account account = Utils.getClient().getResource(accountHref, Account.class);
             for (Group gr : account.getGroups()) {
-                switch (gr.getHref()) {
-//                    case ADMIN_HREF:
-//                        if (page != null && maxRecords != null) {
-//                            this.response.setIntHeader("X-Total-Count", qualificationLogic.countQualifications());
-//                            return listEntity2DTO(qualificationLogic.getQualifications(page, maxRecords));
-//                        }
-//                        return listEntity2DTO(qualificationLogic.getQualifications());    
-                    case CLIENT_HREF:
-                        if (page != null && maxRecords != null) {
-                            this.response.setIntHeader("X-Total-Count", qualificationLogic.countQualifications());
-                            return listEntity2DTO(qualificationLogic.getQualifications(page, maxRecords));
-                        }
-                        return listEntity2DTO(qualificationLogic.getQualifications());
-                    default:
-                        return new ArrayList<>();
+                if (gr.getHref().equalsIgnoreCase(CLIENT_HREF)){
+                    if (page != null && maxRecords != null) {
+                        this.response.setIntHeader("X-Total-Count", qualificationLogic.countQualifications());
+                        return listEntity2DTO(qualificationLogic.getQualifications(page, maxRecords));
+                    }
+                    return listEntity2DTO(qualificationLogic.getQualifications());
+                } else {
+                    return new ArrayList<>();
                 }
             }
         } 
-        return null;
+        return new ArrayList<>();
         
     }    
 
@@ -171,7 +162,6 @@ public class QualificationResource {
     public QualificationDetailDTO updateQualification(@PathParam("id") Long id, QualificationDetailDTO dto) {
         QualificationEntity entity = dto.toEntity();
         entity.setId(id);
-        QualificationEntity oldEntity = qualificationLogic.getQualification(id);
         return new QualificationDetailDTO(qualificationLogic.updateQualification(entity));
     }
 
@@ -188,8 +178,8 @@ public class QualificationResource {
     }
     
     public void existsQualification(Long qualificationsId){
-        QualificationDetailDTO qualification = getQualification(qualificationsId);
-        if (qualification== null) {
+        QualificationDetailDTO qualificationDetailDTO = getQualification(qualificationsId);
+        if (qualificationDetailDTO == null) {
             throw new WebApplicationException(404);
         }
     }    

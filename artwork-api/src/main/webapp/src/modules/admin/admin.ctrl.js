@@ -23,8 +23,7 @@ SOFTWARE.
 */
 (function (ng) {
     var mod = ng.module('adminModule');
-
-    mod.controller('adminCtrl', ['$scope', 'model', 
+    mod.controller('adminCtrl', ['$scope', 'model',
         function ($scope, model) {
             $scope.model = model;
             //Alertas

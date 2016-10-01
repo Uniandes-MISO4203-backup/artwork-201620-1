@@ -14,11 +14,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 @XmlRootElement
-public class ClientDTO implements Serializable{
-private Long id;
-private String name;
+public class ClientDTO extends BaseDTO implements Serializable{
 
 public ClientDTO(){
+    //Constructor clase
 }
 public ClientDTO(ClientEntity entity){
 if(entity!=null){
@@ -31,19 +30,5 @@ ClientEntity entity = new ClientEntity();
 entity.setId(this.getId());
 entity.setName(this.getName());
 return entity;
-
-}
-public Long getId(){
-return id;
-}
-public void setId(Long id){
-this.id = id;
-
-}
-public String getName(){
-return name;
-}
-public void setName(String name){
-this.name = name;
 }
 }

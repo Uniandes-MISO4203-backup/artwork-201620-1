@@ -108,11 +108,12 @@ public class ArtistResource {
                         List<ArtistDetailDTO> list = new ArrayList();
                         list.add(new ArtistDetailDTO(artistLogic.getArtist(id.longValue())));
                         return list;
+                    default:
+                        return new ArrayList();
                 }
             }
         } 
-        return null;
-        
+        return new ArrayList();
     }
 
     /**
@@ -154,7 +155,6 @@ public class ArtistResource {
     public ArtistDetailDTO updateArtist(@PathParam("id") Long id, ArtistDetailDTO dto) {
         ArtistEntity entity = dto.toEntity();
         entity.setId(id);
-        ArtistEntity oldEntity = artistLogic.getArtist(id);
         return new ArtistDetailDTO(artistLogic.updateArtist(entity));
     }
 

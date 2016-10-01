@@ -52,17 +52,4 @@ public class QualificationDetailDTO extends QualificationDTO{
         super(entity);
         
     }
-
-    /**
-     * Convierte un objeto QualificationDetailDTO a QualificationEntity incluyendo los atributos de QualificationDTO.
-     *
-     * @return Nueva objeto QualificationEntity.
-     * @generated
-     */
- //   @Override
- //   public QualificationEntity toEntity() {
- //       return super.toEntity();
-       
-  //  }
-
 }

@@ -18,6 +18,7 @@ private int qualification;
 private ArtworkDTO artwork;
 
 public QualificationDTO(){
+    //Constructor clase
 }
 public QualificationDTO(QualificationEntity entity){
 if(entity!=null){

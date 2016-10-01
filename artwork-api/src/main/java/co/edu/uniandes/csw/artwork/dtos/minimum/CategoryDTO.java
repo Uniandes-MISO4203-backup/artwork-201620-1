@@ -10,11 +10,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 @XmlRootElement
-public class CategoryDTO implements Serializable{
-private Long id;
-private String name;
+public class CategoryDTO extends BaseDTO implements Serializable{
 
 public CategoryDTO(){
+    //Constructor clase
 }
 public CategoryDTO(CategoryEntity entity){
 if(entity!=null){
@@ -28,18 +27,5 @@ entity.setId(this.getId());
 entity.setName(this.getName());
 return entity;
 }
-public Long getId(){
-return id;
-}
-public void setId(Long id){
-this.id = id;
-}
-public String getName(){
-return name;
-}
-public void setName(String name){
-this.name = name;
-}
-
 
 }

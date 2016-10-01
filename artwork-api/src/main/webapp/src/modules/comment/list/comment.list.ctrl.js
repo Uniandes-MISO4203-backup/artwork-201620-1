@@ -14,7 +14,7 @@
                 });
             };
             var artSelection = $scope.records.filter(function (art) {
-                return art.id == $stateParams.artworkId;
+                return art.id === $stateParams.artworkId;
             });
             $scope.artId = artSelection[0].id;
             $scope.artName = artSelection[0].name;
@@ -22,7 +22,6 @@
             getAllComments($scope.artId);
             $scope.comment = {};
             $scope.commentSent = {};
-            
             $scope.submitComment = function (comment) {
                 $scope.commentSent.name = comment.email;
                 $scope.commentSent.comment = comment.description;
@@ -31,7 +30,6 @@
                     getAllComments($scope.artId);
                 });
             };
-            
             $scope.addToCart = function(){
                 itemModel['name'] = artwork[0].name;
                 itemModel['qty'] = $scope.quantity;

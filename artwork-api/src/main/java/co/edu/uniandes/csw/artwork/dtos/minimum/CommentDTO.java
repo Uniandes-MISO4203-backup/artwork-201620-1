@@ -14,12 +14,11 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class CommentDTO implements Serializable{
-private Long id;
-private String name;
+public class CommentDTO extends BaseDTO implements Serializable{
 private String comment;
 
 public CommentDTO(){
+    //Constructor clase
 }
 public CommentDTO(CommentEntity entity){
 if(entity!=null){
@@ -34,18 +33,6 @@ entity.setId(this.getId());
 entity.setName(this.getName());
 entity.setComment(this.getComment());
 return entity;
-}
-public Long getId(){
-return id;
-}
-public void setId(Long id){
-this.id = id;
-}
-public String getName(){
-return name;
-}
-public void setName(String name){
-this.name = name;
 }
 public String getComment(){
 return comment;

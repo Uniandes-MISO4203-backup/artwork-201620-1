@@ -44,8 +44,7 @@ SOFTWARE.
                     $scope.alerts.push({type: type, msg: msg});
                 }
             }
-            $scope.changePassword = function(password){
-              console.log(password.new);  
+            $scope.changePassword = function(){
             };
             $scope.showError = function (msg) {
                 showMessage(msg, "danger");

@@ -13,9 +13,7 @@ import java.util.List;
 import uk.co.jemos.podam.common.PodamExclude;
 
 @XmlRootElement
-public class ArtworkDTO implements Serializable{
-private Long id;
-private String name;
+public class ArtworkDTO extends BaseDTO implements Serializable{
 private String image;
 private Long price;
 private Integer width;
@@ -25,6 +23,7 @@ private Integer height;
 private List<QualificationDTO> qualifications = new ArrayList<>();
 
 public ArtworkDTO(){
+    //Constructor clase
 }
 
 public ArtworkDTO(ArtworkEntity entity){
@@ -47,18 +46,6 @@ entity.setPrice(this.getPrice());
 entity.setWidth(this.getWidth());
 entity.setHeight(this.getHeight());
 return entity;
-}
-public Long getId(){
-return id;
-}
-public void setId(Long id){
-this.id = id;
-}
-public String getName(){
-return name;
-}
-public void setName(String name){
- this.name = name;
 }
 public String getImage(){
 return image;

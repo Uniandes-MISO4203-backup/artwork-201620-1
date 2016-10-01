@@ -10,12 +10,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 @XmlRootElement
-public class ProductDTO implements Serializable{
- private Long id;
- private String name;
+public class ProductDTO extends BaseDTO implements Serializable{
  private Long price;
  
  public ProductDTO(){
+    //Constructor clase
  }
 public ProductDTO(ProductEntity entity){
 if(entity!=null){
@@ -30,18 +29,6 @@ entity.setId(this.getId());
 entity.setName(this.getName());
 entity.setPrice(this.getPrice());
 return entity;
-}
-public Long getId(){
-return id;
-}
-public void setId(Long id){
-this.id = id;
-}
-public String getName(){
-return name;
-}
-public void setName(String name){
- this.name=name;
 }
 public Long getPrice(){
 return price;

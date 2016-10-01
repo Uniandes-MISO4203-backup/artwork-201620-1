@@ -66,7 +66,6 @@ SOFTWARE.
         }]);
 
     mod.config(['authServiceProvider', function (auth) {
-            
             auth.setValues({
                 apiUrl: 'api/users/',
                 successState: 'artworkGallery'
@@ -103,8 +102,8 @@ SOFTWARE.
                         id: 'product',
                         label: 'Product',
                         icon: 'list-alt',
-                        state: 'productList'                    
-                    }                    
+                        state: 'productList'
+                    }
                 ]
             });
         }]);
@@ -116,6 +115,6 @@ SOFTWARE.
     mod.run(['$rootScope', '$log', function ($rootScope, $log) {
             $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
                 $log.warn(error);
-            });            
+            });
         }]);
 })(window.angular);

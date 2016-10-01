@@ -33,10 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class ArtistDetailDTO extends ArtistDTO{
 
-
-
     /**
-     * 
      * @generated
      */
     public ArtistDetailDTO() {
@@ -60,10 +57,9 @@ public class ArtistDetailDTO extends ArtistDTO{
      * @return Nueva objeto ArtistEntity.
      * @generated
      */
-   // @Override
-   // public ArtistEntity toEntity() {
-     //   return super.toEntity();
+    @Override
+    public ArtistEntity toEntity() {
+        return super.toEntity();
         
-   // }
-   
+    }
 }

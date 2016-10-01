@@ -11,9 +11,7 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class PaymentDTO implements Serializable{
-private Long id;
-private String name;
+public class PaymentDTO extends BaseDTO implements Serializable{
 private Date date;
 
 public PaymentDTO(){
@@ -32,18 +30,6 @@ entity.setName(this.getName());
 entity.setDate(this.getDate());
 return entity;
 }
-public Long getId(){
-return id;
-}
-public void setId(Long id){
-this.id = id;
-}
-public String getName(){
-return name;
-}
-public void setName(String name){
-this.name = name;
-}
 public Date getDate(){
 return date;
 }
@@ -52,8 +38,4 @@ this.date = date;
 }
 
 }
-/**
- *
- * @author a.quintero10
- */
 
