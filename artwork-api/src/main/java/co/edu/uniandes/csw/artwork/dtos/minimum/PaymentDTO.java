@@ -17,6 +17,7 @@ private String name;
 private Date date;
 
 public PaymentDTO(){
+     //Constructor necesario para la creacion de dto
 }
 public PaymentDTO(PaymentEntity entity){
 if(entity!=null){

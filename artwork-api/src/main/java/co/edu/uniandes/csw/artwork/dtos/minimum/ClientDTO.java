@@ -19,6 +19,7 @@ private Long id;
 private String name;
 
 public ClientDTO(){
+     //Constructor necesario para la creacion de dto
 }
 public ClientDTO(ClientEntity entity){
 if(entity!=null){

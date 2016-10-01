@@ -16,6 +16,7 @@ public class ProductDTO implements Serializable{
  private Long price;
  
  public ProductDTO(){
+      //Constructor necesario para la creacion de dto
  }
 public ProductDTO(ProductEntity entity){
 if(entity!=null){

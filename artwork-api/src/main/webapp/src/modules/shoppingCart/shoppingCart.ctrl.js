@@ -32,11 +32,11 @@ SOFTWARE.
             $scope.alerts = [];
             
             $scope.makePurchase = function(){
-                payments.post(angular.toJson($scope.purchase), {clientsId: client[0].id}).then(function(response){
+                payments.post(angular.toJson($scope.purchase), {clientsId: client[0].id}).then(function(){
                     $scope.showSuccess("Compra realizada");
                     $scope.purchase["items"] = [];
                 });
-            }
+            };
             this.closeAlert = function (index) {
                 $scope.alerts.splice(index, 1);
             };

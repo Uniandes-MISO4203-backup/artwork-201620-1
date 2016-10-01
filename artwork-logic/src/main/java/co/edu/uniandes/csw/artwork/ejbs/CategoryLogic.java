@@ -45,6 +45,7 @@ public class CategoryLogic implements ICategoryLogic {
      * @return Número de registros de Category.
      * @generated
      */
+    @Override
     public int countCategorys() {
         return persistence.count();
     }
@@ -103,6 +104,7 @@ public class CategoryLogic implements ICategoryLogic {
      * @return Instancia de CategoryEntity con los datos del Category consultado.
      * @generated
      */
+    @Override
     public CategoryEntity getCategory(Long id) {
         return persistence.find(id);
     }

@@ -25,6 +25,7 @@ private Integer height;
 private List<QualificationDTO> qualifications = new ArrayList<>();
 
 public ArtworkDTO(){
+     //Constructor necesario para la creacion de dto
 }
 
 public ArtworkDTO(ArtworkEntity entity){

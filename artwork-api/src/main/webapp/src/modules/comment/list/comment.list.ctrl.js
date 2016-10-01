@@ -7,7 +7,6 @@
     var mod = ng.module('commentModule');
     mod.controller('commentListCtrl', ["$scope", "$stateParams", 'comments', 'artwork','client','itemModel',
         function ($scope, $stateParams, comments, artwork, client, itemModel) {
-            console.log(client);
             var getAllComments = function (id) {
                 comments.customGET("", {artworkId: id}).then(function (response) {
                     $scope.comments = response;
@@ -37,7 +36,7 @@
                 itemModel['qty'] = $scope.quantity;
                 itemModel['artwork'] = artwork[0];
                 client[0].post("shopping/cart", JSON.stringify(itemModel));
-                client[0].getList("shopping/cart").then(function(response){
+                client[0].getList("shopping/cart").then(function(){
                    $scope.cartAdded=true;
                 });
             };

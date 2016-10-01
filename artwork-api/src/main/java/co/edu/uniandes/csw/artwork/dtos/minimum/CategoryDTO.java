@@ -15,6 +15,7 @@ private Long id;
 private String name;
 
 public CategoryDTO(){
+     //Constructor necesario para la creacion de dto
 }
 public CategoryDTO(CategoryEntity entity){
 if(entity!=null){

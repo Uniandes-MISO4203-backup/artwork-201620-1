@@ -16,6 +16,7 @@ private String name;
 private Long qty;
 
 public ItemDTO(){
+     //Constructor necesario para la creacion de dto
 }
 public ItemDTO(ItemEntity entity){
 if(entity!=null){

@@ -21,6 +21,7 @@ private String name;
 private Long appraisal;
 
 public ArtistDTO(){
+    //Constructor necesario para la creacion de dto
 }
 
 public ArtistDTO(ArtistEntity entity){
