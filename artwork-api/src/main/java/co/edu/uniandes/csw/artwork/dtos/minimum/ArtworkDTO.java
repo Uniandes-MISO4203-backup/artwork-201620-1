@@ -13,70 +13,124 @@ import java.util.List;
 import uk.co.jemos.podam.common.PodamExclude;
 
 @XmlRootElement
-public class ArtworkDTO extends BaseDTO implements Serializable{
-private String image;
-private Long price;
-private Integer width;
-private Integer height;
+public class ArtworkDTO implements Serializable {
 
-@PodamExclude
-private List<QualificationDTO> qualifications = new ArrayList<>();
+    private Long id;
+    private String name;
+    private String image;
+    private Long price;
+    private Integer width;
+    private Integer height;
 
-public ArtworkDTO(){
-    //Constructor clase
-}
+    @PodamExclude
+    private List<QualificationDTO> qualifications = new ArrayList<>();
 
-public ArtworkDTO(ArtworkEntity entity){
-if(entity!=null){
-this.id=entity.getId();
-this.name=entity.getName();
-this.image=entity.getImage();
-this.price=entity.getPrice();
-this.width=entity.getWidth();
-this.height=entity.getHeight();
+    public ArtworkDTO() {
+        //Constructor clase
+    }
+
+    public ArtworkDTO(ArtworkEntity entity) {
+        if (entity != null) {
+            this.id = entity.getId();
+            this.name = entity.getName();
+            this.image = entity.getImage();
+            this.price = entity.getPrice();
+            this.width = entity.getWidth();
+            this.height = entity.getHeight();
+
+        }
+    }
+
+    public ArtworkEntity toEntity() {
+        ArtworkEntity entity = new ArtworkEntity();
+        entity.setId(this.getId());
+        entity.setName(this.getName());
+        entity.setImage(this.getImage());
+        entity.setPrice(this.getPrice());
+        entity.setWidth(this.getWidth());
+        entity.setHeight(this.getHeight());
+        return entity;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+
+    }
+
+    public Integer getWidth() {
+        return width;
+    }
+
+    public void setWidth(Integer width) {
+        this.width = width;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
+    public List<QualificationDTO> getQualifications() {
+        return qualifications;
+    }
+
+    public void setQualifications(List<QualificationDTO> qualifications) {
+        this.qualifications = qualifications;
+    }
+
+    /**
+     * Obtiene el atributo id.
+     *
+     * @return atributo id.
+     * @generated
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Establece el valor del atributo id.
+     *
+     * @param id nuevo valor del atributo
+     * @generated
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * Obtiene el atributo name.
+     *
+     * @return atributo name.
+     * @generated
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Establece el valor del atributo name.
+     *
+     * @param name nuevo valor del atributo
+     * @generated
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }
-}
-public ArtworkEntity toEntity(){
-ArtworkEntity entity = new ArtworkEntity();
-entity.setId(this.getId());
-entity.setName(this.getName());
-entity.setImage(this.getImage());
-entity.setPrice(this.getPrice());
-entity.setWidth(this.getWidth());
-entity.setHeight(this.getHeight());
-return entity;
-}
-public String getImage(){
-return image;
-}
-public void setImage(String image){
-this.image= image;
-}
-public Long getPrice(){
-return price;
-}
-public void setPrice(Long price){
-this.price = price;
-
-}
-public Integer getWidth(){
-return width;
-}
-public void setWidth(Integer width){
-this.width = width;
-}
-public Integer getHeight(){
-return height;
-}
-public void setHeight(Integer height){
-this.height = height;
-}
-public List<QualificationDTO>getQualifications(){
-return qualifications;
-}
-public void setQualifications(List<QualificationDTO> qualifications){
-this.qualifications = qualifications;
-}
-}
-

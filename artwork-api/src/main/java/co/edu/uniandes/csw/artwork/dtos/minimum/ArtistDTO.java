@@ -15,11 +15,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 @XmlRootElement
-public class ArtistDTO extends BaseDTO implements Serializable{
+public class ArtistDTO implements Serializable{
+
+    private Long id;
+    private String name;
 private Long appraisal;
 
 public ArtistDTO(){
     //Constructor clase
+    super();
 }
 
 public ArtistDTO(ArtistEntity entity){
@@ -47,5 +51,48 @@ return this.appraisal;
 public void setAppraisal(Long appraisal){
 this.appraisal = appraisal;
 }
+
+ /**
+  * Obtiene el atributo id.
+  *
+  * @return atributo id.
+  * @generated
+  */
+ public Long getId() {
+  return id;
+ }
+
+ /**
+  * Establece el valor del atributo id.
+  *
+  * @param id nuevo valor del atributo
+  * @generated
+  */
+ public void setId(Long id) {
+  this.id = id;
+ }
+
+ /**
+  * Obtiene el atributo name.
+  *
+  * @return atributo name.
+  * @generated
+  */
+ public String getName() {
+  return name;
+ }
+
+ /**
+  * Establece el valor del atributo name.
+  *
+  * @param name nuevo valor del atributo
+  * @generated
+  */
+ public void setName(String name) {
+  this.name = name;
+ }
+ 
+ 
+ 
 }
 

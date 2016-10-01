@@ -10,35 +10,78 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 @XmlRootElement
-public class ItemDTO extends BaseDTO implements Serializable{
-private Long qty;
+public class ItemDTO implements Serializable {
 
-public ItemDTO(){
-    //Constructor clase
-}
-public ItemDTO(ItemEntity entity){
-if(entity!=null){
-this.id=entity.getId();
-this.name=entity.getName();
-this.qty=entity.getQty();
-}
-}
-public ItemEntity toEntity(){
-ItemEntity entity = new ItemEntity();
-entity.setId(this.getId());
-entity.setName(this.getName());
-entity.setQty(this.getQty());
-return entity;
-}
-public Long getQty(){
-return qty;
-}
-public void setQty(Long qty){
-this.qty = qty;
-}
-}
-/**
- *
- * @author a.quintero10
- */
+    private Long id;
+    private String name;
+    private Long qty;
 
+    public ItemDTO() {
+        //Constructor clase
+    }
+
+    public ItemDTO(ItemEntity entity) {
+        if (entity != null) {
+            this.id = entity.getId();
+            this.name = entity.getName();
+            this.qty = entity.getQty();
+        }
+    }
+
+    public ItemEntity toEntity() {
+        ItemEntity entity = new ItemEntity();
+        entity.setId(this.getId());
+        entity.setName(this.getName());
+        entity.setQty(this.getQty());
+        return entity;
+    }
+
+    public Long getQty() {
+        return qty;
+    }
+
+    public void setQty(Long qty) {
+        this.qty = qty;
+    }
+
+    /**
+     * Obtiene el atributo id.
+     *
+     * @return atributo id.
+     * @generated
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Establece el valor del atributo id.
+     *
+     * @param id nuevo valor del atributo
+     * @generated
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * Obtiene el atributo name.
+     *
+     * @return atributo name.
+     * @generated
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Establece el valor del atributo name.
+     *
+     * @param name nuevo valor del atributo
+     * @generated
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+}
