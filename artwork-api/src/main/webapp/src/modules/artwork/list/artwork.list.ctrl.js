@@ -79,7 +79,7 @@ SOFTWARE.
             };
             
             $scope.filtrarPorArtista = function(artist){
-                Restangular.all("artworks").customGET("",{artist:artist}).then(function (response) {
+                Restangular.all("artworks").customGET("",{artist:artist}).then(function (response) {          
                     $scope.records=response;
                 }); 
             };
