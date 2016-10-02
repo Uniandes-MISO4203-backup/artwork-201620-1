@@ -27,7 +27,6 @@ SOFTWARE.
 
     mod.controller("adminListCtrl", ["$scope", '$state', 'admins', '$stateParams',
         function ($scope, $state, admins, $params) {
-            console.log("los admins:"+admins)
             $scope.records = admins;
 
             //Paginación
@@ -40,54 +39,13 @@ SOFTWARE.
             };
 
             $scope.actions = {
-//                create: {
-//                    displayName: 'Create',
-//                    icon: 'plus',
-//                    fn: function () {
-//                        $state.go('adminNew');
-//                    },
-//                    show: function () {
-//                        return (roles.indexOf("admin") !== -1);
-//                    }
-//                },
                 refresh: {
                     displayName: 'Refresh',
                     icon: 'refresh',
                     fn: function () {
                         $state.reload();
                     }
-                }            };
-//            $scope.recordActions = {
-//                detail: {
-//                    displayName: 'Detail',
-//                    icon: 'eye-open',
-//                    fn: function (rc) {
-//                        $state.go('artistDetail', {artistId: rc.id});
-//                    },
-//                    show: function () {
-//                        return true;
-//                    }
-//                },
-//                edit: {
-//                    displayName: 'Edit',
-//                    icon: 'edit',
-//                    fn: function (rc) {
-//                        $state.go('artistEdit', {artistId: rc.id});
-//                    },
-//                    show: function () {
-//                        return true;
-//                    }
-//                },
-//                delete: {
-//                    displayName: 'Delete',
-//                    icon: 'minus',
-//                    fn: function (rc) {
-//                        $state.go('artistDelete', {artistId: rc.id});
-//                    },
-//                    show: function () {
-//                        return (roles.indexOf("admin") !== -1);
-//                    }
-//                }
-//            };
+                }
+            };
         }]);
 })(window.angular);

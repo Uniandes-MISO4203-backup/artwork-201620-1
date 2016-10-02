@@ -5,91 +5,87 @@
  */
 package co.edu.uniandes.csw.artwork.dtos.minimum;
 
-import co.edu.uniandes.csw.artwork.entities.CommentEntity;
-import java.io.Serializable;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  *
  * @author a.quintero10
  */
+import co.edu.uniandes.csw.artwork.entities.CommentEntity;
+import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
+
 @XmlRootElement
 public class CommentDTO implements Serializable {
- private Long id;
- private String name;
- private String comment;
- 
- 
- 
-   public CommentDTO() {
- } 
-   
- public CommentDTO(CommentEntity entity) {
-	   if (entity!=null){
-  this.id=entity.getId();
-  this.name=entity.getName();
-  this.comment=entity.getComment();
-    
+
+    private Long id;
+    private String name;
+    private String comment;
+
+    public CommentDTO() {
+        //Constructor clase
     }
- }
- public CommentEntity toEntity() {
-  CommentEntity entity = new CommentEntity();
-  entity.setId(this.getId());
-  entity.setName(this.getName());
-  entity.setComment(this.getComment());
-    
- return entity;
- }
 
- /**
-  * @return the id
-  */
- public Long getId() {
-  return id;
- }
+    public CommentDTO(CommentEntity entity) {
+        if (entity != null) {
+            this.id = entity.getId();
+            this.name = entity.getName();
+            this.comment = entity.getComment();
+        }
+    }
 
- /**
-  * @param id the id to set
-  */
- public void setId(Long id) {
-  this.id = id;
- }
+    public CommentEntity toEntity() {
+        CommentEntity entity = new CommentEntity();
+        entity.setId(this.getId());
+        entity.setName(this.getName());
+        entity.setComment(this.getComment());
+        return entity;
+    }
 
- /**
-  * @return the name
-  */
- public String getName() {
-  return name;
- }
+    public String getComment() {
+        return comment;
+    }
 
- /**
-  * @param name the name to set
-  */
- public void setName(String name) {
-  this.name = name;
- }
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
- /**
-  * @return the comment
-  */
- public String getComment() {
-  return comment;
- }
+    /**
+     * Obtiene el atributo id.
+     *
+     * @return atributo id.
+     * @generated
+     */
+    public Long getId() {
+        return id;
+    }
 
- /**
-  * @param comment the comment to set
-  */
- public void setComment(String comment) {
-  this.comment = comment;
- }
+    /**
+     * Establece el valor del atributo id.
+     *
+     * @param id nuevo valor del atributo
+     * @generated
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
- /**
-  * @return the artwork
-  */
-   
+    /**
+     * Obtiene el atributo name.
+     *
+     * @return atributo name.
+     * @generated
+     */
+    public String getName() {
+        return name;
+    }
 
- /**
-  * @return the artwork
-  */
-   
+    /**
+     * Establece el valor del atributo name.
+     *
+     * @param name nuevo valor del atributo
+     * @generated
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

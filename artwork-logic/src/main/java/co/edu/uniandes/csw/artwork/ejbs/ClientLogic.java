@@ -45,6 +45,7 @@ public class ClientLogic implements IClientLogic {
      * @return Número de registros de Client.
      * @generated
      */
+    @Override
     public int countClients() {
         return persistence.count();
     }
@@ -80,6 +81,7 @@ public class ClientLogic implements IClientLogic {
      * @return Instancia de ClientEntity con los datos del Client consultado.
      * @generated
      */
+    @Override
     public ClientEntity getClient(Long id) {
         return persistence.find(id);
     }

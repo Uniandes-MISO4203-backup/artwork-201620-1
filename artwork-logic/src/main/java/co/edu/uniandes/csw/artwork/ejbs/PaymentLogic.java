@@ -83,8 +83,7 @@ public class PaymentLogic implements IPaymentLogic {
         ClientEntity client = clientLogic.getClient(clientid);
         entity.setClient(client);
         entity.setDate(Calendar.getInstance().getTime());
-        entity = persistence.create(entity);
-        return entity;
+        return persistence.create(entity);
     }
 
     /**

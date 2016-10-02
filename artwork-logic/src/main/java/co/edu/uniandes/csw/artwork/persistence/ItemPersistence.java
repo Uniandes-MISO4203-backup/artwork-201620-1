@@ -39,7 +39,7 @@ public class ItemPersistence extends CrudPersistence<ItemEntity> {
 
     @PersistenceContext(unitName="ArtworkPU")
     protected EntityManager em;
-
+    private static final String CLIENT_ID = "clientid";
     /**
      * @generated
      */
@@ -58,14 +58,14 @@ public class ItemPersistence extends CrudPersistence<ItemEntity> {
 
     public ItemEntity find(Long clientid, Long itemid) {
         TypedQuery<ItemEntity> q = em.createQuery("select p from ItemEntity p where (p.client.id = :clientid) and (p.id = :itemid)", ItemEntity.class);
-        q.setParameter("clientid", clientid);
+        q.setParameter(CLIENT_ID, clientid);
         q.setParameter("itemid", itemid);
         return q.getSingleResult();
     }
     
     public List<ItemEntity> findAll(Integer page, Integer maxRecords, Long clientid) {
         TypedQuery<ItemEntity> q = em.createQuery("select p from ItemEntity p where (p.client.id = :clientid)", ItemEntity.class);
-        q.setParameter("clientid", clientid);
+        q.setParameter(CLIENT_ID, clientid);
         if (page != null && maxRecords != null) {
             q.setFirstResult((page - 1) * maxRecords);
             q.setMaxResults(maxRecords);
@@ -75,7 +75,7 @@ public class ItemPersistence extends CrudPersistence<ItemEntity> {
 
     public List<ItemEntity> getShoppingCartItems(Long clientId) {
         TypedQuery<ItemEntity> q = em.createQuery("select p from ItemEntity p where (p.client.id = :clientid) and p.shoppingCart = true", ItemEntity.class);
-        q.setParameter("clientid", clientId);
+        q.setParameter(CLIENT_ID, clientId);
         return q.getResultList();
     }
 }

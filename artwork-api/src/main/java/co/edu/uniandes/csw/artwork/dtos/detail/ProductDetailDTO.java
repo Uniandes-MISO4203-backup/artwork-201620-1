@@ -52,17 +52,4 @@ public class ProductDetailDTO extends ProductDTO{
         super(entity);
         
     }
-
-    /**
-     * Convierte un objeto ProductDetailDTO a ProductEntity incluyendo los atributos de ProductDTO.
-     *
-     * @return Nueva objeto ProductEntity.
-     * @generated
-     */
-    @Override
-    public ProductEntity toEntity() {
-        ProductEntity entity = super.toEntity();
-        return entity;
-    }
-
 }
