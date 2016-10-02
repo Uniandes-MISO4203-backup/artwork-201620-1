@@ -45,6 +45,7 @@ public class ArtistLogic implements IArtistLogic {
      * @return Número de registros de Artist.
      * @generated
      */
+    @Override
     public int countArtists() {
         return persistence.count();
     }
@@ -80,6 +81,7 @@ public class ArtistLogic implements IArtistLogic {
      * @return Instancia de ArtistEntity con los datos del Artist consultado.
      * @generated
      */
+    @Override
     public ArtistEntity getArtist(Long id) {
         return persistence.find(id);
     }

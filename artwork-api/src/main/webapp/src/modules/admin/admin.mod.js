@@ -28,8 +28,7 @@
         name: 'admin',
         displayName: 'Admin',
         url: 'admins',
-        fields: {
-            userName: {
+        fields: {userName: {
                 displayName: 'UserName',
                 type: 'String',
                 required: true

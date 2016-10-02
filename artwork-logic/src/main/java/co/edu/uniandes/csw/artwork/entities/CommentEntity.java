@@ -60,7 +60,7 @@ public class CommentEntity extends BaseEntity implements Serializable {
     public void setArtwork(ArtworkEntity artwork) {
         this.artwork = artwork;
     }
-
+    
     /**
      * @return the comment
      */
@@ -79,5 +79,4 @@ public class CommentEntity extends BaseEntity implements Serializable {
     public boolean equals(Object obj) {
         return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

@@ -5,69 +5,93 @@
  */
 package co.edu.uniandes.csw.artwork.dtos.minimum;
 
-import co.edu.uniandes.csw.artwork.entities.CommentEntity;
-import java.io.Serializable;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  *
  * @author a.quintero10
  */
+import co.edu.uniandes.csw.artwork.entities.CommentEntity;
+import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
+
 @XmlRootElement
-public class CommentDTO extends BaseDTO implements Serializable {
-    
- private String comment;
- 
- 
- /**
-  * @generated
-  */
- public CommentDTO() {
-        super();
- } 
-  
- /**
-  * Crea un objeto CommentDTO a partir de un objeto CommentEntity.
-  *
-  * @param entity Entidad CommentEntity desde la cual se va a crear el nuevo objeto.
-  * @generated
-  */ 
- public CommentDTO(CommentEntity entity) {
-	   if (entity!=null){
-  this.id=entity.getId();
-  this.name=entity.getName();
-  this.comment=entity.getComment();
-    
+public class CommentDTO implements Serializable {
+
+    private Long id;
+    private String name;
+    private String comment;
+
+    public CommentDTO() {
+        //Constructor clase
     }
- }
- 
-  /**
-  * Convierte un objeto CommentDTO a CommentEntity.
-  *
-  * @return Nueva objeto CommentEntity.
-  * @generated
-  */
- public CommentEntity toEntity() {
-  CommentEntity entity = new CommentEntity();
-  entity.setId(this.getId());
-  entity.setName(this.getName());
-  entity.setComment(this.getComment());
-    
- return entity;
- }
 
+    /**
+     * Convierte un objeto CommentDTO a CommentEntity.
+     *
+     * @return Nueva objeto CommentEntity.
+     * @generated
+     */
+    public CommentEntity toEntity() {
+        CommentEntity entity = new CommentEntity();
+        entity.setId(this.getId());
+        entity.setName(this.getName());
+        entity.setComment(this.getComment());
+        return entity;
+    }
 
- /**
-  * @return the comment
-  */
- public String getComment() {
-  return comment;
- }
+    public CommentDTO(CommentEntity entity) {
+        if (entity != null) {
+            this.id = entity.getId();
+            this.name = entity.getName();
+            this.comment = entity.getComment();
+        }
+    }
 
- /**
-  * @param comment the comment to set
-  */
- public void setComment(String comment) {
-  this.comment = comment;
- }
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    /**
+     * Obtiene el atributo id.
+     *
+     * @return atributo id.
+     * @generated
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Establece el valor del atributo id.
+     *
+     * @param id nuevo valor del atributo
+     * @generated
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * Obtiene el atributo name.
+     *
+     * @return atributo name.
+     * @generated
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Establece el valor del atributo name.
+     *
+     * @param name nuevo valor del atributo
+     * @generated
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

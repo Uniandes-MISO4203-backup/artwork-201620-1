@@ -33,8 +33,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class ArtistDetailDTO extends ArtistDTO{
 
-
-
     /**
      * @generated
      */
@@ -64,5 +62,4 @@ public class ArtistDetailDTO extends ArtistDTO{
         return super.toEntity();
         
     }
-
 }

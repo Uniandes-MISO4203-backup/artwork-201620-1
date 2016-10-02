@@ -49,7 +49,7 @@ import com.stormpath.sdk.account.AccountList;
 @Path("/admins")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class AdminResource { 
+public class AdminResource {  
     
     @Context private HttpServletResponse response;
     @Context private HttpServletRequest req;

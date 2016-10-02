@@ -52,6 +52,7 @@ public class ArtworkLogic implements IArtworkLogic {
      * @return Número de registros de Artwork.
      * @generated
      */
+    @Override
     public int countArtworks() {
         return persistence.count();
     }
@@ -131,8 +132,7 @@ public class ArtworkLogic implements IArtworkLogic {
     public ArtworkEntity createArtwork(Long artistid, ArtworkEntity entity) {
         ArtistEntity artist = artistLogic.getArtist(artistid);
         entity.setArtist(artist);
-        entity = persistence.create(entity);
-        return entity;
+        return persistence.create(entity);
     }
 
     /**

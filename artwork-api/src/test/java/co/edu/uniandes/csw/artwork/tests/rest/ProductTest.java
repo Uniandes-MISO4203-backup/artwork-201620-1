@@ -76,7 +76,7 @@ public class ProductTest {
     private static final int CREATED = Status.CREATED.getStatusCode();
     private static final int OK_WITHOUT_CONTENT = Status.NO_CONTENT.getStatusCode();
 
-    private final static List<ProductEntity> oraculo = new ArrayList<>();
+    private static final  List<ProductEntity> oraculo = new ArrayList<>();
 
     private static final String PRODUCT_PATH = "products";
 

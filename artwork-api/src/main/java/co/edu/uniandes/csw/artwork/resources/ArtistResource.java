@@ -112,8 +112,7 @@ public class ArtistResource {
                         return new ArrayList();
                 }
             }
-        }
-        //Por recomendacion de SonarQube se retorna una lista vacia en lugar de un null
+        } 
         return new ArrayList();
     }
 

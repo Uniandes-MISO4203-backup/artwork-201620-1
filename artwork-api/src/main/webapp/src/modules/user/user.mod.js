@@ -64,7 +64,7 @@
                 abstract: true,
                 views: {
                     mainView: {
-                        templateUrl: basePath + 'user.tpl.html'
+                        templateUrl: basePath + 'user.tpl.html',
                     }
                 }
             });

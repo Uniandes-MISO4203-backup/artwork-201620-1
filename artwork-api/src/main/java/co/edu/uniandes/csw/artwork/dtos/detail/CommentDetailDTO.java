@@ -33,6 +33,7 @@ public class CommentDetailDTO extends CommentDTO{
        
     }
     
+    @Override
     public CommentEntity toEntity() {
         CommentEntity entity = super.toEntity();
         if (this.getArtwork()!=null){

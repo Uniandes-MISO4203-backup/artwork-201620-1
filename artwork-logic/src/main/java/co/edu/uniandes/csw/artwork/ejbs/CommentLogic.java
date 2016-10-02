@@ -40,7 +40,7 @@ public class CommentLogic implements ICommentLogic {
         ArtworkEntity artwork = artworkLogic.getArtwork(artworkId);
         CommentEntity commentEntity = entity;
         commentEntity.setArtwork(artwork);
-        commentEntity = persistence.create(entity);
+        commentEntity = persistence.create(commentEntity);
         return commentEntity;
     }
     

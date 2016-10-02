@@ -102,15 +102,15 @@ public class QualificationResource {
             for (Group gr : account.getGroups()) {
                 if (gr.getHref().equalsIgnoreCase(CLIENT_HREF)){
                     if (page != null && maxRecords != null) {
-                            this.response.setIntHeader("X-Total-Count", qualificationLogic.countQualifications());
-                            return listEntity2DTO(qualificationLogic.getQualifications(page, maxRecords));
+                        this.response.setIntHeader("X-Total-Count", qualificationLogic.countQualifications());
+                        return listEntity2DTO(qualificationLogic.getQualifications(page, maxRecords));
                     }
                     return listEntity2DTO(qualificationLogic.getQualifications());
                 } else {
                     return new ArrayList<>();
                 }
             }
-        } 
+        }
         //Por recomendacion de SonarQube se retorna una lista vacia en lugar de un null
         return new ArrayList<>();
         
@@ -180,7 +180,7 @@ public class QualificationResource {
     
     public void existsQualification(Long qualificationsId){
         QualificationDetailDTO qualificationDetailDTO = getQualification(qualificationsId);
-        if (qualificationDetailDTO== null) {
+        if (qualificationDetailDTO == null) {
             throw new WebApplicationException(404);
         }
     }    
@@ -195,9 +195,7 @@ public class QualificationResource {
     @GET
     @Path("/artwork")
     public List<QualificationDetailDTO> getQualificationsArtwork() {
-                
         return QualificationResource.listEntity2DTO(artworkLogic.getQualifications(artworkId));
-        
     }
     
 }

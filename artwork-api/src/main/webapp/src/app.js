@@ -102,7 +102,7 @@ SOFTWARE.
                         id: 'product',
                         label: 'Product',
                         icon: 'list-alt',
-                        state: 'productList'                    
+                        state: 'productList'
                     }
                 ]
             });

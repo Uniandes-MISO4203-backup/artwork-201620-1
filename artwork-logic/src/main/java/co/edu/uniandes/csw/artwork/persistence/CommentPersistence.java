@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
+ */
 package co.edu.uniandes.csw.artwork.persistence;
 
 import javax.ejb.Stateless;
@@ -37,21 +37,20 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class CommentPersistence extends CrudPersistence<CommentEntity> {
 
-    @PersistenceContext(unitName="ArtworkPU")
+    @PersistenceContext(unitName = "ArtworkPU")
     protected EntityManager em;
-    
-    /**
-     * @generated
-     */
-    public CommentPersistence(){
+
+    public CommentPersistence() {
+        //Constructor de la clase
     }
+
     /**
      * @generated
      */
     @Override
     protected EntityManager getEntityManager() {
         return em;
-        
+
     }
 
     /**
@@ -62,10 +61,10 @@ public class CommentPersistence extends CrudPersistence<CommentEntity> {
         return CommentEntity.class;
     }
 
-   public List<CommentEntity> findAll(Long artworkid){
-      TypedQuery<CommentEntity> q = em.createQuery("select p from CommentEntity p where (p.artwork.id = :artworkid)", CommentEntity.class);
+    public List<CommentEntity> findAll(Long artworkid) {
+        TypedQuery<CommentEntity> q = em.createQuery("select p from CommentEntity p where (p.artwork.id = :artworkid)", CommentEntity.class);
         q.setParameter("artworkid", artworkid);
-        
+
         return q.getResultList();
     }
 }

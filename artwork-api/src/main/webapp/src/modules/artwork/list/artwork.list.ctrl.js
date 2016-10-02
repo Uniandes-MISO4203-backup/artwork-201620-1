@@ -58,7 +58,7 @@ SOFTWARE.
                 Restangular.all("qualifications").customGET('').then(function (response) {
                     if (response.length>0) {
                         $scope.qualifications = response;
-                    } 
+                    }
                 });
             };
             $scope.getCategorys = function (parentCategory) {
@@ -70,13 +70,13 @@ SOFTWARE.
             };
             $scope.filtrar = function (parentCategory) {
                 $scope.getCategorys(parentCategory);
-                Restangular.all("artworks").customGET(parentCategory).then(function (response) {                    
-                        $scope.records=response;
+                Restangular.all("artworks").customGET(parentCategory).then(function (response) {
+                    $scope.records=response;
                 });
             };
             
             $scope.filtrarPorArtista = function(artist){
-                Restangular.all("artworks").customGET("",{artist:artist}).then(function (response) {                    
+                Restangular.all("artworks").customGET("",{artist:artist}).then(function (response) {          
                     $scope.records=response;
                 }); 
             };

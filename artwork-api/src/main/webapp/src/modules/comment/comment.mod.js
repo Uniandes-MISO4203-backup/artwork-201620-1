@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 (function (ng) {
-
     var mod = ng.module('commentModule', ['ngCrud', 'ui.router', 'artworkModule', 'itemModule']);
     mod.constant('commentModel', {
         name: 'comment',
