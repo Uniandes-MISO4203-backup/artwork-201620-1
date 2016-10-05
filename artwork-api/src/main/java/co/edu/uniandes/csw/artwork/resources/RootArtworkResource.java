@@ -105,4 +105,11 @@ public class RootArtworkResource {
         }
         return listEntity2DTO(artworkLogic.getArtworkByCategory(null,null,categoryid));
     }
+    
+    @GET
+    @Path("artwork/{artworkId: \\d+}")
+    public ArtworkDetailDTO getArtwork(@PathParam("artworkId") Long artworkId) {
+        ArtworkEntity entity = artworkLogic.getArtwork(artworkId);
+        return new ArtworkDetailDTO(entity);
+    }
 }

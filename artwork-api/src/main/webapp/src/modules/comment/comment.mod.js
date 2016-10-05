@@ -59,7 +59,7 @@
                             return r.all('/comments').getList($params);
                         }],
                     artwork: ['Restangular', '$stateParams', function (r, $params) {
-                            return r.one('/artworks', $params.artworkId).get();
+                            return r.one('/artworks/artwork', $params.artworkId).get();
                         }],
                     client: ['Restangular', '$stateParams', function (r) {
                             return r.all("clients").getList();

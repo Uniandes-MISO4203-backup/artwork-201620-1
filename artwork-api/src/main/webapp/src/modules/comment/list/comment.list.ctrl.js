@@ -13,7 +13,7 @@
                 });
             };
             var artSelection = $scope.records.filter(function (art) {
-                return art.id === $stateParams.artworkId;
+                return art.id+"" === $stateParams.artworkId;
             });
             $scope.artId = artSelection[0].id;
             $scope.artName = artSelection[0].name;
@@ -30,9 +30,9 @@
                 });
             };
             $scope.addToCart = function () {
-                itemModel['name'] = artwork[0].name;
+                itemModel['name'] = artwork.name;
                 itemModel['qty'] = $scope.quantity;
-                itemModel['artwork'] = artwork[0];
+                itemModel['artwork'] = artwork;
                 client[0].post("shopping/cart", JSON.stringify(itemModel));
                 client[0].getList("shopping/cart").then(function () {
                     $scope.cartAdded = true;
