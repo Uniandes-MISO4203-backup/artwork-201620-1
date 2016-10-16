@@ -20,7 +20,7 @@ import javax.ws.rs.core.Context;
  *
  * @author a.quintero10
  */
-@Path("/changes")
+@Path("/change")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ChangePassResource {

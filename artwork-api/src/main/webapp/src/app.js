@@ -62,13 +62,18 @@ SOFTWARE.
         }]);
 
     mod.config(['$urlRouterProvider', function ($urlRouterProvider) {
-                $urlRouterProvider.otherwise('/');
+                $urlRouterProvider.otherwise('/artworkGallery');
         }]);
 
-    mod.config(['authServiceProvider', function (auth) {
+    mod.config(['authServiceProvider',function (auth) {
+     
+      
             auth.setValues({
                 apiUrl: 'api/users/',
-                successState: 'artworkGallery'
+                successState: 'artworkGallery',
+                logoutRedirectState: 'artworkGallery'
+                
+                
             });
             auth.setRoles({
                 'client': [{
@@ -106,6 +111,7 @@ SOFTWARE.
                     }
                 ]
             });
+            
         }]);
 
     /*
