@@ -15,7 +15,8 @@ public class ItemDTO implements Serializable {
     private Long id;
     private String name;
     private Long qty;
-
+    private Boolean shoppingCart;
+    
     public ItemDTO() {
         //Constructor clase
     }
@@ -25,6 +26,7 @@ public class ItemDTO implements Serializable {
             this.id = entity.getId();
             this.name = entity.getName();
             this.qty = entity.getQty();
+            this.shoppingCart = entity.getShoppingCart();
         }
     }
 
@@ -82,6 +84,26 @@ public class ItemDTO implements Serializable {
      */
     public void setName(String name) {
         this.name = name;
+    }
+    
+    /**
+     * Obtiene el atributo shoppingCart.
+     *
+     * @return atributo shoppingCart.
+     * @generated
+     */
+    public Boolean getShoppingCart() {
+        return shoppingCart;
+    }
+
+    /**
+     * Establece el valor del atributo shoppingCart.
+     *
+     * @param shoppingCart nuevo valor del atributo
+     * @generated
+     */
+    public void setShoppingCart(Boolean shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 
 }
