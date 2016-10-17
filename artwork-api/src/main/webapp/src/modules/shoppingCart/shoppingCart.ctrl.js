@@ -26,6 +26,13 @@ SOFTWARE.
 
     mod.controller('shoppingCartCtrl', ['$scope', 'client','payments','shopping',
     function ($scope, client, payments, shopping) {
+            $scope.subtotal = function(){
+                var total = 0;
+                angular.forEach(shopping, function(item){
+                    total += item.qty * item.artwork.price;
+                });
+                return total;
+            };
             $scope.purchase = {};
             $scope.purchase["items"] = shopping;
             //Alertas
