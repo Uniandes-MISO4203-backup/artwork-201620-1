@@ -5,4 +5,11 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)">{{alert.msg}} </alert>
-<div ui-view="userView"></div>
+<div class="col-md-2">
+    <ul class="nav nav-pills nav-stacked">
+        <li role="presentation"><a ui-sref="userData">Mis Datos</a></li>
+        <li role="presentation"><a ui-sref="userPurchases">Mis compras</a></li>
+        <li role="presentation"><a ui-sref="userChangePass">Cambiar contraseña</a></li>
+    </ul>
+</div>
+<div class="col-md-10" ui-view="userView"></div>
