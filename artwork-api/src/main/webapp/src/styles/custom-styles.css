@@ -285,15 +285,17 @@ ul.nav li.dropdown:hover ul.dropdown-menu{ display: block; }
 .no-padding{
     padding:0;
 }
+
+.showcase ul{
+    text-align:justify;
+}
+.showcase ul li{
+    display: inline;
+}
+
 .artwork{
     background-color:white;
     margin-bottom: 30px;
-    border-style: solid;
-    border-width: 27px;
-    -moz-border-image: url(../img/image_border.png) 27 repeat;
-    -webkit-border-image: url(../img/image_border.png) 27 repeat;
-    -o-border-image: url(../img/image_border.png) 27 repeat;
-    border-image: url(../img/image_border.png) 27 fill repeat;
     -webkit-box-shadow: 4px 6px 28px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 4px 6px 28px 0px rgba(0,0,0,0.75);
     box-shadow: 4px 6px 28px 0px rgba(0,0,0,0.75);
