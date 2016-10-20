@@ -18,11 +18,10 @@ body {background: #f9f9f9 url(../img/page-bg-1.jpg);}
 
 /***** Titles and Headings *****/
 h1, h2, h3, h4 , h5, h6 {
-	font-family: "Oswald", sans-serif; 
+	font-family: "Monserrat", sans-serif; 
 	font-weight: normal;
 	text-transform:uppercase; 
-}	
-h1, h2, h3, h4, h5 {text-shadow: 1px 1px 0 #fdfdfd, 2px 2px 0 rgba(81, 81, 81, 0.5), 0 0 1px #fdfdfd;}
+}
 h1.title-bg, h2.title-bg, h3.title-bg, h4.title-bg , h5.title-bg, h6.title-bg {
 	background:#f8f8f8; 
 	padding:10px 5px;
@@ -293,9 +292,28 @@ ul.nav li.dropdown:hover ul.dropdown-menu{ display: block; }
     display: inline;
 }
 
+.showcase-title{
+    background-color:#5f5f5f;
+    margin:0;
+    padding:10px;
+    color:white;
+    font-style: normal;
+    margin-bottom:15px;
+}
+
+.list-group{
+    margin-bottom:0;
+}
+
+.list-group button:hover{
+    background-color:#5f5f5f;
+    color:white;
+}
+
 #carousel{
     height: 400px; 
     margin-bottom:30px;
+    background-color:white;
 }
 
 .carousel-inner {
@@ -310,13 +328,17 @@ ul.nav li.dropdown:hover ul.dropdown-menu{ display: block; }
     margin-right:auto;
 }
 
+.well{
+    padding:10px 5px 10px 5px;
+}
+
 .carousel-control {
     top:0;
     width:10%;
 }
 .artwork{
     background-color:white;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     -webkit-box-shadow: 4px 6px 28px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 4px 6px 28px 0px rgba(0,0,0,0.75);
     box-shadow: 4px 6px 28px 0px rgba(0,0,0,0.75);
