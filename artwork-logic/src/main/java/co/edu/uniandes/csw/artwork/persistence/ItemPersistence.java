@@ -64,7 +64,7 @@ public class ItemPersistence extends CrudPersistence<ItemEntity> {
     }
     
     public List<ItemEntity> findAll(Integer page, Integer maxRecords, Long clientid) {
-        TypedQuery<ItemEntity> q = em.createQuery("select p from ItemEntity p where (p.client.id = :clientid)", ItemEntity.class);
+        TypedQuery<ItemEntity> q = em.createQuery("select p from ItemEntity p where (p.client.id = :clientid) and p.shoppingCart = false", ItemEntity.class);
         q.setParameter(CLIENT_ID, clientid);
         if (page != null && maxRecords != null) {
             q.setFirstResult((page - 1) * maxRecords);

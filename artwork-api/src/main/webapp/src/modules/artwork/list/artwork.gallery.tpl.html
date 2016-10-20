@@ -14,7 +14,24 @@
         </div>       
     </div>
     <div class="col-md-10">
-        <div ng-repeat="artwork in records">
+        <ul class="col-sm-12 list-unstyled">
+            <li class="col-sm-offset-1 col-sm-3 artwork no-padding" ng-repeat="artwork in records" style="position:relative">
+                <a ui-sref="comment({artworkId:artwork.id})">
+                    <img class="img-responsive" ng-src="{{artwork.image}}" alt="{{artwork.name}}">
+                </a>   
+                <div class="col-sm-12 detail no-padding">
+                    <span class="col-sm-8 no-padding"><a ui-sref="comment({artworkId:artwork.id})">{{artwork.name}}</a></span>
+                    <div class="col-sm-4 icons no-padding">
+                        <a href="{{artwork.image}}" class="col-sm-6 no-padding"><i class="glyphicon glyphicon-search"></i></a>
+                        <a ui-sref="comment({artworkId:artwork.id})" class="col-sm-6 no-padding"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+            
+            
+            <!--
+            <div ng-repeat="artwork in records">
             <div style="box-shadow: 2px 2px 5px gray; border-radius: 5px;margin: 5px" class="col-md-4 col-sm-6 col-lg-3 well">
                 <div class="col-md-12">
                     <div class="img-thumbnail" >
@@ -38,6 +55,6 @@
                     </ul>
                 </div>
             </div>
-        </div>            
+        </div>    -->        
     </div>
 </div> 

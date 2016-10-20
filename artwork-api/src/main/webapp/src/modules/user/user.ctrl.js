@@ -24,7 +24,7 @@ SOFTWARE.
 (function (ng) {
     var mod = ng.module('userModule');
 
-    mod.controller('userCtrl','userModel' ['$scope', 'model',
+    mod.controller('userCtrl' ['$scope', 'model',
         function ($scope, model) {
             $scope.model = model;
             //Alertas

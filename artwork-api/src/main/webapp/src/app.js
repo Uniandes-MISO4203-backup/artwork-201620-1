@@ -38,6 +38,7 @@ SOFTWARE.
         'commentModule',
         'qualificationModule',
         'shoppingCartModule',
+        'wishlistModule',
         'userModule'
     ]);
 

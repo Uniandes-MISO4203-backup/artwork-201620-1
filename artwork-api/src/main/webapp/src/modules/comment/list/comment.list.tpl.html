@@ -10,8 +10,97 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    <body class="container">
+        <div class="span12 gallery-single">
+            <div class="row">
+                <h2>{{artName}}</h2>
+                <div class="col-md-7">
+                    <img  ng-src="{{artImage}}" class="align-left thumbnail" alt="image" style="width: 100%;height: 100%;">
+                    <a href="#/artworkGallery" class="pull-left"><i class="icon-arrow-left"></i>Back to Gallery</a>
+                </div>
+                <div class="col-md-3">
+                    <p class="lead">{{artName}}.</p>
 
+                    <ul class="project-info" style="padding-left: 0px;">
+                        <li><h6>Artist:</h6>{{nameArtist}}</li>
+                        <li><h6>Price:</h6>${{artPrice}}</li>
+                        <li><h6>Width</h6>{{artWidth}} cm</li>
+                        <li><h6>Height</h6>{{artHeight}} cm</li>
+                    </ul>
+
+                    
+                </div>
+                <div class="col-md-2">
+                   <label for="quantity">Cantidad:</label>
+                   <input type="number" class="form-control" id="quantity" ng-model="quantity">
+                   <button type="submit" class="btn btn-default" ng-disabled="cartAdded" ng-click="addToCart()">Agregar a Carrito</button> 
+                </div>
+            </div>
+
+        </div><!-- End gallery-single-->
+        <div class="row">
+            <section class="comments">
+                <h4 class="title-bg"><a name="comments"></a>Comentarios</h4>
+               <ul style="padding-left: 0px;">
+                    <li ng-repeat="comment in comments">
+                        <!--<a href="#" class="avatar-icon"/>-->
+                        <span class="comment-name">{{comment.name}}</span>
+                        <!--<span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>-->
+                        <div class="comment-content">{{comment.comment}}</div>
+                    </li>
+               </ul>
+            
+                <!-- Comment Form-->
+                <div class="comment-form-container">
+                    <h6>Leave a Comment</h6>
+                    
+                    <form id="comment-form">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-envelope"></i></span>
+                            <input type="text" class="span4" id="prependedInput" ng-model="comment.email" placeholder="Email Address">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="span6" id="comment" ng-model="comment.description"></textarea>
+                       </div>
+                        <button type="submit" id="save"  class="btn btn-inverse" ng-click="submitComment(comment)">Submit</button>
+                    </form>
+                    
+                </div>
+        </section><!-- Close comments section-->
+                    
+                    <!--
+                   <label for="quantity">Comentarios:</label>
+                    <div ng-repeat="comment in comments">
+                        <span>{{comment.name}}</span>
+                        <p>{{comment.comment}}</p>
+                    </div> 
+                    -->
+            <!--<div class="col-md-12" style="overflow-y: scroll; padding: 5%; height: 200px;">
+                <ul class="unstyled">
+                    <li ng-repeat="comment in comments">
+                        {{comment.comment}} - {{comment.name}}
+                    </li> 
+                </ul>
+            </div>-->
+        </div>
+        <!--
+        <div class="col-md-6">
+            <form>
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control" id="email" ng-model="comment.email">
+                </div>
+                <div class="form-group">
+                    <label for="comment">comment here:</label>
+                    <input type="text" class="form-control" id="comment" ng-model="comment.description">
+                </div>
+
+                <button type="submit" id="save" class="btn btn-default" ng-click="submitComment(comment)">Submit</button>
+            </form>
+        </div>
+        -->
+        
+        <!--
         <div ><h1>{{artName}}</h1></div>
         <div class="caption row">
             <div class='col-md-4'>
@@ -51,6 +140,7 @@ and open the template in the editor.
 
             </div>
         </div>
+        -->
         <div ui-view="qualificationDialogView" autoscroll="false"></div>
     </body>
 </html>

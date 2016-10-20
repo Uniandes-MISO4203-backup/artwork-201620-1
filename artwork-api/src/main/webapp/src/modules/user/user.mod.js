@@ -64,8 +64,11 @@
                 abstract: true,
                 views: {
                     mainView: {
-                        templateUrl: basePath + 'user.tpl.html',
+                        templateUrl: basePath + 'user.tpl.html'
                     }
+                },
+                resolve: {
+                    model: 'userModel'
                 }
             });
             $sp.state('userChangePass', {
@@ -75,6 +78,28 @@
                     userView: {
                         templateUrl: basePath + 'edit/user.changePassword.tpl.html',
                         controller: 'userEditCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            });
+            $sp.state('userData', {
+                url: '/data',
+                parent: 'user',
+                views: {
+                    userView: {
+                        templateUrl: basePath + 'data/user.data.tpl.html',
+                        controller: 'userDataCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            });
+            $sp.state('userPurchases', {
+                url: '/purchases',
+                parent: 'user',
+                views: {
+                    userView: {
+                        templateUrl: basePath + 'purchases/user.purchases.tpl.html',
+                        controller: 'userPurchasesCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

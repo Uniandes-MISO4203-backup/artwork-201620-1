@@ -76,6 +76,7 @@ fatherEntity.setId(1L);
 em.persist(fatherEntity);
 for(int i = 0; i < 3; i++){
 ItemEntity entity = factory.manufacturePojo(ItemEntity.class);
+entity.setShoppingCart(false);
 entity.setClient(fatherEntity);
 em.persist(entity);
 data.add(entity);

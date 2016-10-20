@@ -39,4 +39,11 @@ SOFTWARE.
   </tr>
 </table>
 </div>
-<button ng-disabled="purchase.items.length === 0" class="col-md-2 btn btn-info" ng-click="makePurchase()">comprar</button>
+<div class="col-md-2">
+    <div class="col-md-2">
+        <div><b>Subtotal:</b> ${{subtotal()}} </div>
+        <div><b>Impuestos:</b> ${{subtotal()*0.16}}</div>
+        <div><b>Total:</b> ${{subtotal()*(1.16)}}</div>
+    </div>
+    <button ng-disabled="purchase.items.length === 0" class="col-md-12 btn btn-info" ng-click="makePurchase()">comprar</button>
+</div>

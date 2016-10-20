@@ -37,6 +37,8 @@ SOFTWARE.
 
         <!-- build:css(<%= meta.src %>) styles/main.css -->
         <!-- include: "type": "css", "files": "<%= meta.includeCssFiles %>" -->
+        <link rel="stylesheet" href="src/styles/custom-styles.css" />
+        <link rel="stylesheet" href="src/styles/prettyPhoto.css" />
         <!-- /include -->
         <!-- endbuild -->
 
@@ -61,6 +63,11 @@ SOFTWARE.
 
         <!-- build:js(<%= meta.src %>) scripts/scripts.js -->
         <!-- include: "type": "js", "files": "<%= meta.includeJsFiles %>" -->
+        <script src="src/js/bootstrap.js"></script>
+        <script src="src/js/jquery.prettyPhoto.js"></script>
+        <script src="src/js/jquery.flexslider.js"></script>
+        <script src="src/js/jquery.custom.js"></script>
+        
         <script src="src/app.js"></script>
         <script src="src/auth.js"></script>
         
@@ -70,11 +77,16 @@ SOFTWARE.
         <script src="src/modules/admin/admin.mod.js"></script>
         <script src="src/modules/admin/admin.ctrl.js"></script>
         <script src="src/modules/admin/list/admin.list.ctrl.js"></script>
-        <script src="src/modules/user/user.mod.js" ></script>
-        <script src="src/modules/user/edit/user.edit.ctrl.js"></script>
+        <script src="src/modules/user/user.mod.js"></script>
         <script src="src/modules/user/user.ctrl.js"></script>
+        <script src="src/modules/user/edit/user.edit.ctrl.js"></script>
+        <script src="src/modules/user/data/user.data.ctrl.js"></script>
+        <script src="src/modules/user/purchases/user.purchases.ctrl.js"></script>
         <script src="src/modules/comment/comment.mod.js"></script>
         <script src="src/modules/comment/comment.ctrl.js"></script>
+        <script src="src/modules/wishlist/wishlist.mod.js"></script>
+        <script src="src/modules/wishlist/wishlist.ctrl.js"></script>
+        <script src="src/modules/wishlist/list/wishlist.list.ctrl.js"></script>
         <script src="src/modules/shoppingCart/shoppingCart.mod.js"></script>
         <script src="src/modules/shoppingCart/shoppingCart.ctrl.js"></script>
         <script src="src/modules/comment/list/comment.list.ctrl.js"></script>
@@ -130,9 +142,6 @@ SOFTWARE.
         <script src="src/modules/qualification/instance/edit/qualification.edit.ctrl.js"></script>
         <script src="src/modules/qualification/list/qualification.list.ctrl.js"></script>
         <script src="src/modules/qualification/new/qualification.new.ctrl.js"></script>
-        
-        
-       
         <!-- /include -->
         <!-- endbuild -->
 
@@ -158,7 +167,7 @@ SOFTWARE.
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="main-bar">
                             <ul ng-controller="roleCtrl"  class="nav navbar-nav">
-                                <li ng-if="client"><a ui-sref="clientList">Client</a></li>
+                                <li ng-if="client"><a ui-sref="wishlistList">Wishlist</a></li>
                                 <li ng-if="artist"><a ui-sref="artistList">Artist</a></li>
                                 <li ng-if="product"><a ui-sref="productList">Product</a></li>
                                 <li ng-if="category"><a ui-sref="categoryList">Category</a></li>
@@ -166,6 +175,7 @@ SOFTWARE.
                                 <li ng-if="visitor"><a ui-sref="artworkGallery">gallery</a></li>
                                 <li ng-if="category || artist || client"><a ui-sref="userChangePass">Change password</a></li>
                                 <li ng-if="client"><a ui-sref="shoppingCart">Shopping Cart</a></li>
+                                <li ng-if="client"><a ui-sref="userData">Settings</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                              <login-button></login-button>
