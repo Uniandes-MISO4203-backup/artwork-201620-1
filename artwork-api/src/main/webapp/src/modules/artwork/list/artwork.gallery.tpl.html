@@ -14,17 +14,18 @@
         </div>       
     </div>
     <div class="col-md-10">
-        
-        <ul class="gallery-post-grid holder">
-            <li  ng-repeat="artwork in records" class="span3 gallery-item" data-id="id-1" data-type="illustration" style="margin-left: 30px;">
-                        <span class="gallery-hover-4col hidden-phone hidden-tablet">
-                            <span class="gallery-icons">
-                                <a href="{{artwork.image}}" class="item-zoom-link lightbox" title="Custom Illustration" data-rel="prettyPhoto"></a>
-                                <a ui-sref="comment({artworkId:artwork.id})" class="item-details-link"></a>
-                            </span>
-                        </span>
-                        <a ui-sref="comment({artworkId:artwork.id})"><img ng-src="{{artwork.image}}" alt="{{artwork.name}}" style="width: 270px; height: 220px;"></a>
-                        <span class="project-details"><a ui-sref="comment({artworkId:artwork.id})">{{artwork.name}}</a>.</span>
+        <ul class="col-sm-12 list-unstyled">
+            <li class="col-sm-offset-1 col-sm-3 artwork no-padding" ng-repeat="artwork in records" style="position:relative">
+                <a ui-sref="comment({artworkId:artwork.id})">
+                    <img class="img-responsive" ng-src="{{artwork.image}}" alt="{{artwork.name}}">
+                </a>   
+                <div class="col-sm-12 detail no-padding">
+                    <span class="col-sm-8 no-padding"><a ui-sref="comment({artworkId:artwork.id})">{{artwork.name}}</a></span>
+                    <div class="col-sm-4 icons no-padding">
+                        <a href="{{artwork.image}}" class="col-sm-6 no-padding"><i class="glyphicon glyphicon-search"></i></a>
+                        <a ui-sref="comment({artworkId:artwork.id})" class="col-sm-6 no-padding"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                    </div>
+                </div>
             </li>
         </ul>
             
