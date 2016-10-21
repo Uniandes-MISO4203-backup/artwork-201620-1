@@ -52,7 +52,7 @@
                         <span class="col-sm-8 no-padding"><a ui-sref="comment({artworkId:artwork.id})">{{artwork.name}}</a></span>
                         <div class="col-sm-4 icons no-padding">
                             <a href="{{artwork.image}}" class="col-sm-6 no-padding"><i class="glyphicon glyphicon-search"></i></a>
-                            <a ui-sref="comment({artworkId:artwork.id})" class="col-sm-6 no-padding"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                            <a ng-click='addToCart(artwork)' class="col-sm-6 no-padding"><i class="glyphicon glyphicon-shopping-cart"></i></a>
                         </div>
                     </div>
                 </div>

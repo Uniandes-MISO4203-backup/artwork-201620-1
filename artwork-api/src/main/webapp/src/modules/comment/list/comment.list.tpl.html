@@ -40,6 +40,7 @@ and open the template in the editor.
                 <span class="comment-name">{{comment.name}}</span>
                 <div class="comment-content">{{comment.comment}}</div>
             </li>
+            <h6 ng-show="comments.length===0">Esta obra no tiene comentarios</h6>
         </ul>
         <hr>
         <!-- Comment Form-->
