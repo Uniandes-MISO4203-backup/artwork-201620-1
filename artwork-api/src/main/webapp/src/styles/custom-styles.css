@@ -281,6 +281,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu{ display: block; }
 	li.span4 .project-details {width:260px;}
 }
 
+/*---------------------------ESTILOS GALERIA-------------------------*/
 .no-padding{
     padding:0;
 }
@@ -376,6 +377,67 @@ ul.nav li.dropdown:hover ul.dropdown-menu{ display: block; }
     align-items: center;
 }
 
+/*---------------------------FIN ESTILOS GALERIA-------------------------*/
+
+/*---------------------------ESTILOS DETALLE-------------------------*/
+.description{
+    height:100%;
+    overflow-y: auto;
+}
+.description-item{
+    margin-bottom:10px;
+    padding:10px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+.description-item h6{
+    font-size: 20px;
+    font-weight: bold;
+    margin:0;
+    margin-bottom:2px;
+}
+
+.description-item span{
+    font-size: 17px;
+}
+
+/*** Comments ***/
+.comments ul {margin:0px;}
+.comments ul li {
+	list-style: none;
+	padding: 20px;
+	background: #f8f8f8;
+	margin-bottom: 10px;
+	border-bottom: 1px dotted #a9a9a9;
+	border-top: 1px dotted #a9a9a9;
+}
+.comments ul li ul {margin-left:40px; padding-top: 20px;}
+.comments ul li ul li {
+	border-top: 1px dotted #a9a9a9;
+	border-bottom: none;
+	padding: 20px 20px;
+	margin-bottom:0px;
+}
+.comments ul li ul li:last-child {padding-bottom: 0px;}
+
+.comments ul li img {margin:0px 10px 10px 0px;}
+.comment-name {
+	font-family: "Oswald", sans-serif; 
+	font-weight: bold;
+}
+.comment-date {
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-style: italic;
+	clear: both;
+}
+.comment-content { clear:both; padding-top:10px; }
+.comment-form-container input,
+#contact-form input {margin-bottom: 12px;}
+.comment-form-container textarea,
+#contact-form textarea {height: 150px; width: 80%}
+.comment-form-container .btn,
+#contact-form .btn {margin-top: 12px;}
+/*---------------------------FIN ESTILOS DETALLE-------------------------*/
 /*.project-details {
 	background:#f8f8f8;
 	display: block;
@@ -561,45 +623,6 @@ ul.post-data li:last-child {padding-right: 0px;}
 .post-content {background: #f8f8f8; overflow: auto;}
 .post-body {padding: 20px;}
 .about-author img {float: left; margin-right: 20px;}
-
-/*** Comments ***/
-.comments ul {margin:0px;}
-.comments ul li {
-	list-style: none;
-	padding: 20px;
-	background: #f8f8f8;
-	margin-bottom: 40px;
-	border-bottom: 1px dotted #a9a9a9;
-	border-top: 1px dotted #a9a9a9;
-}
-.comments ul li ul {margin-left:40px; padding-top: 20px;}
-.comments ul li ul li {
-	border-top: 1px dotted #a9a9a9;
-	border-bottom: none;
-	padding: 20px 20px;
-	margin-bottom:0px;
-}
-.comments ul li ul li:last-child {padding-bottom: 0px;}
-
-.comments ul li img {margin:0px 10px 10px 0px;}
-.comment-name {
-	font-family: "Oswald", sans-serif; 
-	font-weight: normal;
-	text-transform:uppercase; 
-}
-.comment-date {
-	font-family:Georgia, "Times New Roman", Times, serif;
-	font-style: italic;
-	clear: both;
-}
-.comment-content { clear:both; padding-top:10px; }
-.comment-form-container input,
-#contact-form input {margin-bottom: 12px;}
-.comment-form-container textarea,
-#contact-form textarea {height: 150px; width: 80%}
-.comment-form-container .btn,
-#contact-form .btn {margin-top: 12px;}
-
 
 /**************************************
 / Sidebar
