@@ -57,6 +57,7 @@ public class PaymentPersistence extends CrudPersistence<PaymentEntity>{
         return q.getResultList();
     }
     
+   
     /**
      * Crea un nuevo Payment en la base de datos.
      *

@@ -102,6 +102,7 @@
                         controller: 'userPurchasesCtrl',
                         controllerAs: 'ctrl'
                     }
+                    
                 }
             });
         }]);

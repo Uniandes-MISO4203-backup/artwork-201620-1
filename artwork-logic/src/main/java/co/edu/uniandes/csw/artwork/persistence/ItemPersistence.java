@@ -23,6 +23,7 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.persistence;
 
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -78,4 +79,8 @@ public class ItemPersistence extends CrudPersistence<ItemEntity> {
         q.setParameter(CLIENT_ID, clientId);
         return q.getResultList();
     }
+    
+   
+
+    
 }

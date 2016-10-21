@@ -30,13 +30,31 @@ import uk.co.jemos.podam.common.PodamExclude;
 import javax.persistence.OneToMany;
 import java.util.List;
 import java.util.ArrayList;
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * @generated
  */
 @Entity
+@XmlRootElement
 public class ClientEntity extends BaseEntity implements Serializable {    
+
+ @Id
+ @GeneratedValue(strategy = GenerationType.IDENTITY)
+ @Basic(optional = false)
+ @Column(name = "ID")
+ private Long id;
+ @Size(max = 255)
+ @Column(name = "NAME")
+ private String name;
     
     @PodamExclude
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -52,6 +70,7 @@ public class ClientEntity extends BaseEntity implements Serializable {
      * @return colección wishList.
      * @generated
      */
+ @XmlTransient
     public List<ItemEntity> getWishList() {
         return wishList;
     }
@@ -72,6 +91,7 @@ public class ClientEntity extends BaseEntity implements Serializable {
      * @return colección payments.
      * @generated
      */
+ @XmlTransient
     public List<PaymentEntity> getPayments() {
         return payments;
     }
@@ -85,5 +105,53 @@ public class ClientEntity extends BaseEntity implements Serializable {
     public void setPayments(List<PaymentEntity> payments) {
         this.payments = payments;
     }  
+
+ public ClientEntity() {
+ }
+
+ public ClientEntity(Long id) {
+  this.id = id;
+ }
+
+ public Long getId() {
+  return id;
+ }
+
+ public void setId(Long id) {
+  this.id = id;
+ }
+
+ public String getName() {
+  return name;
+ }
+
+ public void setName(String name) {
+  this.name = name;
+ }
+
+ @Override
+ public int hashCode() {
+  int hash = 0;
+  hash += (id != null ? id.hashCode() : 0);
+  return hash;
+ }
+
+ @Override
+ public boolean equals(Object object) {
+  // TODO: Warning - this method won't work in the case the id fields are not set
+  if (!(object instanceof ClientEntity)) {
+   return false;
+  }
+  ClientEntity other = (ClientEntity) object;
+  if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+   return false;
+  }
+  return true;
+ }
+
+ @Override
+ public String toString() {
+  return "co.edu.uniandes.csw.artwork.entities.ClientEntity[ id=" + id + " ]";
+ }
     
 }

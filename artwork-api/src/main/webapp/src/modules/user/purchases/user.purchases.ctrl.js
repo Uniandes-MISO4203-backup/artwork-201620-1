@@ -6,8 +6,13 @@
 (function (ng) {
     var mod = ng.module('userModule');
 
-    mod.controller('userPurchasesCtrl', ['$scope',
-        function ($scope) {
+    mod.controller('userPurchasesCtrl', ['$scope','Restangular',
+        function ($scope,Restangular) {
+             
+         Restangular.all("/purchases").getList().then(function(response)
+         {console.log(JSON.stringify(response.items));});
+            
+        
             //Asignar resultado de compras de servicio
             $scope.purchases=[{items:[{a:1},{a:2},{a:3},{a:4}]},{items:[{a:5},{a:6},{a:7},{a:8}]},{items:[{},{},{},{}]},{items:[{},{},{},{}]}, {items:[{},{},{},{}]}]; 
             $scope.states = new Array($scope.purchases.length).fill(false);;
