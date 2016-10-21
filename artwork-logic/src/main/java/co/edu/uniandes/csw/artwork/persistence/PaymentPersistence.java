@@ -73,4 +73,5 @@ public class PaymentPersistence extends CrudPersistence<PaymentEntity>{
         q.executeUpdate();
         return entity;
     }
+   
 }

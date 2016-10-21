@@ -9,8 +9,9 @@
     mod.controller('userPurchasesCtrl', ['$scope','Restangular',
         function ($scope,Restangular) {
              
-         Restangular.all("/purchases").getList().then(function(response)
-         {console.log(JSON.stringify(response.items));});
+         Restangular.all("/purchases").getList().then(function(response){
+           console.log(JSON.stringify(response));
+          });
             
         
             //Asignar resultado de compras de servicio

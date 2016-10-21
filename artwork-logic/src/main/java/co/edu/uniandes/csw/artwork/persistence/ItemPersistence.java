@@ -28,6 +28,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import co.edu.uniandes.csw.artwork.entities.ItemEntity;
+import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
 import co.edu.uniandes.csw.crud.spi.persistence.CrudPersistence;
 import java.util.List;
 import javax.persistence.TypedQuery;
@@ -79,7 +80,7 @@ public class ItemPersistence extends CrudPersistence<ItemEntity> {
         q.setParameter(CLIENT_ID, clientId);
         return q.getResultList();
     }
-    
+   
    
 
     
