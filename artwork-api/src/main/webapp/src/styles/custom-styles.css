@@ -432,9 +432,9 @@ ul.nav li.dropdown:hover ul.dropdown-menu{ display: block; }
 }
 .comment-content { clear:both; padding-top:10px; }
 .comment-form-container input,
-#contact-form input {margin-bottom: 12px;}
+#contact-form input {margin-bottom: 5px;}
 .comment-form-container textarea,
-#contact-form textarea {height: 150px; width: 80%}
+#contact-form textarea {height: 150px}
 .comment-form-container .btn,
 #contact-form .btn {margin-top: 12px;}
 /*---------------------------FIN ESTILOS DETALLE-------------------------*/

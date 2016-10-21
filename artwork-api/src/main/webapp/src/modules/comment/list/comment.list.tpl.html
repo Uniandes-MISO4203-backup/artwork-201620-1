@@ -41,20 +41,15 @@ and open the template in the editor.
                 <div class="comment-content">{{comment.comment}}</div>
             </li>
         </ul>
-
+        <hr>
         <!-- Comment Form-->
         <div class="comment-form-container">
-            <h6>Leave a Comment</h6>
-
+            <h3>Comentar</h3>
             <form id="comment-form">
-                <div class="input-prepend">
-                    <span class="add-on"><i class="icon-envelope"></i></span>
-                    <input type="text" class="span4" id="prependedInput" ng-model="comment.email" placeholder="Email Address">
-                </div>
-                <div class="form-group">
-                    <textarea class="span6" id="comment" ng-model="comment.description"></textarea>
-                </div>
-                <button type="submit" id="save"  class="btn btn-inverse" ng-click="submitComment(comment)">Submit</button>
+                <span class="add-on"><i class="icon-envelope"></i></span>
+                <input type="text" class="form-control span4" id="prependedInput" ng-model="comment.email" placeholder="Email Address">
+                <textarea class="form-control span4" id="comment" ng-model="comment.description"></textarea>
+                <button type="submit" id="save"  class="btn btn-default" ng-click="submitComment(comment)">Enviar</button>
             </form>
 
         </div>

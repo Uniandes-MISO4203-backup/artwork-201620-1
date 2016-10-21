@@ -23,6 +23,8 @@
                 $scope.commentSent.artwork = $scope.artwork.id;
                 comments.post(angular.toJson($scope.commentSent), {artworkId: $scope.artwork.id}).then(function () {
                     getAllComments($scope.artwork.id);
+                    $scope.comment.email = "";
+                    $scope.comment.description = "";
                 });
             };
             $scope.addToCart = function () {
