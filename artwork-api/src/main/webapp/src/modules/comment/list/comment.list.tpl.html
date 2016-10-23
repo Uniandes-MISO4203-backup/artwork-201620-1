@@ -4,143 +4,130 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body class="container">
-        <div class="span12 gallery-single">
-            <div class="row">
-                <h2>{{artName}}</h2>
-                <div class="col-md-7">
-                    <img  ng-src="{{artImage}}" class="align-left thumbnail" alt="image" style="width: 100%;height: 100%;">
-                    <a href="#/artworkGallery" class="pull-left"><i class="icon-arrow-left"></i>Back to Gallery</a>
-                </div>
-                <div class="col-md-3">
-                    <p class="lead">{{artName}}.</p>
 
-                    <ul class="project-info" style="padding-left: 0px;">
-                        <li><h6>Artist:</h6>{{nameArtist}}</li>
-                        <li><h6>Price:</h6>${{artPrice}}</li>
-                        <li><h6>Width</h6>{{artWidth}} cm</li>
-                        <li><h6>Height</h6>{{artHeight}} cm</li>
-                    </ul>
 
-                    
-                </div>
-                <div class="col-md-2">
-                   <label for="quantity">Cantidad:</label>
-                   <input type="number" class="form-control" id="quantity" ng-model="quantity">
-                   <button type="submit" class="btn btn-default" ng-disabled="cartAdded" ng-click="addToCart()">Agregar a Carrito</button> 
-                </div>
-            </div>
-
-        </div><!-- End gallery-single-->
-        <div class="row">
-            <section class="comments">
-                <h4 class="title-bg"><a name="comments"></a>Comentarios</h4>
-               <ul style="padding-left: 0px;">
-                    <li ng-repeat="comment in comments">
-                        <!--<a href="#" class="avatar-icon"/>-->
-                        <span class="comment-name">{{comment.name}}</span>
-                        <!--<span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>-->
-                        <div class="comment-content">{{comment.comment}}</div>
-                    </li>
-               </ul>
-            
-                <!-- Comment Form-->
-                <div class="comment-form-container">
-                    <h6>Leave a Comment</h6>
-                    
-                    <form id="comment-form">
-                        <div class="input-prepend">
-                            <span class="add-on"><i class="icon-envelope"></i></span>
-                            <input type="text" class="span4" id="prependedInput" ng-model="comment.email" placeholder="Email Address">
-                        </div>
-                        <div class="form-group">
-                            <textarea class="span6" id="comment" ng-model="comment.description"></textarea>
-                       </div>
-                        <button type="submit" id="save"  class="btn btn-inverse" ng-click="submitComment(comment)">Submit</button>
-                    </form>
-                    
-                </div>
-        </section><!-- Close comments section-->
-                    
-                    <!--
-                   <label for="quantity">Comentarios:</label>
-                    <div ng-repeat="comment in comments">
-                        <span>{{comment.name}}</span>
-                        <p>{{comment.comment}}</p>
-                    </div> 
-                    -->
-            <!--<div class="col-md-12" style="overflow-y: scroll; padding: 5%; height: 200px;">
-                <ul class="unstyled">
-                    <li ng-repeat="comment in comments">
-                        {{comment.comment}} - {{comment.name}}
-                    </li> 
-                </ul>
-            </div>-->
+<div class="col-sm-12">
+    <ul class="pager">
+        <li class="previous"><a href="#/artworkGallery"><span aria-hidden="true">&larr;</span> Regresar a galeria</a></li>
+    </ul>
+    <h1>{{artwork.name}} - {{artwork.artist.name}}</h2>
+</div>
+<div class="col-sm-12 no-padding" style="height:400px;">
+    <div class="col-md-4 no-padding">
+        <div class="col-sm-offset-2 col-sm-8 no-padding">
+            <img class="img-responsive" ng-src="{{artwork.image}}" alt="image" style="height:340px;margin:auto;">
         </div>
-        <!--
-        <div class="col-md-6">
-            <form>
-                <div class="form-group">
-                    <label for="email">Email address:</label>
-                    <input type="email" class="form-control" id="email" ng-model="comment.email">
-                </div>
-                <div class="form-group">
-                    <label for="comment">comment here:</label>
-                    <input type="text" class="form-control" id="comment" ng-model="comment.description">
-                </div>
+    </div>
+    <div class="col-md-6 well" style="height:90%;">
+        <ul class="list-unstyled description">
+            <li class="description-item"><h6>Descripción</h6><span>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</span></li>
+            <li class="description-item"><h6>Precio</h6><span>${{artwork.price}}</span></li>
+            <li class="description-item"><h6>Dimensiones</h6><span>{{artwork.width}} cm X {{artwork.height}} cm</span></li>
+        </ul>
+    </div>
+    <div class="col-md-2">
+        <h4><i class="glyphicon glyphicon-shopping-cart"></i> Carrito</h4>
+        <input type="number" class="form-control" id="quantity" ng-model="quantity" placeholder="# obras a pedir">
+        <button type="submit" class="btn btn-default" ng-disabled="cartAdded" ng-click="addToCart()">Agregar</button> 
+    </div>
+</div>
 
-                <button type="submit" id="save" class="btn btn-default" ng-click="submitComment(comment)">Submit</button>
-            </form>
-        </div>
-        -->
-        
-        <!--
-        <div ><h1>{{artName}}</h1></div>
-        <div class="caption row">
-            <div class='col-md-4'>
-                <div class="well " ><div align="center"><img src="{{artImage}}" alt="Imagen"  style=" height: 50%; width: 70% " /></div></div>
-                <a ui-sref="qualification"  target="_blank"><p>Calificar</p></a>
-            </div>
-            <div class="col-md-6">
-                <form>
-                    <div class="form-group">
-                        <label for="email">Email address:</label>
-                        <input type="email" class="form-control" id="email" ng-model="comment.email">
-                    </div>
-                    <div class="form-group">
-                        <label for="comment">comment here:</label>
-                        <input type="text" class="form-control" id="comment" ng-model="comment.description">
-                    </div>
-
-                    <button type="submit" id="save" class="btn btn-default" ng-click="submitComment(comment)">Submit</button>
-                </form>
-            </div>
-            <div class="col-md-2">
-               <label for="quantity">Cantidad:</label>
-               <input type="number" class="form-control" id="quantity" ng-model="quantity">
-               <button type="submit" class="btn btn-default" ng-disabled="cartAdded" ng-click="addToCart()">Agregar a Carrito</button> 
-            </div>
-        </div>
+<div class="col-md-12">
+    <section class="comments">
+        <h3>Comentarios</h3>
+        <ul class="list-unstyled">
+            <li ng-repeat="comment in comments">
+                <span class="comment-name">{{comment.name}}</span>
+                <div class="comment-content">{{comment.comment}}</div>
+            </li>
+            <h6 ng-show="comments.length===0">Esta obra no tiene comentarios</h6>
+        </ul>
         <hr>
-        <div class="caption row">
+        <!-- Comment Form-->
+        <div class="comment-form-container">
+            <h3>Comentar</h3>
+            <form id="comment-form">
+                <span class="add-on"><i class="icon-envelope"></i></span>
+                <input type="text" class="form-control span4" id="prependedInput" ng-model="comment.email" placeholder="Email Address">
+                <textarea class="form-control span4" id="comment" ng-model="comment.description"></textarea>
+                <button type="submit" id="save"  class="btn btn-default" ng-click="submitComment(comment)">Enviar</button>
+            </form>
 
-            <div class="col-md-12" style="overflow-y: scroll; padding: 5%; height: 200px;">
-                <ul class="unstyled">
-                    <li ng-repeat="comment in comments">
-                        {{comment.comment}} - {{comment.name}}
-                    </li> 
-                </ul>
-
-
-            </div>
         </div>
-        -->
-        <div ui-view="qualificationDialogView" autoscroll="false"></div>
-    </body>
-</html>
+    </section><!-- Close comments section-->
+
+    <!--
+   <label for="quantity">Comentarios:</label>
+    <div ng-repeat="comment in comments">
+        <span>{{comment.name}}</span>
+        <p>{{comment.comment}}</p>
+    </div> 
+    -->
+    <!--<div class="col-md-12" style="overflow-y: scroll; padding: 5%; height: 200px;">
+        <ul class="unstyled">
+            <li ng-repeat="comment in comments">
+                {{comment.comment}} - {{comment.name}}
+            </li> 
+        </ul>
+    </div>-->
+</div>
+<!--
+<div class="col-md-6">
+    <form>
+        <div class="form-group">
+            <label for="email">Email address:</label>
+            <input type="email" class="form-control" id="email" ng-model="comment.email">
+        </div>
+        <div class="form-group">
+            <label for="comment">comment here:</label>
+            <input type="text" class="form-control" id="comment" ng-model="comment.description">
+        </div>
+
+        <button type="submit" id="save" class="btn btn-default" ng-click="submitComment(comment)">Submit</button>
+    </form>
+</div>
+-->
+
+<!--
+<div ><h1>{{artName}}</h1></div>
+<div class="caption row">
+    <div class='col-md-4'>
+        <div class="well " ><div align="center"><img src="{{artImage}}" alt="Imagen"  style=" height: 50%; width: 70% " /></div></div>
+        <a ui-sref="qualification"  target="_blank"><p>Calificar</p></a>
+    </div>
+    <div class="col-md-6">
+        <form>
+            <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email" ng-model="comment.email">
+            </div>
+            <div class="form-group">
+                <label for="comment">comment here:</label>
+                <input type="text" class="form-control" id="comment" ng-model="comment.description">
+            </div>
+
+            <button type="submit" id="save" class="btn btn-default" ng-click="submitComment(comment)">Submit</button>
+        </form>
+    </div>
+    <div class="col-md-2">
+       <label for="quantity">Cantidad:</label>
+       <input type="number" class="form-control" id="quantity" ng-model="quantity">
+       <button type="submit" class="btn btn-default" ng-disabled="cartAdded" ng-click="addToCart()">Agregar a Carrito</button> 
+    </div>
+</div>
+<hr>
+<div class="caption row">
+
+    <div class="col-md-12" style="overflow-y: scroll; padding: 5%; height: 200px;">
+        <ul class="unstyled">
+            <li ng-repeat="comment in comments">
+                {{comment.comment}} - {{comment.name}}
+            </li> 
+        </ul>
+
+
+    </div>
+</div>
+-->
+<div ui-view="qualificationDialogView" autoscroll="false"></div>
+

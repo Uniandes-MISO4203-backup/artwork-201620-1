@@ -24,8 +24,8 @@ SOFTWARE.
 (function (ng) {
     
     var mod = ng.module("artworkModule");
-    mod.controller("artworkListCtrl", ["$rootScope","$scope", '$state', 'artworks', '$stateParams','Restangular',
-        function ($rootScope, $scope, $state, artworks, $params,Restangular) {
+    mod.controller("artworkListCtrl", ["$rootScope","$scope", '$state', 'artworks', '$stateParams','Restangular','itemModel','client',
+        function ($rootScope, $scope, $state, artworks, $params,Restangular, itemModel, client) {
             $scope.records = artworks;
 
             //Paginación
@@ -86,6 +86,14 @@ SOFTWARE.
 
             this.pageChanged = function () {
                 $state.go('artworkList', {page: this.currentPage});
+            };
+            
+            $scope.addToCart = function (artwork) {
+                itemModel['name'] = artwork.name;
+                itemModel['qty'] = 1;
+                itemModel['artwork'] = artwork;
+                client.post("shopping/cart", JSON.stringify(itemModel));
+                alert("Obra agregada a carrito");
             };
 
             $scope.actions = {

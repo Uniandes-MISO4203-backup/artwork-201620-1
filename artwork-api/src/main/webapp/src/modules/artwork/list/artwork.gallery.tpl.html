@@ -1,60 +1,90 @@
 <!DOCTYPE html>
+<ul class="nav nav-tabs nav-justified" role="tablist">
+    <li role="presentation" class="active"><a href="#ultimas" role="tab" data-toggle="tab" style="padding:0"><h1 class="showcase-title">Últimas obras agregadas</h1></a></li>
+</ul>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="ultimas">
+        <div id="carousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel" data-slide-to="1"></li>
+                <li data-target="#carousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div ng-repeat="artwork in records" class="item" ng-class="{'active':$index===0}">
+                    <img class="img-responsive" ng-src="{{artwork.image}}" alt="First slide">
+                </div>
+            </div>
+            <a class="left carousel-control" href="#carousel" role="button" ng-non-bindable data-slide="prev">
+                <span class="icon-prev" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel" role="button" ng-non-bindable data-slide="next">
+                <span class="icon-next" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
+<h1 class="showcase-title">Galería</h1>
 <div class="list">            
     <div ng-if="true" class="col-md-2 well" >
-        <h4>Categorías</h4>
-        <div class="row" style="display:inline-flex">
-            <input type="text" class="col-md-8 form-control" ng-model="artistInput">
-            <button class="col-md-4 btn-default" ng-click="filtrarPorArtista(artistInput)">Filtrar</button>
+        <div class="col-sm-12 no-padding">
+            <h4 class="col-sm-10">Categorías</h4>
+            <h4 class="col-sm-2 no-padding"><a ng-click="filtrar('')"><i class="glyphicon glyphicon-repeat"></i></a></h4>
         </div>
-        <div class="row">
-            <span style="cursor: pointer" class="glyphicon glyphicon-repeat" ng-click="filtrar('')"></span>
-            <ul style="list-style:none">
-                <li ng-repeat="category in categorys"><a ng-click="filtrar(category.id)" style="cursor: pointer">{{category.name}}</a></li>
-            </ul>
-        </div>       
+        <div style="display:inline-flex; margin-bottom:15px;">
+            <input type="text" class="col-md-8 form-control" ng-model="artistInput">
+            <button class="col-md-4 btn btn-default" ng-click="filtrarPorArtista(artistInput)">Filtrar</button>
+        </div>
+        <div class="list-group">
+            <button ng-repeat="category in categorys" ng-click="filtrar(category.id)" type="button" class="list-group-item">{{category.name}}</button>
+        </div>      
     </div>
-    <div class="col-md-10">
+    <div class="col-md-10 well">
         <ul class="col-sm-12 list-unstyled">
-            <li class="col-sm-offset-1 col-sm-3 artwork no-padding" ng-repeat="artwork in records" style="position:relative">
-                <a ui-sref="comment({artworkId:artwork.id})">
-                    <img class="img-responsive" ng-src="{{artwork.image}}" alt="{{artwork.name}}">
-                </a>   
-                <div class="col-sm-12 detail no-padding">
-                    <span class="col-sm-8 no-padding"><a ui-sref="comment({artworkId:artwork.id})">{{artwork.name}}</a></span>
-                    <div class="col-sm-4 icons no-padding">
-                        <a href="{{artwork.image}}" class="col-sm-6 no-padding"><i class="glyphicon glyphicon-search"></i></a>
-                        <a ui-sref="comment({artworkId:artwork.id})" class="col-sm-6 no-padding"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+            <li class="col-sm-4 no-padding" ng-repeat="artwork in records" style="position:relative">
+                <div class="col-sm-offset-2 col-sm-8 no-padding artwork">
+                    <a ui-sref="comment({artworkId:artwork.id})">
+                        <img class="img-responsive" ng-src="{{artwork.image}}" alt="{{artwork.name}}">
+                    </a>   
+                    <div class="col-sm-12 detail no-padding">
+                        <span class="col-sm-8 no-padding"><a ui-sref="comment({artworkId:artwork.id})">{{artwork.name}}</a></span>
+                        <div class="col-sm-4 icons no-padding">
+                            <a href="{{artwork.image}}" class="col-sm-6 no-padding"><i class="glyphicon glyphicon-search"></i></a>
+                            <a ng-click='addToCart(artwork)' class="col-sm-6 no-padding"><i class="glyphicon glyphicon-shopping-cart"></i></a>
+                        </div>
                     </div>
                 </div>
             </li>
         </ul>
-            
-            
-            <!--
-            <div ng-repeat="artwork in records">
-            <div style="box-shadow: 2px 2px 5px gray; border-radius: 5px;margin: 5px" class="col-md-4 col-sm-6 col-lg-3 well">
-                <div class="col-md-12">
-                    <div class="img-thumbnail" >
-                        <a ui-sref="comment({artworkId:artwork.id})"  target="_blank"><img style="width: 250px;height: 250px" class="img-responsive" ng-src="{{artwork.image}}" alt="{{artwork.name}}"></a>
-                    </div>
-                </div>
-                <div class="caption" >
-                    <p><strong>Name: </strong> {{artwork.name}}</p>
-                    <p><strong>Price: </strong> {{artwork.price| currency}}</p>              
-                    <p><strong>Width: </strong> {{artwork.width}}cm</p>
-                    <p><strong>Height: </strong> {{artwork.height}}cm</p>    
-                    <p><strong>Artista: </strong><a ui-sref="artistDetail({artistId:artwork.artist.id})" >{{ artwork.artist.name }}</a></p>
-                </div>
-                <div ng-if="isArtworkNotQualificated(artwork.id)">                    
-                    <a ui-sref="qualificationNew({artworkId:artwork.id})" ><p>Calificar</p></a>
-                </div>
-                <div>
-                    <p><strong>Calificaciones</strong></p>
-                    <ul style="list-style:none">                
-                        <li ng-repeat="qualification in getArtworkQualifications(artwork.id)" >{{qualification.userClient}} : {{qualification.qualification}}</li>
-                    </ul>
+
+
+        <!--
+        <div ng-repeat="artwork in records">
+        <div style="box-shadow: 2px 2px 5px gray; border-radius: 5px;margin: 5px" class="col-md-4 col-sm-6 col-lg-3 well">
+            <div class="col-md-12">
+                <div class="img-thumbnail" >
+                    <a ui-sref="comment({artworkId:artwork.id})"  target="_blank"><img style="width: 250px;height: 250px" class="img-responsive" ng-src="{{artwork.image}}" alt="{{artwork.name}}"></a>
                 </div>
             </div>
-        </div>    -->        
+            <div class="caption" >
+                <p><strong>Name: </strong> {{artwork.name}}</p>
+                <p><strong>Price: </strong> {{artwork.price| currency}}</p>              
+                <p><strong>Width: </strong> {{artwork.width}}cm</p>
+                <p><strong>Height: </strong> {{artwork.height}}cm</p>    
+                <p><strong>Artista: </strong><a ui-sref="artistDetail({artistId:artwork.artist.id})" >{{ artwork.artist.name }}</a></p>
+            </div>
+            <div ng-if="isArtworkNotQualificated(artwork.id)">                    
+                <a ui-sref="qualificationNew({artworkId:artwork.id})" ><p>Calificar</p></a>
+            </div>
+            <div>
+                <p><strong>Calificaciones</strong></p>
+                <ul style="list-style:none">                
+                    <li ng-repeat="qualification in getArtworkQualifications(artwork.id)" >{{qualification.userClient}} : {{qualification.qualification}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>    -->        
     </div>
 </div> 
