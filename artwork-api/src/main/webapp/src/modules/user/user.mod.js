@@ -73,7 +73,7 @@
                  clients:['Restangular','$scope',function(r,$scope){
                    $scope.clients=r.all("clients").getList();
                    return r.all("clients").getList();
-                  }]},
+                  }],
                  items:['Restangular','$scope',function(r,$scope){
                    return r.all("/payments?clientsId="+$scope.clients[0].id).getList();
                  }]
