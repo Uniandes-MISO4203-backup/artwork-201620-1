@@ -220,7 +220,12 @@
                                 artworks[i].artistId = artist.id;
                             }
                             return artworks;
-                        }]
+                        }],
+                    client:['Restangular', '$stateParams', function (r) {
+                        return r.all("clients").getList().then(function(list){
+                            return list[0];
+                        });
+                    }]
                 }
             });
             $sp.state('changePassword', {
