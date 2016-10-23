@@ -6,20 +6,22 @@
 (function (ng) {
     var mod = ng.module('userModule');
 
-    mod.controller('userPurchasesCtrl', ['$scope','Restangular',
-        function ($scope,Restangular) {
+    mod.controller('userPurchasesCtrl', ['$scope','Restangular','$stateParams','clients','items',
+        function ($scope,Restangular,$stateParams,clients,items) {
+     console.log(JSON.stringify(items));
+     
+   
+  
+          
              
-         Restangular.all("/purchases").getList().then(function(response){
-           console.log(JSON.stringify(response));
-          });
-            
-        
+   //  console.log(JSON.stringify("viene de shopping cart :"+$scope.purchases));
+     
             //Asignar resultado de compras de servicio
-            $scope.purchases=[{items:[{a:1},{a:2},{a:3},{a:4}]},{items:[{a:5},{a:6},{a:7},{a:8}]},{items:[{},{},{},{}]},{items:[{},{},{},{}]}, {items:[{},{},{},{}]}]; 
-            $scope.states = new Array($scope.purchases.length).fill(false);;
-            $scope.changeState = function(index){
-                $scope.states[index] = !$scope.states[index];
-            };
+         //   $scope.purchases=[{items:[{a:1},{a:2},{a:3},{a:4}]},{items:[{a:5},{a:6},{a:7},{a:8}]},{items:[{},{},{},{}]},{items:[{},{},{},{}]}, {items:[{},{},{},{}]}]; 
+          //  $scope.states = new Array($scope.purchases.length).fill(false);
+           // $scope.changeState = function(index){
+             //   $scope.states[index] = !$scope.states[index];
+           // };
         }
     ]);
 })(window.angular);

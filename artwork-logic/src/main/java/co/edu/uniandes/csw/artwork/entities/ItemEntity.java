@@ -51,6 +51,8 @@ public class ItemEntity extends BaseEntity implements Serializable {
     @ManyToOne
     private ProductEntity product;
     
+   
+    
 
     /**
      * Obtiene el atributo qty.
@@ -151,4 +153,24 @@ public class ItemEntity extends BaseEntity implements Serializable {
     public void setProduct(ProductEntity product) {
         this.product = product;
     }    
+
+ /**
+  * @return the payment
+  */
+ 
+
+ /**
+  * @param payment the payment to set
+  */
+ 
+
+ /**
+  * @return the payment
+  */
+ 
+
+ /**
+  * @param payment the payment to set
+  */
+
 }

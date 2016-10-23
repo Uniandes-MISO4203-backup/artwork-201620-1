@@ -43,8 +43,13 @@ public class PaymentDetailDTO extends PaymentDTO{
         }
         if (entity.getItems()!=null){
             this.items = new ArrayList<>();
-            entity.getItems().stream().forEach(item->items.add(new ItemDetailDTO(item)));
-        }
+            for(ItemEntity item : entity.getItems()){
+           this.items.add(new ItemDetailDTO(item));
+            }
+             
+         //   entity.getItems().stream().forEach(item->items.add(new ItemDetailDTO(item)));
+       }
+       
     }
 
     /**

@@ -31,6 +31,7 @@ import co.edu.uniandes.csw.artwork.entities.ItemEntity;
 import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
 import co.edu.uniandes.csw.crud.spi.persistence.CrudPersistence;
 import java.util.List;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -80,8 +81,12 @@ public class ItemPersistence extends CrudPersistence<ItemEntity> {
         q.setParameter(CLIENT_ID, clientId);
         return q.getResultList();
     }
-   
-   
+    public List<ItemEntity> getItemsByPayment(Long paymentid) {
+        TypedQuery<ItemEntity> q = em.createQuery("select p from PaymentEntity p join p.items  i where(p.id= :paymentid)", ItemEntity.class);
+        q.setParameter("paymentid", paymentid);
+        
+        return q.getResultList();
+    }
 
-    
 }
+

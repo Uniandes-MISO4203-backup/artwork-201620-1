@@ -5,8 +5,12 @@
  */
 package co.edu.uniandes.csw.artwork.resources;
 
+import co.edu.uniandes.csw.artwork.api.IItemLogic;
 import co.edu.uniandes.csw.artwork.api.IPaymentLogic;
+import co.edu.uniandes.csw.artwork.dtos.detail.ItemDetailDTO;
 import co.edu.uniandes.csw.artwork.dtos.detail.PaymentDetailDTO;
+import co.edu.uniandes.csw.artwork.entities.ItemEntity;
+
 import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
 import co.edu.uniandes.csw.auth.provider.StatusCreated;
 import java.util.ArrayList;
@@ -30,11 +34,12 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author s.florez10
  */
-@Path("/payments")
+ @Path("/payments")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class PaymentResource {
     
+    @Inject private IItemLogic itemLogic;
     @Inject private IPaymentLogic paymentLogic;
     @Context private HttpServletResponse response;
     @QueryParam("page") private Integer page;
@@ -49,6 +54,7 @@ public class PaymentResource {
      * @generated
      */
     private List<PaymentDetailDTO> listEntity2DTO(List<PaymentEntity> entityList){
+     
         List<PaymentDetailDTO> list = new ArrayList<>();
         for (PaymentEntity entity : entityList) {
             list.add(new PaymentDetailDTO(entity));
@@ -65,10 +71,12 @@ public class PaymentResource {
      */
     @GET
     public List<PaymentDetailDTO> getPayments() {
+        
         if (page != null && maxRecords != null) {
             this.response.setIntHeader("X-Total-Count", paymentLogic.countPayments());
-            return listEntity2DTO(paymentLogic.getPayments(page, maxRecords, clientsId));
+           return listEntity2DTO(paymentLogic.getPayments(page, maxRecords, clientsId));
         }
+    
         return listEntity2DTO(paymentLogic.getPayments(clientsId));
     }
 
@@ -99,6 +107,7 @@ public class PaymentResource {
     @POST
     @StatusCreated
     public PaymentDetailDTO createPayment(PaymentDetailDTO dto) {
+      
         return new PaymentDetailDTO(paymentLogic.createPayment(clientsId, dto.toEntity()));
     }
 
