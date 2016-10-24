@@ -28,7 +28,13 @@ SOFTWARE.
         name: 'item',
         displayName: 'Item',
 		url: 'wishList',
-        fields: {            name: {
+        fields: {
+            id: {
+                displayName: 'Id',
+                type: 'Long',
+                required: false
+            },
+            name: {
                 displayName: 'Name',
                 type: 'String',
                 required: true

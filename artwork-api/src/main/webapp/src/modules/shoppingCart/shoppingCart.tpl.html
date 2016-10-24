@@ -25,25 +25,31 @@ SOFTWARE.
 <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)">{{alert.msg}} </alert>
 <div class="col-md-10">
     <table class="table table-bordered table-striped">
-   <tr>
-    <th>Pieza</th>
-    <th>Cantidad</th>
-    <th>Precio Unitario</th>
-    <th>Total</th>
-  </tr>
-  <tr ng-repeat="item in purchase.items">
-    <td>{{item.name}}</td>
-    <td>{{item.qty}}</td>
-    <td>${{item.artwork.price}}</td>
-    <td>${{item.qty*item.artwork.price}}</td>
-  </tr>
-</table>
+        <tr>
+            <th>Pieza</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="item in purchase.items">
+            <td>{{item.name}}</td>
+            <td>{{item.qty}}</td>
+            <td>${{item.artwork.price}}</td>
+            <td>${{item.qty * item.artwork.price}}</td>
+            <td>
+                <button type="button" class="btn btn-default" ng-click="deleteFromCart(item)">
+                    <span class="glyphicon glyphicon-trash"></span> Eliminar
+                </button>
+            </td>
+        </tr>
+    </table>
 </div>
 <div class="col-md-2">
     <div class="col-md-2">
         <div><b>Subtotal:</b> ${{subtotal()}} </div>
-        <div><b>Impuestos:</b> ${{subtotal()*0.16}}</div>
-        <div><b>Total:</b> ${{subtotal()*(1.16)}}</div>
+        <div><b>Impuestos:</b> ${{subtotal() * 0.16}}</div>
+        <div><b>Total:</b> ${{subtotal() * (1.16)}}</div>
     </div>
     <button ng-disabled="purchase.items.length === 0" class="col-md-12 btn btn-info" ng-click="makePurchase()">comprar</button>
 </div>
