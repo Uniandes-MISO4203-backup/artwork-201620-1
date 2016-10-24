@@ -7,28 +7,32 @@ and open the template in the editor.
 
 <h1>Mis compras</h1>
 <div class="col-md-12" >
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th></th>   
-            <th>Referencia</th>
-            <th>Fecha</th>
-            <th>Total</th>
-            <th>refresh</th>
-            
-        </tr>
-    </thead>  
-    <tbody ng-repeat="purchase in purchases">
-        <tr>
-            <td><a ng-click="changeState($index)"><i ng-class="{'glyphicon glyphicon-plus-sign':!states[$index],'glyphicon glyphicon-minus-sign' : states[$index]}"></i></a></td> 
-            <td></td>
-            <td>{{purchase.date}}</td>
-            <td>$80.000</td>
-        </tr>
-        <tr ng-show="states[$parent.$index]" ng-repeat="item in purchase.items">
-            <td>{{$index}}</td>
-        </tr>
-    </tbody>
-  
-  
-</table>
+ <table class="table table-bordered table-striped">
+  <thead>
+   <tr>
+    <th></th>   
+    <th>Referencia</th>
+    <th>Fecha</th>
+    <th>Total</th>
+
+   </tr>
+  </thead>  
+  <tbody ng-repeat="purchase in purchases">
+   <tr ng-if="purchase.items.length > 0">
+
+    <td><a ng-click="changeState($index)"><i ng-class="{'glyphicon glyphicon-plus-sign':!states[$index],'glyphicon glyphicon-minus-sign' : states[$index]}"></i></a></td> 
+
+    <td>#000000{{purchase.id}}</td>
+    <td>{{purchase.date}}</td>
+    <td>{{ getTotal(purchase) | currency}}</td>
+   </tr>
+   <tr ng-show="states[$parent.$index]" ng-repeat="item in purchase.items">
+    <td>{{$index}}</td>
+    <td><i>{{item.name}}</i></td>
+    <td><i>Cantidad : {{item.qty}}</i></td>
+    <td><i>{{item.artwork.price|currency}}</i></td>
+   </tr>
+  </tbody>
+
+
+ </table>

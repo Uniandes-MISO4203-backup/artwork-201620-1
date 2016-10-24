@@ -34,7 +34,7 @@ public interface IItemLogic {
     public ItemEntity createItem(Long clientid, ItemEntity entity);
     public ItemEntity updateItem(Long clientid, ItemEntity entity);
     public void deleteItem(Long id);
-    public List<ItemEntity> getItemsByPayment(Long paymentid);
+   
     public ItemEntity createItemInShoppingCart(Long clientid, ItemEntity entity);
     public List<ItemEntity> getShoppingCartItems(Long clientId);
 }

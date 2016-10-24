@@ -76,6 +76,7 @@ SOFTWARE.
                 logoutRedirectState: 'artworkGallery'
                 
                 
+                
             });
             auth.setRoles({
                 'client': [{

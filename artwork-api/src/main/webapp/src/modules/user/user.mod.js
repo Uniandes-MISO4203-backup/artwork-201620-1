@@ -22,104 +22,96 @@
  SOFTWARE.
  */
 (function (ng) {
-    var mod = ng.module('userModule', ['ngCrud', 'ui.router']);
+ var mod = ng.module('userModule', ['ngCrud', 'ui.router']);
 
-    mod.constant('userModel', {
-        name: 'user',
-        displayName: 'User',
-        url: 'users',
-        fields: {userName: {
-                displayName: 'UserName',
-                type: 'String',
-                required: true
-            }
-            , email: {
-                displayName: 'Email',
-                type: 'String',
-                required: true
-            }
-            , givenName: {
-                displayName: 'Name',
-                type: 'String',
-                required: true
-            }
-            , middleName: {
-                displayName: 'MiddleName',
-                type: 'String',
-                required: true
-            }
-            , surName: {
-                displayName: 'Roles',
-                type: 'String',
-                required: true
-            }
-        }
-    });
+ mod.constant('userModel', {
+  name: 'user',
+  displayName: 'User',
+  url: 'users',
+  fields: {userName: {
+    displayName: 'UserName',
+    type: 'String',
+    required: true
+   }
+   , email: {
+    displayName: 'Email',
+    type: 'String',
+    required: true
+   }
+   , givenName: {
+    displayName: 'Name',
+    type: 'String',
+    required: true
+   }
+   , middleName: {
+    displayName: 'MiddleName',
+    type: 'String',
+    required: true
+   }
+   , surName: {
+    displayName: 'Roles',
+    type: 'String',
+    required: true
+   }
+  }
+ });
 
-    mod.config(['$stateProvider',
-        function ($sp) {
-            var basePath = 'src/modules/user/';
-            $sp.state('user', {
-                url: '/users',
-                abstract: true,
-                views: {
-                    mainView: {
-                        templateUrl: basePath + 'user.tpl.html'
-                    }
-                },
-                resolve: {
-                 
-                 model:'userModel',
-                 clients:['Restangular','$scope',function(r,$scope){
-                   $scope.clients=r.all("clients").getList();
-                   return r.all("clients").getList();
-                  }],
-                 items:['Restangular','$scope',function(r,$scope){
-                   return r.all("/payments?clientsId="+$scope.clients[0].id).getList();
-                 }]
-                
-                
-          }
-                
-                 
-                     
-                
-            });
-            $sp.state('userChangePass', {
-                url: '/change',
-                parent: 'user',
-                views: {
-                    userView: {
-                        templateUrl: basePath + 'edit/user.changePassword.tpl.html',
-                        controller: 'userEditCtrl',
-                        controllerAs: 'ctrl'
-                    }
-                }
-            });
-            $sp.state('userData', {
-                url: '/data',
-                parent: 'user',
-                views: {
-                    userView: {
-                        templateUrl: basePath + 'data/user.data.tpl.html',
-                        controller: 'userDataCtrl',
-                        controllerAs: 'ctrl'
-                    }
-                }
-            });
-            $sp.state('userPurchases', {
-                url: '/purchases',
-                parent: 'user',
-                views: {
-                    userView: {
-                        templateUrl: basePath + 'purchases/user.purchases.tpl.html',
-                        controller: 'userPurchasesCtrl',
-                        controllerAs: 'ctrl'
-                    
-                    }
-                    
-                }
-            });
-        }]);
+ mod.config(['$stateProvider',
+  function ($sp) {
+   var basePath = 'src/modules/user/';
+   $sp.state('user', {
+    url: '/users',
+    abstract: true,
+    views: {
+     mainView: {
+      templateUrl: basePath + 'user.tpl.html'
+     }
+    },
+    resolve: {
+     model: 'userModel',
+     clients: ['Restangular', function (r) {
+       return r.all("clients").getList();
+      }],
+     items: ['Restangular', 'clients', function (r, clients) {
+       return r.all("/payments?clientsId=" + clients[0].id).getList();
+      }]
+    }
+   });
+   $sp.state('userChangePass', {
+    url: '/change',
+    parent: 'user',
+    views: {
+     userView: {
+      templateUrl: basePath + 'edit/user.changePassword.tpl.html',
+      controller: 'userEditCtrl',
+      controllerAs: 'ctrl'
+     }
+    }
+   });
+   $sp.state('userData', {
+    url: '/data',
+    parent: 'user',
+    views: {
+     userView: {
+      templateUrl: basePath + 'data/user.data.tpl.html',
+      controller: 'userDataCtrl',
+      controllerAs: 'ctrl'
+     }
+    }
+   });
+   $sp.state('userPurchases', {
+    url: '/purchases',
+    parent: 'user',
+    views: {
+     userView: {
+      templateUrl: basePath + 'purchases/user.purchases.tpl.html',
+      controller: 'userPurchasesCtrl',
+      controllerAs: 'ctrl'
+
+     }
+
+    }
+   });
+  }]);
 })(window.angular);
 

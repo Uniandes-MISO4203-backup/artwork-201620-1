@@ -153,12 +153,5 @@ public class ItemLogic implements IItemLogic {
         return persistence.getShoppingCartItems(clientId);
     }
 
- @Override
- public List<ItemEntity> getItemsByPayment(Long paymentid) {
-  return persistence.getItemsByPayment(paymentid); //To change body of generated methods, choose Tools | Templates.
- }
-
-
-
 
 }
