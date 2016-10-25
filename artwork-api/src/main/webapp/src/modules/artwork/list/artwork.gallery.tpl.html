@@ -13,7 +13,9 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div ng-repeat="artwork in latest" class="item" ng-class="{'active':$index===0}">
-                    <img class="img-responsive" ng-src="{{artwork.image}}" alt="First slide">
+                    <a ui-sref="comment({artworkId:artwork.id})">
+                        <img  class="img-responsive" ng-src="{{artwork.image}}" alt="First slide">
+                    </a>
                 </div>
             </div>
             <a class="left carousel-control" href="#carousel" role="button" ng-non-bindable data-slide="prev">
