@@ -45,4 +45,5 @@ public interface IArtworkLogic {
 
     public List<ArtworkEntity> getArtworksFromArtist(String artist);
     public List<QualificationEntity> getQualifications(Long artworkId);
+    public List<ArtworkEntity> getLatestArtworks();
 }

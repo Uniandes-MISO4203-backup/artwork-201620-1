@@ -90,6 +90,18 @@ public class RootArtworkResource {
     }
     
     /**
+     * Obtiene la lista de las ultimas obras registradas
+     *
+     * @return Colección de objetos de ArtworkDetailDTO
+     * @generated
+     */
+    @GET
+    @Path("latest")
+    public List<ArtworkDetailDTO> getLatestArtworks(){
+        return listEntity2DTO(artworkLogic.getLatestArtworks());
+    }
+    
+    /**
      * Obtiene la lista de los registros de Artwork por categoria.
      *
      * @param categoryid id de la categoria.
@@ -106,17 +118,17 @@ public class RootArtworkResource {
         return listEntity2DTO(artworkLogic.getArtworkByCategory(null,null,categoryid));
     }
     
+    /**
+     * Obtiene el artwork con id dado.
+     *
+     * @param artworkId id del artwork.
+     * @return instancia ArtworkDetailDTO.
+     * @generated
+     */
     @GET
     @Path("artwork/{artworkId: \\d+}")
     public ArtworkDetailDTO getArtwork(@PathParam("artworkId") Long artworkId) {
         ArtworkEntity entity = artworkLogic.getArtwork(artworkId);
         return new ArtworkDetailDTO(entity);
     }
-    
-//    @GET
-//    @Path("artwork/{artworkId}")
-//    public ArtworkDetailDTO getArtw(@PathParam("artworkId") Long artworkId) {
-//        ArtworkEntity entity = artworkLogic.getArtwork(artworkId);
-//        return new ArtworkDetailDTO(entity);
-//    }
 }
