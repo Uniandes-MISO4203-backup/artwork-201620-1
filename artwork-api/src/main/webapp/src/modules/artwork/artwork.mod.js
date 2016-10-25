@@ -225,6 +225,11 @@
                         return r.all("clients").getList().then(function(list){
                             return list[0];
                         });
+                    }],
+                    latest:['Restangular','model', function(r, model){
+                         return r.all(model.url).customGETLIST("latest").then(function(list){
+                             return list;
+                         });
                     }]
                 }
             });

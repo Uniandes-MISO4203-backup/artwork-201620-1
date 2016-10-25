@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -21,6 +22,7 @@ public class ArtworkDTO implements Serializable {
     private Long price;
     private Integer width;
     private Integer height;
+    private Date dateAdded;
 
     @PodamExclude
     private List<QualificationDTO> qualifications = new ArrayList<>();
@@ -37,7 +39,7 @@ public class ArtworkDTO implements Serializable {
             this.price = entity.getPrice();
             this.width = entity.getWidth();
             this.height = entity.getHeight();
-
+            this.dateAdded = entity.getDateAdded();
         }
     }
 
@@ -49,6 +51,7 @@ public class ArtworkDTO implements Serializable {
         entity.setPrice(this.getPrice());
         entity.setWidth(this.getWidth());
         entity.setHeight(this.getHeight());
+        entity.setDateAdded(this.getDateAdded());
         return entity;
     }
 
@@ -131,6 +134,14 @@ public class ArtworkDTO implements Serializable {
      */
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public Date getDateAdded() {
+        return dateAdded;
+    }
+
+    public void setDateAdded(Date dateAdded) {
+        this.dateAdded = dateAdded;
     }
 
 }

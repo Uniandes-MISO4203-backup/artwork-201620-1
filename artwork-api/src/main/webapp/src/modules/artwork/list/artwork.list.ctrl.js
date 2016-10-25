@@ -24,10 +24,10 @@ SOFTWARE.
 (function (ng) {
     
     var mod = ng.module("artworkModule");
-    mod.controller("artworkListCtrl", ["$rootScope","$scope", '$state', 'artworks', '$stateParams','Restangular','itemModel','client',
-        function ($rootScope, $scope, $state, artworks, $params,Restangular, itemModel, client) {
+    mod.controller("artworkListCtrl", ["$rootScope","$scope", '$state', 'artworks', '$stateParams','Restangular','itemModel','client','latest',
+        function ($rootScope, $scope, $state, artworks, $params,Restangular, itemModel, client, latest) {
             $scope.records = artworks;
-
+            $scope.latest = latest;
             //Paginación
             this.itemsPerPage = $params.limit;
             this.currentPage = $params.page;
