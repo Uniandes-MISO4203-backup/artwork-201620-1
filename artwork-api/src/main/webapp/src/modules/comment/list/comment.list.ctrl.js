@@ -5,9 +5,11 @@
  */
 (function (ng) {
     var mod = ng.module('commentModule');
-    mod.controller('commentListCtrl', ["$scope", 'comments', 'artwork', 'client', 'itemModel',
-        function ($scope, comments, artwork, client, itemModel) {
+    mod.controller('commentListCtrl', ["$scope", 'comments', 'artwork', 'client', 'itemModel', 'Restangular', "$rootScope",
+        function ($scope, comments, artwork, client, itemModel, Restangular, $rootScope) {
             $scope.artwork = artwork;
+            $scope.mean = 0;
+            $scope.qualifications = [];            
             console.log(artwork);
             var getAllComments = function (id) {
                 comments.customGET("", {artworkId: id}).then(function (response) {
@@ -36,8 +38,60 @@
                     $scope.cartAdded = true;
                 });
             };
+            
+            $scope.getArtworkQualificationsMean = function(){
+                var qual = [];
+                var mean = 0.0;
+                if($scope.qualifications.length>0){
+                    for(var i = 0; i < $scope.qualifications.length; i++ ){
+                        var calificacion = $scope.qualifications[i];
+                        if(calificacion.artwork.id===artwork.id){
+                            qual.push(calificacion);
+                            mean = mean + calificacion.qualification;
+                        }
+                    }
+                    mean = mean/$scope.qualifications.length;
+                }
+                //return qual;
+                return mean.toFixed(2);
+            };
+            
+            $scope.isArtworkNotQualificated = function(){
+                var userClient = $rootScope.usuario.$object.email;
+                for(var i = 0; i < $scope.qualifications.length; i++ ){
+                    var calificacion = $scope.qualifications[i];
+                    if(calificacion.artwork.id===$scope.artwork.id && calificacion.userClient===userClient){
+                        return false;
+                    }
+                }
+                return true;
+            };
+            
+            $scope.calificar = function() {
+                calificacionUsuario = {};
+                calificacionUsuario['qualification'] = $scope.ratingValue;
+                calificacionUsuario['userClient'] = $rootScope.usuario.$object.email;
+                calificacionUsuario['artworkId'] = artwork.id;               
+                Restangular.all("qualifications").customPOST({}, 'crear', calificacionUsuario, {}).then(function (rc) {
+                     console.log("Se añadio calificacion");
+                     $scope.getQualifications();
+                });
+            };
+            
+            $scope.getQualifications = function () {
+                Restangular.all("qualifications").customGET('').then(function (response) {
+                    if (response.length>0) {
+                        $scope.qualifications = response;
+                    }
+                });
+            };
+            
+            $scope.getQualifications();
+
+            $scope.maxValue = 5; // default test value
         }
     ]);
+            
 })(window.angular);
 
 

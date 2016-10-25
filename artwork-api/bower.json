@@ -4,7 +4,8 @@
     "dependencies": {
         "ng-crud": "^0.2.0",
         "csw-ng-auth": "^0.1.0",
-        "angular-ui-router": "~0.2.15"
+        "angular-ui-router": "~0.2.15",
+        "font-awesome": "fontawesome#^4.6.3"
     },
     "overrides": {
         "bootstrap": {
@@ -13,9 +14,16 @@
                 "dist/css/bootstrap.css",
                 "dist/js/bootstrap.js"
             ]
-        }
+        },
+        "font-awesome": {
+            "main": [
+              "./scss/font-awesome.scss",
+              "./fonts/*"
+            ]
+          }
     },
     "resolutions": {
         "angular": "^1.4.5"
     }
+     
 }

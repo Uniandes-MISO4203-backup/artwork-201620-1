@@ -97,7 +97,7 @@ public class QualificationResource {
     @GET
     public List<QualificationDetailDTO> getQualifications() {
         String accountHref = req.getRemoteUser();
-        if (accountHref != null) {
+        /*if (accountHref != null) {
             Account account = Utils.getClient().getResource(accountHref, Account.class);
             for (Group gr : account.getGroups()) {
                 if (gr.getHref().equalsIgnoreCase(CLIENT_HREF)){
@@ -110,9 +110,10 @@ public class QualificationResource {
                     return new ArrayList<>();
                 }
             }
-        }
+        }*/
+        return listEntity2DTO(qualificationLogic.getQualifications());
         //Por recomendacion de SonarQube se retorna una lista vacia en lugar de un null
-        return new ArrayList<>();
+        //return new ArrayList<>();
         
     }    
 
@@ -141,7 +142,7 @@ public class QualificationResource {
     public QualificationDetailDTO createQualification(QualificationDetailDTO dto) {
         return new QualificationDetailDTO(qualificationLogic.createQualification(dto.toEntity()));
     }
-    
+  
     @POST
     @StatusCreated
     @Path("/crear")
