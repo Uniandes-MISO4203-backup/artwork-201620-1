@@ -154,7 +154,6 @@ public class ArtworkLogic implements IArtworkLogic {
      * Elimina una instancia de Artwork de la base de datos.
      *
      * @param id Identificador de la instancia a eliminar.
-     * @param artistid id del Artist el cual es padre del Artwork.
      * @generated
      */
     @Override
@@ -182,6 +181,7 @@ public class ArtworkLogic implements IArtworkLogic {
      *
      * @param artworkId Identificador de la instancia de Artwork
      * @param categoryId Identificador de la instancia de Category
+     * @return La categoria de la instancia de artwork dada.
      * @generated
      */
     @Override
@@ -265,5 +265,13 @@ public class ArtworkLogic implements IArtworkLogic {
         return entity.getQualifications();
     }
 
+    /**
+     * Devuelve la lista de obras recientemente agregadas.
+     * @return La lista de obras mas reciente
+     */
+    @Override
+    public List<ArtworkEntity> getLatestArtworks() {
+        return persistence.getLatestArtworks();
+    }
 }
 

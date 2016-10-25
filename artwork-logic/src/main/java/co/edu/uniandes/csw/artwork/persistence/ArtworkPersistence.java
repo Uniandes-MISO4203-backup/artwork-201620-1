@@ -88,4 +88,11 @@ public class ArtworkPersistence extends CrudPersistence<ArtworkEntity> {
         q.setParameter("artistName", "%" + artist + "%");
         return q.getResultList();
     }
+
+    public List<ArtworkEntity> getLatestArtworks() {
+        TypedQuery<ArtworkEntity> q = em.createQuery("select p from ArtworkEntity p order by p.dateAdded DESC", ArtworkEntity.class);
+        q.setFirstResult(0);
+        q.setMaxResults(4);
+        return q.getResultList();
+    }
 }
