@@ -208,10 +208,15 @@
                     }
                 },
                 resolve: {
-                    references: ['$q', 'Restangular', function ($q, r) {
+                    references: ['$q', 'Restangular','$rootScope', function ($q, r,$rootScope) {
+                      if($rootScope.visitor===false){
                             return $q.all({
                                 artist: r.all('artists').getList()
+                            });}else{
+                            return $q.all({
+                                artist: r.all('visitors').getList()
                             });
+                            }
                         }],
                     model: 'artworkModel',
                     artworks: ['Restangular', 'model', '$stateParams', function (r, model, $params) {
@@ -221,10 +226,14 @@
                             }
                             return artworks;
                         }],
-                    client:['Restangular', '$stateParams', function (r) {
+                       
+                    client:['Restangular', '$stateParams','$rootScope', function (r,$rootScope) {
+                      if($rootScope.visitor===false){
                         return r.all("clients").getList().then(function(list){
                             return list[0];
-                        });
+                        });}else{
+                        return [];
+                        }
                     }],
                     latest:['Restangular','model', function(r, model){
                          return r.all(model.url).customGETLIST("latest").then(function(list){
