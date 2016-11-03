@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<h1>Crear Premio</h1>
+<form class="col-sm-8">
+    <div class="row">
+        <label for="nombre">Nombre</label>
+        <input class="form-control" type="text" ng-model="prizeData.name"><p></p>
+        
+        <div class="row">
+         <div class="col-lg-6">
+         <label for="descripcion">Descripcion</label>
+         <textarea  class="form-control" type="text" ng-model="prizeData.description" cols="15" rows="10"></textarea><p></p>
+        </div>
+         <label for="singleSelect">Seleccione color de trofeo</label>
+        <div   ng-repeat="color in colors" style="padding-left: 15px;">
+        <input type="radio"  ng-model="prizeData.color" ng-value="color" name="color" style="padding-left: 10px;">
+        <span  style="background-color: {{color}}; color:white;">___________________________________________________</span>
+        </div>
+        
+        <p></p>
+        <span style="padding-left: 15px;"><strong>Seleccione trofeo</strong></span><p></p>
+        <div class="col-md-2" ng-repeat="trophy in trophies" style="padding-left: 15px;">
+        <input type="radio" ng-model="prizeData.trophy" ng-value="trophy" name="trophy" style="padding-left: 10px;">
+        <span class="{{trophy}}" style="padding-left: 5px; font-size: x-large;"></span>
+        </div>
+        
+    </div>
+        <p></p>
+        <input class="form-control " type="submit" ng-click="prizeForm(prizeData)" >
+    </div>   
+    
+</form>

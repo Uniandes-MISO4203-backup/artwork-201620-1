@@ -40,7 +40,7 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "artwork", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<QualificationEntity> qualifications = new ArrayList<>();
-
+     
     @PodamExclude
     @OneToMany(mappedBy = "artwork")
     private List<CommentEntity> comments = new ArrayList<>();
@@ -116,4 +116,7 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
     public void setDateAdded(Date dateAdded) {
         this.dateAdded = dateAdded;
     }
+
+ 
+
 }
