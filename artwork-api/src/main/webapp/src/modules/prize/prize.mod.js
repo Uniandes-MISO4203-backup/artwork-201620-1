@@ -11,14 +11,17 @@
             
             views: {
              mainView:{
-             templateUrl: basePath + "prize.tpl.html",
+             templateUrl: basePath + "prize.tpl.html"
              }
             
            },
             resolve :{
              prizes :['Restangular','$stateParams', function(r,$params){
                return r.all('prizes').getList($params);
-             }]
+             }],
+            artworks:['Restangular', function(r){
+              return r.all('artworks').getList();
+            }]
             }
            });
        $sp.state('prizeList',{
@@ -41,6 +44,16 @@
            
           }
          }
+       });
+       $sp.state('prizeReward',{
+        url: '/reward',
+        parent: 'prize',
+        views:{
+         prizeView:{
+         templateUrl: basePath + "reward/prize.reward.tpl.html",
+         controller: 'prizeRewardCtrl'
+        }
+        }
        });
         }]);
 })(window.angular);

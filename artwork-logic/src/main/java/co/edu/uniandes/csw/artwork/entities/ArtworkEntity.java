@@ -44,6 +44,7 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "artwork")
     private List<CommentEntity> comments = new ArrayList<>();
+    
 
     public String getImage() {
         return image;
@@ -116,6 +117,16 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
     public void setDateAdded(Date dateAdded) {
         this.dateAdded = dateAdded;
     }
+
+ /**
+  * @return the prizes
+  */
+ 
+
+ /**
+  * @return the artworks
+  */
+ 
 
  
 

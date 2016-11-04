@@ -25,6 +25,8 @@ package co.edu.uniandes.csw.artwork.dtos.detail;
 
 import co.edu.uniandes.csw.artwork.dtos.minimum.*;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
+import co.edu.uniandes.csw.artwork.entities.PrizeEntity;
+import java.util.List;
  
 import javax.xml.bind.annotation.XmlRootElement;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -60,6 +62,7 @@ public class ArtworkDetailDTO extends ArtworkDTO{
         this.artist = new ArtistDTO(entity.getArtist());
         
         }
+        
         
     }
 

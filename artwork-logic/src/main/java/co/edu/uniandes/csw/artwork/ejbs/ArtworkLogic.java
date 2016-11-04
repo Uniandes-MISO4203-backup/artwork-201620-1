@@ -29,6 +29,7 @@ import co.edu.uniandes.csw.artwork.persistence.ArtworkPersistence;
 import co.edu.uniandes.csw.artwork.api.IArtistLogic;
 import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
 import co.edu.uniandes.csw.artwork.entities.CategoryEntity;
+import co.edu.uniandes.csw.artwork.entities.PrizeEntity;
 import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -270,8 +271,11 @@ public class ArtworkLogic implements IArtworkLogic {
      * @return La lista de obras mas reciente
      */
     @Override
-    public List<ArtworkEntity> getLatestArtworks() {
+public List<ArtworkEntity> getLatestArtworks()
+ 
+ {
         return persistence.getLatestArtworks();
     }
+
 }
 

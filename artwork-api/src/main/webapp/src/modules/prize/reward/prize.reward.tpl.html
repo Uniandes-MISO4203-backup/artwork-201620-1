@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<h1>Premiar obra</h1>
+<div class="col-md-12" >
+ <table class="table table-bordered table-striped">
+  <thead>
+   <tr >
+    <th class="col-sm-1"></th>
+    <th>Nombre</th>
+    <th>Artista</th>
+    <th>Premios</th>
+    
+
+   </tr>
+  </thead>  
+  <tbody ng-repeat="artwork in artworks">
+   <tr >
+
+  
+    <td><a data-toggle="modal" data-target="#myModal" style="cursor:pointer"><img  class="img-responsive"  ng-src="{{artwork.image}}" width="60" ng-click="artworkInstance(artwork)"/></a></td>
+    <td>{{artwork.name}}</td>
+     <td>{{artwork.artist.name}}</td>
+     <td>premio</td>
+   </tr>
+   
+  </tbody>
+
+
+ </table>
+ 
+ 
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Elija premio</h4>
+      </div>
+      <div class="modal-body">
+       <span ng-repeat="prize in prizes" class="{{prize.trophy}}" style="color : {{prize.color}}; font-size: xx-large;" ng-click="addPrize(prize,artInstance)" data-dismiss="modal"></span>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+ 
+ 
+ 

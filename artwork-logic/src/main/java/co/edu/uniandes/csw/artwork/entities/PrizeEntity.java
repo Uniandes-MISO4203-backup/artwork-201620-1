@@ -8,12 +8,14 @@ package co.edu.uniandes.csw.artwork.entities;
 import co.edu.uniandes.csw.crud.spi.entity.BaseEntity;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -46,7 +48,8 @@ public class PrizeEntity extends BaseEntity implements Serializable {
     
     @Temporal(TemporalType.DATE)
     private Date date;
-  
+    
+    
     public PrizeEntity(){
     }
     public  PrizeEntity(Long id){
@@ -140,4 +143,9 @@ public class PrizeEntity extends BaseEntity implements Serializable {
  public void setDate(Date date) {
   this.date = date;
  }
+
+ /**
+  * @return the artworks
+  */
+ 
 }
