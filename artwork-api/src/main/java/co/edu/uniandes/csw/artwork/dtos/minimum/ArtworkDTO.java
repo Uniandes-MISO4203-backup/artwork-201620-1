@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.artwork.dtos.minimum;
 
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
+import co.edu.uniandes.csw.artwork.entities.CategoryEntity;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,9 +24,15 @@ public class ArtworkDTO implements Serializable {
     private Integer width;
     private Integer height;
     private Date dateAdded;
+    
+    @PodamExclude
+    private List<String> images;
 
     @PodamExclude
     private List<QualificationDTO> qualifications = new ArrayList<>();
+    
+    @PodamExclude
+    private List<CategoryDTO> category;
 
     public ArtworkDTO() {
         //Constructor clase
@@ -40,6 +47,13 @@ public class ArtworkDTO implements Serializable {
             this.width = entity.getWidth();
             this.height = entity.getHeight();
             this.dateAdded = entity.getDateAdded();
+            this.images = entity.getImages();
+            List<CategoryDTO> categories = new ArrayList<>();
+            for(CategoryEntity category : entity.getCategory()){
+                CategoryDTO cat = new CategoryDTO(category);
+                categories.add(cat);
+            }
+            this.category = categories;
         }
     }
 
@@ -52,6 +66,12 @@ public class ArtworkDTO implements Serializable {
         entity.setWidth(this.getWidth());
         entity.setHeight(this.getHeight());
         entity.setDateAdded(this.getDateAdded());
+        entity.setImages(this.getImages());
+        List<CategoryEntity> categories = new ArrayList<>();
+           for(CategoryDTO cat : category){
+               categories.add(cat.toEntity());
+           }
+        entity.setCategory(categories);
         return entity;
     }
 
@@ -61,6 +81,14 @@ public class ArtworkDTO implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+    
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
     public Long getPrice() {
@@ -94,6 +122,14 @@ public class ArtworkDTO implements Serializable {
 
     public void setQualifications(List<QualificationDTO> qualifications) {
         this.qualifications = qualifications;
+    }
+    
+    public List<CategoryDTO> getCategory(){
+        return category;
+    }
+    
+    public void setCategory(List<CategoryDTO> category){
+        this.category = category;
     }
 
     /**
