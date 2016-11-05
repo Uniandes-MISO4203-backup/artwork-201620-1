@@ -48,12 +48,14 @@ public class ArtworkDTO implements Serializable {
             this.height = entity.getHeight();
             this.dateAdded = entity.getDateAdded();
             this.images = entity.getImages();
-            List<CategoryDTO> categories = new ArrayList<>();
-            for(CategoryEntity category : entity.getCategory()){
-                CategoryDTO cat = new CategoryDTO(category);
-                categories.add(cat);
+            if(entity.getCategory() != null){
+                List<CategoryDTO> categories = new ArrayList<>();
+                for (CategoryEntity category : entity.getCategory()) {
+                    CategoryDTO cat = new CategoryDTO(category);
+                    categories.add(cat);
+                }
+                this.category = categories;
             }
-            this.category = categories;
         }
     }
 
@@ -67,11 +69,14 @@ public class ArtworkDTO implements Serializable {
         entity.setHeight(this.getHeight());
         entity.setDateAdded(this.getDateAdded());
         entity.setImages(this.getImages());
-        List<CategoryEntity> categories = new ArrayList<>();
-           for(CategoryDTO cat : category){
-               categories.add(cat.toEntity());
-           }
-        entity.setCategory(categories);
+        if(this.getCategory() != null){
+            List<CategoryEntity> categories = new ArrayList<>();
+            for(CategoryDTO cat : this.getCategory()){
+                categories.add(cat.toEntity());
+            }
+            entity.setCategory(categories);
+        }
+        
         return entity;
     }
 
