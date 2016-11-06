@@ -44,8 +44,35 @@
             <button ng-repeat="category in categorys" ng-click="filtrar(category.id)" type="button" class="list-group-item">{{category.name}}</button>
         </div>      
     </div>
-    <div class="col-md-10 well">
-        <ul class="col-sm-12 list-unstyled">
+  
+    <div class="col-md-10 well" >
+     <div class="row" >
+      <h1 align="center">obras premiadas</h1>
+      <hr>
+        <ul class="col-sm-12 list-unstyled" >
+         
+         
+            <li class="col-sm-4 no-padding" ng-repeat="artwork in records" style="position:relative;">
+             <div ng-if="artwork.prizes.length > 0">
+              
+              <div class="col-sm-offset-2 col-sm-8 no-padding artwork">
+                 <div ng-if="visitor==false">  <a ui-sref="comment({artworkId:artwork.id})"> </div>
+                        <img class="img-responsive" ng-src="{{artwork.image}}" alt="{{artwork.name}}">
+                        <div ng-if="visitor==false">    </a>   </div>
+                    <div class="col-sm-12 detail no-padding">
+                        <span ng-if="visitor==false" class="col-sm-8 no-padding"><a ui-sref="comment({artworkId:artwork.id})">{{artwork.name}}</a></span>
+                        <div class="col-sm-4 icons no-padding">
+                            <a href="{{artwork.image}}" class="col-sm-6 no-padding"><i class="glyphicon glyphicon-search"></i></a>
+                            <div ng-if="visitor==false">   <a ng-click='addToCart(artwork)' class="col-sm-6 no-padding"><i class="glyphicon glyphicon-shopping-cart"></i></a></div>
+                            <span ng-repeat="prize in artwork.prizes" class="{{prize.trophy}}" style="color:{{prize.color}}; padding-right:10px; padding-left:10px;"></span>
+                        </div>
+                    </div>
+                </div>
+             </div>
+            </li>
+         </div>
+         <hr>
+            <div class="row">
             <li class="col-sm-4 no-padding" ng-repeat="artwork in records" style="position:relative">
                 <div class="col-sm-offset-2 col-sm-8 no-padding artwork">
                  <div ng-if="visitor==false">  <a ui-sref="comment({artworkId:artwork.id})"> </div>
@@ -59,7 +86,9 @@
                         </div>
                     </div>
                 </div>
+            
             </li>
+            </div>
         </ul>
     </div>
 </div> 
