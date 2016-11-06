@@ -30,8 +30,12 @@ SOFTWARE.
 package co.edu.uniandes.csw.artwork.dtos.detail;
 
 import co.edu.uniandes.csw.artwork.dtos.minimum.*;
+
 import co.edu.uniandes.csw.artwork.entities.PrizeEntity; 
+
 import javax.xml.bind.annotation.XmlRootElement;
+import uk.co.jemos.podam.common.PodamExclude;
+
 
 
 /**
@@ -39,17 +43,52 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class PrizeDetailDTO extends PrizeDTO{
-
-
+    
+    @PodamExclude
+    private ArtworkDTO artwork;
+    
     public PrizeDetailDTO(){
     super();
     }
     public PrizeDetailDTO(PrizeEntity entity){
     super(entity);
+    if (entity.getArtwork()!=null){
+        this.artwork = new ArtworkDTO(entity.getArtwork());
+        
+        }
     }
     @Override 
     public PrizeEntity toEntity(){
-    return super.toEntity();
+    PrizeEntity entity =  super.toEntity();
+    
+       if (this.getArtwork()!=null){
+        entity.setArtwork(this.getArtwork().toEntity());
+        }  
+       return entity;
     }
+
+ /**
+  * @return the artwork
+  */
+ public ArtworkDTO getArtwork() {
+  return artwork;
+ }
+
+ /**
+  * @param artwork the artwork to set
+  */
+ public void setArtwork(ArtworkDTO artwork) {
+  this.artwork = artwork;
+ }
+
+ /**
+  * @return the artworks
+  */
+
+
+ /**
+  * @param artworks the artworks to set
+  */
+ 
   
 }

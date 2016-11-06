@@ -32,6 +32,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+import co.edu.uniandes.csw.artwork.api.IArtworkLogic;
 import co.edu.uniandes.csw.auth.provider.StatusCreated;
 import java.util.List;
 import javax.inject.Inject;
@@ -47,8 +48,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import co.edu.uniandes.csw.artwork.api.IPrizeLogic;
 import co.edu.uniandes.csw.artwork.dtos.detail.PrizeDetailDTO;
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.PrizeEntity;
 import java.util.ArrayList;
+import javax.ws.rs.PUT;
 
 
 /**
@@ -61,6 +64,7 @@ import java.util.ArrayList;
 public class PrizeResource {
 
     @Inject private IPrizeLogic prizeLogic;
+    @Inject private IArtworkLogic artworkLogic;
     @Context private HttpServletResponse response;
     @QueryParam("page") private Integer page;
     @QueryParam("limit") private Integer maxRecords;
@@ -93,5 +97,21 @@ public class PrizeResource {
         return new PrizeDetailDTO(prizeLogic.createPrize(dto.toEntity()));
     }
 
+    @PUT
+    @Path("{prizeId: \\d+}")
+    public PrizeDetailDTO updateArtwork(@PathParam("prizeId") Long prizeId, PrizeDetailDTO dto) {
+    
+     PrizeEntity entity = dto.toEntity();
+     ArtworkEntity aentity = dto.getArtwork().toEntity();
+     ArtworkEntity oentity = artworkLogic.getArtwork(aentity.getId());
+     oentity.setPrizes(aentity.getPrizes());
+     
+      artworkLogic.updateArtwork(oentity.getArtist().getId(), oentity);
+      return new PrizeDetailDTO(prizeLogic.updatePrize(entity));
+      
+  
+       
+    }
+    
 }
 

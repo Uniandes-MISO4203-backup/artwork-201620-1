@@ -26,6 +26,7 @@ package co.edu.uniandes.csw.artwork.dtos.detail;
 import co.edu.uniandes.csw.artwork.dtos.minimum.*;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.PrizeEntity;
+import java.util.ArrayList;
 import java.util.List;
  
 import javax.xml.bind.annotation.XmlRootElement;
@@ -41,7 +42,8 @@ public class ArtworkDetailDTO extends ArtworkDTO{
     @PodamExclude
     private ArtistDTO artist;
     
-   
+   @PodamExclude
+   private List<PrizeDetailDTO> prizes;
     
     /**
      * @generated
@@ -58,9 +60,16 @@ public class ArtworkDetailDTO extends ArtworkDTO{
      */
     public ArtworkDetailDTO(ArtworkEntity entity) {
         super(entity);
+        List<PrizeDetailDTO> prized= new ArrayList<>();
         if (entity.getArtist()!=null){
         this.artist = new ArtistDTO(entity.getArtist());
         
+        }
+        if(entity.getPrizes()!=null){
+        for(PrizeEntity prize : entity.getPrizes()){
+        prized.add(new PrizeDetailDTO(prize));
+        }
+        this.setPrizes(prized);
         }
         
         
@@ -75,9 +84,17 @@ public class ArtworkDetailDTO extends ArtworkDTO{
     @Override
     public ArtworkEntity toEntity() {
         ArtworkEntity entity = super.toEntity();
+        List<PrizeEntity> prize =new ArrayList<>();
         if (this.getArtist()!=null){
         entity.setArtist(this.getArtist().toEntity());
         }
+        if(this.getPrizes()!=null){
+        for(PrizeDetailDTO prid : this.getPrizes()){
+        prize.add(prid.toEntity());
+        }
+        entity.setPrizes(prize);
+        }
+        
         
         return entity;
     }
@@ -101,6 +118,20 @@ public class ArtworkDetailDTO extends ArtworkDTO{
     public void setArtist(ArtistDTO artist) {
         this.artist = artist;
     }
+
+ /**
+  * @return the prizes
+  */
+ public List<PrizeDetailDTO> getPrizes() {
+  return prizes;
+ }
+
+ /**
+  * @param prizes the prizes to set
+  */
+ public void setPrizes(List<PrizeDetailDTO> prizes) {
+  this.prizes = prizes;
+ }
 
     /**
      * @return the comments

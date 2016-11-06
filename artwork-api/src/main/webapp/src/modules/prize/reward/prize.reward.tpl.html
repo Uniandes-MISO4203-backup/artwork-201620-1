@@ -25,7 +25,7 @@ and open the template in the editor.
     <td><a data-toggle="modal" data-target="#myModal" style="cursor:pointer"><img  class="img-responsive"  ng-src="{{artwork.image}}" width="60" ng-click="artworkInstance(artwork)"/></a></td>
     <td>{{artwork.name}}</td>
      <td>{{artwork.artist.name}}</td>
-     <td>premio</td>
+     <td><span ng-repeat="prize in artwork.prizes" class="{{prize.trophy}}" style="color:{{prize.color}}; font-size: xx-large; padding-left: 15px;"></span></td>
    </tr>
    
   </tbody>

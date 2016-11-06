@@ -83,7 +83,30 @@
                     model: 'artworkModel',
                     artworks: ['artist', '$stateParams', 'model', function (artist, $params, model) {
                             return artist.getList(model.url, $params);
-                        }]
+                        }],
+                       references: ['$q', 'Restangular','$rootScope', function ($q, r,$rootScope) {
+                      if($rootScope.visitor===false){
+                            return $q.all({
+                                artist: r.all('artists').getList()
+                            });}else{
+                            return $q.all({
+                                artist: r.all('visitors').getList()
+                            });
+                            }
+                        }],
+                   
+                       
+                    client:['Restangular', '$stateParams','$rootScope', function (r,$rootScope) {
+                        return r.all("clients").getList().then(function(list){
+                            return list[0];
+                        });
+                    }],
+                    latest:['Restangular','model', function(r, model){
+                         return r.all(model.url).customGETLIST("latest").then(function(list){
+                             return list;
+                         });
+                    }]
+                       
                 }
             });
             $sp.state('artworkList', {

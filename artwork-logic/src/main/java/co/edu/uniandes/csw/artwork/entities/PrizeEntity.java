@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,6 +50,8 @@ public class PrizeEntity extends BaseEntity implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date date;
     
+    
+    private ArtworkEntity artwork;
     
     public PrizeEntity(){
     }
@@ -143,6 +146,24 @@ public class PrizeEntity extends BaseEntity implements Serializable {
  public void setDate(Date date) {
   this.date = date;
  }
+
+ /**
+  * @return the artworks
+  */
+ public ArtworkEntity getArtwork() {
+  return artwork;
+ }
+
+ /**
+  * @param artworks the artworks to set
+  */
+ public void setArtwork(ArtworkEntity artwork) {
+  this.artwork = artwork;
+ }
+
+ /**
+  * @return the artworks
+  */
 
  /**
   * @return the artworks

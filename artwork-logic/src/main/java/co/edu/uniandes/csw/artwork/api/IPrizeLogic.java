@@ -32,6 +32,7 @@ package co.edu.uniandes.csw.artwork.api;
 
 import co.edu.uniandes.csw.artwork.entities.PrizeEntity;
 import java.util.List;
+import static javax.ws.rs.client.Entity.entity;
 
 public interface IPrizeLogic {
     public int countPrizes();
@@ -39,5 +40,6 @@ public interface IPrizeLogic {
     public List<PrizeEntity> getPrizes(Integer page, Integer maxRecords);
     public PrizeEntity getPrize(Long prizeid);
     public PrizeEntity createPrize(PrizeEntity entity);
+    public PrizeEntity updatePrize(PrizeEntity entity);
     
 }

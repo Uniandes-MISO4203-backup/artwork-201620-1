@@ -77,6 +77,11 @@ public class PrizeLogic implements IPrizeLogic {
   return entity; //To change body of generated methods, choose Tools | Templates.
  }
 
+ @Override
+ public PrizeEntity updatePrize(PrizeEntity entity) {
+  return persistence.update(entity); //To change body of generated methods, choose Tools | Templates.
+ }
+
  
 }
 

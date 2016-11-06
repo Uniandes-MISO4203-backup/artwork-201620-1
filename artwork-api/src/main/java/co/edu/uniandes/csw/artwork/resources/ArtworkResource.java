@@ -136,6 +136,7 @@ public class ArtworkResource {
         ArtworkEntity oldEntity = artworkLogic.getArtwork(artworkId);
         entity.setCategory(oldEntity.getCategory());
         return new ArtworkDetailDTO(artworkLogic.updateArtwork(artistsId, entity));
+       
     }
 
     /**
