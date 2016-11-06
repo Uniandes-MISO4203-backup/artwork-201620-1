@@ -14,7 +14,7 @@
    $scope.pageSize = 10;
    $scope.numberOfPages=function(){
        return Math.ceil($scope.purchases.length/$scope.pageSize);                
-   }
+   };
    
    
    $scope.getTotal = function (purchase) {
@@ -36,8 +36,10 @@
     mod.filter('startFrom', function() {
         return function(input, start) {
             start = +start; //parse to int
-            return input.slice(start);
-        }
+            if(input){
+                return input.slice(start);
+            }
+        };
     });
 })(window.angular);
 

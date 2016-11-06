@@ -31,7 +31,7 @@
             $scope.pageSize = 9;
             $scope.numberOfPages=function(){
                 return Math.ceil($scope.records.length/$scope.pageSize);                
-            }
+            };
             
             
             $scope.latest = latest;
@@ -200,6 +200,6 @@
         return function(input, start) {
             start = +start; //parse to int
             return input.slice(start);
-        }
+        };
     });
 })(window.angular);
