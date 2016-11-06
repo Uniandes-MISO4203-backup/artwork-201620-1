@@ -20,11 +20,19 @@
                 });
             };
             
-            $scope.currentPage = 0;
-            $scope.pageSize = 6;
+            $scope.currentPageC = 0;
+            $scope.pageSizeC = 6;
             $scope.numberOfPages=function(){
-                return Math.ceil($scope.comments.length/$scope.pageSize);                
-            }
+                return Math.ceil($scope.comments.length/$scope.pageSizeC);                
+            };
+            
+            $scope.increasePage = function(){
+                $scope.currentPageC = $scope.currentPageC+1;
+            };
+            
+            $scope.decreasePage = function(){
+                $scope.currentPageC = $scope.currentPageC-1;
+            };
             
             getAllComments($scope.artwork.id);
             $scope.comment = {};
@@ -104,11 +112,13 @@
     
     //We already have a limitTo filter built-in to angular,
     //let's make a startFrom filter
-    mod.filter('startFrom', function() {
+    mod.filter('startFromC', function() {
         return function(input, start) {
             start = +start; //parse to int
-            return input.slice(start);
-        }
+            if(input){
+                return input.slice(start);
+            }
+        };
     });
 })(window.angular);
 

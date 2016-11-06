@@ -56,18 +56,18 @@ and open the template in the editor.
     <section class="comments">
         <h3>Comentarios</h3>
         <ul class="list-unstyled">
-            <li ng-repeat="comment in comments | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <li ng-repeat="comment in comments | startFromC:currentPageC*pageSizeC | limitTo:pageSizeC">
                 <span class="comment-name">{{comment.name}}</span>
                 <div class="comment-content">{{comment.comment}}</div>
             </li>
             <h6 ng-show="comments.length === 0">Esta obra no tiene comentarios</h6>
         </ul>
         <div style="margin: 0 auto;display: table;" ng-if="comments.length > 0">
-            <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class="btn btn-default">
+            <button ng-disabled="currentPageC == 0" ng-click="decreasePage()" class="btn btn-default">
                 Previous
             </button>
-            {{currentPage+1}} de {{numberOfPages()}}
-            <button ng-disabled="currentPage >= comments.length/pageSize - 1" ng-click="currentPage=currentPage+1" class="btn btn-default">
+            {{currentPageC+1}} de {{numberOfPages()}}
+            <button ng-disabled="currentPageC >= comments.length/pageSizeC - 1" ng-click="increasePage()" class="btn btn-default">
                 Next
             </button>
         </div>
