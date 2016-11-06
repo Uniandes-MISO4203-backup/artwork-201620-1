@@ -1,0 +1,72 @@
+.description{
+    height:400px;
+    overflow-y: auto;
+}
+.description-item{
+    margin-bottom:10px;
+    padding:10px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+.description-item h6{
+    font-size: 20px;
+    font-weight: bold;
+    margin:0;
+    margin-bottom:2px;
+}
+
+.description-item span{
+    font-size: 17px;
+}
+
+.well{
+    height:100%;
+}
+
+/*** Comments ***/
+.comments ul {margin:0px;}
+.comments ul li {
+	list-style: none;
+	padding: 20px;
+	background: #f8f8f8;
+	margin-bottom: 10px;
+	border-bottom: 1px dotted #a9a9a9;
+	border-top: 1px dotted #a9a9a9;
+}
+.comments ul li ul {margin-left:40px; padding-top: 20px;}
+.comments ul li ul li {
+	border-top: 1px dotted #a9a9a9;
+	border-bottom: none;
+	padding: 20px 20px;
+	margin-bottom:0px;
+}
+.comments ul li ul li:last-child {padding-bottom: 0px;}
+
+.comments ul li img {margin:0px 10px 10px 0px;}
+.comment-name {
+	font-family: "Oswald", sans-serif; 
+	font-weight: bold;
+}
+.comment-date {
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-style: italic;
+	clear: both;
+}
+.comment-content { clear:both; padding-top:10px; }
+.comment-form-container input,
+#contact-form input {margin-bottom: 5px;}
+.comment-form-container textarea,
+#contact-form textarea {height: 150px}
+.comment-form-container .btn,
+#contact-form .btn {margin-top: 12px;}
+
+/*** Star Rating ***/
+.fa-star-o {
+  color: #FF7700;
+}
+
+.fa-star {
+  color: #FFDD00;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #FF7700;
+}

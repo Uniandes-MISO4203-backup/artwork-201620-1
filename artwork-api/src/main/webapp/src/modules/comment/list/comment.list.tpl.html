@@ -11,14 +11,36 @@ and open the template in the editor.
         <li class="previous"><a href="#/artworkGallery"><span aria-hidden="true">&larr;</span> Regresar a galeria</a></li>
     </ul>
     <h1>{{artwork.name}} - {{artwork.artist.name}}</h1>
+    <h4>
+        <span ng-repeat="cat in artwork.category"><span ng-show="$index !== 0">, </span>{{cat.name}}</span>
+    </h4>
 </div>
 <div class="col-sm-12 no-padding" style="height:400px;">
     <div class="col-md-4 no-padding">
-        <div class="col-sm-offset-2 col-sm-8 no-padding">
-            <img class="img-responsive" ng-src="{{artwork.image}}" alt="image" style="height:340px;margin:auto;">
+        <div id="carousel" class="col-sm-10 col-sm-offset-1 carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                <li ng-repeat="art in artwork.images" data-target="#carousel" data-slide-to="{{$index + 1}}"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active" role="presentation">
+                    <img class="img-responsive" ng-src="{{artwork.image}}" alt="image">          
+                </div>
+                <div ng-repeat="art in artwork.images track by art" class="item">   
+                    <img  class="img-responsive" ng-src="{{art}}" alt="First slide">    
+                </div>
+            </div>
+            <a class="left carousel-control" href="#carousel" role="button" ng-non-bindable data-slide="prev">
+                <span class="icon-prev" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel" role="button" ng-non-bindable data-slide="next">
+                <span class="icon-next" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </div>
-    <div class="col-md-6 well" style="height:90%;">
+    <div class="col-md-6 well">
         <ul class="list-unstyled description">
             <li class="description-item"><h6>Descripción</h6><span>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</span></li>
             <li class="description-item"><h6>Precio</h6><span>${{artwork.price}}</span></li>

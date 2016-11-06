@@ -1,0 +1,7 @@
+body {background: #f9f9f9 url(../img/page-bg-1.jpg);}
+
+a, a:hover { color:#d8450b; }
+
+.no-padding{
+    padding:0;
+}
