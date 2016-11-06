@@ -5,7 +5,9 @@
  */
 package co.edu.uniandes.csw.artwork.dtos.minimum;
 
+import co.edu.uniandes.csw.artwork.dtos.detail.ItemDetailDTO;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
+import co.edu.uniandes.csw.artwork.entities.ItemEntity;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,6 +25,9 @@ public class ArtworkDTO implements Serializable {
     private Integer width;
     private Integer height;
     private Date dateAdded;
+    
+    @PodamExclude
+    private List<ItemDTO> items = new ArrayList<>();
 
     @PodamExclude
     private List<QualificationDTO> qualifications = new ArrayList<>();
@@ -40,6 +45,9 @@ public class ArtworkDTO implements Serializable {
             this.width = entity.getWidth();
             this.height = entity.getHeight();
             this.dateAdded = entity.getDateAdded();
+            for(ItemEntity itemEntity : entity.getItems()){
+                this.items.add(new ItemDTO(itemEntity));
+            }
         }
     }
 
@@ -96,6 +104,14 @@ public class ArtworkDTO implements Serializable {
         this.qualifications = qualifications;
     }
 
+    public List<ItemDTO> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemDTO> items) {
+        this.items = items;
+    }
+    
     /**
      * Obtiene el atributo id.
      *

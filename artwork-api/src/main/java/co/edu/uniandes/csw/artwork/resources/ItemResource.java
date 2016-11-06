@@ -44,6 +44,7 @@ import co.edu.uniandes.csw.artwork.entities.ItemEntity;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
 
 /**
  * URI: clients/{wishListId: \\d+}/wishList/
@@ -146,8 +147,9 @@ public class ItemResource {
      */
     @DELETE
     @Path("{itemId: \\d+}")
-    public void deleteItem(@PathParam("itemId") Long itemId) {
+    public Response deleteItem(@PathParam("itemId") Long itemId) {
         itemLogic.deleteItem(itemId);
+        return Response.status(Response.Status.OK).build();
     }
     
     @POST
@@ -160,5 +162,11 @@ public class ItemResource {
     @Path("/cart")
     public List<ItemDetailDTO> getShoppingCartItems(){
         return listEntity2DTO(itemLogic.getShoppingCartItems(clientsId));
-    }   
+    }  
+    
+    @POST
+    @Path("/wishlist")
+    public ItemDetailDTO createItemInWishlist(ItemDetailDTO dto){
+        return new ItemDetailDTO(itemLogic.createItemInWishlist(clientsId, dto.toEntity()));
+    }
 }

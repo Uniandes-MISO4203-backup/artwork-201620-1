@@ -46,7 +46,7 @@
     </div>
     <div class="col-md-10 well">
         <ul class="col-sm-12 list-unstyled">
-            <li class="col-sm-4 no-padding" ng-repeat="artwork in records" style="position:relative">
+            <li class="col-sm-4 no-padding" ng-repeat="artwork in records | startFrom:currentPage*pageSize | limitTo:pageSize" style="position:relative">
                 <div class="col-sm-offset-2 col-sm-8 no-padding artwork">
                  <div ng-if="visitor==false">  <a ui-sref="comment({artworkId:artwork.id})"> </div>
                         <img class="img-responsive" ng-src="{{artwork.image}}" alt="{{artwork.name}}">
@@ -54,12 +54,25 @@
                     <div class="col-sm-12 detail no-padding">
                         <span ng-if="visitor==false" class="col-sm-8 no-padding"><a ui-sref="comment({artworkId:artwork.id})">{{artwork.name}}</a></span>
                         <div class="col-sm-4 icons no-padding">
-                            <a href="{{artwork.image}}" class="col-sm-6 no-padding"><i class="glyphicon glyphicon-search"></i></a>
-                            <div ng-if="visitor==false">   <a ng-click='addToCart(artwork)' class="col-sm-6 no-padding"><i class="glyphicon glyphicon-shopping-cart"></i></a></div>
+                            <a href="{{artwork.image}}" class="col-sm-4 no-padding"><i class="glyphicon glyphicon-search"></i></a>
+                            <div ng-if="visitor==false" class="col-sm-4 no-padding">   
+                                <a ng-click='addToWishlist(artwork)' class="col-sm-6 no-padding" style="cursor: pointer;" ng-if="!artwork.isInWishlist"><i class="glyphicon glyphicon-eye-open"></i></a>
+                                <a ng-click='removeWishlist(artwork)' class="col-sm-6 no-padding" style="cursor: pointer;" ng-if="artwork.isInWishlist"><i class="glyphicon glyphicon-eye-close"></i></a>
+                            </div>
+                            <div ng-if="visitor==false" class="col-sm-4 no-padding">   <a ng-click='addToCart(artwork)' class="col-sm-6 no-padding" style="cursor: pointer;"><i class="glyphicon glyphicon-shopping-cart"></i></a></div>
                         </div>
                     </div>
                 </div>
             </li>
         </ul>
+        <div style="float:right;">
+            <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class="btn btn-default">
+                Previous
+            </button>
+            {{currentPage+1}}/{{numberOfPages()}}
+            <button ng-disabled="currentPage >= records.length/pageSize - 1" ng-click="currentPage=currentPage+1" class="btn btn-default">
+                Next
+            </button>
+        </div>
     </div>
 </div> 

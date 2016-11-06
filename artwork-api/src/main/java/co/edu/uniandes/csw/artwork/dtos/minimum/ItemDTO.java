@@ -16,6 +16,7 @@ public class ItemDTO implements Serializable {
     private String name;
     private Long qty;
     private Boolean shoppingCart;
+    private String userName;
     
     public ItemDTO() {
         //Constructor clase
@@ -27,6 +28,9 @@ public class ItemDTO implements Serializable {
             this.name = entity.getName();
             this.qty = entity.getQty();
             this.shoppingCart = entity.getShoppingCart();
+            if(entity.getClient() != null){
+                this.userName = entity.getClient().getName();
+            }
         }
     }
 
@@ -106,4 +110,12 @@ public class ItemDTO implements Serializable {
         this.shoppingCart = shoppingCart;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    
 }

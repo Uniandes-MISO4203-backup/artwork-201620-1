@@ -37,4 +37,6 @@ public interface IItemLogic {
    
     public ItemEntity createItemInShoppingCart(Long clientid, ItemEntity entity);
     public List<ItemEntity> getShoppingCartItems(Long clientId);
+    
+    public ItemEntity createItemInWishlist(Long clientid, ItemEntity entity);
 }
