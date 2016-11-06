@@ -42,11 +42,11 @@ SOFTWARE.
     </td>
   </tr>
 </table>
-<div style="float:right;">
+<div style="margin: 0 auto;display: table;">
     <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class="btn btn-default">
         Previous
     </button>
-    {{currentPage+1}}/{{numberOfPages()}}
+    {{currentPage+1}} de {{numberOfPages()}}
     <button ng-disabled="currentPage >= wishlist.length/pageSize - 1" ng-click="currentPage=currentPage+1" class="btn btn-default">
         Next
     </button>
