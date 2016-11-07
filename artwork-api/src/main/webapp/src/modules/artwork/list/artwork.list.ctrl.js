@@ -25,7 +25,6 @@
                    
                     }
                 }
-            
             }
             $scope.currentPage = 0;
             $scope.pageSize = 9;
@@ -120,20 +119,6 @@
                     artwork.isInWishlist = false;
                     alert("Obra removida del wishlist");
                 });
-                /*
-                client.delete("shopping/?itemId="+artwork.idItem,{}).then(function(rc){
-                     if(rc){
-                        artwork.isInWishlist = false;
-                        alert("Obra removida del wishlist");
-                    } else {
-                        alert("Obra no removida del wishlist");
-                    }
-                });
-                
-                client[0].customPUT({},"wishList/"+ artwork.idItem, JSON.stringify(item),{}).then(function (rc) {
-                   
-                });
-                */
             };
 
             $scope.actions = {

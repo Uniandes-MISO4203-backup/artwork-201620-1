@@ -11,9 +11,9 @@ and open the template in the editor.
         <li class="previous"><a href="#/artworkGallery"><span aria-hidden="true">&larr;</span> Regresar a galeria</a></li>
     </ul>
     <h1>{{artwork.name}} - {{artwork.artist.name}}</h1>
-</div>
+    </div>
 <div class="col-sm-12 no-padding" style="height:400px;">
-    <div class="col-md-4 no-padding">
+    <div class="col-md-3 no-padding">
         <div class="col-sm-offset-2 col-sm-8 no-padding">
             <img class="img-responsive" ng-src="{{artwork.image}}" alt="image" style="height:340px;margin:auto;">
         </div>
@@ -25,7 +25,14 @@ and open the template in the editor.
             <li class="description-item"><h6>Dimensiones</h6><span>{{artwork.width}} cm X {{artwork.height}} cm</span></li>
         </ul>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
+        <h4>
+            <i class="glyphicon glyphicon-eye-open" ng-if="!artwork.isInWishlist"></i> 
+            <i class="glyphicon glyphicon-eye-close" ng-if="artwork.isInWishlist"></i>
+            Lista de deseos
+        </h4>
+        <button type="submit" class="btn btn-default" ng-click='addToWishlist(artwork)' ng-if="!artwork.isInWishlist">Agregar</button>
+        <button type="submit" class="btn btn-default" ng-click='removeWishlist(artwork)' ng-if="artwork.isInWishlist">Remover</button>
         <h4><i class="glyphicon glyphicon-shopping-cart"></i> Carrito</h4>
         <input type="number" class="form-control" id="quantity" ng-model="quantity" placeholder="# obras a pedir">
         <button type="submit" class="btn btn-default" ng-disabled="cartAdded" ng-click="addToCart()">Agregar</button> 
@@ -39,7 +46,6 @@ and open the template in the editor.
                                      is-readonly='true'></angular-star-rating>
             </div>
         </div>
-        <br/>
         <div ng-show="isArtworkNotQualificated()">       
             <p>Califica la obra:</p>
             <div>
