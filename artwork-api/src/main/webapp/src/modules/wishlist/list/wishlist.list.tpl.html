@@ -29,11 +29,26 @@ SOFTWARE.
     <th>Obra</th>
     <th>Detalle</th>
     <th>Carrito</th>
+    <th></th>
   </tr>
-  <tr ng-repeat="item in wishlist">
+  <tr ng-repeat="item in wishlist | startFrom:currentPage*pageSize | limitTo:pageSize">
     <td>{{item.name}}</td>
     <td><a ui-sref="comment({artworkId:item.artwork.id})"> Ver Detalles </a></td>
     <td> <div ng-show="item.shoppingCart"> En carrito </div> <a ng-show="!item.shoppingCart" ng-click='addToCart(item)'> Agregar </a></td>
+    <td>
+        <button type="button" class="btn btn-default" ng-click="deleteFromWishlist(item)">
+            <span class="glyphicon glyphicon-trash"></span> Eliminar
+        </button>
+    </td>
   </tr>
 </table>
+<div style="margin: 0 auto;display: table;">
+    <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class="btn btn-default">
+        Previous
+    </button>
+    {{currentPage+1}} de {{numberOfPages()}}
+    <button ng-disabled="currentPage >= wishlist.length/pageSize - 1" ng-click="currentPage=currentPage+1" class="btn btn-default">
+        Next
+    </button>
+</div>
 </div>

@@ -7,6 +7,9 @@
     var mod = ng.module('commentModule');
     mod.controller('commentListCtrl', ["$scope", 'comments', 'artwork', 'client', 'itemModel', 'Restangular', "$rootScope",
         function ($scope, comments, artwork, client, itemModel, Restangular, $rootScope) {
+            
+            
+            
             $scope.artwork = artwork;
             $scope.mean = 0;
             $scope.qualifications = [];            
@@ -16,6 +19,21 @@
                     $scope.comments = response;
                 });
             };
+            
+            $scope.currentPageC = 0;
+            $scope.pageSizeC = 6;
+            $scope.numberOfPages=function(){
+                return Math.ceil($scope.comments.length/$scope.pageSizeC);                
+            };
+            
+            $scope.increasePage = function(){
+                $scope.currentPageC = $scope.currentPageC+1;
+            };
+            
+            $scope.decreasePage = function(){
+                $scope.currentPageC = $scope.currentPageC-1;
+            };
+            
             getAllComments($scope.artwork.id);
             $scope.comment = {};
             $scope.commentSent = {};
@@ -91,7 +109,17 @@
             $scope.maxValue = 5; // default test value
         }
     ]);
-            
+    
+    //We already have a limitTo filter built-in to angular,
+    //let's make a startFrom filter
+    mod.filter('startFromC', function() {
+        return function(input, start) {
+            start = +start; //parse to int
+            if(input){
+                return input.slice(start);
+            }
+        };
+    });
 })(window.angular);
 
 

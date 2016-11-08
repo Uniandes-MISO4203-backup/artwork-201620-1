@@ -17,7 +17,7 @@ and open the template in the editor.
 
    </tr>
   </thead>  
-  <tbody ng-repeat="purchase in purchases">
+  <tbody ng-repeat="purchase in purchases | startFrom:currentPage*pageSize | limitTo:pageSize">
    <tr ng-if="purchase.items.length > 0">
 
     <td><a ng-click="changeState($index)"><i ng-class="{'glyphicon glyphicon-plus-sign':!states[$index],'glyphicon glyphicon-minus-sign' : states[$index]}"></i></a></td> 
@@ -33,6 +33,14 @@ and open the template in the editor.
     <td><i>{{item.artwork.price|currency}}</i></td>
    </tr>
   </tbody>
-
-
  </table>
+<div style="float:right;">
+    <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class="btn btn-default">
+        Previous
+    </button>
+    {{currentPage+1}}/{{numberOfPages()}}
+    <button ng-disabled="currentPage >= purchases.length/pageSize - 1" ng-click="currentPage=currentPage+1" class="btn btn-default">
+        Next
+    </button>
+</div>
+</div>

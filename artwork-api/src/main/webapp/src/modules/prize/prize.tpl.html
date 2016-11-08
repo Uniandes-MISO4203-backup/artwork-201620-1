@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)">{{alert.msg}} </alert>
+<div class="col-md-2">
+    <ul class="nav nav-pills nav-stacked">
+        <li role="presentation"><a ui-sref="prizeNew">Crear</a></li>
+        <li role="presentation"><a>Editar</a></li>
+        <li role="presentation"><a>Premiar obra</a></li>
+       <li role="presentation"><a ui-sref="prizeList">lista</a></li>
+    </ul>
+</div>
+
+
+
+
+
+
+<div class="col-md-10" ui-view="prizeView"></div>

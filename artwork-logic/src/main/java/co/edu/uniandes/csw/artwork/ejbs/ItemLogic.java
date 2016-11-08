@@ -28,6 +28,9 @@ import co.edu.uniandes.csw.artwork.entities.ItemEntity;
 import co.edu.uniandes.csw.artwork.persistence.ItemPersistence;
 import co.edu.uniandes.csw.artwork.api.IClientLogic;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
+import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
+import co.edu.uniandes.csw.artwork.persistence.PaymentPersistence;
+import co.edu.uniandes.csw.artwork.persistence.ProductPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -40,6 +43,7 @@ import javax.persistence.NoResultException;
 public class ItemLogic implements IItemLogic {
 
     @Inject private ItemPersistence persistence;
+    @Inject private PaymentPersistence paymentPersistence;
 
     @Inject
     private IClientLogic clientLogic;
@@ -139,6 +143,19 @@ public class ItemLogic implements IItemLogic {
     @Override
     public void deleteItem(Long id) {
         ItemEntity old = getItem(id);
+        //Se borran las referencias con payment
+        List<PaymentEntity> paymentEntitys = paymentPersistence.findAll();
+        if (paymentEntitys!=null){
+            for(PaymentEntity paymentEntity : paymentEntitys){
+                for(ItemEntity itemEntity : paymentEntity.getItems()){
+                    if(itemEntity.getId().equals(id)){
+                        paymentEntity.getItems().remove(itemEntity);
+                        break;
+                    }
+                }
+                paymentPersistence.update(paymentEntity);
+            }
+        }
         persistence.delete(old.getId());
     }
 
@@ -152,6 +169,11 @@ public class ItemLogic implements IItemLogic {
     public List<ItemEntity> getShoppingCartItems(Long clientId) {
         return persistence.getShoppingCartItems(clientId);
     }
-
+    
+    @Override
+    public ItemEntity createItemInWishlist(Long clientid, ItemEntity entity) {
+        entity.setShoppingCart(false);
+        return createItem(clientid, entity);
+    }
 
 }

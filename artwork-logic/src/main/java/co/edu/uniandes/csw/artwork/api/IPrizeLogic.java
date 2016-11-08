@@ -1,4 +1,10 @@
 /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/*
 The MIT License (MIT)
 
 Copyright (c) 2015 Los Andes University
@@ -23,20 +29,15 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.api;
 
-import co.edu.uniandes.csw.artwork.entities.ItemEntity;
+
+import co.edu.uniandes.csw.artwork.entities.PrizeEntity;
 import java.util.List;
 
-public interface IItemLogic {
-    public int countItems();
-    public List<ItemEntity> getItems(Long clientid);
-    public List<ItemEntity> getItems(Integer page, Integer maxRecords, Long clientid);
-    public ItemEntity getItem(Long itemid);
-    public ItemEntity createItem(Long clientid, ItemEntity entity);
-    public ItemEntity updateItem(Long clientid, ItemEntity entity);
-    public void deleteItem(Long id);
-   
-    public ItemEntity createItemInShoppingCart(Long clientid, ItemEntity entity);
-    public List<ItemEntity> getShoppingCartItems(Long clientId);
+public interface IPrizeLogic {
+    public int countPrizes();
+    public List<PrizeEntity> getPrizes();
+    public List<PrizeEntity> getPrizes(Integer page, Integer maxRecords);
+    public PrizeEntity getPrize(Long prizeid);
+    public PrizeEntity createPrize(PrizeEntity entity);
     
-    public ItemEntity createItemInWishlist(Long clientid, ItemEntity entity);
 }

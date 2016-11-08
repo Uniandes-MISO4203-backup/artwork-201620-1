@@ -40,7 +40,8 @@
         'shoppingCartModule',
         'wishlistModule',
         'userModule',
-        'angular-star-rating'
+        'angular-star-rating',
+        'prizeModule'
     ]);
 
     mod.config(['$logProvider', function ($logProvider) {

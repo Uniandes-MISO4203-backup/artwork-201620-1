@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -40,10 +41,16 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "artwork", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<QualificationEntity> qualifications = new ArrayList<>();
-
+     
     @PodamExclude
     @OneToMany(mappedBy = "artwork")
     private List<CommentEntity> comments = new ArrayList<>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "artwork")
+    private List<ItemEntity> items = new ArrayList<>();
+    @ElementCollection
+    private List<String> images;
 
     public String getImage() {
         return image;
@@ -52,7 +59,15 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
     public void setImage(String image) {
         this.image = image;
     }
-
+    
+    public List<String> getImages(){
+        return images;
+    }
+    
+    public void setImages(List<String> images){
+        this.images = images;
+    }
+    
     public Long getPrice() {
         return price;
     }
@@ -109,6 +124,14 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
         this.comments = comments;
     }
     
+    public List<ItemEntity> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemEntity> items) {
+        this.items = items;
+    }
+    
     public Date getDateAdded() {
         return dateAdded;
     }
@@ -116,4 +139,7 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
     public void setDateAdded(Date dateAdded) {
         this.dateAdded = dateAdded;
     }
+
+ 
+
 }

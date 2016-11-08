@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
+ */
 package co.edu.uniandes.csw.artwork.entities;
 
 import java.io.Serializable;
@@ -44,18 +44,18 @@ import javax.validation.constraints.Size;
 @Entity
 public class ArtistEntity extends BaseEntity implements Serializable {
 
- @Id
- @GeneratedValue(strategy = GenerationType.IDENTITY)
- @Basic(optional = false)
- @Column(name = "ID")
- private Long id;
- @Size(max = 255)
- @Column(name = "NAME")
- private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID")
+    private Long id;
+    @Size(max = 255)
+    @Column(name = "NAME")
+    private String name;
 
- @Size(max = 255)
- @Column(name = "USERNAME")
- private String username;
+    @Size(max = 255)
+    @Column(name = "USERNAME")
+    private String username;
 
     @PodamExclude
     @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -81,53 +81,53 @@ public class ArtistEntity extends BaseEntity implements Serializable {
         this.artworks = artworks;
     }
 
- public ArtistEntity() {
- }
+    public ArtistEntity() {
+    }
 
- public ArtistEntity(Long id) {
-  this.id = id;
- }
+    public ArtistEntity(Long id) {
+        this.id = id;
+    }
 
- public Long getId() {
-  return id;
- }
+    public Long getId() {
+        return id;
+    }
 
- public void setId(Long id) {
-  this.id = id;
- }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
- public String getName() {
-  return name;
- }
+    public String getName() {
+        return name;
+    }
 
- public void setName(String name) {
-  this.name = name;
- }
+    public void setName(String name) {
+        this.name = name;
+    }
 
- @Override
- public int hashCode() {
-  int hash = 0;
-  hash += (id != null ? id.hashCode() : 0);
-  return hash;
- }
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
 
- @Override
- public boolean equals(Object object) {
-  // TODO: Warning - this method won't work in the case the id fields are not set
-  if (!(object instanceof ArtistEntity)) {
-   return false;
-  }
-  ArtistEntity other = (ArtistEntity) object;
-  if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-   return false;
-  }
-  return true;
- }
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ArtistEntity)) {
+            return false;
+        }
+        ArtistEntity other = (ArtistEntity) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
 
- @Override
- public String toString() {
-  return "co.edu.uniandes.csw.artwork.entities.ArtistEntity[ id=" + id + " ]";
- }
+    @Override
+    public String toString() {
+        return "co.edu.uniandes.csw.artwork.entities.ArtistEntity[ id=" + id + " ]";
+    }
 
     /**
      * @return the username

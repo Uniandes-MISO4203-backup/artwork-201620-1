@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<h1>Premios</h1>
+<div class="col-md-12" >
+ <table class="table table-bordered table-striped">
+  <thead>
+   <tr >
+      
+    <th>Nombre</th>
+    <th>Fecha</th>
+    <th>Descripcion</th>
+    <th>Icono</th>
+
+   </tr>
+  </thead>  
+  <tbody ng-repeat="premio in premios">
+   <tr >
+
+  
+
+    <td>{{premio.name}}</td>
+    <td>{{premio.date}}</td>
+    <td>{{premio.description}}</td>
+    <td style="text-align: center;"><span class="{{premio.trophy}}" style="color: {{premio.color}}; font-size: large; "></span></td>
+   </tr>
+   
+  </tbody>
+
+
+ </table>
+ 
+ 

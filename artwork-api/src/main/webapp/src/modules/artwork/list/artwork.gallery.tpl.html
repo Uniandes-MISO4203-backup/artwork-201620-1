@@ -46,48 +46,33 @@
     </div>
     <div class="col-md-10 well">
         <ul class="col-sm-12 list-unstyled">
-            <li class="col-sm-4 no-padding" ng-repeat="artwork in records" style="position:relative">
+            <li class="col-sm-4 no-padding" ng-repeat="artwork in records | startFrom:currentPage*pageSize | limitTo:pageSize" style="position:relative">
                 <div class="col-sm-offset-2 col-sm-8 no-padding artwork">
                  <div ng-if="visitor==false">  <a ui-sref="comment({artworkId:artwork.id})"> </div>
                         <img class="img-responsive" ng-src="{{artwork.image}}" alt="{{artwork.name}}">
                         <div ng-if="visitor==false">    </a>   </div>
                     <div class="col-sm-12 detail no-padding">
-                     <div ng-if="visitor==false">    <span class="col-sm-8 no-padding"><a ui-sref="comment({artworkId:artwork.id})">{{artwork.name}}</a></span> </div>
+                        <span ng-if="visitor==false" class="col-sm-8 no-padding"><a ui-sref="comment({artworkId:artwork.id})">{{artwork.name}}</a></span>
                         <div class="col-sm-4 icons no-padding">
-                            <a href="{{artwork.image}}" class="col-sm-6 no-padding"><i class="glyphicon glyphicon-search"></i></a>
-                            <div ng-if="visitor==false">   <a ng-click='addToCart(artwork)' class="col-sm-6 no-padding"><i class="glyphicon glyphicon-shopping-cart"></i></a></div>
+                            <a href="{{artwork.image}}" class="col-sm-4 no-padding"><i class="glyphicon glyphicon-search"></i></a>
+                            <div ng-if="visitor==false" class="col-sm-4 no-padding">   
+                                <a ng-click='addToWishlist(artwork)' class="col-sm-6 no-padding" style="cursor: pointer;" ng-if="!artwork.isInWishlist"><i class="glyphicon glyphicon-eye-open"></i></a>
+                                <a ng-click='removeWishlist(artwork)' class="col-sm-6 no-padding" style="cursor: pointer;" ng-if="artwork.isInWishlist"><i class="glyphicon glyphicon-eye-close"></i></a>
+                            </div>
+                            <div ng-if="visitor==false" class="col-sm-4 no-padding">   <a ng-click='addToCart(artwork)' class="col-sm-6 no-padding" style="cursor: pointer;"><i class="glyphicon glyphicon-shopping-cart"></i></a></div>
                         </div>
                     </div>
                 </div>
             </li>
         </ul>
-
-
-        <!--
-        <div ng-repeat="artwork in records">
-        <div style="box-shadow: 2px 2px 5px gray; border-radius: 5px;margin: 5px" class="col-md-4 col-sm-6 col-lg-3 well">
-            <div class="col-md-12">
-                <div class="img-thumbnail" >
-                    <a ui-sref="comment({artworkId:artwork.id})"  target="_blank"><img style="width: 250px;height: 250px" class="img-responsive" ng-src="{{artwork.image}}" alt="{{artwork.name}}"></a>
-                </div>
-            </div>
-            <div class="caption" >
-                <p><strong>Name: </strong> {{artwork.name}}</p>
-                <p><strong>Price: </strong> {{artwork.price| currency}}</p>              
-                <p><strong>Width: </strong> {{artwork.width}}cm</p>
-                <p><strong>Height: </strong> {{artwork.height}}cm</p>    
-                <p><strong>Artista: </strong><a ui-sref="artistDetail({artistId:artwork.artist.id})" >{{ artwork.artist.name }}</a></p>
-            </div>
-            <div ng-if="isArtworkNotQualificated(artwork.id)">                    
-                <a ui-sref="qualificationNew({artworkId:artwork.id})" ><p>Calificar</p></a>
-            </div>
-            <div>
-                <p><strong>Calificaciones</strong></p>
-                <ul style="list-style:none">                
-                    <li ng-repeat="qualification in getArtworkQualifications(artwork.id)" >{{qualification.userClient}} : {{qualification.qualification}}</li>
-                </ul>
-            </div>
+        <div style="margin: 0 auto;display: table;">
+            <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class="btn btn-default">
+                Previous
+            </button>
+            {{currentPage+1}} de {{numberOfPages()}}
+            <button ng-disabled="currentPage >= records.length/pageSize - 1" ng-click="currentPage=currentPage+1" class="btn btn-default">
+                Next
+            </button>
         </div>
-    </div>    -->        
     </div>
 </div> 

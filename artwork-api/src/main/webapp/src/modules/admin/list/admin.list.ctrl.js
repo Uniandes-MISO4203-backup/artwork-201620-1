@@ -45,6 +45,13 @@
                     fn: function () {
                         $state.reload();
                     }
+                },
+                prizes:{
+                 displayName: 'Prizes',
+                 icon: 'list',
+                 fn: function(){
+                  $state.go('prizeList');
+                 }
                 }
             };
         }]);

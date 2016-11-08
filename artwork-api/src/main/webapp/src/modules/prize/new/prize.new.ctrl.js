@@ -1,4 +1,4 @@
-<!--
+/*
 The MIT License (MIT)
 
 Copyright (c) 2015 Los Andes University
@@ -20,20 +20,27 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
--->
-<header>
-    <toolbar name="model.name" display-name="model.displayName" actions='actions'>  </toolbar>
-    
-</header>
+*/
 
-<list-records fields="model.fields" records="records" actions="recordActions"></list-records>
-<pagination ng-if="ctrl.itemsPerPage < ctrl.totalItems"
-            total-items="ctrl.totalItems"
-            max-size="5"
-            ng-model="ctrl.currentPage"
-            ng-change="ctrl.pageChanged()"
-            items-per-page="ctrl.itemsPerPage"
-            class="pagination-md" 
-            boundary-links="true" 
-            rotate="false">
-</pagination>
+(function (ng) {
+
+    var mod = ng.module("prizeModule");
+
+    mod.controller("prizeNewCtrl", ["$scope", "$state","prizes", 
+        function ($scope, $state,prizes) {
+            $scope.prizeData={};
+            $scope.colors=["#00A064","#027DD1","#FFCC5C","#EE553D","black"];
+            $scope.trophies=["fa fa-certificate","fa fa-sun-o","fa fa-trophy"];
+            
+            $scope.prizeForm = function(prize){
+             
+             prize.date=new Date();
+             prizes.post(prize).then(function(){
+              $state.go("prizeList",prizes,{reload: true});
+             });
+            };
+            
+        }]);
+})(window.angular);
+
+

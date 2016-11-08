@@ -1,4 +1,12 @@
 /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+
+/*
 The MIT License (MIT)
 
 Copyright (c) 2015 Los Andes University
@@ -21,22 +29,41 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package co.edu.uniandes.csw.artwork.api;
+package co.edu.uniandes.csw.artwork.persistence;
 
-import co.edu.uniandes.csw.artwork.entities.ItemEntity;
-import java.util.List;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import co.edu.uniandes.csw.artwork.entities.PrizeEntity;
+import co.edu.uniandes.csw.crud.spi.persistence.CrudPersistence;
 
-public interface IItemLogic {
-    public int countItems();
-    public List<ItemEntity> getItems(Long clientid);
-    public List<ItemEntity> getItems(Integer page, Integer maxRecords, Long clientid);
-    public ItemEntity getItem(Long itemid);
-    public ItemEntity createItem(Long clientid, ItemEntity entity);
-    public ItemEntity updateItem(Long clientid, ItemEntity entity);
-    public void deleteItem(Long id);
+
+/**
+ * @generated
+ */
+@Stateless
+public class PrizePersistence extends CrudPersistence<PrizeEntity> {
+
+    @PersistenceContext(unitName="ArtworkPU")
+    protected EntityManager em;
+
+    /**
+     * @generated
+     */
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
+
+    /**
+     * @generated
+     */
+    @Override
+    protected Class<PrizeEntity> getEntityClass() {
+        return PrizeEntity.class;
+    }
+
+  
+
    
-    public ItemEntity createItemInShoppingCart(Long clientid, ItemEntity entity);
-    public List<ItemEntity> getShoppingCartItems(Long clientId);
-    
-    public ItemEntity createItemInWishlist(Long clientid, ItemEntity entity);
 }
