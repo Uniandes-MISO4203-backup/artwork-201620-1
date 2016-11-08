@@ -31,7 +31,9 @@ import java.util.List;
 public interface IArtworkLogic {
     public int countArtworks();
     public List<ArtworkEntity> getArtworks(Long artistid);
+    public List<ArtworkEntity> getArtworksByUserName(String userName);
     public List<ArtworkEntity> getArtworks(Integer page, Integer maxRecords, Long artistid);
+    public List<ArtworkEntity> getArtworksByUserName(Integer page, Integer maxRecords, String userName);
     public List<ArtworkEntity> getArtworkByCategory(Integer page, Integer maxRecords, Long categoryid);
     public ArtworkEntity getArtwork(Long artworkid);
     public ArtworkEntity createArtwork(Long artistid, ArtworkEntity entity);

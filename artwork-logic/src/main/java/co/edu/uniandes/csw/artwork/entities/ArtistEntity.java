@@ -53,6 +53,10 @@ public class ArtistEntity extends BaseEntity implements Serializable {
  @Column(name = "NAME")
  private String name;
 
+ @Size(max = 255)
+ @Column(name = "USERNAME")
+ private String username;
+
     @PodamExclude
     @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ArtworkEntity> artworks = new ArrayList<>();
@@ -124,4 +128,18 @@ public class ArtistEntity extends BaseEntity implements Serializable {
  public String toString() {
   return "co.edu.uniandes.csw.artwork.entities.ArtistEntity[ id=" + id + " ]";
  }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

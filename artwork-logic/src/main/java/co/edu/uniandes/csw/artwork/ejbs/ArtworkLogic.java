@@ -69,6 +69,12 @@ public class ArtworkLogic implements IArtworkLogic {
         ArtistEntity artist = artistLogic.getArtist(artistid);
         return artist.getArtworks();
     }
+    
+    @Override
+    public List<ArtworkEntity> getArtworksByUserName(String userName){
+        ArtistEntity artist = artistLogic.getArtist(userName);
+        return artist.getArtworks();
+    }
 
     /**
      * Obtiene la lista de los registros de Artwork que pertenecen a un Artist indicando los datos para la paginación.
@@ -272,6 +278,18 @@ public class ArtworkLogic implements IArtworkLogic {
     @Override
     public List<ArtworkEntity> getLatestArtworks() {
         return persistence.getLatestArtworks();
+    }
+    
+    /**
+     * Devuelve las obras del artista con el username especificado
+     * @param page
+     * @param maxRecords
+     * @param userName
+     * @return La lista de obras del artista
+     */
+    @Override
+    public List<ArtworkEntity> getArtworksByUserName(Integer page, Integer maxRecords, String userName){
+        return persistence.getArtworksFromArtistUserName(userName);
     }
 }
 

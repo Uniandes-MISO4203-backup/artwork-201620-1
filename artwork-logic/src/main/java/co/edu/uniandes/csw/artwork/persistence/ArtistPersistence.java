@@ -27,7 +27,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.crud.spi.persistence.CrudPersistence;
+import javax.persistence.TypedQuery;
 
 /**
  * @generated
@@ -52,6 +54,12 @@ public class ArtistPersistence extends CrudPersistence<ArtistEntity> {
     @Override
     protected Class<ArtistEntity> getEntityClass() {
         return ArtistEntity.class;
+    }
+    
+    public ArtistEntity getArtist(String userName){
+        TypedQuery<ArtistEntity> q = em.createQuery("select p from ArtistEntity p where (p.username like :userName)", ArtistEntity.class);
+        q.setParameter("userName", "%" + userName + "%");
+        return q.getSingleResult();
     }
 
 }
