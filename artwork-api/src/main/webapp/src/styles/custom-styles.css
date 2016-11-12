@@ -196,6 +196,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu{ display: block; }
           border-radius: 500px;
 }
 
+
 /* Large Desktop Size */
 @media (min-width: 1200px) {
 	.gallery-hover-6col {width:170px; height:139px;}

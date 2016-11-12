@@ -47,7 +47,7 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
     private List<CommentEntity> comments = new ArrayList<>();
     
     @PodamExclude
-    @OneToMany(mappedBy = "artwork")
+    @OneToMany(mappedBy = "artwork", cascade = CascadeType.ALL)
     private List<PrizeEntity> prizes;
 
     public String getImage() {

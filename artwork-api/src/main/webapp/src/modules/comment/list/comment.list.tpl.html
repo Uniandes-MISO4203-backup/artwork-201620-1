@@ -10,7 +10,7 @@ and open the template in the editor.
     <ul class="pager">
         <li class="previous"><a href="#/artworkGallery"><span aria-hidden="true">&larr;</span> Regresar a galeria</a></li>
     </ul>
-    <h1>{{artwork.name}} - {{artwork.artist.name}}</h1>
+ <h1>{{artwork.name}} - {{artwork.artist.name}} <span ng-repeat="prize in artwork.prizes" class="{{prize.trophy}}" style="color : {{prize.color}}" title="{{prize.description}}"></span></h1>
 </div>
 <div class="col-sm-12 no-padding" style="height:400px;">
     <div class="col-md-4 no-padding">
@@ -48,8 +48,9 @@ and open the template in the editor.
             </div>
             <button type="submit" id="cal"  class="btn btn-default" ng-click="calificar()">Calificar</button>        
         </div>
-
+        
     </div>
+ 
 </div>
 
 <div class="col-md-12">

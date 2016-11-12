@@ -11,7 +11,7 @@
     mod.controller("artworkListCtrl", ["$rootScope","$scope", '$state', 'artworks', '$stateParams','Restangular','itemModel','client','latest',
         function ($rootScope, $scope, $state, artworks, $params,Restangular, itemModel, client, latest) {
             $scope.records = artworks;
-
+            $scope.galView = 'latest';
             $scope.latest = latest;
 
             //Paginación
