@@ -8,111 +8,63 @@
 (function (ng) {
     
     var mod = ng.module("artworkModule");
-    mod.controller("artistGalleryListCtrl", ["$rootScope","$scope", '$state','$stateParams','Restangular',
-        function ($rootScope, $scope, $state, $params,Restangular) {
-            $scope.records = [];
+    mod.controller("artistGalleryListCtrl", ["$scope", '$state','$stateParams',"artist","artworks", "artistArtworks","categories",
+        function ($scope, $state, $params, artist, artworks, artistArtworks, categories) {
+            $scope.records = artistArtworks;
             //Paginación
             this.itemsPerPage = $params.limit;
             this.currentPage = $params.page;
-            $scope.categorys = [];
-            $scope.getCategorys = function (parentCategory) {
-                Restangular.all("categorys").customGET('parents/'+parentCategory).then(function (response) {
-                    if (response.length>0) {
-                        $scope.categorys=response;
-                    }
+            $scope.categorys = categories;
+            $scope.artwork = {};
+            $scope.artwork.category = [];
+            $scope.artwork.images = []; 
+            $scope.artwork["artist"] = artist;
+           
+            $scope.createArtwork = function(){
+                artworks.post($scope.artwork).then(function () {
+                    $scope.records = artworks.get();
                 });
             };
             
-            $scope.getArtworks = function(){
-                var artistUserName = $rootScope.usuario.$object.userName;	
-                Restangular.all("artists").customGET("artworks",{userName:artistUserName}).then(function (response) {          
-                                console.log("Se obtuvieron las obras del artista");
-                                $scope.records = response;
-                            }); 
-            
-            };                                     
-                            
-            /*
-            $scope.filtrar = function (parentCategory) {
-                $scope.getCategorys(parentCategory);
-                Restangular.all("artworks").customGET(parentCategory).then(function (response) {
-                    $scope.records=response;
-                });
+            $scope.addCategory = function(category){
+               var index = $scope.categorys.indexOf(category);
+                if (index > -1) {
+                    $scope.categorys.splice(index, 1);
+                    $scope.artwork.category.push(category);
+                }
             };
-            */
-           
-           $scope.redireccionarParaAñadir = function(){
-               //TO-DO
-               console.log("Redireccionando para añadir obra");
-           };
-           
-           $scope.eliminarObra = function(artworkId){
-               //TO-DO
-               console.log("Redireccionando para editar obra");
-           };
             
-            $scope.getCategorys("");
-            $scope.getArtworks();
+            $scope.removeCategory = function(category){
+                var index = $scope.artwork.category.indexOf(category);
+                if (index > -1) {
+                    $scope.artwork.category.splice(index, 1);
+                    $scope.categorys.push(category);
+                }
+            }
+            
+            $scope.addImage = function(image){
+                var index = $scope.artwork.images.indexOf(image);
+                if (index < 0) {
+                    $scope.artwork.images.push(image);
+                }
+                $scope.image = "";
+            }
+            
+            $scope.removeImage = function(image){
+                var index = $scope.artwork.images.indexOf(image);
+                if (index > -1) {
+                    $scope.artwork.images.splice(index, 1);
+                }
+            }
+           
+            $scope.eliminarObra = function(artworkId){
+                //TO-DO
+                console.log("Redireccionando para editar obra");
+            };
 
             this.pageChanged = function () {
                 $state.go('artworkList', {page: this.currentPage});
             };
-
-            $scope.actions = {
-                create: {
-                    displayName: 'Create',
-                    icon: 'plus',
-                    fn: function () {
-                        $state.go('artworkNew');
-                    }
-                },
-                refresh: {
-                    displayName: 'Refresh',
-                    icon: 'refresh',
-                    fn: function () {
-                        $state.reload();
-                    }
-                },
-                cancel: {
-                    displayName: 'Go back',
-                    icon: 'arrow-left',
-                    fn: function () {
-                        $state.go('artistDetail');
-                    }
-                }
-
-            };
-            $scope.recordActions = {
-                detail: {
-                    displayName: 'Detail',
-                    icon: 'eye-open',
-                    fn: function (rc) {
-                        $state.go('artworkDetail', {artworkId: rc.id});
-                    },
-                    show: function () {
-                        return true;
-                    }
-                },
-                edit: {
-                    displayName: 'Edit',
-                    icon: 'edit',
-                    fn: function (rc) {
-                        $state.go('artworkEdit', {artworkId: rc.id});
-                    },
-                    show: function () {
-                        return true;
-                    }
-                },
-                delete: {
-                    displayName: 'Delete',
-                    icon: 'minus',
-                    fn: function (rc) {
-                        $state.go('artworkDelete', {artworkId: rc.id});
-                    },
-                    show: function () {
-                        return true;
-                    }
-                }
-            };
         }]);
-})(window.angular);
+    })
+(window.angular);

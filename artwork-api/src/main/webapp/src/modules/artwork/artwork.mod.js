@@ -255,44 +255,29 @@
                         templateUrl: basePath + 'list/artist.gallery.tpl.html',
                         controller: 'artistGalleryListCtrl',
                         controllerAs: 'ctrl'
+                    },
+                    "artworkCreateView@artistGallery":{
+                        templateUrl: basePath + 'new/artwork.new.tpl.html'
                     }
                 },
                 resolve: {
-                    references: ['$q', 'Restangular','$rootScope', function ($q, r,$rootScope) {
-                            return $q.all({
-                                artist: r.all('artists').getList()
-                            });
-                            /*if($rootScope.visitor===false){
-                            return $q.all({
-                                artist: r.all('artists').getList()
-                            });}else{
-                            return $q.all({
-                                artist: r.all('visitors').getList()
-                            });
-                            }*/
-                        }],
                     model: 'artworkModel',
-                    /*artworks: ['Restangular', 'model', '$stateParams', '$rootScope', function (r, model, $params, $rootScope) {
-                            var artistUserName = $rootScope.usuario.$object.userName;	
-                            r.all("artists").customGET("artworks",{userName:artistUserName}).then(function (response) {          
-                                console.log("Se obtuvieron las obras del artista");
-                                return response;
-                            }); 
-                        }]*/
-                       /*
-                    client:['Restangular', '$stateParams','$rootScope', function (r,$rootScope) {
-                      if($rootScope.visitor===false){
-                        return r.all("clients").getList().then(function(list){
+                    artist: ['Restangular',function(r){
+                        return r.all("artists").getList().then(function(list){
                             return list[0];
-                        });}else{
-                        return [];
-                        }
+                        });
                     }],
-                    latest:['Restangular','model', function(r, model){
-                         return r.all(model.url).customGETLIST("latest").then(function(list){
-                             return list;
-                         });
-                    }]*/
+                    artworks: ['Restangular', 'model', function (r, model) {
+                        return r.all(model.url).getList();
+                    }],
+                    artistArtworks: ['$rootScope','artist', 'model', function ($rootScope, artist, model) {
+                        return artist.getList(model.url, {userName: $rootScope.usuario.$object.userName});
+                    }],
+                    categories: ['Restangular',function(r){
+                        return r.all("categorys").customGET('parents/').then(function (response) {
+                            return response;
+                        });
+                    }]
                 }
             });
         }]);
