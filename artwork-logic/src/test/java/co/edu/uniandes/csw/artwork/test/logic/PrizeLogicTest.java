@@ -128,10 +128,12 @@ public class PrizeLogicTest {
             utx.commit();
         } catch (Exception e) {
             e.printStackTrace();
+            
             try {
                 utx.rollback();
             } catch (Exception e1) {
                 e1.printStackTrace();
+                
             }
         }
     }
@@ -161,9 +163,6 @@ public class PrizeLogicTest {
         for (int i = 0; i < 3; i++) {
             PrizeEntity entity = factory.manufacturePojo(PrizeEntity.class);
             entity.setArtwork(fatherEntity);
-
-            
-
             em.persist(entity);
             data.add(entity);
         }
@@ -173,26 +172,31 @@ public class PrizeLogicTest {
      *
      * @generated
      */
-    @Test
-    public void createPrizeTest() {
-        PrizeEntity newEntity = factory.manufacturePojo(PrizeEntity.class);
-        PrizeEntity result = prizeLogic.createPrize(newEntity);
-        Assert.assertNotNull(result);
-        PrizeEntity entity = em.find(PrizeEntity.class, result.getId());
-        
-        Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getDescription(), entity.getDescription());
-        Assert.assertEquals(newEntity.getColor(), entity.getColor());
-        Assert.assertEquals(newEntity.getTrophy(), entity.getTrophy());
-    }
+  /* 
+*/
+     @Test
+    public void updatePrizeTest() {
+        PrizeEntity entity = data.get(0);
+        PrizeEntity pojoEntity = factory.manufacturePojo(PrizeEntity.class);
 
+        pojoEntity.setId(entity.getId());
+
+        prizeLogic.updatePrize( pojoEntity);
+
+        PrizeEntity resp = em.find(PrizeEntity.class, entity.getId());
+
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getName(), resp.getName());
+       
+    }
+   
     /**
      * Prueba para consultar la lista de Artworks
      *
      * @generated
      */
     @Test
-    public void getPrizessTest() {
+    public void getPrizesTest() {
         List<PrizeEntity> list = prizeLogic.getPrizes();
         Assert.assertEquals(data.size(), list.size());
         for (PrizeEntity entity : list) {

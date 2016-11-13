@@ -33,7 +33,10 @@ SOFTWARE.
 package co.edu.uniandes.csw.artwork.ejbs;
 
 
+import co.edu.uniandes.csw.artwork.api.IArtworkLogic;
 import co.edu.uniandes.csw.artwork.api.IPrizeLogic;
+import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.PrizeEntity;
 
 import co.edu.uniandes.csw.artwork.persistence.PrizePersistence;
@@ -48,7 +51,7 @@ import javax.inject.Inject;
 public class PrizeLogic implements IPrizeLogic {
 
     @Inject private PrizePersistence persistence;
-
+    private IArtworkLogic artworkLogic;
       
 
  @Override
@@ -73,6 +76,7 @@ public class PrizeLogic implements IPrizeLogic {
 
  @Override
  public PrizeEntity createPrize(PrizeEntity entity) {
+  
   persistence.create(entity);
   return entity; //To change body of generated methods, choose Tools | Templates.
  }
@@ -82,6 +86,12 @@ public class PrizeLogic implements IPrizeLogic {
   return persistence.update(entity); //To change body of generated methods, choose Tools | Templates.
  }
 
+    @Override
+  public PrizeEntity createPrize(Long artworkid, PrizeEntity entity) {
+        ArtworkEntity artwork = artworkLogic.getArtwork(artworkid);
+        entity.setArtwork(artwork);
+        return persistence.create(entity);
+    }
  
 }
 

@@ -127,6 +127,19 @@ public class PrizePersistenceTest {
   
  }
  
+ @Test
+ public void updatePrizeTest() {
+  PrizeEntity entity = data.get(0);
+  PodamFactory factory = new PodamFactoryImpl();
+  PrizeEntity newEntity = factory.manufacturePojo(PrizeEntity.class);
+  newEntity.setId(entity.getId());
+  prizePersistence.update(newEntity);
+  PrizeEntity resp = em.find(PrizeEntity.class, entity.getId());
+  Assert.assertEquals(newEntity.getName(), resp.getName());
+   Assert.assertEquals(newEntity.getDescription(), resp.getDescription());
+  Assert.assertEquals(newEntity.getColor(), resp.getColor());
+  Assert.assertEquals(newEntity.getTrophy(), resp.getTrophy());
+ }
  
 
 }
