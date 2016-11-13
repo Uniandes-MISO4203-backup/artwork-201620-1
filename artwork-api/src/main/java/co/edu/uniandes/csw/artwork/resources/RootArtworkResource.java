@@ -23,6 +23,7 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.resources;
 
+import co.edu.uniandes.csw.artwork.api.IArtistLogic;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -36,8 +37,11 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import co.edu.uniandes.csw.artwork.api.IArtworkLogic;
 import co.edu.uniandes.csw.artwork.dtos.detail.ArtworkDetailDTO;
+import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import java.util.ArrayList;
+import javax.ws.rs.POST;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * @generated
@@ -48,10 +52,12 @@ import java.util.ArrayList;
 public class RootArtworkResource {
 
     @Inject private IArtworkLogic artworkLogic;
+    @Inject private IArtistLogic artistLogic;
     @Context private HttpServletResponse response;
     @QueryParam("page") private Integer page;
     @QueryParam("limit") private Integer maxRecords;
     @QueryParam("artist") private String artist;
+    @PathParam("artistsId") private Long artistId;
     private static final String X_COUNT="X-Total-Count";
    
     /**
@@ -130,5 +136,17 @@ public class RootArtworkResource {
     public ArtworkDetailDTO getArtwork(@PathParam("artworkId") Long artworkId) {
         ArtworkEntity entity = artworkLogic.getArtwork(artworkId);
         return new ArtworkDetailDTO(entity);
+    }
+    public void existsArtist(Long id){
+        ArtistEntity artist = artistLogic.getArtist(id);
+        if (artist == null) {
+            throw new WebApplicationException(404);
+        }
+    }
+    
+    @POST
+    public ArtworkDetailDTO createArtwork(ArtworkDetailDTO dto){
+        existsArtist(dto.getArtist().getId());
+        return new ArtworkDetailDTO(artworkLogic.createArtwork(dto.getArtist().getId(), dto.toEntity()));
     }
 }

@@ -117,7 +117,7 @@ public class ArtworkResource {
     @POST
     @StatusCreated
     public ArtworkDetailDTO createArtwork(ArtworkDetailDTO dto) {
-        return new ArtworkDetailDTO(artworkLogic.createArtwork(artistsId, dto.toEntity()));
+        return new ArtworkDetailDTO(artworkLogic.createArtwork(dto.getArtist().getId(), dto.toEntity()));
     }
 
     /**
