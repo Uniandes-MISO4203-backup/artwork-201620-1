@@ -48,8 +48,10 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
 
     @PodamExclude
     @OneToMany(mappedBy = "artwork")
-
     private List<PrizeEntity> prizes = new ArrayList<>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "artwork")
     private List<ItemEntity> items = new ArrayList<>();
 
     @ElementCollection
