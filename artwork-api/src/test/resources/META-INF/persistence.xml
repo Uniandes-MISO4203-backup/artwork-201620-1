@@ -11,6 +11,7 @@
     <class>co.edu.uniandes.csw.artwork.entities.QualificationEntity</class>
     <class>co.edu.uniandes.csw.artwork.entities.CommentEntity</class>
     <class>co.edu.uniandes.csw.artwork.entities.PaymentEntity</class>
+    <class>co.edu.uniandes.csw.artwork.entities.PrizeEntity</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>

@@ -93,13 +93,13 @@ public class PrizeResource {
    
     @POST
     @StatusCreated
-    public PrizeDetailDTO createArtwork(PrizeDetailDTO dto) {
+    public PrizeDetailDTO createPrize(PrizeDetailDTO dto) {
         return new PrizeDetailDTO(prizeLogic.createPrize(dto.toEntity()));
     }
 
     @PUT
     @Path("{prizeId: \\d+}")
-    public PrizeDetailDTO updateArtwork(@PathParam("prizeId") Long prizeId, PrizeDetailDTO dto) {
+    public PrizeDetailDTO updatePrize(@PathParam("prizeId") Long prizeId, PrizeDetailDTO dto) {
     
      PrizeEntity entity = dto.toEntity();
      ArtworkEntity aentity = dto.getArtwork().toEntity();

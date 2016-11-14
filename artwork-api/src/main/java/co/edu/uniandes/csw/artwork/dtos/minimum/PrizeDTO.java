@@ -33,7 +33,7 @@ public class PrizeDTO implements Serializable {
    
 
     public PrizeDTO() {
-        super();
+       
     }
 
     public PrizeDTO(PrizeEntity entity) {

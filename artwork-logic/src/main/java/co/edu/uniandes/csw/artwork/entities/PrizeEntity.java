@@ -8,18 +8,17 @@ package co.edu.uniandes.csw.artwork.entities;
 import co.edu.uniandes.csw.crud.spi.entity.BaseEntity;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 
 /**
@@ -28,6 +27,7 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
+
 public class PrizeEntity extends BaseEntity implements Serializable {
 
    @Id
@@ -51,6 +51,7 @@ public class PrizeEntity extends BaseEntity implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date date;
     
+    @PodamExclude
     @ManyToOne
     private ArtworkEntity artwork;
     
@@ -156,7 +157,7 @@ public class PrizeEntity extends BaseEntity implements Serializable {
  }
 
  /**
-  * @param artworks the artworks to set
+  * @param artwork
   */
  public void setArtwork(ArtworkEntity artwork) {
   this.artwork = artwork;

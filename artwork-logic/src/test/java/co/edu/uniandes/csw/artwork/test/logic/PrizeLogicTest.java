@@ -51,58 +51,39 @@ import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-/**
- * @generated
- */
+
+
 @RunWith(Arquillian.class)
 public class PrizeLogicTest {
 
-    /**
-     * @generated
-     */
+  
     ArtworkEntity fatherEntity;
 
-    /**
-     * @generated
-     */
+    
     private PodamFactory factory = new PodamFactoryImpl();
 
-    /**
-     * @generated
-     */
+   
     @Inject
     private IPrizeLogic prizeLogic;
 
-    /**
-     * @generated
-     */
+    
     @PersistenceContext
     private EntityManager em;
 
-    /**
-     * @generated
-     */
+    
     @Inject
     private UserTransaction utx;
 
-    /**
-     * @generated
-     */
+   
     private List<PrizeEntity> data = new ArrayList<PrizeEntity>();
 
-    /**
-     * @generated
-     */
+   
     
 
-    /**
-     * @generated
-     */
+    
     private List<ArtworkEntity> artworkData = new ArrayList<>();
 
-    /**
-     * @generated
-     */
+    
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -114,11 +95,7 @@ public class PrizeLogicTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
 
-    /**
-     * Configuración inicial de la prueba.
-     *
-     * @generated
-     */
+    
     @Before
     public void configTest() {
         try {
@@ -138,22 +115,14 @@ public class PrizeLogicTest {
         }
     }
 
-    /**
-     * Limpia las tablas que están implicadas en la prueba.
-     *
-     * @generated
-     */
+   
     private void clearData() {
         em.createQuery("delete from PrizeEntity").executeUpdate();
        
         em.createQuery("delete from ArtworkEntity").executeUpdate();
     }
 
-    /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
-     *
-     * @generated
-     */
+ 
     private void insertData() {
         
 
@@ -167,13 +136,7 @@ public class PrizeLogicTest {
             data.add(entity);
         }
     }
-   /**
-     * Prueba para crear un Artwork
-     *
-     * @generated
-     */
-  /* 
-*/
+  
      @Test
     public void updatePrizeTest() {
         PrizeEntity entity = data.get(0);
@@ -187,14 +150,13 @@ public class PrizeLogicTest {
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
+        Assert.assertEquals(pojoEntity.getDescription(), resp.getDescription());
+        Assert.assertEquals(pojoEntity.getColor(), resp.getColor());
+        Assert.assertEquals(pojoEntity.getTrophy(), resp.getTrophy());
        
     }
    
-    /**
-     * Prueba para consultar la lista de Artworks
-     *
-     * @generated
-     */
+   
     @Test
     public void getPrizesTest() {
         List<PrizeEntity> list = prizeLogic.getPrizes();
@@ -211,11 +173,7 @@ public class PrizeLogicTest {
     }
 
     
-    /**
-     * Prueba para consultar un Artwork
-     *
-     * @generated
-     */
+   
     @Test
     public void getPrizeTest() {
         PrizeEntity entity = data.get(0);
@@ -223,12 +181,23 @@ public class PrizeLogicTest {
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
-           Assert.assertEquals(resultEntity.getDescription(), entity.getDescription());
-  Assert.assertEquals(resultEntity.getColor(), entity.getColor());
-  Assert.assertEquals(resultEntity.getTrophy(), entity.getTrophy());
+        Assert.assertEquals(resultEntity.getDescription(), entity.getDescription());
+        Assert.assertEquals(resultEntity.getColor(), entity.getColor());
+        Assert.assertEquals(resultEntity.getTrophy(), entity.getTrophy());
     }
 
-  
+  @Test
+    public void createPrizeTest() {
+        PrizeEntity newEntity = factory.manufacturePojo(PrizeEntity.class);
+        PrizeEntity result = prizeLogic.createPrize(newEntity);
+        Assert.assertNotNull(result);
+        PrizeEntity entity = em.find(PrizeEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getDescription(), entity.getDescription());
+        Assert.assertEquals(newEntity.getColor(), entity.getColor());
+        Assert.assertEquals(newEntity.getTrophy(), entity.getTrophy());
+        
+    }
     
 }
-
