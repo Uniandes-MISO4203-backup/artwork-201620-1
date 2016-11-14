@@ -11,7 +11,6 @@
     mod.controller("artworkListCtrl", ["$rootScope","$scope", '$state', 'artworks', '$stateParams','Restangular','itemModel','client','latest',
         function ($rootScope, $scope, $state, artworks, $params,Restangular, itemModel, client, latest, item) {
             $scope.records = artworks;
-            $scope.galView = 'latest';
             for(var i in $scope.records){
                 if($scope.records[i]){
                     $scope.records[i].isInWishlist = false;
@@ -26,13 +25,14 @@
                    
                     }
                 }
-            
             }
             $scope.currentPage = 0;
             $scope.pageSize = 9;
             $scope.numberOfPages=function(){
                 return Math.ceil($scope.records.length/$scope.pageSize);                
             };
+            
+            
             $scope.latest = latest;
 
             //Paginación
@@ -119,20 +119,6 @@
                     artwork.isInWishlist = false;
                     alert("Obra removida del wishlist");
                 });
-                /*
-                client.delete("shopping/?itemId="+artwork.idItem,{}).then(function(rc){
-                     if(rc){
-                        artwork.isInWishlist = false;
-                        alert("Obra removida del wishlist");
-                    } else {
-                        alert("Obra no removida del wishlist");
-                    }
-                });
-                
-                client[0].customPUT({},"wishList/"+ artwork.idItem, JSON.stringify(item),{}).then(function (rc) {
-                   
-                });
-                */
             };
 
             $scope.actions = {

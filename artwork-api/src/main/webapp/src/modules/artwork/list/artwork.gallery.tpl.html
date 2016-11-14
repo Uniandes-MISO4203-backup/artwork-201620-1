@@ -88,8 +88,12 @@
                     <div class="col-sm-12 detail no-padding">
                         <span ng-if="visitor==false" class="col-sm-8 no-padding"><a ui-sref="comment({artworkId:artwork.id})">{{artwork.name}}</a></span>
                         <div class="col-sm-4 icons no-padding">
-                            <a href="{{artwork.image}}" class="col-sm-6 no-padding"><i class="glyphicon glyphicon-search"></i></a>
-                            <div ng-if="visitor==false">   <a ng-click='addToCart(artwork)' class="col-sm-6 no-padding"><i class="glyphicon glyphicon-shopping-cart"></i></a></div>
+                            <a href="{{artwork.image}}" class="col-sm-3 no-padding"><i class="glyphicon glyphicon-search"></i></a>
+                            <div ng-if="visitor==false" class="col-sm-3 no-padding">
+                                <a ng-click='addToWishlist(artwork)' class="col-sm-6 no-padding" style="cursor: pointer;" ng-if="!artwork.isInWishlist"><i class="glyphicon glyphicon-eye-open"></i></a>
+                                <a ng-click='removeWishlist(artwork)' class="col-sm-6 no-padding" style="cursor: pointer;" ng-if="artwork.isInWishlist"><i class="glyphicon glyphicon-eye-close"></i></a>
+                            </div>
+                            <a ng-if="visitor==false" ng-click='addToCart(artwork)' class="col-sm-3 no-padding"><i class="glyphicon glyphicon-shopping-cart"></i></a>     
                         </div>
                     </div>
                 </div>

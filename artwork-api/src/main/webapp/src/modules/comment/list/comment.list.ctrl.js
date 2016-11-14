@@ -11,6 +11,19 @@
             
             
             $scope.artwork = artwork;
+            if($scope.artwork){
+                $scope.artwork.isInWishlist = false;
+                for(var j in $scope.artwork.items){
+                    if($scope.artwork.items[j]){
+                        if($scope.artwork.items[j].userName === $rootScope.usuario.$$state.value.userName){
+                            $scope.artwork.isInWishlist = true;
+                            $scope.artwork.idItem = $scope.artwork.items[j].id;
+                            break;
+                        }
+                    }
+                }
+            }
+            
             $scope.mean = 0;
             $scope.qualifications = [];            
             console.log(artwork);
@@ -107,6 +120,24 @@
             $scope.getQualifications();
 
             $scope.maxValue = 5; // default test value
+            
+            $scope.addToWishlist = function (artwork) {
+                itemModel['name'] = artwork.name;
+                itemModel['qty'] = 1;
+                itemModel['artwork'] = artwork;
+                itemModel['shoppingCart'] = false;
+                client[0].post("shopping/wishlist", JSON.stringify(itemModel));
+                artwork.isInWishlist = true;
+                alert("Obra agregada a la wishlist");
+            };
+            
+            $scope.removeWishlist = function (artwork) {
+                itemModel['id'] = artwork.idItem;
+                client[0].customDELETE("wishList/"+ artwork.idItem).then(function (rc) {
+                    artwork.isInWishlist = false;
+                    alert("Obra removida del wishlist");
+                });
+            };
         }
     ]);
     
