@@ -29,11 +29,29 @@ SOFTWARE.
         <alert type="warning">Image field must be a URL</alert>
     </ng-message>
 </div>
-<header>
+<label>Nombre: </label><input class="form-control" type="text" ng-model="artwork.name">
+<label>Precio: </label><input class="form-control" type="text" ng-model="artwork.price">
+<label>Ancho: </label><input class="form-control" type="text" ng-model="artwork.width">
+<label>Alto: </label><input class="form-control" type="text" ng-model="artwork.height">
+<label>Imagen principal: </label><input class="form-control" type="text" ng-model="artwork.image">
+<label>Imagenes secundarias: </label><input class="form-control" type="url" ng-model="image"><button class="btn btn-default" ng-click="addImage(image)">Agregar</button>
+<ul class="list-group list-inline">
+    <li ng-repeat="image in artwork.images">
+        imagen {{$index + 1}} <button ng-click="removeImage(image)">x</button>
+    </li>
+</ul>
+<label>Categoria: </label>
+<select class="form-control" ng-options="category as category.name for category in categorys" ng-model="category" ng-change="addCategory(category)"></select>
+<ul class="list-group list-inline">
+    <li ng-repeat="cat in artwork.category">
+        {{cat.name}} <button class="btn btn-danger" ng-click="removeCategory(cat)">x</button>
+    </li>
+</ul>
+<!--<header>
     <toolbar name="model.name" display-name="model.displayName" actions='actions'></toolbar>
 </header>
 <form novalidate name="artworkForm" role="form">
     <fieldset>
         <crud-form fields='model.fields' record='currentRecord' lists-of-values="references"></crud-form>
     </fieldset>
-</form>
+</form>-->

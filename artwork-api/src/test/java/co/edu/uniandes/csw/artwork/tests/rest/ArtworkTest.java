@@ -23,6 +23,8 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.tests.rest;
 
+import co.edu.uniandes.csw.artwork.dtos.detail.ArtworkDetailDTO;
+import co.edu.uniandes.csw.artwork.dtos.minimum.ArtistDTO;
 import co.edu.uniandes.csw.auth.model.UserDTO;
 import co.edu.uniandes.csw.auth.security.JWT;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
@@ -198,14 +200,15 @@ public class ArtworkTest {
      */
     @Test
     public void createArtworkTest() throws IOException {
-        ArtworkDTO artwork = factory.manufacturePojo(ArtworkDTO.class);
+        ArtworkDetailDTO artwork = factory.manufacturePojo(ArtworkDetailDTO.class);
+        artwork.setArtist(new ArtistDTO(fatherArtistEntity));
         Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         Response response = target
             .request().cookie(cookieSessionId)
             .post(Entity.entity(artwork, MediaType.APPLICATION_JSON));
 
-        ArtworkDTO  artworkTest = (ArtworkDTO) response.readEntity(ArtworkDTO.class);
+        ArtworkDetailDTO  artworkTest = (ArtworkDetailDTO) response.readEntity(ArtworkDetailDTO.class);
 
         Assert.assertEquals(CREATED, response.getStatus());
 
