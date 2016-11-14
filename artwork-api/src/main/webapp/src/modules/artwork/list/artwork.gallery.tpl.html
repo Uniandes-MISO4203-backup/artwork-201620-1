@@ -78,8 +78,7 @@
     </div>
   
     <div class="col-md-10 well" >
-     
-            <div class="row">
+         <ul class="col-sm-12 list-unstyled">
             <li class="col-sm-4 no-padding" ng-repeat="artwork in records" style="position:relative">
                 <div class="col-sm-offset-2 col-sm-8 no-padding artwork">
                  <div ng-if="visitor==false">  <a ui-sref="comment({artworkId:artwork.id})"> </div>
@@ -97,9 +96,7 @@
                         </div>
                     </div>
                 </div>
-            
             </li>
-            </div>
         </ul>
     </div>
 </div> 
