@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
+ */
 package co.edu.uniandes.csw.artwork.ejbs;
 
 import co.edu.uniandes.csw.artwork.api.IArtworkLogic;
@@ -42,10 +42,11 @@ import javax.persistence.NoResultException;
 @Stateless
 public class ArtworkLogic implements IArtworkLogic {
 
-    @Inject private ArtworkPersistence persistence;
+    @Inject
+    private ArtworkPersistence persistence;
 
     @Inject
-    private IArtistLogic artistLogic;    
+    private IArtistLogic artistLogic;
 
     /**
      * Obtiene el número de registros de Artwork.
@@ -71,8 +72,15 @@ public class ArtworkLogic implements IArtworkLogic {
         return artist.getArtworks();
     }
 
+    @Override
+    public List<ArtworkEntity> getArtworksByUserName(String userName) {
+        ArtistEntity artist = artistLogic.getArtist(userName);
+        return artist.getArtworks();
+    }
+
     /**
-     * Obtiene la lista de los registros de Artwork que pertenecen a un Artist indicando los datos para la paginación.
+     * Obtiene la lista de los registros de Artwork que pertenecen a un Artist
+     * indicando los datos para la paginación.
      *
      * @param page Número de página.
      * @param maxRecords Número de registros que se mostraran en cada página.
@@ -82,13 +90,13 @@ public class ArtworkLogic implements IArtworkLogic {
      */
     @Override
     public List<ArtworkEntity> getArtworks(Integer page, Integer maxRecords, Long artistid) {
-        if (artistid!=null){
-        return persistence.findAll(page, maxRecords, artistid);    
-        }else{
-        return persistence.findAll(page, maxRecords);    
+        if (artistid != null) {
+            return persistence.findAll(page, maxRecords, artistid);
+        } else {
+            return persistence.findAll(page, maxRecords);
         }
     }
-    
+
     /**
      * Obtiene la lista de los registros de Artwork por categoria.
      *
@@ -99,9 +107,9 @@ public class ArtworkLogic implements IArtworkLogic {
      * @generated
      */
     @Override
-    public List<ArtworkEntity> getArtworkByCategory(Integer page, Integer maxRecords, Long categoryid) {        
-        return persistence.getArtworkByCategory(page, maxRecords,categoryid);  
-        
+    public List<ArtworkEntity> getArtworkByCategory(Integer page, Integer maxRecords, Long categoryid) {
+        return persistence.getArtworkByCategory(page, maxRecords, categoryid);
+
     }
 
     /**
@@ -116,7 +124,7 @@ public class ArtworkLogic implements IArtworkLogic {
     public ArtworkEntity getArtwork(Long artworkid) {
         try {
             return persistence.find(artworkid);
-        }catch(NoResultException e){
+        } catch (NoResultException e) {
             throw new IllegalArgumentException(e);
         }
     }
@@ -162,14 +170,14 @@ public class ArtworkLogic implements IArtworkLogic {
         ArtworkEntity old = getArtwork(id);
         persistence.delete(old.getId());
     }
-  
 
     /**
      * Obtiene una colección de instancias de CategoryEntity asociadas a una
      * instancia de Artwork
      *
      * @param artworkId Identificador de la instancia de Artwork
-     * @return Colección de instancias de CategoryEntity asociadas a la instancia de Artwork
+     * @return Colección de instancias de CategoryEntity asociadas a la
+     * instancia de Artwork
      * @generated
      */
     @Override
@@ -178,7 +186,8 @@ public class ArtworkLogic implements IArtworkLogic {
     }
 
     /**
-     * Obtiene una instancia de CategoryEntity asociada a una instancia de Artwork
+     * Obtiene una instancia de CategoryEntity asociada a una instancia de
+     * Artwork
      *
      * @param artworkId Identificador de la instancia de Artwork
      * @param categoryId Identificador de la instancia de Category
@@ -218,8 +227,10 @@ public class ArtworkLogic implements IArtworkLogic {
      * Remplaza las instancias de Category asociadas a una instancia de Artwork
      *
      * @param artworkId Identificador de la instancia de Artwork
-     * @param list Colección de instancias de CategoryEntity a asociar a instancia de Artwork
-     * @return Nueva colección de CategoryEntity asociada a la instancia de Artwork
+     * @param list Colección de instancias de CategoryEntity a asociar a
+     * instancia de Artwork
+     * @return Nueva colección de CategoryEntity asociada a la instancia de
+     * Artwork
      * @generated
      */
     @Override
@@ -243,9 +254,10 @@ public class ArtworkLogic implements IArtworkLogic {
         categoryEntity.setId(categoryId);
         entity.getCategory().remove(categoryEntity);
     }
-    
+
     /**
      * Devuelve las obras de arte del artista dado
+     *
      * @param artist El nombre del artista
      * @return La lista de obras de arte del artista
      */
@@ -253,29 +265,40 @@ public class ArtworkLogic implements IArtworkLogic {
     public List<ArtworkEntity> getArtworksFromArtist(String artist) {
         return persistence.getArtworksFromArtist(artist);
     }
-    
+
     /**
-     * Devuelve la lista de calificaciones que los clientes han realizado de
-     * la obra de arte.
+     * Devuelve la lista de calificaciones que los clientes han realizado de la
+     * obra de arte.
+     *
      * @param artworkId El identificador de la obra de arte
      * @return La lista de calificaciones de la obra de arte
      */
     @Override
-    public List<QualificationEntity> getQualifications(Long artworkId){
+    public List<QualificationEntity> getQualifications(Long artworkId) {
         ArtworkEntity entity = getArtwork(artworkId);
         return entity.getQualifications();
     }
 
     /**
      * Devuelve la lista de obras recientemente agregadas.
+     *
      * @return La lista de obras mas reciente
      */
     @Override
-public List<ArtworkEntity> getLatestArtworks()
- 
- {
+    public List<ArtworkEntity> getLatestArtworks() {
         return persistence.getLatestArtworks();
     }
 
+    /**
+     * Devuelve las obras del artista con el username especificado
+     *
+     * @param page
+     * @param maxRecords
+     * @param userName
+     * @return La lista de obras del artista
+     */
+    @Override
+    public List<ArtworkEntity> getArtworksByUserName(Integer page, Integer maxRecords, String userName) {
+        return persistence.getArtworksFromArtistUserName(userName);
+    }
 }
-

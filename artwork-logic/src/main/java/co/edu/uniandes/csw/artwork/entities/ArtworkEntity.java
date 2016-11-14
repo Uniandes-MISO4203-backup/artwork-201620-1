@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,7 +26,7 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
     private Long price;
     private Integer width;
     private Integer height;
-    
+
     @Temporal(TemporalType.DATE)
     private Date dateAdded;
 
@@ -40,14 +41,19 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "artwork", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<QualificationEntity> qualifications = new ArrayList<>();
-     
+
     @PodamExclude
     @OneToMany(mappedBy = "artwork")
     private List<CommentEntity> comments = new ArrayList<>();
-    
+
     @PodamExclude
     @OneToMany(mappedBy = "artwork")
+
     private List<PrizeEntity> prizes = new ArrayList<>();
+    private List<ItemEntity> items = new ArrayList<>();
+
+    @ElementCollection
+    private List<String> images;
 
     public String getImage() {
         return image;
@@ -55,6 +61,14 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
     public Long getPrice() {
@@ -112,7 +126,15 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
     public void setComments(List<CommentEntity> comments) {
         this.comments = comments;
     }
-    
+
+    public List<ItemEntity> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemEntity> items) {
+        this.items = items;
+    }
+
     public Date getDateAdded() {
         return dateAdded;
     }
@@ -121,30 +143,17 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
         this.dateAdded = dateAdded;
     }
 
- /**
-  * @return the prizes
-  */
- public List<PrizeEntity> getPrizes() {
-  return prizes;
- }
+    /**
+     * @return the prizes
+     */
+    public List<PrizeEntity> getPrizes() {
+        return prizes;
+    }
 
- /**
-  * @param prizes the prizes to set
-  */
- public void setPrizes(List<PrizeEntity> prizes) {
-  this.prizes = prizes;
- }
-
- /**
-  * @return the prizes
-  */
- 
-
- /**
-  * @return the artworks
-  */
- 
-
- 
-
+    /**
+     * @param prizes the prizes to set
+     */
+    public void setPrizes(List<PrizeEntity> prizes) {
+        this.prizes = prizes;
+    }
 }

@@ -20,155 +20,144 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
-
 /**
  *
  * @author a.quintero10
  */
-
 @Entity
 
 public class PrizeEntity extends BaseEntity implements Serializable {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Basic(optional = false)
-   @Column(name = "ID")
-   private Long id;
-   
-   @Column(name= "Name")
-   private String name;
-   
-    @Column(name= "Description")
-   private String description;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID")
+    private Long id;
 
-    @Column(name= "Color")
-   private String color;
-    
-    @Column(name= "Trophy")
-   private String trophy;
-    
+    @Column(name = "Name")
+    private String name;
+
+    @Column(name = "Description")
+    private String description;
+
+    @Column(name = "Color")
+    private String color;
+
+    @Column(name = "Trophy")
+    private String trophy;
+
     @Temporal(TemporalType.DATE)
     private Date date;
-    
+
     @PodamExclude
     @ManyToOne
     private ArtworkEntity artwork;
-    
-    public PrizeEntity(){
+
+    public PrizeEntity() {
     }
-    public  PrizeEntity(Long id){
-    this.id = id;
+
+    public PrizeEntity(Long id) {
+        this.id = id;
     }
- /**
-  * @return the name
-  */
- public String getName() {
-  return name;
- }
 
- /**
-  * @param name the name to set
-  */
- public void setName(String name) {
-  this.name = name;
- }
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
 
- /**
-  * @return the description
-  */
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    /**
+     * @return the description
+     */
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
 
- /**
-  * @return the id
-  */
- public Long getId() {
-  return id;
- }
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
- /**
-  * @param id the id to set
-  */
- public void setId(Long id) {
-  this.id = id;
- }
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
 
- /**
-  * @return the description
-  */
- public String getDescription() {
-  return description;
- }
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
- /**
-  * @param description the description to set
-  */
- public void setDescription(String description) {
-  this.description = description;
- }
+    /**
+     * @return the color
+     */
+    public String getColor() {
+        return color;
+    }
 
- /**
-  * @return the color
-  */
- public String getColor() {
-  return color;
- }
+    /**
+     * @param color the color to set
+     */
+    public void setColor(String color) {
+        this.color = color;
+    }
 
- /**
-  * @param color the color to set
-  */
- public void setColor(String color) {
-  this.color = color;
- }
+    /**
+     * @return the trophy
+     */
+    public String getTrophy() {
+        return trophy;
+    }
 
- /**
-  * @return the trophy
-  */
- public String getTrophy() {
-  return trophy;
- }
+    /**
+     * @param trophy the trophy to set
+     */
+    public void setTrophy(String trophy) {
+        this.trophy = trophy;
+    }
 
- /**
-  * @param trophy the trophy to set
-  */
- public void setTrophy(String trophy) {
-  this.trophy = trophy;
- }
+    /**
+     * @return the date
+     */
+    public Date getDate() {
+        return date;
+    }
 
- /**
-  * @return the date
-  */
- public Date getDate() {
-  return date;
- }
+    /**
+     * @param date the date to set
+     */
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
- /**
-  * @param date the date to set
-  */
- public void setDate(Date date) {
-  this.date = date;
- }
+    /**
+     * @return the artworks
+     */
+    public ArtworkEntity getArtwork() {
+        return artwork;
+    }
 
- /**
-  * @return the artworks
-  */
- public ArtworkEntity getArtwork() {
-  return artwork;
- }
-
- /**
-  * @param artwork
-  */
- public void setArtwork(ArtworkEntity artwork) {
-  this.artwork = artwork;
- }
-
- /**
-  * @return the artworks
-  */
-
- /**
-  * @return the artworks
-  */
- 
+    /**
+     * @param artwork
+     */
+    public void setArtwork(ArtworkEntity artwork) {
+        this.artwork = artwork;
+    }
 }

@@ -56,7 +56,7 @@ public class ArtworkResource {
     @Context private HttpServletResponse response;
     @QueryParam("page") private Integer page;
     @QueryParam("limit") private Integer maxRecords;
-    @PathParam("artistsId") private Long artistsId;    
+    @PathParam("artistsId") private Long artistsId;
 
    
     /**
@@ -150,6 +150,7 @@ public class ArtworkResource {
     public void deleteArtwork(@PathParam("artworkId") Long artworkId) {
         artworkLogic.deleteArtwork(artworkId);
     }
+    
     public void existsArtwork(Long artworksId){
         ArtworkDetailDTO artwork = getArtwork(artworksId);
         if (artwork== null) {

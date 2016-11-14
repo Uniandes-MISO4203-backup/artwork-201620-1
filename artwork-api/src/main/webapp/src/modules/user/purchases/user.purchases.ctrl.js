@@ -9,6 +9,14 @@
  mod.controller('userPurchasesCtrl', ['$scope', 'Restangular', '$stateParams', 'clients', 'items',
   function ($scope, Restangular, $stateParams, clients, items) {
    $scope.purchases = items;
+   
+   $scope.currentPage = 0;
+   $scope.pageSize = 10;
+   $scope.numberOfPages=function(){
+       return Math.ceil($scope.purchases.length/$scope.pageSize);                
+   };
+   
+   
    $scope.getTotal = function (purchase) {
     var total = 0;
     for (var i = 0; i < purchase.items.length; i++) {
@@ -22,6 +30,17 @@
    };
   }
  ]);
+    
+    //We already have a limitTo filter built-in to angular,
+    //let's make a startFrom filter
+    mod.filter('startFrom', function() {
+        return function(input, start) {
+            start = +start; //parse to int
+            if(input){
+                return input.slice(start);
+            }
+        };
+    });
 })(window.angular);
 
 

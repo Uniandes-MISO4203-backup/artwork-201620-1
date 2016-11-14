@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
+ */
 package co.edu.uniandes.csw.artwork.entities;
 
 import java.io.Serializable;
@@ -36,18 +36,19 @@ import javax.persistence.ManyToOne;
 public class QualificationEntity extends BaseEntity implements Serializable {
 
     private int qualification;
-    
+
     /**
      * Nombre de usuario del cliente en stormpath
      */
     private String userClient;
-    
+
     @PodamExclude
     @ManyToOne
-    private ArtworkEntity artwork;   
+    private ArtworkEntity artwork;
 
     /**
      * Devuelve la calificación dada a la obra de arte por el usuario.
+     *
      * @return the qualification
      */
     public int getQualification() {
@@ -56,6 +57,7 @@ public class QualificationEntity extends BaseEntity implements Serializable {
 
     /**
      * Establece la calificación dada a la obra de arte por el usuario.
+     *
      * @param qualification the qualification to set
      */
     public void setQualification(int qualification) {
@@ -64,6 +66,7 @@ public class QualificationEntity extends BaseEntity implements Serializable {
 
     /**
      * Devuelve la obra de arte asociada a esta calificación.
+     *
      * @return the artwork
      */
     public ArtworkEntity getArtwork() {
@@ -72,6 +75,7 @@ public class QualificationEntity extends BaseEntity implements Serializable {
 
     /**
      * Establece la obra de arte asociada a esta calificación.
+     *
      * @param artwork the artwork to set
      */
     public void setArtwork(ArtworkEntity artwork) {
@@ -90,7 +94,7 @@ public class QualificationEntity extends BaseEntity implements Serializable {
      */
     public void setUserClient(String userClient) {
         this.userClient = userClient;
-    }    
+    }
 
     @Override
     public boolean equals(Object obj) {

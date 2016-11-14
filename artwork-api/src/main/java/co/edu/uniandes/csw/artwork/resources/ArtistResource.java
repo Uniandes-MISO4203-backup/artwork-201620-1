@@ -41,7 +41,9 @@ import javax.ws.rs.core.MediaType;
 import co.edu.uniandes.csw.artwork.api.IArtistLogic;
 import co.edu.uniandes.csw.artwork.api.IArtworkLogic;
 import co.edu.uniandes.csw.artwork.dtos.detail.ArtistDetailDTO;
+import co.edu.uniandes.csw.artwork.dtos.detail.ArtworkDetailDTO;
 import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.auth.stormpath.Utils;
 import com.stormpath.sdk.account.Account;
 import com.stormpath.sdk.group.Group;
@@ -66,6 +68,7 @@ public class ArtistResource {
     @Context private HttpServletRequest req;
     @QueryParam("page") private Integer page;
     @QueryParam("limit") private Integer maxRecords;
+    @QueryParam("userName") private String userName;    
 
    
     /**
@@ -79,6 +82,21 @@ public class ArtistResource {
         List<ArtistDetailDTO> list = new ArrayList<>();
         for (ArtistEntity entity : entityList) {
             list.add(new ArtistDetailDTO(entity));
+        }
+        return list;
+    }
+    
+     /**
+     * Convierte una lista de ArtworkEntity a una lista de ArtworkDetailDTO
+     *
+     * @param entityList Lista de ArtworkEntity a convertir
+     * @return Lista de ArtworkDetailDTO convertida
+     * @generated
+     */
+    private List<ArtworkDetailDTO> listEntityArtworks2DTO(List<ArtworkEntity> entityList){
+        List<ArtworkDetailDTO> list = new ArrayList<>();
+        for (ArtworkEntity entity : entityList) {
+            list.add(new ArtworkDetailDTO(entity));
         }
         return list;
     }
@@ -183,4 +201,19 @@ public class ArtistResource {
         return ArtworkResource.class;
     }
     
+    /**
+     * Obtiene la lista de obras del artista
+     *
+     * @return Colección de objetos de ArtworkDetailDTO
+     * @generated
+     */
+    @GET
+    @Path("/artworks")
+    public List<ArtworkDetailDTO> getArtworksArtist() {
+        if (page != null && maxRecords != null) {
+            this.response.setIntHeader("X-Total-Count", artworkLogic.countArtworks());
+            return listEntityArtworks2DTO(artworkLogic.getArtworksByUserName(page, maxRecords, userName));
+        }
+        return listEntityArtworks2DTO(artworkLogic.getArtworksByUserName(userName));
+    }
 }
