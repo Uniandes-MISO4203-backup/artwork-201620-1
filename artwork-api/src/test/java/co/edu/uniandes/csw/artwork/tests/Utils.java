@@ -28,6 +28,7 @@ package co.edu.uniandes.csw.artwork.tests;
  * @generate
  */
 public class Utils {
+  
     public static final String API_PATH = "api";
     public static final String USERNAME = System.getenv("USERNAME_USER");
     public static final String PASSWORD = System.getenv("PASSWORD_USER"); 

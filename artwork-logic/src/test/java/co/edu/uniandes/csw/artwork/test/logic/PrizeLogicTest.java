@@ -23,19 +23,15 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.test.logic;
 
-import co.edu.uniandes.csw.artwork.ejbs.ArtworkLogic;
-import co.edu.uniandes.csw.artwork.api.IArtworkLogic;
 import co.edu.uniandes.csw.artwork.api.IPrizeLogic;
 import co.edu.uniandes.csw.artwork.ejbs.PrizeLogic;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
-import co.edu.uniandes.csw.artwork.persistence.ArtworkPersistence;
-import co.edu.uniandes.csw.artwork.entities.CategoryEntity;
-import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
 import co.edu.uniandes.csw.artwork.entities.PrizeEntity;
 import co.edu.uniandes.csw.artwork.persistence.PrizePersistence;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -61,7 +57,7 @@ public class PrizeLogicTest {
 
     
     private PodamFactory factory = new PodamFactoryImpl();
-
+    private static final Logger LOGGER = Logger.getLogger("co.edu.uniandes.csw.artwork.test.logic.PrizeLogicTest");
    
     @Inject
     private IPrizeLogic prizeLogic;
@@ -76,14 +72,7 @@ public class PrizeLogicTest {
 
    
     private List<PrizeEntity> data = new ArrayList<PrizeEntity>();
-
-   
-    
-
-    
-    private List<ArtworkEntity> artworkData = new ArrayList<>();
-
-    
+  
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -104,13 +93,12 @@ public class PrizeLogicTest {
             insertData();
             utx.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, e.getMessage(), e);
             
             try {
                 utx.rollback();
             } catch (Exception e1) {
-                e1.printStackTrace();
-                
+                 LOGGER.log(Level.SEVERE, e1.getMessage(), e1);
             }
         }
     }

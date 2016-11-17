@@ -82,6 +82,7 @@ public class ArtistEntity extends BaseEntity implements Serializable {
     }
 
     public ArtistEntity() {
+     // constructor ArtistEntity
     }
 
     public ArtistEntity(Long id) {

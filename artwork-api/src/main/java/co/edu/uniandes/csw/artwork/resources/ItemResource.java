@@ -149,7 +149,7 @@ public class ItemResource {
     @Path("{itemId: \\d+}")
     public Response deleteItem(@PathParam("itemId") Long itemId) {
         itemLogic.deleteItem(itemId);
-        //return Response.status(Response.Status.OK).build();
+       
         return Response.status(Response.Status.NO_CONTENT).build();
     }
     

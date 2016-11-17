@@ -128,7 +128,7 @@ public class ProductResource {
     public ProductDetailDTO updateProduct(@PathParam("id") Long id, ProductDetailDTO dto) {
         ProductEntity entity = dto.toEntity();
         entity.setId(id);
-        ProductEntity oldEntity = productLogic.getProduct(id);
+        
         return new ProductDetailDTO(productLogic.updateProduct(entity));
     }
 

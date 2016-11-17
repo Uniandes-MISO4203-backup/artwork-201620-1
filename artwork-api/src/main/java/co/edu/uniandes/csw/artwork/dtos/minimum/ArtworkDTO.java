@@ -54,8 +54,8 @@ public class ArtworkDTO implements Serializable {
             this.images = entity.getImages();
             if(entity.getCategory() != null){
                 List<CategoryDTO> categories = new ArrayList<>();
-                for (CategoryEntity category : entity.getCategory()) {
-                    CategoryDTO cat = new CategoryDTO(category);
+                for (CategoryEntity categoria : entity.getCategory()) {
+                    CategoryDTO cat = new CategoryDTO(categoria);
                     categories.add(cat);
                 }
                 this.category = categories;

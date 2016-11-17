@@ -33,7 +33,7 @@ public class PrizeDTO implements Serializable {
    
 
     public PrizeDTO() {
-       
+     // constructor prizeDTO  
     }
 
     public PrizeDTO(PrizeEntity entity) {

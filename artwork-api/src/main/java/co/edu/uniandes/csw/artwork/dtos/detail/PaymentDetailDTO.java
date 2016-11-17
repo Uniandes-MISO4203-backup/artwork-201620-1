@@ -47,7 +47,7 @@ public class PaymentDetailDTO extends PaymentDTO{
            this.items.add(new ItemDetailDTO(item));
             }
              
-         //   entity.getItems().stream().forEach(item->items.add(new ItemDetailDTO(item)));
+         
        }
        
     }

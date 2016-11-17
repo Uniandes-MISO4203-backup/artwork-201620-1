@@ -138,8 +138,8 @@ public class RootArtworkResource {
         return new ArtworkDetailDTO(entity);
     }
     public void existsArtist(Long id){
-        ArtistEntity artist = artistLogic.getArtist(id);
-        if (artist == null) {
+        ArtistEntity artista = artistLogic.getArtist(id);
+        if (artista == null) {
             throw new WebApplicationException(404);
         }
     }

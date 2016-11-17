@@ -32,7 +32,8 @@ import co.edu.uniandes.csw.artwork.entities.ClientEntity;
 import co.edu.uniandes.csw.artwork.entities.ProductEntity;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -63,7 +64,7 @@ public class ItemLogicTest {
      * @generated
      */
     private PodamFactory factory = new PodamFactoryImpl();
-
+    private static final Logger LOGGER = Logger.getLogger("co.edu.uniandes.csw.artwork.test.logic.ItemLogicTest");
     /**
      * @generated
      */
@@ -92,10 +93,7 @@ public class ItemLogicTest {
      */
     private List<ArtworkEntity> artworkData = new ArrayList<>();
 
-    /**
-     * @generated
-     */
-    private List<ClientEntity> clientData = new ArrayList<>();
+    
 
     /**
      * @generated
@@ -129,11 +127,11 @@ public class ItemLogicTest {
             insertData();
             utx.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, e.getMessage(), e);
             try {
                 utx.rollback();
             } catch (Exception e1) {
-                e1.printStackTrace();
+                LOGGER.log(Level.SEVERE, e1.getMessage(), e1);
             }
         }
     }

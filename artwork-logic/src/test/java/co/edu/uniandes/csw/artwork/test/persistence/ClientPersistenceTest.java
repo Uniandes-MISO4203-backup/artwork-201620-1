@@ -26,7 +26,8 @@ import co.edu.uniandes.csw.artwork.entities.ClientEntity;
 import co.edu.uniandes.csw.artwork.persistence.ClientPersistence;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -53,7 +54,9 @@ public class ClientPersistenceTest {
      */
     @Inject
     private ClientPersistence clientPersistence;
-
+   
+     private static final Logger LOGGER = Logger.getLogger("co.edu.uniandes.csw.artwork.test.persistence.ClientPersistenceTest");
+ 
     /**
      * @generated
      */
@@ -101,11 +104,11 @@ public class ClientPersistenceTest {
             insertData();
             utx.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, e.getMessage(), e);
             try {
                 utx.rollback();
             } catch (Exception e1) {
-                e1.printStackTrace();
+                 LOGGER.log(Level.SEVERE, e1.getMessage(), e1);
             }
         }
     }

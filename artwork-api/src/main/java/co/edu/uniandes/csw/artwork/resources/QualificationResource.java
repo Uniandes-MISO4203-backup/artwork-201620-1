@@ -43,9 +43,6 @@ import co.edu.uniandes.csw.artwork.api.IQualificationLogic;
 import co.edu.uniandes.csw.artwork.dtos.detail.QualificationDetailDTO;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
-import co.edu.uniandes.csw.auth.stormpath.Utils;
-import com.stormpath.sdk.account.Account;
-import com.stormpath.sdk.group.Group;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.WebApplicationException;
@@ -59,8 +56,7 @@ import javax.ws.rs.WebApplicationException;
 @Produces(MediaType.APPLICATION_JSON)
 public class QualificationResource {
 
-    private static final String CLIENT_HREF = "https://api.stormpath.com/v1/groups/8hCxfQfGQ1EvhrCX9yXsL";
-
+  
     @Inject private IQualificationLogic qualificationLogic;
     @Inject private IArtworkLogic artworkLogic;
     @Context private HttpServletResponse response;
@@ -96,24 +92,9 @@ public class QualificationResource {
      */
     @GET
     public List<QualificationDetailDTO> getQualifications() {
-        String accountHref = req.getRemoteUser();
-        /*if (accountHref != null) {
-            Account account = Utils.getClient().getResource(accountHref, Account.class);
-            for (Group gr : account.getGroups()) {
-                if (gr.getHref().equalsIgnoreCase(CLIENT_HREF)){
-                    if (page != null && maxRecords != null) {
-                        this.response.setIntHeader("X-Total-Count", qualificationLogic.countQualifications());
-                        return listEntity2DTO(qualificationLogic.getQualifications(page, maxRecords));
-                    }
-                    return listEntity2DTO(qualificationLogic.getQualifications());
-                } else {
-                    return new ArrayList<>();
-                }
-            }
-        }*/
+       
         return listEntity2DTO(qualificationLogic.getQualifications());
-        //Por recomendacion de SonarQube se retorna una lista vacia en lugar de un null
-        //return new ArrayList<>();
+       
         
     }    
 
@@ -189,7 +170,7 @@ public class QualificationResource {
     /**
      * Obtiene la lista de los registros de Qualification
      *
-     * @param artworkid Id de la obra de arte 
+     *
      * @return Colección de objetos de QualificationDetailDTO
      * @generated
      */

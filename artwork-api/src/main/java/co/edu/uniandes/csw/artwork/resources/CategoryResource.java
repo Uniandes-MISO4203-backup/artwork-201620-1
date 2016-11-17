@@ -152,8 +152,9 @@ public class CategoryResource {
     @Path("{id: \\d+}")
     public CategoryDetailDTO updateCategory(@PathParam("id") Long id, CategoryDetailDTO dto) {
         CategoryEntity entity = dto.toEntity();
-        entity.setId(id);
         CategoryEntity oldEntity = categoryLogic.getCategory(id);
+        entity.setId(oldEntity.getId());
+        
         return new CategoryDetailDTO(categoryLogic.updateCategory(entity));
     }
 

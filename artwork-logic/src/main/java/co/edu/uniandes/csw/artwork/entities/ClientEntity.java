@@ -107,6 +107,7 @@ public class ClientEntity extends BaseEntity implements Serializable {
     }  
 
  public ClientEntity() {
+  //constructor clientEntity
  }
 
  public ClientEntity(Long id) {

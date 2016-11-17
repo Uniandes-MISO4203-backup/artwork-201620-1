@@ -95,7 +95,8 @@ public class ClientResource {
         if (accountHref != null) {
             Account account = Utils.getClient().getResource(accountHref, Account.class);
             for (Group gr : account.getGroups()) {
-                switch (gr.getHref()) {
+                switch (gr.getHref()) 
+                {
                     case ADMIN_HREF:
                         if (page != null && maxRecords != null) {
                             this.response.setIntHeader("X-Total-Count", clientLogic.countClients());
@@ -107,10 +108,11 @@ public class ClientResource {
                         List<ClientDetailDTO> list = new ArrayList();
                         list.add(new ClientDetailDTO(clientLogic.getClient(id.longValue())));
                         return list;
+                    default: return new ArrayList();
                 }
             }
         } 
-        return null;
+        return new ArrayList();
         
     }
 
@@ -153,7 +155,7 @@ public class ClientResource {
     public ClientDetailDTO updateClient(@PathParam("id") Long id, ClientDetailDTO dto) {
         ClientEntity entity = dto.toEntity();
         entity.setId(id);
-        ClientEntity oldEntity = clientLogic.getClient(id);
+        
         return new ClientDetailDTO(clientLogic.updateClient(entity));
     }
 

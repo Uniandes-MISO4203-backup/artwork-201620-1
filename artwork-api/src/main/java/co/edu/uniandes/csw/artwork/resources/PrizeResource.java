@@ -103,6 +103,7 @@ public class PrizeResource {
     
      PrizeEntity entity = dto.toEntity();
      ArtworkEntity aentity = dto.getArtwork().toEntity();
+     aentity.setId(prizeId);
      ArtworkEntity oentity = artworkLogic.getArtwork(aentity.getId());
      oentity.setPrizes(aentity.getPrizes());
      

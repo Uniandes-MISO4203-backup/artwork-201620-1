@@ -29,7 +29,8 @@ import co.edu.uniandes.csw.artwork.persistence.CategoryPersistence;
 import co.edu.uniandes.csw.artwork.entities.CategoryEntity;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -82,11 +83,11 @@ public class CategoryLogicTest {
      * @generated
      */
     private List<CategoryEntity> data = new ArrayList<CategoryEntity>();
-
+    private static final Logger LOGGER = Logger.getLogger("co.edu.uniandes.csw.artwork.test.logic.CategoryLogicTest");
     /**
      * @generated
      */
-    private List<CategoryEntity> parentCategoryData = new ArrayList<>();
+   
 
     /**
      * @generated
@@ -115,11 +116,11 @@ public class CategoryLogicTest {
             insertData();
             utx.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, e.getMessage(), e);
             try {
                 utx.rollback();
             } catch (Exception e1) {
-                e1.printStackTrace();
+                 LOGGER.log(Level.SEVERE, e1.getMessage(), e1);
             }
         }
     }
@@ -141,7 +142,7 @@ public class CategoryLogicTest {
     private void insertData() {
         for (int i = 0; i < 3; i++) {
             CategoryEntity entity = factory.manufacturePojo(CategoryEntity.class);
-            //entity.setParentCategory(parentCategoryData.get(0));
+            
 
             em.persist(entity);
             data.add(entity);

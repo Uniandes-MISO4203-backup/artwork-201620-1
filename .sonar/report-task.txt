@@ -1,5 +1,5 @@
 projectKey=co.edu.uniandes.csw.artwork:artwork
 serverUrl=http://157.253.238.75:9000
 dashboardUrl=http://157.253.238.75:9000/dashboard/index/co.edu.uniandes.csw.artwork:artwork
-ceTaskId=AVdziFFMsOZVKDkVuIW_
-ceTaskUrl=http://157.253.238.75:9000/api/ce/task?id=AVdziFFMsOZVKDkVuIW_
+ceTaskId=AVhwUZhdsOZVKDkVuIzD
+ceTaskUrl=http://157.253.238.75:9000/api/ce/task?id=AVhwUZhdsOZVKDkVuIzD

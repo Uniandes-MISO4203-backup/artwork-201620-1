@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.artwork.entities;
 import co.edu.uniandes.csw.crud.spi.entity.BaseEntity;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +16,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -45,15 +45,17 @@ public class PrizeEntity extends BaseEntity implements Serializable {
 
     @Column(name = "Trophy")
     private String trophy;
-
+    
+    @PodamExclude
     @Temporal(TemporalType.DATE)
     private Date date;
 
     @PodamExclude
     @ManyToOne
     private ArtworkEntity artwork;
-
+   
     public PrizeEntity() {
+     // constructor de prize
     }
 
     public PrizeEntity(Long id) {
@@ -63,6 +65,7 @@ public class PrizeEntity extends BaseEntity implements Serializable {
     /**
      * @return the name
      */
+    @Override
     public String getName() {
         return name;
     }
@@ -70,6 +73,7 @@ public class PrizeEntity extends BaseEntity implements Serializable {
     /**
      * @param name the name to set
      */
+    @Override
     public void setName(String name) {
         this.name = name;
     }
@@ -80,6 +84,7 @@ public class PrizeEntity extends BaseEntity implements Serializable {
     /**
      * @return the id
      */
+    @Override
     public Long getId() {
         return id;
     }
@@ -87,6 +92,7 @@ public class PrizeEntity extends BaseEntity implements Serializable {
     /**
      * @param id the id to set
      */
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
@@ -159,5 +165,27 @@ public class PrizeEntity extends BaseEntity implements Serializable {
      */
     public void setArtwork(ArtworkEntity artwork) {
         this.artwork = artwork;
+    }
+    
+     @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof PrizeEntity)) {
+            return false;
+        }
+        PrizeEntity other = (PrizeEntity) object;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
+    }
+
+ @Override
+ public int hashCode() {
+  int hash = 7;
+  hash = 31 * hash + Objects.hashCode(this.id);
+  return hash;
+ }
+
+    @Override
+    public String toString() {
+        return "co.edu.uniandes.csw.artwork.entities.PrizeEntity[ id=" + id + " ]";
     }
 }

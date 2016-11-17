@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.persistence.ArtworkPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,6 +26,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
+import java.util.logging.Logger;
 
 @RunWith(Arquillian.class)
 public class ArtworkPersistenceTest {
@@ -40,6 +42,8 @@ public class ArtworkPersistenceTest {
   ArtistEntity fatherEntity;
  
  private List<ArtworkEntity> data = new ArrayList<>();
+   private static final Logger LOGGER = Logger.getLogger("co.edu.uniandes.csw.artwork.test.persistence.ArtworkPersistenceTest");
+   
  
  @Deployment
  public static JavaArchive createDeployment() {
@@ -61,11 +65,11 @@ public class ArtworkPersistenceTest {
    insertData();
    utx.commit(); 
   }catch (Exception e) {
-   e.printStackTrace();
+  LOGGER.log(Level.SEVERE, e.getMessage(), e);
    try {
     utx.rollback(); 
    }catch (Exception e1) {
-    e1.printStackTrace();
+     LOGGER.log(Level.SEVERE, e1.getMessage(), e1);
    } 
   }
  }

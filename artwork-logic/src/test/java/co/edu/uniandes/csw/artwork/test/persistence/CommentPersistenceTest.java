@@ -5,6 +5,7 @@ import co.edu.uniandes.csw.artwork.entities.CommentEntity;
 import co.edu.uniandes.csw.artwork.persistence.CommentPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +20,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
+import java.util.logging.Logger;
 
 @RunWith(Arquillian.class)
 public class CommentPersistenceTest {
@@ -35,6 +37,9 @@ public class CommentPersistenceTest {
  UserTransaction utx;
  
  private List<CommentEntity> data = new ArrayList<>();
+ 
+  private static final Logger LOGGER = Logger.getLogger("co.edu.uniandes.csw.artwork.test.persistence.CommentPersistenceTest");
+ 
  
  @Deployment
  public static JavaArchive createDeployment() {
@@ -54,11 +59,11 @@ public class CommentPersistenceTest {
    insertData();
    utx.commit(); 
   }catch (Exception e) {
-   e.printStackTrace();
+    LOGGER.log(Level.SEVERE, e.getMessage(), e);
    try {
     utx.rollback();
    }catch (Exception e1) {
-    e1.printStackTrace();
+     LOGGER.log(Level.SEVERE, e1.getMessage(), e1);
    }
    
   }

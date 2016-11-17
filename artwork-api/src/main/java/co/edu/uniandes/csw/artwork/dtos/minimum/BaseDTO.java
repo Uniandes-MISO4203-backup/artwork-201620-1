@@ -18,6 +18,7 @@ public class BaseDTO {
     protected String name;
     
     public BaseDTO(){
+     // constructor baseDTO
     }
     /**
   * Obtiene el atributo id.

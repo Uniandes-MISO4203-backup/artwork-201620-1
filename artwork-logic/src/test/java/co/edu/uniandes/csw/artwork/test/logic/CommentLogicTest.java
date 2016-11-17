@@ -7,7 +7,8 @@ import co.edu.uniandes.csw.artwork.entities.CommentEntity;
 import co.edu.uniandes.csw.artwork.persistence.CommentPersistence;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -38,7 +39,7 @@ public class CommentLogicTest {
      * @generated
      */
     private PodamFactory factory = new PodamFactoryImpl();
-
+    private static final Logger LOGGER = Logger.getLogger("co.edu.uniandes.csw.artwork.test.logic.CommentLogicTest");
     /**
      * @generated
      */
@@ -67,7 +68,7 @@ public class CommentLogicTest {
     /**
      * @generated
      */
-    private List<ArtworkEntity> artworkData = new ArrayList<>();
+    
 
     /**
      * @generated
@@ -96,11 +97,11 @@ public class CommentLogicTest {
             insertData();
             utx.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+             LOGGER.log(Level.SEVERE, e.getMessage(), e);
             try {
                 utx.rollback();
             } catch (Exception e1) {
-                e1.printStackTrace();
+                 LOGGER.log(Level.SEVERE, e1.getMessage(), e1);
             }
         }
     }

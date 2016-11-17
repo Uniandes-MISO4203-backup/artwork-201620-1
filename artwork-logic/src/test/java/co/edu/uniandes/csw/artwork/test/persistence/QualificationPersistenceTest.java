@@ -14,6 +14,7 @@ import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
 import co.edu.uniandes.csw.artwork.persistence.QualificationPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,6 +29,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
+import java.util.logging.Logger;
 
 
 @RunWith(Arquillian.class)
@@ -43,6 +45,8 @@ private EntityManager em;
 UserTransaction utx;
 
 private List<QualificationEntity> data = new ArrayList<>();
+private static final Logger LOGGER = Logger.getLogger("co.edu.uniandes.csw.artwork.test.persistence.QualificationPersistenceTest");
+
 
 @Deployment
 public static JavaArchive createDeployment(){
@@ -62,11 +66,11 @@ clearData();
 insertData();
 utx.commit();
 }catch (Exception e ){
-e.printStackTrace();
+ LOGGER.log(Level.SEVERE, e.getMessage(), e);
 try{
 utx.rollback();
 }catch (Exception e1){
-e1.printStackTrace();
+ LOGGER.log(Level.SEVERE, e1.getMessage(), e1);
 }
 }
 }
@@ -124,7 +128,7 @@ Assert.assertEquals(entity.getQualification(), newEntity.getQualification());
 public void deleteItemTest(){
 QualificationEntity entity = data.get(0);
 qualificationPersistence.delete(entity.getId());
-QualificationEntity deleted = em.find(QualificationEntity.class, entity.getId());
+
 }
 @Test
 public void updateItemTest(){
