@@ -212,11 +212,11 @@ public class ArtworkTest {
 
         Assert.assertEquals(CREATED, response.getStatus());
 
-        Assert.assertEquals(artwork.getName(), artworkTest.getName());
-        Assert.assertEquals(artwork.getImage(), artworkTest.getImage());
-        Assert.assertEquals(artwork.getPrice(), artworkTest.getPrice());
+        Assert.assertEquals(artwork.getNameArtworkDTO(), artworkTest.getNameArtworkDTO());
+        Assert.assertEquals(artwork.getImageArtworkDTO(), artworkTest.getImageArtworkDTO());
+        Assert.assertEquals(artwork.getPriceArtworkDTO(), artworkTest.getPriceArtworkDTO());
 
-        ArtworkEntity entity = em.find(ArtworkEntity.class, artworkTest.getId());
+        ArtworkEntity entity = em.find(ArtworkEntity.class, artworkTest.getIdArtworkDTO());
         Assert.assertNotNull(entity);
     }
 
@@ -233,10 +233,10 @@ public class ArtworkTest {
             .path(oraculo.get(0).getId().toString())
             .request().cookie(cookieSessionId).get(ArtworkDTO.class);
         
-        Assert.assertEquals(artworkTest.getId(), oraculo.get(0).getId());
-        Assert.assertEquals(artworkTest.getName(), oraculo.get(0).getName());
-        Assert.assertEquals(artworkTest.getImage(), oraculo.get(0).getImage());
-        Assert.assertEquals(artworkTest.getPrice(), oraculo.get(0).getPrice());
+        Assert.assertEquals(artworkTest.getIdArtworkDTO(), oraculo.get(0).getId());
+        Assert.assertEquals(artworkTest.getNameArtworkDTO(), oraculo.get(0).getName());
+        Assert.assertEquals(artworkTest.getImageArtworkDTO(), oraculo.get(0).getImage());
+        Assert.assertEquals(artworkTest.getPriceArtworkDTO(), oraculo.get(0).getPrice());
     }
 
     /**
@@ -269,21 +269,21 @@ public class ArtworkTest {
 
         ArtworkDTO artworkChanged = factory.manufacturePojo(ArtworkDTO.class);
 
-        artwork.setName(artworkChanged.getName());
-        artwork.setImage(artworkChanged.getImage());
-        artwork.setPrice(artworkChanged.getPrice());
+        artwork.setNameArtworkDTO(artworkChanged.getNameArtworkDTO());
+        artwork.setImageArtworkDTO(artworkChanged.getImageArtworkDTO());
+        artwork.setPriceArtworkDTO(artworkChanged.getPriceArtworkDTO());
 
         Response response = target
-            .path(artwork.getId().toString())
+            .path(artwork.getIdArtworkDTO().toString())
             .request().cookie(cookieSessionId)
             .put(Entity.entity(artwork, MediaType.APPLICATION_JSON));
 
         ArtworkDTO artworkTest = (ArtworkDTO) response.readEntity(ArtworkDTO.class);
 
         Assert.assertEquals(OK, response.getStatus());
-        Assert.assertEquals(artwork.getName(), artworkTest.getName());
-        Assert.assertEquals(artwork.getImage(), artworkTest.getImage());
-        Assert.assertEquals(artwork.getPrice(), artworkTest.getPrice());
+        Assert.assertEquals(artwork.getNameArtworkDTO(), artworkTest.getNameArtworkDTO());
+        Assert.assertEquals(artwork.getImageArtworkDTO(), artworkTest.getImageArtworkDTO());
+        Assert.assertEquals(artwork.getPriceArtworkDTO(), artworkTest.getPriceArtworkDTO());
     }
 
     /**
@@ -296,7 +296,7 @@ public class ArtworkTest {
         Cookie cookieSessionId = login(USERNAME, PASSWORD);
         ArtworkDTO artwork = new ArtworkDTO(oraculo.get(0));
         Response response = target
-            .path(artwork.getId().toString())
+            .path(artwork.getIdArtworkDTO().toString())
             .request().cookie(cookieSessionId).delete();
 
         Assert.assertEquals(OK_WITHOUT_CONTENT, response.getStatus());

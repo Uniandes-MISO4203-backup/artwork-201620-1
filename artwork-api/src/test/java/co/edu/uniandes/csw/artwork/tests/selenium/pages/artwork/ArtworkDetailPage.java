@@ -60,9 +60,9 @@ public class ArtworkDetailPage {
 
     public ArtworkDTO getData() {
         ArtworkDTO artwork = new ArtworkDTO();        
-        artwork.setName(name.getText());
-        artwork.setImage(image.getText());
-        artwork.setPrice(Long.parseLong(price.getText()));
+        artwork.setNameArtworkDTO(name.getText());
+        artwork.setImageArtworkDTO(image.getText());
+        artwork.setPriceArtworkDTO(Long.parseLong(price.getText()));
         return artwork;
     }
 }
