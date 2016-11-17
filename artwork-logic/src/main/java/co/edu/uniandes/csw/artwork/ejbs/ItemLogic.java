@@ -30,7 +30,6 @@ import co.edu.uniandes.csw.artwork.api.IClientLogic;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
 import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
 import co.edu.uniandes.csw.artwork.persistence.PaymentPersistence;
-import co.edu.uniandes.csw.artwork.persistence.ProductPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;

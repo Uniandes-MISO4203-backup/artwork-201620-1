@@ -23,15 +23,12 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.persistence;
 
-import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import co.edu.uniandes.csw.artwork.entities.ItemEntity;
-import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
 import co.edu.uniandes.csw.crud.spi.persistence.CrudPersistence;
 import java.util.List;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**

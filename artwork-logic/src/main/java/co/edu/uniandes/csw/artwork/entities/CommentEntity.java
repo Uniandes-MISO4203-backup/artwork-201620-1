@@ -75,8 +75,5 @@ public class CommentEntity extends BaseEntity implements Serializable {
         this.comment = comment;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }

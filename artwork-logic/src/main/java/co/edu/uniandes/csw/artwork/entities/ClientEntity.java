@@ -70,6 +70,14 @@ public class ClientEntity extends BaseEntity implements Serializable {
      * @return colección wishList.
      * @generated
      */
+     public ClientEntity() {
+  //constructor clientEntity
+ }
+
+ public ClientEntity(Long id) {
+  this.id = id;
+ }
+    
  @XmlTransient
     public List<ItemEntity> getWishList() {
         return wishList;
@@ -106,13 +114,7 @@ public class ClientEntity extends BaseEntity implements Serializable {
         this.payments = payments;
     }  
 
- public ClientEntity() {
-  //constructor clientEntity
- }
 
- public ClientEntity(Long id) {
-  this.id = id;
- }
 
  public Long getId() {
   return id;

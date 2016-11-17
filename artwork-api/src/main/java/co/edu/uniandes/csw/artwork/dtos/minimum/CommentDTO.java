@@ -23,7 +23,14 @@ public class CommentDTO implements Serializable {
     public CommentDTO() {
         //Constructor clase
     }
-
+   
+    public CommentDTO(CommentEntity entity) {
+        if (entity != null) {
+            this.id = entity.getId();
+            this.name = entity.getName();
+            this.comment = entity.getComment();
+        }
+    }
     /**
      * Convierte un objeto CommentDTO a CommentEntity.
      *
@@ -38,13 +45,7 @@ public class CommentDTO implements Serializable {
         return entity;
     }
 
-    public CommentDTO(CommentEntity entity) {
-        if (entity != null) {
-            this.id = entity.getId();
-            this.name = entity.getName();
-            this.comment = entity.getComment();
-        }
-    }
+    
 
     public String getComment() {
         return comment;

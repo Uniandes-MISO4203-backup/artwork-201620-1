@@ -60,9 +60,5 @@ public class ClientDetailDTO extends ClientDTO{
      * @return Nueva objeto ClientEntity.
      * @generated
      */
-    @Override
-    public ClientEntity toEntity() {
-        ClientEntity entity = super.toEntity();
-        return entity;
-    }
+    
 }

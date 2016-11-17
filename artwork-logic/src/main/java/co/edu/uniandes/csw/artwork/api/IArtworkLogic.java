@@ -25,7 +25,6 @@ package co.edu.uniandes.csw.artwork.api;
 
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.CategoryEntity;
-import co.edu.uniandes.csw.artwork.entities.PrizeEntity;
 import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
 import java.util.List;
 

@@ -27,7 +27,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
-import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.crud.spi.persistence.CrudPersistence;
 import javax.persistence.TypedQuery;
 

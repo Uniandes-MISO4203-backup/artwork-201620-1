@@ -57,9 +57,5 @@ public class ArtistDetailDTO extends ArtistDTO{
      * @return Nueva objeto ArtistEntity.
      * @generated
      */
-    @Override
-    public ArtistEntity toEntity() {
-        return super.toEntity();
-        
-    }
+    
 }

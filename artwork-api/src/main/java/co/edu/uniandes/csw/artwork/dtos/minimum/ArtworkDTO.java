@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.artwork.dtos.minimum;
 
-import co.edu.uniandes.csw.artwork.dtos.detail.ItemDetailDTO;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.ItemEntity;
 import co.edu.uniandes.csw.artwork.entities.CategoryEntity;

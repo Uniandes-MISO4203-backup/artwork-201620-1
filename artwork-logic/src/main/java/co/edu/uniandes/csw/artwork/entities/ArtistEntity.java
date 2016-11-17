@@ -64,9 +64,17 @@ public class ArtistEntity extends BaseEntity implements Serializable {
     /**
      * Obtiene la colección de artworks.
      *
-     * @return colección artworks.
+     *
      * @generated
      */
+     public ArtistEntity() {
+     // constructor ArtistEntity
+    }
+     
+     public ArtistEntity(Long id) {
+        this.id = id;
+    }
+     
     public List<ArtworkEntity> getArtworks() {
         return artworks;
     }
@@ -81,13 +89,9 @@ public class ArtistEntity extends BaseEntity implements Serializable {
         this.artworks = artworks;
     }
 
-    public ArtistEntity() {
-     // constructor ArtistEntity
-    }
+   
 
-    public ArtistEntity(Long id) {
-        this.id = id;
-    }
+    
 
     public Long getId() {
         return id;
