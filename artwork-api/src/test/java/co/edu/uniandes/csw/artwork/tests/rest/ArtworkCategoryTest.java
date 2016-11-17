@@ -216,13 +216,13 @@ public class ArtworkCategoryTest {
 
         CategoryDTO category = new CategoryDTO(oraculo.get(2));
 
-        Response response = target.path(category.getId().toString())
+        Response response = target.path(category.getIdCategory().toString())
                 .request().cookie(cookieSessionId)
                 .post(Entity.entity(category, MediaType.APPLICATION_JSON));
 
         CategoryDTO categoryTest = (CategoryDTO) response.readEntity(CategoryDTO.class);
         Assert.assertEquals(OK, response.getStatus());
-        Assert.assertEquals(category.getId(), categoryTest.getId());
+        Assert.assertEquals(category.getIdCategory(), categoryTest.getIdCategory());
     }
 
     /**
@@ -253,11 +253,11 @@ public class ArtworkCategoryTest {
         Cookie cookieSessionId = login(USERNAME, PASSWORD);
         CategoryDTO category = new CategoryDTO(oraculo.get(0));
 
-        CategoryDTO categoryTest = target.path(category.getId().toString())
+        CategoryDTO categoryTest = target.path(category.getIdCategory().toString())
                 .request().cookie(cookieSessionId).get(CategoryDTO.class);
 
-        Assert.assertEquals(category.getId(), categoryTest.getId());
-        Assert.assertEquals(category.getName(), categoryTest.getName());
+        Assert.assertEquals(category.getIdCategory(), categoryTest.getIdCategory());
+        Assert.assertEquals(category.getNameCategory(), categoryTest.getNameCategory());
     }
 
     /**
@@ -271,7 +271,7 @@ public class ArtworkCategoryTest {
 
         CategoryDTO category = new CategoryDTO(oraculo.get(0));
 
-        Response response = target.path(category.getId().toString())
+        Response response = target.path(category.getIdCategory().toString())
                 .request().cookie(cookieSessionId).delete();
         Assert.assertEquals(OK_WITHOUT_CONTENT, response.getStatus());
     }

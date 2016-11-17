@@ -198,9 +198,9 @@ public class CategoryTest {
 
         Assert.assertEquals(CREATED, response.getStatus());
 
-        Assert.assertEquals(category.getName(), categoryTest.getName());
+        Assert.assertEquals(category.getNameCategory(), categoryTest.getNameCategory());
 
-        CategoryEntity entity = em.find(CategoryEntity.class, categoryTest.getId());
+        CategoryEntity entity = em.find(CategoryEntity.class, categoryTest.getIdCategory());
         Assert.assertNotNull(entity);
     }
 
@@ -217,8 +217,8 @@ public class CategoryTest {
             .path(oraculo.get(0).getId().toString())
             .request().cookie(cookieSessionId).get(CategoryDTO.class);
         
-        Assert.assertEquals(categoryTest.getId(), oraculo.get(0).getId());
-        Assert.assertEquals(categoryTest.getName(), oraculo.get(0).getName());
+        Assert.assertEquals(categoryTest.getIdCategory(), oraculo.get(0).getId());
+        Assert.assertEquals(categoryTest.getNameCategory(), oraculo.get(0).getName());
     }
 
     /**
@@ -251,17 +251,17 @@ public class CategoryTest {
 
         CategoryDTO categoryChanged = factory.manufacturePojo(CategoryDTO.class);
 
-        category.setName(categoryChanged.getName());
+        category.setNameCategory(categoryChanged.getNameCategory());
 
         Response response = target
-            .path(category.getId().toString())
+            .path(category.getIdCategory().toString())
             .request().cookie(cookieSessionId)
             .put(Entity.entity(category, MediaType.APPLICATION_JSON));
 
         CategoryDTO categoryTest = (CategoryDTO) response.readEntity(CategoryDTO.class);
 
         Assert.assertEquals(OK, response.getStatus());
-        Assert.assertEquals(category.getName(), categoryTest.getName());
+        Assert.assertEquals(category.getNameCategory(), categoryTest.getNameCategory());
     }
 
     /**
@@ -274,7 +274,7 @@ public class CategoryTest {
         Cookie cookieSessionId = login(USERNAME, PASSWORD);
         CategoryDTO category = new CategoryDTO(oraculo.get(0));
         Response response = target
-            .path(category.getId().toString())
+            .path(category.getIdCategory().toString())
             .request().cookie(cookieSessionId).delete();
 
         Assert.assertEquals(OK_WITHOUT_CONTENT, response.getStatus());

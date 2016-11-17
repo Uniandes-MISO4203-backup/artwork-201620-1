@@ -12,8 +12,8 @@ import java.io.Serializable;
 @XmlRootElement
 public class CategoryDTO implements Serializable {
 
-    private Long id;
-    private String name;
+    private Long idCategory;
+    private String nameCategory;
 
     public CategoryDTO() {
         //Constructor clase
@@ -21,15 +21,15 @@ public class CategoryDTO implements Serializable {
 
     public CategoryDTO(CategoryEntity entity) {
         if (entity != null) {
-            this.id = entity.getId();
-            this.name = entity.getName();
+            this.idCategory = entity.getId();
+            this.nameCategory = entity.getName();
         }
     }
 
     public CategoryEntity toEntity() {
         CategoryEntity entity = new CategoryEntity();
-        entity.setId(this.getId());
-        entity.setName(this.getName());
+        entity.setId(this.getIdCategory());
+        entity.setName(this.getNameCategory());
         return entity;
     }
 
@@ -39,8 +39,8 @@ public class CategoryDTO implements Serializable {
      * @return atributo id.
      * @generated
      */
-    public Long getId() {
-        return id;
+    public Long getIdCategory() {
+        return idCategory;
     }
 
     /**
@@ -49,8 +49,8 @@ public class CategoryDTO implements Serializable {
      * @param id nuevo valor del atributo
      * @generated
      */
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdCategory(Long id) {
+        this.idCategory = id;
     }
 
     /**
@@ -59,8 +59,8 @@ public class CategoryDTO implements Serializable {
      * @return atributo name.
      * @generated
      */
-    public String getName() {
-        return name;
+    public String getNameCategory() {
+        return nameCategory;
     }
 
     /**
@@ -69,8 +69,8 @@ public class CategoryDTO implements Serializable {
      * @param name nuevo valor del atributo
      * @generated
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setNameCategory(String name) {
+        this.nameCategory = name;
     }
 
 }

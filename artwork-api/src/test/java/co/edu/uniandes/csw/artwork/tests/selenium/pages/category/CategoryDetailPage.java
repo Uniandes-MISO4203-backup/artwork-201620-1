@@ -56,7 +56,7 @@ public class CategoryDetailPage {
 
     public CategoryDTO getData() {
         CategoryDTO category = new CategoryDTO();        
-        category.setName(name.getText());
+        category.setNameCategory(name.getText());
         return category;
     }
 }
