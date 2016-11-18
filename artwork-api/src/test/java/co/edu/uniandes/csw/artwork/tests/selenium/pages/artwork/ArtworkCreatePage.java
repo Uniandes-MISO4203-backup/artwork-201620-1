@@ -47,13 +47,13 @@ public class ArtworkCreatePage {
     public void saveArtwork(ArtworkDTO artwork) {
          waitGui().until().element(nameInput).is().visible();
          nameInput.clear();
-         nameInput.sendKeys(artwork.getNameArtworkDTO());
+         nameInput.sendKeys(artwork.getName());
          waitGui().until().element(imageInput).is().visible();
          imageInput.clear();
-         imageInput.sendKeys(artwork.getImageArtworkDTO());
+         imageInput.sendKeys(artwork.getImage());
          waitGui().until().element(priceInput).is().visible();
          priceInput.clear();
-         priceInput.sendKeys(artwork.getPriceArtworkDTO().toString());
+         priceInput.sendKeys(artwork.getPrice().toString());
         guardAjax(saveBtn).click();
     }
 }

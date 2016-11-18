@@ -89,9 +89,8 @@
     parent: 'user',
     views: {
      userView: {
-      templateUrl: basePath + 'data/user.data.tpl.html',
-      controller: 'userDataCtrl',
-      controllerAs: 'ctrl'
+      templateUrl: basePath + 'data/user.data.tpl.html'
+     
      }
     }
    });

@@ -43,7 +43,7 @@ public class CategoryCreatePage {
     public void saveCategory(CategoryDTO category) {
          waitGui().until().element(nameInput).is().visible();
          nameInput.clear();
-         nameInput.sendKeys(category.getNameCategory());
+         nameInput.sendKeys(category.getName());
         guardAjax(saveBtn).click();
     }
 }

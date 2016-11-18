@@ -18,13 +18,13 @@ import uk.co.jemos.podam.common.PodamExclude;
 @XmlRootElement
 public class ArtworkDTO implements Serializable {
 
-    private Long idArtworkDTO;
-    private String nameArtworkDTO;
-    private String imageArtworkDTO;
-    private Long priceArtworkDTO;
-    private Integer widthArtworkDTO;
-    private Integer heightArtworkDTO;
-    private Date dateAddedArtworkDTO;
+    private Long id;
+    private String name;
+    private String image;
+    private Long price;
+    private Integer width;
+    private Integer height;
+    private Date dateAdded;
     
     @PodamExclude
     private List<String> images;
@@ -43,13 +43,13 @@ public class ArtworkDTO implements Serializable {
 
     public ArtworkDTO(ArtworkEntity entity) {
         if (entity != null) {
-            this.idArtworkDTO = entity.getId();
-            this.nameArtworkDTO = entity.getName();
-            this.imageArtworkDTO = entity.getImage();
-            this.priceArtworkDTO = entity.getPrice();
-            this.widthArtworkDTO = entity.getWidth();
-            this.heightArtworkDTO = entity.getHeight();
-            this.dateAddedArtworkDTO = entity.getDateAdded();
+            this.id = entity.getId();
+            this.name = entity.getName();
+            this.image = entity.getImage();
+            this.price = entity.getPrice();
+            this.width = entity.getWidth();
+            this.height = entity.getHeight();
+            this.dateAdded = entity.getDateAdded();
             this.images = entity.getImages();
             if(entity.getCategory() != null){
                 List<CategoryDTO> categories = new ArrayList<>();
@@ -68,13 +68,13 @@ public class ArtworkDTO implements Serializable {
 
     public ArtworkEntity toEntity() {
         ArtworkEntity entity = new ArtworkEntity();
-        entity.setId(this.getIdArtworkDTO());
-        entity.setName(this.getNameArtworkDTO());
-        entity.setImage(this.getImageArtworkDTO());
-        entity.setPrice(this.getPriceArtworkDTO());
-        entity.setWidth(this.getWidthArtworkDTO());
-        entity.setHeight(this.getHeightArtworkDTO());
-        entity.setDateAdded(this.getDateAddedArtworkDTO());
+        entity.setId(this.getId());
+        entity.setName(this.getName());
+        entity.setImage(this.getImage());
+        entity.setPrice(this.getPrice());
+        entity.setWidth(this.getWidth());
+        entity.setHeight(this.getHeight());
+        entity.setDateAdded(this.getDate());
         entity.setImages(this.getImages());
         if(this.getCategory() != null){
             List<CategoryEntity> categories = new ArrayList<>();
@@ -125,134 +125,104 @@ public class ArtworkDTO implements Serializable {
         this.items = items;
     }
     
-    /**
-     * Obtiene el atributo id.
-     *
-     * @return atributo id.
-     * @generated
-     */
-    
 
-    /**
-     * Establece el valor del atributo id.
-     *
-     * @param id nuevo valor del atributo
-     * @generated
-     */
-   
-
-    /**
-     * Obtiene el atributo name.
-     *
-     * @return atributo name.
-     * @generated
-     */
-   
-
-    /**
-     * Establece el valor del atributo name.
-     *
-     * @param name nuevo valor del atributo
-     * @generated
-     */
-   
 
  /**
   * @return the idArtworkDTO
   */
- public Long getIdArtworkDTO() {
-  return idArtworkDTO;
+ public Long getId() {
+  return id;
  }
 
  /**
   * @param idArtworkDTO the idArtworkDTO to set
   */
- public void setIdArtworkDTO(Long idArtworkDTO) {
-  this.idArtworkDTO = idArtworkDTO;
+ public void setId(Long id) {
+  this.id = id;
  }
 
  /**
   * @return the nameArtworkDTO
   */
- public String getNameArtworkDTO() {
-  return nameArtworkDTO;
+ public String getName() {
+  return name;
  }
 
  /**
   * @param nameArtworkDTO the nameArtworkDTO to set
   */
- public void setNameArtworkDTO(String nameArtworkDTO) {
-  this.nameArtworkDTO = nameArtworkDTO;
+ public void setName(String name) {
+  this.name = name;
  }
 
  /**
   * @return the imageArtworkDTO
   */
- public String getImageArtworkDTO() {
-  return imageArtworkDTO;
+ public String getImage() {
+  return image;
  }
 
  /**
   * @param imageArtworkDTO the imageArtworkDTO to set
   */
- public void setImageArtworkDTO(String imageArtworkDTO) {
-  this.imageArtworkDTO = imageArtworkDTO;
+ public void setImage(String image) {
+  this.image = image;
  }
 
  /**
   * @return the priceArtworkDTO
   */
- public Long getPriceArtworkDTO() {
-  return priceArtworkDTO;
+ public Long getPrice() {
+  return price;
  }
 
  /**
   * @param priceArtworkDTO the priceArtworkDTO to set
   */
- public void setPriceArtworkDTO(Long priceArtworkDTO) {
-  this.priceArtworkDTO = priceArtworkDTO;
+ public void setPrice(Long price) {
+  this.price = price;
  }
 
  /**
   * @return the widthArtworkDTO
   */
- public Integer getWidthArtworkDTO() {
-  return widthArtworkDTO;
+ public Integer getWidth() {
+  return width;
  }
 
  /**
   * @param widthArtworkDTO the widthArtworkDTO to set
   */
- public void setWidthArtworkDTO(Integer widthArtworkDTO) {
-  this.widthArtworkDTO = widthArtworkDTO;
+ public void setWidth(Integer widthArtworkDTO) {
+  this.width = width;
  }
 
  /**
   * @return the heightArtworkDTO
   */
- public Integer getHeightArtworkDTO() {
-  return heightArtworkDTO;
+ public Integer getHeight() {
+  return height;
  }
 
  /**
   * @param heightArtworkDTO the heightArtworkDTO to set
   */
- public void setHeightArtworkDTO(Integer heightArtworkDTO) {
-  this.heightArtworkDTO = heightArtworkDTO;
+ public void setHeight(Integer height) {
+  this.height = height;
  }
 
  /**
   * @return the dateAddedArtworkDTO
   */
- public Date getDateAddedArtworkDTO() {
-  return dateAddedArtworkDTO;
+ public Date getDate() {
+  return dateAdded;
  }
 
  /**
   * @param dateAddedArtworkDTO the dateAddedArtworkDTO to set
   */
- public void setDateAddedArtworkDTO(Date dateAddedArtworkDTO) {
-  this.dateAddedArtworkDTO = dateAddedArtworkDTO;
+ public void setDateAdded(Date dateAdded) {
+  this.dateAdded = dateAdded;
  }
 
 }

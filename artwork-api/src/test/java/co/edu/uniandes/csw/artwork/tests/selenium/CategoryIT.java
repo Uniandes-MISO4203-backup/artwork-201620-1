@@ -123,7 +123,7 @@ public class CategoryIT {
 
         CategoryDTO actualCategory = detailPage.getData();
 
-        Assert.assertEquals(expectedCategory.getNameCategory(), actualCategory.getNameCategory());
+        Assert.assertEquals(expectedCategory.getName(), actualCategory.getName());
     }
 
     @Test
@@ -137,7 +137,7 @@ public class CategoryIT {
 
         CategoryDTO actualCategory = detailPage.getData();
 
-        Assert.assertEquals(expectedCategory.getNameCategory(), actualCategory.getNameCategory());
+        Assert.assertEquals(expectedCategory.getName(), actualCategory.getName());
     }
 
     @Test
