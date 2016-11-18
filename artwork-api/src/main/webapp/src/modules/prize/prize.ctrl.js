@@ -17,16 +17,6 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-(function (ng) {
-    var mod = ng.module('prizeModule');
 
-    mod.controller('prizeCtrl', ['$scope','prizes',
-        function ($scope,prizes) {
-            console.log(JSON.stringify("premios: "+prizes));
-            
-            
-        }]);
-
-})(window.angular);
 
 

@@ -29,14 +29,14 @@
             //Paginación
             this.itemsPerPage = $params.limit;
             this.currentPage = $params.page;
-            this.totalItems = clients.totalRecords;            
-
+            this.totalItems = clients.totalRecords;
+            
             this.pageChanged = function () {
                 $state.go('clientList', {page: this.currentPage});
             };
 
-            $scope.actions = {                
-                create: {
+            $scope.actions = {
+             create: {
                     displayName: 'Create',
                     icon: 'plus',
                     fn: function () {

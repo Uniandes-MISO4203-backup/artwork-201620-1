@@ -21,20 +21,17 @@
 
     var mod = ng.module("prizeModule");
 
-    mod.controller("prizeNewCtrl", ["$scope", "$state","prizes", 
-        function ($scope, $state,prizes) {
+    mod.controller("prizeNewCtrl", ["$scope", "$state","prizes",
+     function ($scope, $state,prizes) {
             $scope.prizeData={};
             $scope.colors=["#00A064","#027DD1","#FFCC5C","#EE553D","black"];
             $scope.trophies=["fa fa-certificate","fa fa-sun-o","fa fa-trophy"];
-            
             $scope.prizeForm = function(prize){
-             
              prize.date=new Date();
              prizes.post(prize).then(function(){
               $state.go("prizeList",prizes,{reload: true});
              });
             };
-            
         }]);
 })(window.angular);
 

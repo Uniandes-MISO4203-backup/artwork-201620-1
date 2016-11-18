@@ -80,5 +80,5 @@
                     itemModel: 'itemModel'
                 }
             });
-	}]);
+           }]);
 })(window.angular);

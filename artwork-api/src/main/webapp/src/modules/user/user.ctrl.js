@@ -20,10 +20,9 @@
 (function (ng) {
     var mod = ng.module('userModule');
 
-    mod.controller('userCtrl' ['$scope','Restangular', 'model',
-        function ($scope,Restangular, model) {
-         
-            $scope.model = model;
+    mod.controller('userCtrl' ['$scope','model',
+        function ($scope,model) {
+         $scope.model = model;
             //Alertas
             $scope.alerts = [];
             this.closeAlert = function (index) {

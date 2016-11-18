@@ -24,7 +24,7 @@
 }
 
 /*** Comments ***/
-.comments ul {margin:0px;}
+.comments ul {margin:0;}
 .comments ul li {
 	list-style: none;
 	padding: 20px;

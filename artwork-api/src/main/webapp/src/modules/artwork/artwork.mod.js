@@ -59,7 +59,6 @@
             }
         }
     });
-
     mod.config(['$stateProvider',
         function ($sp) {
             var basePath = 'src/modules/artwork/';
@@ -90,8 +89,6 @@
                             });
                             }
                         }],
-                   
-                       
                     client:['Restangular', '$stateParams','$rootScope', function (r,$rootScope) {
                         return r.all("clients").getList().then(function(list){
                             return list[0];
@@ -101,8 +98,7 @@
                          return r.all(model.url).customGETLIST("latest").then(function(list){
                              return list;
                          });
-                    }]
-                       
+                    }]  
                 }
             });
             $sp.state('artworkList', {

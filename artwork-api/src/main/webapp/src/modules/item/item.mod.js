@@ -23,7 +23,7 @@
     mod.constant('itemModel', {
         name: 'item',
         displayName: 'Item',
-		url: 'wishList',
+        url: 'wishList',
         fields: {
             id: {
                 displayName: 'Id',

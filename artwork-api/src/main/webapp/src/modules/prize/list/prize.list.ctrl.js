@@ -21,12 +21,8 @@
     var mod = ng.module('prizeModule');
 
     mod.controller('prizeListCtrl', ['$scope','prizes','$state',
-        function ($scope,prizes,$state) {
-            console.log(JSON.stringify(prizes));
-            
-           $scope.premios = prizes;
-           
+        function ($scope,prizes) {
+         $scope.premios = prizes;
         }]);
-
 })(window.angular);
 

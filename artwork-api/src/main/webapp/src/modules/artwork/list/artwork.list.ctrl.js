@@ -4,8 +4,7 @@
  */
 
 
-(function (ng) {
-    
+(function (ng) {  
     var mod = ng.module("artworkModule");
     mod.controller("artworkListCtrl", ["$rootScope","$scope", '$state', 'artworks', '$stateParams','Restangular','itemModel','client','latest',
         function ($rootScope, $scope, $state, artworks, $params,Restangular, itemModel, client, latest, item) {
@@ -21,17 +20,14 @@
                                 break;
                             }
                         }
-                   
                     }
                 }
             }
             $scope.currentPage = 0;
             $scope.pageSize = 9;
             $scope.numberOfPages=function(){
-                return Math.ceil($scope.records.length/$scope.pageSize);                
+             return Math.ceil($scope.records.length/$scope.pageSize);                
             };
-            
-            
             $scope.latest = latest;
 
             //Paginación
@@ -80,20 +76,17 @@
                     $scope.records=response;
                 });
             };
-            
             $scope.filtrarPorArtista = function(artist){
-                Restangular.all("artworks").customGET("",{artist:artist}).then(function (response) {          
+             Restangular.all("artworks").customGET("",{artist:artist}).then(function (response) {          
                     $scope.records=response;
-                }); 
+                   }); 
             };
-            
             $scope.getCategorys("");
             $scope.getQualifications();
 
             this.pageChanged = function () {
                 $state.go('artworkList', {page: this.currentPage});
             };
-            
             $scope.addToCart = function (artwork) {
                 itemModel['name'] = artwork.name;
                 itemModel['qty'] = 1;
@@ -101,7 +94,6 @@
                 client.post("shopping/cart", JSON.stringify(itemModel));
                 alert("Obra agregada a carrito");
             };
-            
             $scope.addToWishlist = function (artwork) {
                 itemModel['name'] = artwork.name;
                 itemModel['qty'] = 1;
@@ -111,7 +103,6 @@
                 artwork.isInWishlist = true;
                 alert("Obra agregada a la wishlist");
             };
-            
             $scope.removeWishlist = function (artwork) {
                 itemModel['id'] = artwork.idItem;
                 client.customDELETE("wishList/"+ artwork.idItem).then(function (rc) {
@@ -177,12 +168,11 @@
                 }
             };
         }]);
-    
     //We already have a limitTo filter built-in to angular,
     //let's make a startFrom filter
     mod.filter('startFrom', function() {
         return function(input, start) {
-            start = +start; //parse to int
+            start = +start;
             return input.slice(start);
         };
     });

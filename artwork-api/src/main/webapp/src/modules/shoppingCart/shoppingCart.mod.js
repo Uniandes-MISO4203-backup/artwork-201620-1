@@ -19,7 +19,6 @@
  */
 (function (ng) {
     var mod = ng.module('shoppingCartModule', ['ngCrud', 'ui.router' ]);
-    
     mod.config(['$stateProvider',
         function($sp){
             var basePath = 'src/modules/shoppingCart/';
@@ -47,5 +46,5 @@
                     }]
                 }
             });
-	}]);
-})(window.angular);
+           }]);
+         })(window.angular);

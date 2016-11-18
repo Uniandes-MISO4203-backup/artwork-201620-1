@@ -1,9 +1,8 @@
 (function (ng) {
     var mod = ng.module('roleModule', ['ngCrud']);
     mod.controller('roleCtrl', ['$rootScope', 'Restangular', function ($rootScope, Restangular) {
-
-        $rootScope.auth = function () {
-                var user = Restangular.all("users").customGET('me');         
+    $rootScope.auth = function () {
+     var user = Restangular.all("users").customGET('me');
                 $rootScope.usuario = user;
                 user.then(function (response) {
                     if (response == null) {
@@ -42,8 +41,8 @@
         $rootScope.$on('logged-in', function () {
             $rootScope.auth();
         });
-        $rootScope.$on('logged-out', function () {     
-            $rootScope.auth();
+        $rootScope.$on('logged-out', function (){
+         $rootScope.auth();
         });
     }]);
 })(window.angular);

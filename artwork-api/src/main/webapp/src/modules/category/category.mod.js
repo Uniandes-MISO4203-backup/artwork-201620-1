@@ -23,7 +23,7 @@
     mod.constant('categoryModel', {
         name: 'category',
         displayName: 'Category',
-		url: 'categorys',
+        url: 'categorys',
         fields: {            name: {
                 displayName: 'Name',
                 type: 'String',
@@ -46,7 +46,6 @@
             $sp.state('category', {
                 url: '/categorys?page&limit',
                 abstract: true,
-                
                 views: {
                      mainView: {
                         templateUrl: basePath + 'category.tpl.html',

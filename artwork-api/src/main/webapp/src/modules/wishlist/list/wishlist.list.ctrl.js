@@ -23,14 +23,12 @@
     mod.controller('wishlistListCtrl', ['$scope', 'client', 'wishlist','itemModel',
     function ($scope, client, wishlist, itemModel) {
           $scope.wishlist = wishlist;
-          
           $scope.currentPage = 0;
           $scope.pageSize = 10;
           $scope.numberOfPages=function(){
-              return Math.ceil($scope.wishlist.length/$scope.pageSize);                
-          };
-          
-          $scope.addToCart = function (item) {
+              return Math.ceil($scope.wishlist.length/$scope.pageSize);
+             };
+             $scope.addToCart = function (item) {
                 itemModel['name'] = item.artwork.name;
                 itemModel['qty'] = 1;
                 itemModel['artwork'] = item.artwork;
@@ -39,9 +37,8 @@
                     item.shoppingCart = true;
                 });
             };
-            
             $scope.deleteFromWishlist = function (item) {
-               client.customDELETE("wishList/"+ item.id).then(function (rc) {
+               client.customDELETE("wishList/"+ item.id).then(function () {
                     alert("Obra removida del wishlist");
                     var index = $scope.wishlist.indexOf(item);
                     $scope.wishlist.splice(index, 1);
@@ -49,12 +46,11 @@
             };
     }
 ]);
-
     //We already have a limitTo filter built-in to angular,
     //let's make a startFrom filter
     mod.filter('startFrom', function() {
         return function(input, start) {
-            start = +start; //parse to int
+            start = +start;
             return input.slice(start);
         };
     });
