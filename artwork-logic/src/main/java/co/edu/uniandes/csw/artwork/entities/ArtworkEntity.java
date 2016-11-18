@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Temporal;
@@ -157,5 +158,79 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
      */
     public void setPrizes(List<PrizeEntity> prizes) {
         this.prizes = prizes;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.image);
+        hash = 83 * hash + Objects.hashCode(this.price);
+        hash = 83 * hash + Objects.hashCode(this.width);
+        hash = 83 * hash + Objects.hashCode(this.height);
+        hash = 83 * hash + Objects.hashCode(this.dateAdded);
+        hash = 83 * hash + Objects.hashCode(this.category);
+        hash = 83 * hash + Objects.hashCode(this.artist);
+        hash = 83 * hash + Objects.hashCode(this.qualifications);
+        hash = 83 * hash + Objects.hashCode(this.comments);
+        hash = 83 * hash + Objects.hashCode(this.prizes);
+        hash = 83 * hash + Objects.hashCode(this.items);
+        hash = 83 * hash + Objects.hashCode(this.images);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ArtworkEntity other = (ArtworkEntity) obj;
+        if (!Objects.equals(this.image, other.image)) {
+            return false;
+        }
+        if (!Objects.equals(this.price, other.price)) {
+            return false;
+        }
+        if (!Objects.equals(this.width, other.width)) {
+            return false;
+        }
+        if (!Objects.equals(this.height, other.height)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateAdded, other.dateAdded)) {
+            return false;
+        }
+        if (!Objects.equals(this.category, other.category)) {
+            return false;
+        }
+        if (!Objects.equals(this.artist, other.artist)) {
+            return false;
+        }
+        if (!Objects.equals(this.qualifications, other.qualifications)) {
+            return false;
+        }
+        if (!Objects.equals(this.comments, other.comments)) {
+            return false;
+        }
+        if (!Objects.equals(this.prizes, other.prizes)) {
+            return false;
+        }
+        if (!Objects.equals(this.items, other.items)) {
+            return false;
+        }
+        if (!Objects.equals(this.images, other.images)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ArtworkEntity{" + "image=" + image + ", price=" + price + ", width=" + width + ", height=" + height + ", dateAdded=" + dateAdded + ", category=" + category + ", artist=" + artist + ", qualifications=" + qualifications + ", comments=" + comments + ", prizes=" + prizes + ", items=" + items + ", images=" + images + '}';
     }
 }

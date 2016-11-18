@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
+ */
 package co.edu.uniandes.csw.artwork.entities;
 
 import java.io.Serializable;
@@ -45,40 +45,40 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @XmlRootElement
-public class ClientEntity extends BaseEntity implements Serializable {    
+public class ClientEntity extends BaseEntity implements Serializable {
 
- @Id
- @GeneratedValue(strategy = GenerationType.IDENTITY)
- @Basic(optional = false)
- @Column(name = "ID")
- private Long id;
- @Size(max = 255)
- @Column(name = "NAME")
- private String name;
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID")
+    private Long id;
+    @Size(max = 255)
+    @Column(name = "NAME")
+    private String name;
+
     @PodamExclude
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ItemEntity> wishList = new ArrayList<>();   
-    
+    private List<ItemEntity> wishList = new ArrayList<>();
+
     @PodamExclude
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PaymentEntity> payments = new ArrayList<>();    
-    
+    private List<PaymentEntity> payments = new ArrayList<>();
+
     /**
      * Obtiene la colección de wishList.
      *
      * @return colección wishList.
      * @generated
      */
-     public ClientEntity() {
-  //constructor clientEntity
- }
+    public ClientEntity() {
+        //constructor clientEntity
+    }
 
- public ClientEntity(Long id) {
-  this.id = id;
- }
-    
- @XmlTransient
+    public ClientEntity(Long id) {
+        this.id = id;
+    }
+
+    @XmlTransient
     public List<ItemEntity> getWishList() {
         return wishList;
     }
@@ -91,19 +91,19 @@ public class ClientEntity extends BaseEntity implements Serializable {
      */
     public void setWishList(List<ItemEntity> wishList) {
         this.wishList = wishList;
-    }  
-    
-     /**
+    }
+
+    /**
      * Obtiene la colección de payments.
      *
      * @return colección payments.
      * @generated
      */
- @XmlTransient
+    @XmlTransient
     public List<PaymentEntity> getPayments() {
         return payments;
     }
-    
+
     /**
      * Establece el valor de la colección de payments.
      *
@@ -112,49 +112,51 @@ public class ClientEntity extends BaseEntity implements Serializable {
      */
     public void setPayments(List<PaymentEntity> payments) {
         this.payments = payments;
-    }  
+    }
 
+    @Override
+    public Long getId() {
+        return id;
+    }
 
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
 
- public Long getId() {
-  return id;
- }
+    @Override
+    public String getName() {
+        return name;
+    }
 
- public void setId(Long id) {
-  this.id = id;
- }
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
 
- public String getName() {
-  return name;
- }
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
 
- public void setName(String name) {
-  this.name = name;
- }
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ClientEntity)) {
+            return false;
+        }
+        ClientEntity other = (ClientEntity) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
 
- @Override
- public int hashCode() {
-  int hash = 0;
-  hash += (id != null ? id.hashCode() : 0);
-  return hash;
- }
+    @Override
+    public String toString() {
+        return "co.edu.uniandes.csw.artwork.entities.ClientEntity[ id=" + id + " ]";
+    }
 
- @Override
- public boolean equals(Object object) {
-  // TODO: Warning - this method won't work in the case the id fields are not set
-  if (!(object instanceof ClientEntity)) {
-   return false;
-  }
-  ClientEntity other = (ClientEntity) object;
-  if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-   return false;
-  }
-  return true;
- }
-
- @Override
- public String toString() {
-  return "co.edu.uniandes.csw.artwork.entities.ClientEntity[ id=" + id + " ]";
- }
-    
 }

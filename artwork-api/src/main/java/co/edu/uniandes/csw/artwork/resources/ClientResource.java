@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
+ */
 package co.edu.uniandes.csw.artwork.resources;
 
 import co.edu.uniandes.csw.auth.provider.StatusCreated;
@@ -50,6 +50,7 @@ import javax.ws.rs.WebApplicationException;
 
 /**
  * URI: clients/
+ *
  * @generated
  */
 @Path("/clients")
@@ -58,15 +59,19 @@ import javax.ws.rs.WebApplicationException;
 public class ClientResource {
 
     private static final String CLIENT_HREF = "https://api.stormpath.com/v1/groups/8hCxfQfGQ1EvhrCX9yXsL";
-    private static final String ADMIN_HREF = "https://api.stormpath.com/v1/groups/7luSBhdqfQi2FUjUZAIhp7";    
+    private static final String ADMIN_HREF = "https://api.stormpath.com/v1/groups/7luSBhdqfQi2FUjUZAIhp7";
 
-    @Inject private IClientLogic clientLogic;
-    @Context private HttpServletResponse response;
-    @Context private HttpServletRequest req;
-    @QueryParam("page") private Integer page;
-    @QueryParam("limit") private Integer maxRecords;
+    @Inject
+    private IClientLogic clientLogic;
+    @Context
+    private HttpServletResponse response;
+    @Context
+    private HttpServletRequest req;
+    @QueryParam("page")
+    private Integer page;
+    @QueryParam("limit")
+    private Integer maxRecords;
 
-   
     /**
      * Convierte una lista de ClientEntity a una lista de ClientDetailDTO.
      *
@@ -74,14 +79,13 @@ public class ClientResource {
      * @return Lista de ClientDetailDTO convertida.
      * @generated
      */
-    private List<ClientDetailDTO> listEntity2DTO(List<ClientEntity> entityList){
+    private List<ClientDetailDTO> listEntity2DTO(List<ClientEntity> entityList) {
         List<ClientDetailDTO> list = new ArrayList<>();
         for (ClientEntity entity : entityList) {
             list.add(new ClientDetailDTO(entity));
         }
         return list;
     }
-
 
     /**
      * Obtiene la lista de los registros de Client
@@ -95,25 +99,25 @@ public class ClientResource {
         if (accountHref != null) {
             Account account = Utils.getClient().getResource(accountHref, Account.class);
             for (Group gr : account.getGroups()) {
-                switch (gr.getHref()) 
-                {
-                    case ADMIN_HREF:
-                        if (page != null && maxRecords != null) {
-                            this.response.setIntHeader("X-Total-Count", clientLogic.countClients());
-                            return listEntity2DTO(clientLogic.getClients(page, maxRecords));
-                        }
-                        return listEntity2DTO(clientLogic.getClients());
-                    case CLIENT_HREF:
-                        Integer id = (int) account.getCustomData().get("client_id");
-                        List<ClientDetailDTO> list = new ArrayList();
-                        list.add(new ClientDetailDTO(clientLogic.getClient(id.longValue())));
-                        return list;
-                    default: return new ArrayList();
+                if (gr.getHref().equalsIgnoreCase(ADMIN_HREF)
+                        && page != null && maxRecords != null) {
+                    this.response.setIntHeader("X-Total-Count", clientLogic.countClients());
+                    return listEntity2DTO(clientLogic.getClients(page, maxRecords));
+                } else if (gr.getHref().equalsIgnoreCase(ADMIN_HREF)
+                        && page == null && maxRecords == null) {
+                    return listEntity2DTO(clientLogic.getClients());
+                } else if (gr.getHref().equalsIgnoreCase(CLIENT_HREF)) {
+                    Integer id = (int) account.getCustomData().get("client_id");
+                    List<ClientDetailDTO> list = new ArrayList();
+                    list.add(new ClientDetailDTO(clientLogic.getClient(id.longValue())));
+                    return list;
+                } else {
+                    return new ArrayList();
                 }
             }
-        } 
+        }
         return new ArrayList();
-        
+
     }
 
     /**
@@ -155,7 +159,7 @@ public class ClientResource {
     public ClientDetailDTO updateClient(@PathParam("id") Long id, ClientDetailDTO dto) {
         ClientEntity entity = dto.toEntity();
         entity.setId(id);
-        
+
         return new ClientDetailDTO(clientLogic.updateClient(entity));
     }
 
@@ -170,22 +174,22 @@ public class ClientResource {
     public void deleteClient(@PathParam("id") Long id) {
         clientLogic.deleteClient(id);
     }
-    public void existsClient(Long clientsId){
+
+    public void existsClient(Long clientsId) {
         ClientDetailDTO client = getClient(clientsId);
-        if (client== null) {
+        if (client == null) {
             throw new WebApplicationException(404);
         }
     }
-    
-    
+
     @Path("{clientsId: \\d+}/wishList")
-    public Class<ItemResource> getItemResource(@PathParam("clientsId") Long clientsId){
+    public Class<ItemResource> getItemResource(@PathParam("clientsId") Long clientsId) {
         existsClient(clientsId);
         return ItemResource.class;
     }
-    
+
     @Path("{clientsId: \\d+}/shopping")
-    public Class<ItemResource> getItemResources(@PathParam("clientsId") Long clientsId){
+    public Class<ItemResource> getItemResources(@PathParam("clientsId") Long clientsId) {
         existsClient(clientsId);
         return ItemResource.class;
     }

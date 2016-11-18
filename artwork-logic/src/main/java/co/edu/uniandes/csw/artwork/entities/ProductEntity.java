@@ -26,6 +26,7 @@ package co.edu.uniandes.csw.artwork.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import co.edu.uniandes.csw.crud.spi.entity.BaseEntity;
+import java.util.Objects;
 
 /**
  * @generated
@@ -54,4 +55,35 @@ public class ProductEntity extends BaseEntity implements Serializable {
     public void setPrice(Long price){
         this.price = price;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 71 * hash + Objects.hashCode(this.price);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ProductEntity other = (ProductEntity) obj;
+        if (!Objects.equals(this.price, other.price)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductEntity{" + "price=" + price + '}';
+    }
+    
 }

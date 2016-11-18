@@ -20,12 +20,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
+ */
 package co.edu.uniandes.csw.artwork.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
 import co.edu.uniandes.csw.crud.spi.entity.BaseEntity;
+import java.util.Objects;
 import uk.co.jemos.podam.common.PodamExclude;
 import javax.persistence.ManyToOne;
 
@@ -35,7 +36,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class CommentEntity extends BaseEntity implements Serializable {
 
-    private String  comment;
+    private String comment;
 
     @PodamExclude
     @ManyToOne
@@ -60,7 +61,7 @@ public class CommentEntity extends BaseEntity implements Serializable {
     public void setArtwork(ArtworkEntity artwork) {
         this.artwork = artwork;
     }
-    
+
     /**
      * @return the comment
      */
@@ -75,5 +76,38 @@ public class CommentEntity extends BaseEntity implements Serializable {
         this.comment = comment;
     }
 
-    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 43 * hash + Objects.hashCode(this.comment);
+        hash = 43 * hash + Objects.hashCode(this.artwork);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CommentEntity other = (CommentEntity) obj;
+        if (!Objects.equals(this.comment, other.comment)) {
+            return false;
+        }
+        if (!Objects.equals(this.artwork, other.artwork)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "CommentEntity{" + "comment=" + comment + ", artwork=" + artwork + '}';
+    }
+
 }

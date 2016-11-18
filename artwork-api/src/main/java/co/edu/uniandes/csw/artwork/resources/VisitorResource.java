@@ -105,20 +105,20 @@ public class VisitorResource {
         if (accountHref != null) {
             Account account = Utils.getClient().getResource(accountHref, Account.class);
             for (Group gr : account.getGroups()) {
-                switch (gr.getHref()) {
-                    case ADMIN_HREF:
-                        if (page != null && maxRecords != null) {
-                            this.response.setIntHeader("X-Total-Count", artistLogic.countArtists());
-                            return listEntity2DTO(artistLogic.getArtists(page, maxRecords));
-                        }
-                        return listEntity2DTO(artistLogic.getArtists());
-                    case ARTIST_HREF:
-                        Integer id = (int) account.getCustomData().get("artist_id");
-                        List<ArtistDetailDTO> list = new ArrayList();
-                        list.add(new ArtistDetailDTO(artistLogic.getArtist(id.longValue())));
-                        return list;
-                    default:
-                        return new ArrayList();
+                if (gr.getHref().equalsIgnoreCase(ADMIN_HREF)
+                        && page != null && maxRecords != null) {
+                    this.response.setIntHeader("X-Total-Count", artistLogic.countArtists());
+                    return listEntity2DTO(artistLogic.getArtists(page, maxRecords));
+                } else if (gr.getHref().equalsIgnoreCase(ADMIN_HREF)
+                        && page == null && maxRecords == null) {
+                    return listEntity2DTO(artistLogic.getArtists());
+                } else if (gr.getHref().equalsIgnoreCase(ARTIST_HREF)) {
+                    Integer id = (int) account.getCustomData().get("artist_id");
+                    List<ArtistDetailDTO> list = new ArrayList();
+                    list.add(new ArtistDetailDTO(artistLogic.getArtist(id.longValue())));
+                    return list;
+                } else {
+                    return new ArrayList();
                 }
             }
         } 

@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
+ */
 package co.edu.uniandes.csw.artwork.resources;
 
 import co.edu.uniandes.csw.auth.provider.StatusCreated;
@@ -53,24 +53,32 @@ import javax.ws.rs.WebApplicationException;
 
 /**
  * URI: artists/
+ *
  * @generated
  */
 @Path("/artists")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ArtistResource {
-    private static final String ARTIST_HREF = "https://api.stormpath.com/v1/groups/K4yTGg11sCUoGBbJe0GJ3";
-    private static final String ADMIN_HREF = "https://api.stormpath.com/v1/groups/7luSBhdqfQi2FUjUZAIhp7";  
-    
-    @Inject private IArtistLogic artistLogic;
-    @Inject private IArtworkLogic artworkLogic;
-    @Context private HttpServletResponse response;
-    @Context private HttpServletRequest req;
-    @QueryParam("page") private Integer page;
-    @QueryParam("limit") private Integer maxRecords;
-    @QueryParam("userName") private String userName;    
 
-   
+    private static final String ARTIST_HREF = "https://api.stormpath.com/v1/groups/K4yTGg11sCUoGBbJe0GJ3";
+    private static final String ADMIN_HREF = "https://api.stormpath.com/v1/groups/7luSBhdqfQi2FUjUZAIhp7";
+
+    @Inject
+    private IArtistLogic artistLogic;
+    @Inject
+    private IArtworkLogic artworkLogic;
+    @Context
+    private HttpServletResponse response;
+    @Context
+    private HttpServletRequest req;
+    @QueryParam("page")
+    private Integer page;
+    @QueryParam("limit")
+    private Integer maxRecords;
+    @QueryParam("userName")
+    private String userName;
+
     /**
      * Convierte una lista de ArtistEntity a una lista de ArtistDetailDTO.
      *
@@ -78,29 +86,28 @@ public class ArtistResource {
      * @return Lista de ArtistDetailDTO convertida.
      * @generated
      */
-    private List<ArtistDetailDTO> listEntity2DTO(List<ArtistEntity> entityList){
+    private List<ArtistDetailDTO> listEntity2DTO(List<ArtistEntity> entityList) {
         List<ArtistDetailDTO> list = new ArrayList<>();
         for (ArtistEntity entity : entityList) {
             list.add(new ArtistDetailDTO(entity));
         }
         return list;
     }
-    
-     /**
+
+    /**
      * Convierte una lista de ArtworkEntity a una lista de ArtworkDetailDTO
      *
      * @param entityList Lista de ArtworkEntity a convertir
      * @return Lista de ArtworkDetailDTO convertida
      * @generated
      */
-    private List<ArtworkDetailDTO> listEntityArtworks2DTO(List<ArtworkEntity> entityList){
+    private List<ArtworkDetailDTO> listEntityArtworks2DTO(List<ArtworkEntity> entityList) {
         List<ArtworkDetailDTO> list = new ArrayList<>();
         for (ArtworkEntity entity : entityList) {
             list.add(new ArtworkDetailDTO(entity));
         }
         return list;
     }
-
 
     /**
      * Obtiene la lista de los registros de Artist
@@ -114,23 +121,23 @@ public class ArtistResource {
         if (accountHref != null) {
             Account account = Utils.getClient().getResource(accountHref, Account.class);
             for (Group gr : account.getGroups()) {
-                switch (gr.getHref()) {
-                    case ADMIN_HREF:
-                        if (page != null && maxRecords != null) {
-                            this.response.setIntHeader("X-Total-Count", artistLogic.countArtists());
-                            return listEntity2DTO(artistLogic.getArtists(page, maxRecords));
-                        }
-                        return listEntity2DTO(artistLogic.getArtists());
-                    case ARTIST_HREF:
-                        Integer id = (int) account.getCustomData().get("artist_id");
-                        List<ArtistDetailDTO> list = new ArrayList();
-                        list.add(new ArtistDetailDTO(artistLogic.getArtist(id.longValue())));
-                        return list;
-                    default:
-                        return new ArrayList();
+                if (gr.getHref().equalsIgnoreCase(ADMIN_HREF)
+                        && page != null && maxRecords != null) {
+                    this.response.setIntHeader("X-Total-Count", artistLogic.countArtists());
+                    return listEntity2DTO(artistLogic.getArtists(page, maxRecords));
+                } else if (gr.getHref().equalsIgnoreCase(ADMIN_HREF)
+                        && page == null && maxRecords == null) {
+                    return listEntity2DTO(artistLogic.getArtists());
+                } else if (gr.getHref().equalsIgnoreCase(ARTIST_HREF)) {
+                    Integer id = (int) account.getCustomData().get("artist_id");
+                    List<ArtistDetailDTO> list = new ArrayList();
+                    list.add(new ArtistDetailDTO(artistLogic.getArtist(id.longValue())));
+                    return list;
+                } else {
+                    return new ArrayList();
                 }
             }
-        } 
+        }
         return new ArrayList();
     }
 
@@ -187,20 +194,20 @@ public class ArtistResource {
     public void deleteArtist(@PathParam("id") Long id) {
         artistLogic.deleteArtist(id);
     }
-    public void existsArtist(Long artistsId){
+
+    public void existsArtist(Long artistsId) {
         ArtistDetailDTO artist = getArtist(artistsId);
-        if (artist== null) {
+        if (artist == null) {
             throw new WebApplicationException(404);
         }
     }
-    
-    
+
     @Path("{artistsId: \\d+}/artworks")
-    public Class<ArtworkResource> getArtworkResource(@PathParam("artistsId") Long artistsId){
+    public Class<ArtworkResource> getArtworkResource(@PathParam("artistsId") Long artistsId) {
         existsArtist(artistsId);
         return ArtworkResource.class;
     }
-    
+
     /**
      * Obtiene la lista de obras del artista
      *

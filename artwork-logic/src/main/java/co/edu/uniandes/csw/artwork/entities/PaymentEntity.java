@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.crud.spi.entity.BaseEntity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -92,4 +93,44 @@ public class PaymentEntity extends BaseEntity implements Serializable {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.client);
+        hash = 37 * hash + Objects.hashCode(this.items);
+        hash = 37 * hash + Objects.hashCode(this.date);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PaymentEntity other = (PaymentEntity) obj;
+        if (!Objects.equals(this.client, other.client)) {
+            return false;
+        }
+        if (!Objects.equals(this.items, other.items)) {
+            return false;
+        }
+        if (!Objects.equals(this.date, other.date)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "PaymentEntity{" + "client=" + client + ", items=" + items + ", date=" + date + '}';
+    }
+    
+    
 }

@@ -26,6 +26,7 @@ package co.edu.uniandes.csw.artwork.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import co.edu.uniandes.csw.crud.spi.entity.BaseEntity;
+import java.util.Objects;
 import uk.co.jemos.podam.common.PodamExclude;
 import javax.persistence.ManyToOne;
 
@@ -153,4 +154,51 @@ public class ItemEntity extends BaseEntity implements Serializable {
     public void setProduct(ProductEntity product) {
         this.product = product;
     } 
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.qty);
+        hash = 29 * hash + Objects.hashCode(this.shoppingCart);
+        hash = 29 * hash + Objects.hashCode(this.artwork);
+        hash = 29 * hash + Objects.hashCode(this.client);
+        hash = 29 * hash + Objects.hashCode(this.product);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ItemEntity other = (ItemEntity) obj;
+        if (!Objects.equals(this.qty, other.qty)) {
+            return false;
+        }
+        if (!Objects.equals(this.shoppingCart, other.shoppingCart)) {
+            return false;
+        }
+        if (!Objects.equals(this.artwork, other.artwork)) {
+            return false;
+        }
+        if (!Objects.equals(this.client, other.client)) {
+            return false;
+        }
+        if (!Objects.equals(this.product, other.product)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemEntity{" + "qty=" + qty + ", shoppingCart=" + shoppingCart + ", artwork=" + artwork + ", client=" + client + ", product=" + product + '}';
+    }
+    
 }

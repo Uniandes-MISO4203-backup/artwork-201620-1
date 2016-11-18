@@ -26,6 +26,7 @@ package co.edu.uniandes.csw.artwork.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import co.edu.uniandes.csw.crud.spi.entity.BaseEntity;
+import java.util.Objects;
 import uk.co.jemos.podam.common.PodamExclude;
 import javax.persistence.ManyToOne;
 
@@ -57,5 +58,35 @@ public class CategoryEntity extends BaseEntity implements Serializable {
      */
     public void setParentCategory(CategoryEntity parentcategory) {
         this.parentCategory = parentcategory;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.parentCategory);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CategoryEntity other = (CategoryEntity) obj;
+        if (!Objects.equals(this.parentCategory, other.parentCategory)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "CategoryEntity{" + "parentCategory=" + parentCategory + '}';
     }
 }

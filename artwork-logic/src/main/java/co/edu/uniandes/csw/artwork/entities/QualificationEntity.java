@@ -26,6 +26,7 @@ package co.edu.uniandes.csw.artwork.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import co.edu.uniandes.csw.crud.spi.entity.BaseEntity;
+import java.util.Objects;
 import uk.co.jemos.podam.common.PodamExclude;
 import javax.persistence.ManyToOne;
 
@@ -94,6 +95,44 @@ public class QualificationEntity extends BaseEntity implements Serializable {
      */
     public void setUserClient(String userClient) {
         this.userClient = userClient;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + this.qualification;
+        hash = 61 * hash + Objects.hashCode(this.userClient);
+        hash = 61 * hash + Objects.hashCode(this.artwork);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final QualificationEntity other = (QualificationEntity) obj;
+        if (this.qualification != other.qualification) {
+            return false;
+        }
+        if (!Objects.equals(this.userClient, other.userClient)) {
+            return false;
+        }
+        if (!Objects.equals(this.artwork, other.artwork)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "QualificationEntity{" + "qualification=" + qualification + ", userClient=" + userClient + ", artwork=" + artwork + '}';
     }
 
   
