@@ -37,7 +37,8 @@
         'wishlistModule',
         'userModule',
         'angular-star-rating',
-        'prizeModule'
+        'prizeModule',
+        'visitorModule'
     ]);
 
     mod.config(['$logProvider', function ($logProvider) {
@@ -70,7 +71,8 @@
             auth.setValues({
                 apiUrl: 'api/users/',
                 successState: 'artworkGallery',
-                logoutRedirectState: 'artworkGallery'
+                logoutRedirectState: 'artworkGallery',
+                loginState: 'galleryView'
 
 
 

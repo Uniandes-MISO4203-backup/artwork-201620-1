@@ -85,7 +85,6 @@ SOFTWARE.
         <script src="src/modules/user/user.mod.js"></script>
         <script src="src/modules/user/user.ctrl.js"></script>
         <script src="src/modules/user/edit/user.edit.ctrl.js"></script>
-        <script src="src/modules/user/data/user.data.ctrl.js"></script>
         <script src="src/modules/user/purchases/user.purchases.ctrl.js"></script>
         <script src="src/modules/comment/comment.mod.js"></script>
         <script src="src/modules/comment/comment.ctrl.js"></script>
@@ -153,6 +152,8 @@ SOFTWARE.
         <script src="src/modules/prize/list/prize.list.ctrl.js" ></script>
         <script src="src/modules/prize/new/prize.new.ctrl.js"></script>
         <script src="src/modules/prize/reward/prize.reward.ctrl.js" ></script>
+        <script src="src/modules/visitor/visitor.mod.js"></script>
+        <script src="src/modules/visitor/galview/visitor.gal.view.ctrl.js"></script>
         <!-- /include -->
         <!-- endbuild -->
 
@@ -172,13 +173,18 @@ SOFTWARE.
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                        
+                        <span ng-if="visitor===false">
                          <a class="navbar-brand"  ui-sref="artworkGallery">Artwork</a>
+                        </span>
+                         <span ng-if="visitor===true">
+                         <a class="navbar-brand"  ui-sref="galleryView">Artwork</a>
+                        </span>
                         </div>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="main-bar">
                             <ul ng-controller="roleCtrl"  class="nav navbar-nav">
+                             
                                 <li ng-if="client"><a ui-sref="wishlistList">Wishlist</a></li>
                                 <!--li ng-if="artist"><a ui-sref="artistList">Artist</a></li-->
                                 <li ng-if="artist"><a ui-sref="artistGallery">Mis obras de arte</a></li>
@@ -188,9 +194,11 @@ SOFTWARE.
                               
                                 <li ng-if="client"><a ui-sref="shoppingCart">Shopping Cart</a></li>
                                 <li ng-if="client"><a ui-sref="userData">Settings</a></li>
+                             
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                             <login-button></login-button>
+                             <div ng-if="visitor===false"> <login-button></login-button></div>
+                             <div ng-if="visitor===true"><button class="btn btn-default btn-md" ui-sref="login">Login</button>
                             </ul>
                         </div> <!-- /.navbar-collapse -->
                     </div> <!-- /.container-fluid -->
