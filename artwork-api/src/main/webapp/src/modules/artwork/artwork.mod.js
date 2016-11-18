@@ -79,17 +79,12 @@
                     artworks: ['artist', '$stateParams', 'model', function (artist, $params, model) {
                             return artist.getList(model.url, $params);
                         }],
-                       references: ['$q', 'Restangular','$rootScope', function ($q, r,$rootScope) {
-                      if($rootScope.visitor===false){
+                       references: ['$q', 'Restangular', function ($q, r) {
                             return $q.all({
                                 artist: r.all('artists').getList()
-                            });}else{
-                            return $q.all({
-                                artist: r.all('visitors').getList()
                             });
-                            }
                         }],
-                    client:['Restangular', '$stateParams','$rootScope', function (r,$rootScope) {
+                    client:['Restangular', '$stateParams', function (r) {
                         return r.all("clients").getList().then(function(list){
                             return list[0];
                         });
@@ -223,15 +218,10 @@
                     }
                 },
                 resolve: {
-                    references: ['$q', 'Restangular','$rootScope', function ($q, r,$rootScope) {
-                      if($rootScope.visitor===false){
+                    references: ['$q', 'Restangular', function ($q, r) {
                             return $q.all({
                                 artist: r.all('artists').getList()
-                            });}else{
-                            return $q.all({
-                                artist: r.all('visitors').getList()
                             });
-                            }
                         }],
                     model: 'artworkModel',
                     artworks: ['Restangular', 'model', '$stateParams', function (r, model, $params) {

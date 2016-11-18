@@ -197,7 +197,7 @@ SOFTWARE.
                              
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                             <div ng-if="visitor===false"> <login-button></login-button></div>
+                             <div ng-if="visitor===false || !visitor"> <login-button></login-button></div>
                              <div ng-if="visitor===true"><button class="btn btn-default btn-md" ui-sref="login">Login</button>
                             </ul>
                         </div> <!-- /.navbar-collapse -->

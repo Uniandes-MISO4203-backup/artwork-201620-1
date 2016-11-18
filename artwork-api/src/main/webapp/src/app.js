@@ -71,7 +71,7 @@
             auth.setValues({
                 apiUrl: 'api/users/',
                 successState: 'artworkGallery',
-                logoutRedirectState: 'artworkGallery',
+                logoutRedirectState: 'galleryView',
                 loginState: 'galleryView'
 
 

@@ -20,6 +20,17 @@
             <li class="col-sm-4 no-padding" ng-repeat="artwork in records" style="position:relative">
                 <div class="col-sm-offset-2 col-sm-8 no-padding artwork">                
                         <img class="img-responsive" ng-src="{{artwork.image}}" alt="{{artwork.name}}" ui-sref="login">
+                        <div class="col-sm-12 detail no-padding">
+                        <span  class="col-sm-8 no-padding"><a ui-sref="login">{{artwork.name}}</a></span>
+                        <div class="col-sm-4 icons no-padding">
+                            <a ui-sref="login" class="col-sm-3 no-padding"><i class="glyphicon glyphicon-search"></i></a>
+                            <div  class="col-sm-3 no-padding">
+                                <a ui-sref='login' class="col-sm-6 no-padding" style="cursor: pointer;" ><i class="glyphicon glyphicon-eye-open"></i></a>
+                                
+                            </div>
+                            <a  class="col-sm-3 no-padding" ui-sref="login"><i class="glyphicon glyphicon-shopping-cart"></i></a>     
+                        </div>
+                    </div>
                        
                 </div>
             </li>
