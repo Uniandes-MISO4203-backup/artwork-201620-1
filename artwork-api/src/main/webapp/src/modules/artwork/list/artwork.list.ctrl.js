@@ -29,6 +29,7 @@
              return Math.ceil($scope.records.length/$scope.pageSize);                
             };
             $scope.latest = latest;
+            $scope.galView = "latest";
 
             //Paginación
             this.itemsPerPage = $params.limit;
