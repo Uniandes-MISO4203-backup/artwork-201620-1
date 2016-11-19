@@ -144,7 +144,12 @@ public class CommentLogicTest {
     public void countCommentsTest(){
     Assert.assertEquals(data.size(),commentLogic.countComments());
     }
-    
+    @Test
+    public void commentEqualsTest(){
+     CommentEntity newEntity = factory.manufacturePojo(CommentEntity.class);
+        CommentEntity result = commentLogic.createComment(fatherEntity.getId(), newEntity);
+    Assert.assertTrue(newEntity.equals(result));
+    }
     @Test
     public void createCommentTest() {
         CommentEntity newEntity = factory.manufacturePojo(CommentEntity.class);
