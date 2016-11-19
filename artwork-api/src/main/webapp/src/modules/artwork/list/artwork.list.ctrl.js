@@ -25,6 +25,8 @@
             }
             $scope.currentPage = 0;
             $scope.pageSize = 9;
+            $scope.alerts = []
+            
             $scope.numberOfPages=function(){
              return Math.ceil($scope.records.length/$scope.pageSize);                
             };
@@ -93,7 +95,7 @@
                 itemModel['qty'] = 1;
                 itemModel['artwork'] = artwork;
                 client.post("shopping/cart", JSON.stringify(itemModel));
-                alert("Obra agregada a carrito");
+                $scope.showSuccess("Obra agregada al carrito");
             };
             $scope.addToWishlist = function (artwork) {
                 itemModel['name'] = artwork.name;
@@ -102,14 +104,38 @@
                 itemModel['shoppingCart'] = false;
                 client.post("shopping/wishlist", JSON.stringify(itemModel));
                 artwork.isInWishlist = true;
-                alert("Obra agregada a la wishlist");
+                $scope.showSuccess("Obra agregada al wishlist");
             };
             $scope.removeWishlist = function (artwork) {
                 itemModel['id'] = artwork.idItem;
                 client.customDELETE("wishList/"+ artwork.idItem).then(function (rc) {
                     artwork.isInWishlist = false;
-                    alert("Obra removida del wishlist");
+                    $scope.showSuccess("Obra removida del wishlist");
                 });
+            };
+            
+            $scope.closeAlert = function (index) {
+                $scope.alerts.splice(index, 1);
+            };
+
+            /* Función showMessage: Recibe el mensaje en String y
+             * su tipo con el fin de almacenarlo en el array $scope.alerts.
+             */
+            function showMessage(msg, type) {
+                var types = ["info", "danger", "warning", "success"];
+                if (types.some(function (rc) {
+                    return type === rc;
+                })) {
+                    $scope.alerts.push({type: type, msg: msg});
+                }
+            }
+
+            $scope.showError = function (msg) {
+                showMessage(msg, "danger");
+            };
+
+            $scope.showSuccess = function (msg) {
+                showMessage(msg, "success");
             };
 
             $scope.actions = {

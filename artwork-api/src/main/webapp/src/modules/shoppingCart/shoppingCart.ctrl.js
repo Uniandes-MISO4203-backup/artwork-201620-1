@@ -40,7 +40,7 @@
                     $scope.purchase["items"] = [];
                 });
             };
-            this.closeAlert = function (index) {
+            $scope.closeAlert = function (index) {
                 $scope.alerts.splice(index, 1);
             };
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" style="position:fixed; width:100%; z-index: 10">{{alert.msg}} </alert>
 <ul class="nav nav-tabs nav-justified titles" >
     <li class="col-sm-6 showcase-title" ng-class="{'tab-active': galView === 'latest'}" ng-click="galView='latest'">
        Últimas Obras  
