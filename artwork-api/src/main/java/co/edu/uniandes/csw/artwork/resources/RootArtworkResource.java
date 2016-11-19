@@ -40,6 +40,7 @@ import co.edu.uniandes.csw.artwork.dtos.detail.ArtworkDetailDTO;
 import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.ws.rs.POST;
 import javax.ws.rs.WebApplicationException;
 
@@ -147,6 +148,7 @@ public class RootArtworkResource {
     @POST
     public ArtworkDetailDTO createArtwork(ArtworkDetailDTO dto){
         existsArtist(dto.getArtist().getId());
+        dto.setDateAdded(Calendar.getInstance().getTime());
         return new ArtworkDetailDTO(artworkLogic.createArtwork(dto.getArtist().getId(), dto.toEntity()));
     }
 }

@@ -4,8 +4,8 @@
  */
 (function (ng) { 
     var mod = ng.module("artworkModule");
-    mod.controller("artistGalleryListCtrl", ["$scope", '$state','$stateParams',"artist","artworks", "artistArtworks","categories",
-        function ($scope, $state, $params, artist, artworks, artistArtworks, categories) {
+    mod.controller("artistGalleryListCtrl", ["$rootScope","$scope", '$state','$stateParams',"artist","artworks", "artistArtworks","categories",
+        function ($rootScope, $scope, $state, $params, artist, artworks, artistArtworks, categories) {
             $scope.records = artistArtworks;
             //Paginación
             this.itemsPerPage = $params.limit;
@@ -17,7 +17,9 @@
             $scope.artwork["artist"] = artist;
             $scope.createArtwork = function(){
                 artworks.post($scope.artwork).then(function () {
-                    $scope.records = artworks.get();
+                    artist.getList("artworks", {userName: $rootScope.usuario.$object.userName}).then(function(response){
+                        $scope.records = response;
+                    });
                 });
             };
             $scope.addCategory = function(category){
