@@ -32,9 +32,10 @@
                 itemModel['name'] = item.artwork.name;
                 itemModel['qty'] = 1;
                 itemModel['artwork'] = item.artwork;
-                client.post("shopping/cart", JSON.stringify(itemModel));
-                client.getList("shopping/cart").then(function () {
+                itemModel['shoppingCart'] = true;
+                client.customPUT(itemModel,"wishList/"+ item.id).then(function () {
                     item.shoppingCart = true;
+                    alert("Obra agregada a carrito");
                 });
             };
             $scope.deleteFromWishlist = function (item) {
