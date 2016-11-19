@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.artwork.test.persistence;
 
 import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
+import co.edu.uniandes.csw.artwork.entities.CategoryEntity;
 import co.edu.uniandes.csw.artwork.persistence.ArtworkPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,8 @@ public class ArtworkPersistenceTest {
  UserTransaction utx;
  
   ArtistEntity fatherEntity;
- 
+  private List<CategoryEntity> categoryData = new ArrayList<>();
+  
  private List<ArtworkEntity> data = new ArrayList<>();
    private static final Logger LOGGER = Logger.getLogger("co.edu.uniandes.csw.artwork.test.persistence.ArtworkPersistenceTest");
    
@@ -75,16 +77,27 @@ public class ArtworkPersistenceTest {
  }
  private void clearData() {
   em.createQuery("delete from ArtworkEntity").executeUpdate();
+  em.createQuery("delete from CategoryEntity").executeUpdate();
   em.createQuery("delete from ArtistEntity").executeUpdate();
  }
  private void insertData() {
   PodamFactory factory = new PodamFactoryImpl();
+   for (int i = 0; i < 3; i++) {
+            CategoryEntity category = factory.manufacturePojo(CategoryEntity.class);
+            em.persist(category);
+            categoryData.add(category);
+        }
+  
   fatherEntity = factory.manufacturePojo(ArtistEntity.class);
+ 
   fatherEntity.setId(1L);
+  fatherEntity.setUsername("a.quintero10");
+  fatherEntity.setName("Alejandro");
   em.persist(fatherEntity);
   for (int i = 0; i < 3; i++) {
    ArtworkEntity entity = factory.manufacturePojo(ArtworkEntity.class);
    entity.setArtist(fatherEntity);
+   entity.getCategory().add(categoryData.get(0));
    em.persist(entity);
    data.add(entity);
   }
@@ -127,6 +140,43 @@ public class ArtworkPersistenceTest {
  }
  
  @Test
+ public void getArtworkCountTest(){
+ Assert.assertEquals(data.size(), artworkPersistence.count());
+ }
+ 
+ @Test
+    public void getArtworkByArtistUserName(){
+    List<ArtworkEntity> list =artworkPersistence.getArtworksFromArtistUserName(fatherEntity.getUsername());
+    Assert.assertEquals(data.size(), list.size());
+    for (ArtworkEntity entity : list){
+    boolean found = false;
+    for(ArtworkEntity storedEntity : data){
+    if (entity.getArtist().getUsername().equals(storedEntity.getArtist().getUsername())){
+    found = true;
+    }
+    }
+    Assert.assertTrue(found);
+    }
+    }
+ 
+     @Test
+    public void getArtworksPaginatedTest(){
+     int page = 1;
+     int maxRecords = 3;
+    List<ArtworkEntity> list = artworkPersistence.findAll(page, maxRecords, fatherEntity.getId());
+    Assert.assertEquals(data.size(), list.size());
+    }
+    
+    @Test
+    public void getArtworksPaginateTest(){
+     int page = 1;
+     int maxRecords = 3;
+    List<ArtworkEntity> list = artworkPersistence.findAll(page, maxRecords);
+    Assert.assertEquals(data.size(), list.size());
+    }  
+    
+    
+ @Test
  public void deleteArtworkTest() {
   ArtworkEntity entity = data.get(0);
   artworkPersistence.delete(entity.getId());
@@ -145,4 +195,18 @@ public class ArtworkPersistenceTest {
   Assert.assertEquals(newEntity.getImage(), resp.getImage());
   Assert.assertEquals(newEntity.getPrice(), resp.getPrice());
  }
+ 
+ @Test
+ public void getArtworkByCategoryTest(){
+  int page = 1;
+  int maxRecords = 3;
+  List<ArtworkEntity> list = artworkPersistence.getArtworkByCategory(page, maxRecords, categoryData.get(0).getId());
+  Assert.assertEquals(data.size(), list.size());
+ }
+ @Test
+ public void getArtworksFromArtistTest(){
+ List<ArtworkEntity> list = artworkPersistence.getArtworksFromArtist(fatherEntity.getName());
+ Assert.assertEquals(data.size(), list.size());
+ }
+
 }

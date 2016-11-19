@@ -179,12 +179,31 @@ public class ClientPersistenceTest {
             Assert.assertTrue(found);
         }
     }
-
+@Test
+    public void getClientsPagTest() {
+     int page=1;
+     int maxRecords=3;
+        List<ClientEntity> list = clientPersistence.findAll(page,maxRecords);
+        Assert.assertEquals(data.size(), list.size());
+        for (ClientEntity ent : list) {
+            boolean found = false;
+            for (ClientEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
     /**
      * Prueba para consultar un Client.
      *
      * @generated
      */
+    @Test
+    public void getClientsCount(){
+    Assert.assertEquals(data.size(),clientPersistence.count());
+    }
     @Test
     public void getClientTest() {
         ClientEntity entity = data.get(0);

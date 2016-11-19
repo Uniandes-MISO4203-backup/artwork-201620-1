@@ -159,7 +159,37 @@ public class ArtworkLogicTest {
         Assert.assertEquals(newEntity.getImage(), entity.getImage());
         Assert.assertEquals(newEntity.getPrice(), entity.getPrice());
     }
-
+   
+    @Test
+    public void artworkCountTest(){
+    Assert.assertEquals(data.size(), artworkLogic.countArtworks());
+    }
+    
+    @Test
+    public void getArtworkByArtistUserName(){
+    List<ArtworkEntity> list =artworkLogic.getArtworksByUserName(fatherEntity.getUsername());
+    Assert.assertEquals(data.size(), list.size());
+    for (ArtworkEntity entity : list){
+    boolean found = false;
+    for(ArtworkEntity storedEntity : data){
+    if (entity.getArtist().getUsername().equals(storedEntity.getArtist().getUsername())){
+    found = true;
+    }
+    }
+    Assert.assertTrue(found);
+    }
+    }
+    
+    @Test
+    public void getArtworksPaginatedTest(){
+     int page = 1;
+     int maxRecords = 3;
+    List<ArtworkEntity> list = artworkLogic.getArtworks(page, maxRecords, fatherEntity.getId());
+    Assert.assertEquals(data.size(), list.size());
+    }
+    
+    
+    
     /**
      * Prueba para consultar la lista de Artworks
      *
@@ -246,6 +276,15 @@ public class ArtworkLogicTest {
         Assert.assertEquals(categoryEntity.getId(), response.getId());
         Assert.assertEquals(categoryEntity.getName(), response.getName());
     }
+   @Test
+   public void getArtworkByCategoryTest(){
+    int page =1;
+    int maxRecords =3;
+    
+    CategoryEntity categoryEntity= categoryData.get(0);
+    List<ArtworkEntity> response = artworkLogic.getArtworkByCategory(page, maxRecords, categoryEntity.getId());
+    Assert.assertEquals(data.size(), response.size());
+   }
 
     /**
      * Prueba para obtener una colección de instancias de Category asociadas a una instancia Artwork

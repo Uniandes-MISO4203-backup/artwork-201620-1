@@ -149,6 +149,27 @@ public class ClientLogicTest {
      * @generated
      */
     @Test
+    public void countClientsTest(){
+    Assert.assertEquals(data.size(),clientLogic.countClients());
+    }
+    @Test
+    public void getClientsPagTest(){
+     int page=1;
+     int maxRecords=3;
+    List<ClientEntity> list = clientLogic.getClients(page, maxRecords);
+        Assert.assertEquals(data.size(), list.size());
+        for (ClientEntity entity : list) {
+            boolean found = false;
+            for (ClientEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    
+    @Test
     public void createClientTest() {
         ClientEntity newEntity = factory.manufacturePojo(ClientEntity.class);
         ClientEntity result = clientLogic.createClient(newEntity);
