@@ -67,7 +67,7 @@ public class CategoryEntity extends BaseEntity implements Serializable {
         return hash;
     }
 
-    @Override
+  /*  @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -88,5 +88,5 @@ public class CategoryEntity extends BaseEntity implements Serializable {
     @Override
     public String toString() {
         return "CategoryEntity{" + "parentCategory=" + parentCategory + '}';
-    }
+    } */
 }

@@ -160,7 +160,7 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
         this.prizes = prizes;
     }
 
-    @Override
+ /*   @Override
     public int hashCode() {
         int hash = 7;
         hash = 83 * hash + Objects.hashCode(this.image);
@@ -232,5 +232,5 @@ public class ArtworkEntity extends BaseEntity implements Serializable {
     @Override
     public String toString() {
         return "ArtworkEntity{" + "image=" + image + ", price=" + price + ", width=" + width + ", height=" + height + ", dateAdded=" + dateAdded + ", category=" + category + ", artist=" + artist + ", qualifications=" + qualifications + ", comments=" + comments + ", prizes=" + prizes + ", items=" + items + ", images=" + images + '}';
-    }
+    } */
 }
