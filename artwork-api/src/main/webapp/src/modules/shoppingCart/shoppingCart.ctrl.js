@@ -65,7 +65,7 @@
             };
 
             $scope.deleteFromCart = function (item) {
-                client.customDELETE("wishList/"+ item.id).then(function () {
+                client[0].customDELETE("wishList/"+ item.id).then(function () {
                     var index = $scope.purchase["items"].indexOf(item);
                     $scope.purchase["items"].splice(index, 1);
                 });
