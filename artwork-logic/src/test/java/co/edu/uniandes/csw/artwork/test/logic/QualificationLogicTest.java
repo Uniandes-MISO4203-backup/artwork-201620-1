@@ -262,6 +262,17 @@ public class QualificationLogicTest {
         QualificationEntity deleted = em.find(QualificationEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-   
+   @Test
+    public void qualificationEqualsTest(){
+      ArtworkEntity art = factory.manufacturePojo(ArtworkEntity.class);
+      Object obj=new java.lang.Object();
+     QualificationEntity newEntity = factory.manufacturePojo(QualificationEntity.class);
+     QualificationEntity result = qualificationLogic.createQualification(newEntity);
+    Assert.assertTrue(newEntity.equals(result));
+    Assert.assertFalse(newEntity.equals(null));
+    Assert.assertFalse(newEntity.equals(art));
+   Assert.assertFalse(newEntity.equals(obj));
+    
+    }
 }
 

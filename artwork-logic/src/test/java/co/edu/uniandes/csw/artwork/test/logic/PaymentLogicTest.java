@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.artwork.test.logic;
 
 import co.edu.uniandes.csw.artwork.ejbs.PaymentLogic;
 import co.edu.uniandes.csw.artwork.api.IPaymentLogic;
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
 import co.edu.uniandes.csw.artwork.persistence.PaymentPersistence;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
@@ -228,6 +229,19 @@ public class PaymentLogicTest {
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
-    }         
+    }  
+    @Test
+    public void paymentEqualsTest(){
+     ArtworkEntity art = factory.manufacturePojo(ArtworkEntity.class);
+     Object obj=new java.lang.Object();
+     PaymentEntity newEntity = factory.manufacturePojo(PaymentEntity.class);
+        PaymentEntity result = paymentLogic.createPayment(fatherEntity.getId(), newEntity);
+    Assert.assertTrue(newEntity.equals(result));
+    Assert.assertFalse(newEntity.equals(null));
+    Assert.assertFalse(newEntity.equals(art));
+    Assert.assertFalse(newEntity.equals(obj));
+   
+    
+    }
 }
 

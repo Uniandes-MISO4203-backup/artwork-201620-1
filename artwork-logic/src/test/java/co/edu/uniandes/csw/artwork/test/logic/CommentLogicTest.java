@@ -146,10 +146,14 @@ public class CommentLogicTest {
     }
     @Test
     public void commentEqualsTest(){
+      ArtworkEntity art = factory.manufacturePojo(ArtworkEntity.class);
+      Object obj=new java.lang.Object();
      CommentEntity newEntity = factory.manufacturePojo(CommentEntity.class);
         CommentEntity result = commentLogic.createComment(fatherEntity.getId(), newEntity);
     Assert.assertTrue(newEntity.equals(result));
     Assert.assertFalse(newEntity.equals(null));
+    Assert.assertFalse(newEntity.equals(art));
+   Assert.assertFalse(newEntity.equals(obj));
     
     }
     @Test
