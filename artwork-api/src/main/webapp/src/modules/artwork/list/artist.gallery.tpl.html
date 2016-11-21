@@ -8,15 +8,18 @@
                 <h3>No tienes obras agregadas</h3>
             </div>
             <ul ng-if="records.length > 0" class="col-sm-12 list-unstyled">
-                <li class="col-sm-4 no-padding" ng-repeat="artwork in records | startFrom:currentPage*pageSize | limitTo:pageSize" style="position:relative">
+                <li class="col-sm-4 no-padding" ng-repeat="artwork in records  | startFrom:currentPage*pageSize | limitTo:pageSize " style="position:relative">
                     <div class="col-sm-offset-2 col-sm-8 no-padding artwork">
                         <img class="img-responsive" ng-src="{{artwork.image}}" alt="{{artwork.name}}">
                         <div class="col-sm-12 detail no-padding">
-                            <div>    <span class="col-sm-7 no-padding" style="margin-top: 0.7em"><a ui-sref="comment({artworkId:artwork.id})">{{artwork.name}}</a></span> </div>
+                            <div>    <span class="col-sm-7 no-padding" style="margin-top: 0.7em">{{artwork.name}}</span> </div>
                             <div class="col-sm-5 icons no-padding">
                                 <a href="{{artwork.image}}" class="col-sm-2 no-padding"><i class="glyphicon glyphicon-search"></i></a>
                                 <div class="col-sm-1 no-padding"></div>
                                 <!--a href ng-click="setearObraAEliminar(artwork.id)" class="col-sm-2 no-padding" data-target="#artwork-delete-modal"><i class="glyphicon glyphicon-trash"></i></a-->
+                                <button type="submit" ng-click="actualizarCamposDialogo(artwork.id)" 
+                                        class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#artwork-edit-modal" 
+                                        style="background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;outline:none;color:#cc0000"></button> 
                                 <button type="submit" ng-click="setearObraAEliminar(artwork.id)" 
                                         class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#artwork-delete-modal" 
                                         style="background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;outline:none;color:#cc0000"></button> 
@@ -45,6 +48,25 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" ng-click="createArtwork();" data-dismiss="modal">Crear</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="artwork-edit-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Editar la obra</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div ui-view="artworkEditView"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" ng-click="actualizarArtwork();" data-dismiss="modal">Actualizar</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     </div>
                 </div>

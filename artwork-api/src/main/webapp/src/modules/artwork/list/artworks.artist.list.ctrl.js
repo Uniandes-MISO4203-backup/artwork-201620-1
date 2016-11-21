@@ -9,6 +9,7 @@
         function ($rootScope, $scope, $state, $params, artist, artworks, artistArtworks, categories, Restangular) {
             $scope.records = artistArtworks;
             
+            $scope.artworkEdicion = [];
             $scope.obraAEliminar = [];
             //Paginación
             $scope.currentPage = 0;
@@ -26,7 +27,8 @@
             $scope.artwork = {};
             $scope.artwork.category = [];
             $scope.artwork.images = []; 
-            $scope.artwork["artist"] = artist;
+            $scope.artwork["artist"] = artist;                       
+            
             $scope.createArtwork = function(){
                 artworks.post($scope.artwork).then(function () {
                     artist.getList("artworks", {userName: $rootScope.usuario.$object.userName}).then(function(response){
@@ -89,6 +91,29 @@
             $scope.showSuccess = function (msg) {
                 showMessage(msg, "success");
             };
+            
+            $scope.actualizarCamposDialogo = function(artworkId){
+                for(var i = 0; i<$scope.records.length ;i++){
+                    if($scope.records[i].id===artworkId){
+                        $scope.artworkEdicion = $scope.records[i];
+                        break;
+                    }
+                }
+                console.log("Se va a editar: "+$scope.artworkEdicion.name);
+                /*$scope.categorys = categories;
+                $scope.artwork = {};
+                $scope.artwork.category = [];
+                $scope.artwork.images = []; 
+                $scope.artwork["artist"] = artist;*/
+            };
+            
+            $scope.limpiarCamposDialogo = function(){
+                $scope.categorys = categories;
+                $scope.artwork = {};
+                $scope.artwork.category = [];
+                $scope.artwork.images = []; 
+                $scope.artwork["artist"] = artist;
+            };           
           
         }]);
 })(window.angular);

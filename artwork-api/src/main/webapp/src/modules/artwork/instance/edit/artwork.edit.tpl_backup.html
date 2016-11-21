@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -->
-<div ng-messages="artworkEdicionForm.$error" multiple>
+<div ng-messages="artworkForm.$error" multiple>
     <ng-message when="required">
         <alert type="warning">Please, Fill the required fields!</alert>
     </ng-message>
@@ -29,29 +29,11 @@ SOFTWARE.
         <alert type="warning">Image field must be a URL</alert>
     </ng-message>
 </div>
-<label>Nombre: </label><input class="form-control" type="text" ng-model="artworkEdicion.name">
-<label>Precio: </label><input class="form-control" type="text" ng-model="artworkEdicion.price">
-<label>Ancho: </label><input class="form-control" type="text" ng-model="artworkEdicion.width">
-<label>Alto: </label><input class="form-control" type="text" ng-model="artworkEdicion.height">
-<label>Imagen principal: </label><input class="form-control" type="text" ng-model="artworkEdicion.image">
-<label>Imagenes secundarias: </label><input class="form-control" type="url" ng-model="image"><button class="btn btn-default" ng-click="addImage(image)">Agregar</button>
-<ul class="list-group list-inline">
-    <li ng-repeat="image in artworkEdicion.images">
-        imagen {{$index + 1}} <button ng-click="removeImage(image)">x</button>
-    </li>
-</ul>
-<label>Categoria: </label>
-<select class="form-control" ng-options="category as category.name for category in categorys" ng-model="category" ng-change="addCategory(category)"></select>
-<ul class="list-group list-inline">
-    <li ng-repeat="cat in artworkEdicion.category">
-        {{cat.name}} <button class="btn btn-danger" ng-click="removeCategory(cat)">x</button>
-    </li>
-</ul>
-<!--<header>
+<header>
     <toolbar name="model.name" display-name="model.displayName" actions='actions'></toolbar>
 </header>
-<form novalidate name="artworkEdicionForm" role="form">
+<form novalidate name="artworkForm" role="form">
     <fieldset>
         <crud-form fields='model.fields' record='currentRecord' lists-of-values="references"></crud-form>
     </fieldset>
-</form>-->
+</form>

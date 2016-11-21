@@ -263,6 +263,9 @@
                     },
                     "artworkCreateView@artistGallery":{
                         templateUrl: basePath + 'new/artwork.new.tpl.html'
+                    },
+                    "artworkEditView@artistGallery":{
+                        templateUrl: basePath + 'instance/edit/artwork.edit.tpl.html'
                     }
                 },
                 resolve: {
