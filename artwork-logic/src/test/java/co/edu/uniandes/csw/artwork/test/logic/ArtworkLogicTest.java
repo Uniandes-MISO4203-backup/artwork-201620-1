@@ -6,6 +6,10 @@ import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.persistence.ArtworkPersistence;
 import co.edu.uniandes.csw.artwork.entities.CategoryEntity;
 import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
+import co.edu.uniandes.csw.artwork.entities.CommentEntity;
+import co.edu.uniandes.csw.artwork.entities.ItemEntity;
+import co.edu.uniandes.csw.artwork.entities.PrizeEntity;
+import co.edu.uniandes.csw.artwork.entities.QualificationEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -69,7 +73,13 @@ public class ArtworkLogicTest {
      */
     private List<CategoryEntity> categoryData = new ArrayList<>();
 
+    private List<PrizeEntity> prizeData = new ArrayList<>();
     
+    private List<CommentEntity> commentData = new ArrayList<>();
+    
+    private List<QualificationEntity> qualificationData = new ArrayList<>();
+    
+    private List<ItemEntity> itemData = new ArrayList<>();
 
     /**
      * @generated
@@ -134,11 +144,15 @@ public class ArtworkLogicTest {
         fatherEntity.setId(1L);
         em.persist(fatherEntity);
         for (int i = 0; i < 3; i++) {
+            
             ArtworkEntity entity = factory.manufacturePojo(ArtworkEntity.class);
             entity.setArtist(fatherEntity);
-
+            
             entity.getCategory().add(categoryData.get(0));
-
+            entity.setComments(commentData);
+            entity.setItems(itemData);
+            entity.setPrizes(prizeData);
+            entity.setQualifications(qualificationData);
             em.persist(entity);
             data.add(entity);
         }
@@ -158,6 +172,10 @@ public class ArtworkLogicTest {
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getImage(), entity.getImage());
         Assert.assertEquals(newEntity.getPrice(), entity.getPrice());
+        Assert.assertEquals(newEntity.getComments().size(),entity.getComments().size());
+        Assert.assertEquals(newEntity.getPrizes().size(),entity.getPrizes().size());
+        Assert.assertEquals(newEntity.getQualifications().size(),entity.getQualifications().size());
+        Assert.assertEquals(newEntity.getItems().size(),entity.getItems().size());
     }
    
     @Test
