@@ -192,6 +192,7 @@ public class PaymentTest {
         
         Assert.assertEquals(paymentTest.getId(), oraculo.get(0).getId());
         Assert.assertEquals(paymentTest.getName(), oraculo.get(0).getName());
+        Assert.assertNotNull(paymentTest.toEntity());
     }
 
   

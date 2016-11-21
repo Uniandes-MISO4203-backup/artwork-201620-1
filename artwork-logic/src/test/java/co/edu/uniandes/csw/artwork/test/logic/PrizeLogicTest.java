@@ -188,4 +188,16 @@ public class PrizeLogicTest {
         
     }
     
+    @Test
+    public void prizeEqualsTest(){
+     ArtworkEntity art = factory.manufacturePojo(ArtworkEntity.class);
+     Object obj=new java.lang.Object();
+     PrizeEntity newEntity = factory.manufacturePojo(PrizeEntity.class);
+        PrizeEntity result = prizeLogic.createPrize(newEntity);
+    Assert.assertTrue(newEntity.equals(result));
+    Assert.assertFalse(newEntity.equals(null));
+    Assert.assertFalse(newEntity.equals(art));
+    Assert.assertFalse(newEntity.equals(obj)); 
+    }
+    
 }

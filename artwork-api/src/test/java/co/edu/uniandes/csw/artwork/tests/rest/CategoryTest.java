@@ -199,6 +199,8 @@ public class CategoryTest {
         Assert.assertEquals(CREATED, response.getStatus());
 
         Assert.assertEquals(category.getName(), categoryTest.getName());
+       
+        Assert.assertEquals(category.toEntity().getName(), categoryTest.toEntity().getName());
 
         CategoryEntity entity = em.find(CategoryEntity.class, categoryTest.getId());
         Assert.assertNotNull(entity);

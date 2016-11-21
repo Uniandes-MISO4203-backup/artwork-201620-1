@@ -172,6 +172,8 @@ public class ArtworkLogicTest {
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getImage(), entity.getImage());
         Assert.assertEquals(newEntity.getPrice(), entity.getPrice());
+        Assert.assertEquals(newEntity.getHeight(), entity.getHeight());
+        Assert.assertEquals(newEntity.getWidth(), entity.getWidth());
         Assert.assertEquals(newEntity.getComments().size(),entity.getComments().size());
         Assert.assertEquals(newEntity.getPrizes().size(),entity.getPrizes().size());
         Assert.assertEquals(newEntity.getQualifications().size(),entity.getQualifications().size());

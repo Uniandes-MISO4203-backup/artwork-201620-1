@@ -29,6 +29,7 @@ import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
 import co.edu.uniandes.csw.artwork.persistence.PaymentPersistence;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
+import co.edu.uniandes.csw.artwork.entities.ItemEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -85,6 +86,7 @@ public class PaymentLogicTest {
      * @generated
      */
     private List<PaymentEntity> data = new ArrayList<PaymentEntity>();
+    private List<ItemEntity> itemData = new ArrayList<>();
 
     /**
      * @generated
@@ -144,6 +146,7 @@ public class PaymentLogicTest {
         for (int i = 0; i < 3; i++) {
             PaymentEntity entity = factory.manufacturePojo(PaymentEntity.class);
             entity.setClient(fatherEntity);
+            entity.setItems(itemData);
             em.persist(entity);
             data.add(entity);
         }
@@ -161,6 +164,9 @@ public class PaymentLogicTest {
         PaymentEntity entity = em.find(PaymentEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
+         Assert.assertEquals(newEntity.getClient().getId(), entity.getClient().getId());
+         Assert.assertEquals(newEntity.getItems(), entity.getItems());
+        
     }
 
     /**
@@ -239,9 +245,7 @@ public class PaymentLogicTest {
     Assert.assertTrue(newEntity.equals(result));
     Assert.assertFalse(newEntity.equals(null));
     Assert.assertFalse(newEntity.equals(art));
-    Assert.assertFalse(newEntity.equals(obj));
-   
-    
+    Assert.assertFalse(newEntity.equals(obj)); 
     }
 }
 

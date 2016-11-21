@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.artwork.test.logic;
 
 import co.edu.uniandes.csw.artwork.ejbs.ProductLogic;
 import co.edu.uniandes.csw.artwork.api.IProductLogic;
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.ProductEntity;
 import co.edu.uniandes.csw.artwork.persistence.ProductPersistence;
 import java.util.ArrayList;
@@ -226,6 +227,18 @@ public class ProductLogicTest {
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getPrice(), resp.getPrice());
+    }
+    
+    @Test
+    public void productEqualsTest(){
+     ArtworkEntity art = factory.manufacturePojo(ArtworkEntity.class);
+     Object obj=new java.lang.Object();
+     ProductEntity newEntity = factory.manufacturePojo(ProductEntity.class);
+        ProductEntity result = productLogic.createProduct(newEntity);
+    Assert.assertTrue(newEntity.equals(result));
+    Assert.assertFalse(newEntity.equals(null));
+    Assert.assertFalse(newEntity.equals(art));
+    Assert.assertFalse(newEntity.equals(obj)); 
     }
 }
 

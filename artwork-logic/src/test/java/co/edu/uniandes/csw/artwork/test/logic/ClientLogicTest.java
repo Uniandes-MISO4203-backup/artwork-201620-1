@@ -25,7 +25,9 @@ package co.edu.uniandes.csw.artwork.test.logic;
 
 import co.edu.uniandes.csw.artwork.ejbs.ClientLogic;
 import co.edu.uniandes.csw.artwork.api.IClientLogic;
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
+import co.edu.uniandes.csw.artwork.entities.ProductEntity;
 import co.edu.uniandes.csw.artwork.persistence.ClientPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -245,6 +247,18 @@ public class ClientLogicTest {
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
+    }
+    
+    @Test
+    public void clientEqualsTest(){
+     ArtworkEntity art = factory.manufacturePojo(ArtworkEntity.class);
+     Object obj=new java.lang.Object();
+     ClientEntity newEntity = factory.manufacturePojo(ClientEntity.class);
+        ClientEntity result = clientLogic.createClient(newEntity);
+    Assert.assertTrue(newEntity.equals(result));
+    Assert.assertFalse(newEntity.equals(null));
+    Assert.assertFalse(newEntity.equals(art));
+    Assert.assertFalse(newEntity.equals(obj)); 
     }
 }
 
