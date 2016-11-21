@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.test.persistence;
+import co.edu.uniandes.csw.artwork.entities.ClientEntity;
 import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
 import co.edu.uniandes.csw.artwork.persistence.PaymentPersistence;
 import java.util.ArrayList;
@@ -71,6 +72,7 @@ public class PaymentPersistenceTest {
        
         private static final Logger LOGGER = Logger.getLogger("co.edu.uniandes.csw.artwork.test.persistence.PaymentPersistenceTest");
 
+        private ClientEntity clientEntity;
     
     @Deployment
     public static JavaArchive createDeployment() {
@@ -134,9 +136,13 @@ public class PaymentPersistenceTest {
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
+        clientEntity = factory.manufacturePojo(ClientEntity.class);
+        clientEntity.setId(1L);
+        em.persist(clientEntity);
+        
         for (int i = 0; i < 3; i++) {
             PaymentEntity entity = factory.manufacturePojo(PaymentEntity.class);
-            
+            entity.setClient(clientEntity);
             em.persist(entity);
             data.add(entity);
         }
@@ -191,7 +197,13 @@ public class PaymentPersistenceTest {
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
     }
-
+    @Test
+    public void getPaymentByClientIdTest(){
+    PaymentEntity entity = data.get(0);
+        PaymentEntity newEntity = paymentPersistence.find(entity.getClient().getId(),entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
     /**
      * Prueba para eliminar un Payment.
      *

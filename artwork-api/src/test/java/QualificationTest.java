@@ -166,7 +166,8 @@ public class QualificationTest {
             }
         }
         target = createWebTarget()
-                .path(QUALIFICATION_PATH);
+                .path(QUALIFICATION_PATH)
+                .path(fatherArtworkEntity.getId().toString());
                 
     }
 
