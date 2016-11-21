@@ -1,31 +1,28 @@
 <!DOCTYPE html>
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" style="position:fixed; width:100%; z-index: 10">{{alert.msg}} </alert>
 <h1 class="showcase-title">Galería</h1>
 <div class="list">         
     <div class="col-sm-12 no-padding" >
-        <!--div ng-if="true" class="col-md-2 well" >
-            <div class="col-sm-12 no-padding" ng-controller="roleCtrl">
-                <h4 class="col-sm-10">Categorías</h4>
-                <h4 class="col-sm-2 no-padding"><a ng-click="filtrar('')"><i class="glyphicon glyphicon-repeat"></i></a></h4>
-            </div>
-        <!--div style="display:inline-flex; margin-bottom:15px;">
-            <input type="text" class="col-md-8 form-control" ng-model="artistInput">
-            <button class="col-md-4 btn btn-default" ng-click="filtrarPorArtista(artistInput)">Filtrar</button>
-        </div-->
-        <!--div class="list-group">
-            <button ng-repeat="category in categorys" ng-click="filtrar(category.id)" type="button" class="list-group-item">{{category.name}}</button>
-        </div>      
-    </div-->
         <div class="col-md-10 well">
-            <ul class="col-sm-12 list-unstyled">
-                <li class="col-sm-4 no-padding" ng-repeat="artwork in records" style="position:relative">
+            <div ng-if="records.length === 0">
+                <h3>No tienes obras agregadas</h3>
+            </div>
+            <ul ng-if="records.length > 0" class="col-sm-12 list-unstyled">
+                <li class="col-sm-4 no-padding" ng-repeat="artwork in records  | startFrom:currentPage*pageSize | limitTo:pageSize " style="position:relative">
                     <div class="col-sm-offset-2 col-sm-8 no-padding artwork">
                         <img class="img-responsive" ng-src="{{artwork.image}}" alt="{{artwork.name}}">
                         <div class="col-sm-12 detail no-padding">
-                            <div>    <span class="col-sm-7 no-padding" style="margin-top: 0.7em"><a ui-sref="comment({artworkId:artwork.id})">{{artwork.name}}</a></span> </div>
+                            <div>    <span class="col-sm-7 no-padding" style="margin-top: 0.7em">{{artwork.name}}</span> </div>
                             <div class="col-sm-5 icons no-padding">
                                 <a href="{{artwork.image}}" class="col-sm-2 no-padding"><i class="glyphicon glyphicon-search"></i></a>
                                 <div class="col-sm-1 no-padding"></div>
-                                <a href="#" class="col-sm-2 no-padding"><i class="glyphicon glyphicon-trash"></i></a>
+                                <!--a href ng-click="setearObraAEliminar(artwork.id)" class="col-sm-2 no-padding" data-target="#artwork-delete-modal"><i class="glyphicon glyphicon-trash"></i></a-->
+                                <button type="submit" ng-click="actualizarCamposDialogo(artwork.id)" 
+                                        class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#artwork-edit-modal" 
+                                        style="background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;outline:none;color:#cc0000"></button> 
+                                <button type="submit" ng-click="setearObraAEliminar(artwork.id)" 
+                                        class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#artwork-delete-modal" 
+                                        style="background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;outline:none;color:#cc0000"></button> 
                             </div>
                         </div>
                     </div>
@@ -56,5 +53,48 @@
                 </div>
             </div>
         </div>
+        <div id="artwork-edit-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Editar la obra</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div ui-view="artworkEditView"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" ng-click="actualizarArtwork();" data-dismiss="modal">Actualizar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="artwork-delete-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">¿Seguro desea borrar la obra de arte?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" ng-click="eliminarObra();" data-dismiss="modal">Eliminar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <div style="margin: 0 auto;display: table;">
+        <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class="btn btn-default">
+            Previous
+        </button>
+        {{currentPage+1}} de {{numberOfPages()}}
+        <button ng-disabled="currentPage >= records.length/pageSize - 1" ng-click="currentPage=currentPage+1" class="btn btn-default">
+            Next
+        </button>
+    </div>
+    
 </div> 

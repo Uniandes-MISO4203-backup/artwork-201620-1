@@ -40,7 +40,7 @@
                     $scope.purchase["items"] = [];
                 });
             };
-            this.closeAlert = function (index) {
+            $scope.closeAlert = function (index) {
                 $scope.alerts.splice(index, 1);
             };
 
@@ -65,11 +65,9 @@
             };
 
             $scope.deleteFromCart = function (item) {
-                client[0].customPUT({},"wishList/"+ item.id, JSON.stringify(item),{}).then(function (rc) {
-                    if(rc){
-                        var index = $scope.purchase["items"].indexOf(rc);
-                        $scope.purchase["items"].splice(index, 1);
-                    }
+                client[0].customDELETE("wishList/"+ item.id).then(function () {
+                    var index = $scope.purchase["items"].indexOf(item);
+                    $scope.purchase["items"].splice(index, 1);
                 });
             };
         }]);

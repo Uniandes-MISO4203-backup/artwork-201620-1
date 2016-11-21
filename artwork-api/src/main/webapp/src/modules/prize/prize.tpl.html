@@ -7,16 +7,10 @@ and open the template in the editor.
 <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)">{{alert.msg}} </alert>
 <div class="col-md-2">
     <ul class="nav nav-pills nav-stacked">
-        <li role="presentation"><a ui-sref="prizeNew">Crear</a></li>
-        <li role="presentation"><a>Editar</a></li>
-        <li role="presentation"><a ui-sref="prizeReward">Premiar obra</a></li>
-       <li role="presentation"><a ui-sref="prizeList">lista</a></li>
+        <li role="presentation"><a ui-sref="prizeNew">Crear premio</a></li>
+        <li role="presentation"><a>Editar premio</a></li>
+        <li role="presentation"><a ui-sref="prizeReward">Premiar obras</a></li>
+       <li role="presentation"><a ui-sref="prizeList">Lista de premios</a></li>
     </ul>
 </div>
-
-
-
-
-
-
 <div class="col-md-10" ui-view="prizeView"></div>

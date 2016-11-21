@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 
-
-<ul class="nav nav-tabs nav-justified" role="tablist" >
- <li role="presentation" class="active" ><a href="#ultimas" role="tab" data-toggle="tab" style="padding:0"><button class="col-sm-6 btn  btn-lg showcase-title" ng-click="galView='latest'">Ultimas obras</button><button href="#premiadas" class="col-sm-6 btn btn-lg showcase-title" ng-click="galView='rewarded'">Obras Premiadas</button></a></li>
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" style="position:fixed; width:100%; z-index: 10">{{alert.msg}} </alert>
+<ul class="nav nav-tabs nav-justified titles" >
+    <li class="col-sm-6 showcase-title" ng-class="{'tab-active': galView === 'latest'}" ng-click="galView='latest'">
+       Últimas Obras  
+    </li>
+    <li class="col-sm-6 showcase-title" ng-class="{'tab-active': galView === 'rewarded'}" ng-click="galView='rewarded'">
+       Obras Premiadas
+    </li>
 </ul>
 
-<div class="tab-content" ng-if="galView=='rewarded'" style="padding-bottom: 2%">
+<div class="tab-content" ng-if="galView==='rewarded'">
     <div role="tabpanel" class="tab-pane active" id="premiadas" >
         <div id="carousel1" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -15,10 +20,10 @@
                 <li data-target="#carousel1" data-slide-to="3"></li>
             </ol>
             <div class="carousel-inner" role="listbox">
-                <div ng-if="artwork.prizes.length>0" ng-repeat="artwork in records" class="item" ng-class="{'active':$index===0}">
-                 
-                    <a  ui-sref="comment({artworkId:artwork.id})">
-                        <img  class="img-responsive" ng-src="{{artwork.image}}" alt="First slide">
+                <div ng-if="artwork.prizes.length > 0" ng-repeat="artwork in records" class="item" ng-class="{'active':$index===0}">
+                    <h3 class="no-padding" style="z-index:10; text-align:center"><i class="{{artwork.prizes[0]['trophy']}}" style="color:{{artwork.prizes[0]['color']}}; font-size: x-large;"></i> {{artwork.prizes[0]["name"]}}</h3>
+                    <a ui-sref="comment({artworkId:artwork.id})">
+                        <img class="img-responsive" ng-src="{{artwork.image}}" alt="First slide">
                     </a>
                 </div>
             </div>
@@ -33,7 +38,7 @@
         </div>
     </div>
 </div>
-<div class="tab-content" ng-if="galView=='latest'">
+<div class="tab-content" ng-if="galView==='latest'">
  <div role="tabpanel" class="tab-pane active" id="ultimas" >
         <div id="carousel" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -44,8 +49,9 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div ng-repeat="artwork in latest" class="item" ng-class="{'active':$index===0}">
+                    <h3 class="no-padding" style="z-index:10; text-align:center; height:5%">{{artwork.name}}</h3>
                     <a ui-sref="comment({artworkId:artwork.id})">
-                        <img style="height:100%" class="img-responsive" ng-src="{{artwork.image}}" alt="First slide">
+                        <img style="height:95%" class="img-responsive" ng-src="{{artwork.image}}" alt="First slide">
                     </a>
                 </div>
             </div>
@@ -61,7 +67,7 @@
     </div>
 </div>
 
-<h1 class="showcase-title">Galería</h1>
+<h1 class="showcase-title no-cursor">Galería</h1>
 <div class="list">            
     <div ng-if="true" class="col-md-2 well" >
      <div class="col-sm-12 no-padding" ng-controller="roleCtrl">
@@ -92,7 +98,7 @@
                                 <a ng-click='addToWishlist(artwork)' class="col-sm-6 no-padding" style="cursor: pointer;" ng-if="!artwork.isInWishlist"><i class="glyphicon glyphicon-eye-open"></i></a>
                                 <a ng-click='removeWishlist(artwork)' class="col-sm-6 no-padding" style="cursor: pointer;" ng-if="artwork.isInWishlist"><i class="glyphicon glyphicon-eye-close"></i></a>
                             </div>
-                            <a  ng-click='addToCart(artwork)' class="col-sm-3 no-padding"><i class="glyphicon glyphicon-shopping-cart"></i></a>     
+                            <a  ng-click='addToCart(artwork)' class="col-sm-3 no-padding" style="cursor: pointer;"><i class="glyphicon glyphicon-shopping-cart"></i></a>     
                         </div>
                     </div>
                 </div>

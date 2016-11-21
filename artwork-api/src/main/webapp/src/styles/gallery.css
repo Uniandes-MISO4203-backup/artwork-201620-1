@@ -5,6 +5,10 @@
     display: inline;
 }
 
+.titles{
+    margin-bottom:10px;
+}
+
 .showcase-title{
     background-color:#5f5f5f;
     margin:0;
@@ -12,6 +16,25 @@
     color:white;
     font-style: normal;
     margin-bottom:15px;
+    border-radius: 0;
+    padding-left: 2px;
+    padding-right:2px;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    height:50px;
+}
+
+.titles li:hover{
+    background-color: #f2af0f;
+}
+
+.tab-active{
+    background-color: #f2af0f;
+}
+
+.no-cursor{
+    cursor: auto;
 }
 
 .list-group{
@@ -23,10 +46,11 @@
     color:white;
 }
 
-#carousel{
+#carousel, #carousel1{
     height: 400px; 
     margin-bottom:30px;
     background-color:white;
+    padding-bottom: 20px;
 }
 
 .carousel-inner {

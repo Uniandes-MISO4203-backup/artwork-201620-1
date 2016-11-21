@@ -21,6 +21,7 @@
             }
             $scope.mean = 0;
             $scope.qualifications = [];
+            $scope.alerts = [];
             var getAllComments = function (id) {
                 comments.customGET("", {artworkId: id}).then(function (response) {
                     $scope.comments = response;
@@ -56,6 +57,7 @@
                 itemModel['artwork'] = artwork;
                 client[0].post("shopping/cart", JSON.stringify(itemModel));
                 client[0].getList("shopping/cart").then(function () {
+                    $scope.showSuccess("Obra agregada a carrito");
                     $scope.cartAdded = true;
                 });
             };
@@ -108,16 +110,38 @@
                 itemModel['qty'] = 1;
                 itemModel['artwork'] = artwork;
                 itemModel['shoppingCart'] = false;
-                client[0].post("shopping/wishlist", JSON.stringify(itemModel));
-                artwork.isInWishlist = true;
-                alert("Obra agregada a la wishlist");
+                client[0].post("shopping/wishlist", JSON.stringify(itemModel)).then(function(){
+                    artwork.isInWishlist = true;
+                });
             };
             $scope.removeWishlist = function (artwork) {
                 itemModel['id'] = artwork.idItem;
                 client[0].customDELETE("wishList/"+ artwork.idItem).then(function (rc) {
                     artwork.isInWishlist = false;
-                    alert("Obra removida del wishlist");
                 });
+            };
+             $scope.closeAlert = function (index) {
+                $scope.alerts.splice(index, 1);
+            };
+
+            /* Función showMessage: Recibe el mensaje en String y
+             * su tipo con el fin de almacenarlo en el array $scope.alerts.
+             */
+            function showMessage(msg, type) {
+                var types = ["info", "danger", "warning", "success"];
+                if (types.some(function (rc) {
+                    return type === rc;
+                })) {
+                    $scope.alerts.push({type: type, msg: msg});
+                }
+            }
+
+            $scope.showError = function (msg) {
+                showMessage(msg, "danger");
+            };
+
+            $scope.showSuccess = function (msg) {
+                showMessage(msg, "success");
             };
         }
     ]);

@@ -39,6 +39,7 @@ public class ItemDTO implements Serializable {
         entity.setId(this.getId());
         entity.setName(this.getName());
         entity.setQty(this.getQty());
+        entity.setShoppingCart(this.getShoppingCart());
         return entity;
     }
 
