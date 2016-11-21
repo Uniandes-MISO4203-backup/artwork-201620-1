@@ -228,6 +228,6 @@ public class PaymentLogicTest {
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
-    }
+    }         
 }
 

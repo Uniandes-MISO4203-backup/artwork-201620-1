@@ -149,6 +149,8 @@ public class CommentLogicTest {
      CommentEntity newEntity = factory.manufacturePojo(CommentEntity.class);
         CommentEntity result = commentLogic.createComment(fatherEntity.getId(), newEntity);
     Assert.assertTrue(newEntity.equals(result));
+    Assert.assertFalse(newEntity.equals(null));
+    
     }
     @Test
     public void createCommentTest() {
