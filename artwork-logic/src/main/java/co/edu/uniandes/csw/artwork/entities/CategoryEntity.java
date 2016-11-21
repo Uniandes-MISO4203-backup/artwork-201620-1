@@ -61,32 +61,7 @@ public class CategoryEntity extends BaseEntity implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.parentCategory);
-        return hash;
-    }
-
-  /*  @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final CategoryEntity other = (CategoryEntity) obj;
-        if (!Objects.equals(this.parentCategory, other.parentCategory)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public String toString() {
         return "CategoryEntity{" + "parentCategory=" + parentCategory + '}';
-    } */
+    }
 }
