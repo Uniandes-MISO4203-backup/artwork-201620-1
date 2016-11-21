@@ -41,6 +41,7 @@ import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
 import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.WebApplicationException;
 
@@ -150,5 +151,17 @@ public class RootArtworkResource {
         existsArtist(dto.getArtist().getId());
         dto.setDateAdded(Calendar.getInstance().getTime());
         return new ArtworkDetailDTO(artworkLogic.createArtwork(dto.getArtist().getId(), dto.toEntity()));
+    }
+    
+    /**
+     * Elimina una instancia de Artwork de la base de datos.
+     *
+     * @param artworkId Identificador de la instancia a eliminar.
+     * @generated
+     */
+    @DELETE
+    @Path("{artworkId: \\d+}")
+    public void deleteArtwork(@PathParam("artworkId") Long artworkId) {
+        artworkLogic.deleteArtwork(artworkId);
     }
 }

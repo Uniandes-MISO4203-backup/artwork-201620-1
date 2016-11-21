@@ -4,15 +4,17 @@
  */
 (function (ng) { 
     var mod = ng.module("artworkModule");
-    mod.controller("artistGalleryListCtrl", ["$rootScope","$scope", '$state','$stateParams',"artist","artworks", "artistArtworks","categories",
-        function ($rootScope, $scope, $state, $params, artist, artworks, artistArtworks, categories) {
+     
+    mod.controller("artistGalleryListCtrl", ["$rootScope","$scope", '$state','$stateParams',"artist","artworks", "artistArtworks","categories","Restangular",
+        function ($rootScope, $scope, $state, $params, artist, artworks, artistArtworks, categories, Restangular) {
             $scope.records = artistArtworks;
             
+            $scope.obraAEliminar = [];
             //Paginación
             $scope.currentPage = 0;
-            $scope.pageSize = 3;
+            $scope.pageSize = 6;
             $scope.alerts = []            
-            $scope.numberOfPages=function(){
+            $scope.numberOfPages=function(){            
              return Math.ceil($scope.records.length/$scope.pageSize);                
             };
             $scope.galView = "latest";            
@@ -59,12 +61,34 @@
                     $scope.artwork.images.splice(index, 1);
                 }
             };
-            $scope.eliminarObra = function(artworkId){
-                //TO-DO
-                console.log("Redireccionando para editar obra");
+            $scope.eliminarObra = function(){
+                console.log("Redireccionando para borrar obra: "+$scope.obraAEliminar);
+                Restangular.all("artworks").customDELETE($scope.obraAEliminar).then(function (rc) {
+                    $state.go('artistGallery', null, {reload: true});                    
+                    $scope.showSuccess("Obra removida");
+                    $scope.obraAEliminar = [];
+                });
             };
             this.pageChanged = function () {
                 $state.go('artistGallery', {page: this.currentPage});
             };
+            
+            $scope.setearObraAEliminar = function(artworkId){
+               $scope.obraAEliminar = artworkId;
+            };
+            
+            function showMessage(msg, type) {
+                var types = ["info", "danger", "warning", "success"];
+                if (types.some(function (rc) {
+                    return type === rc;
+                })) {
+                    $scope.alerts.push({type: type, msg: msg});
+                }
+            }
+
+            $scope.showSuccess = function (msg) {
+                showMessage(msg, "success");
+            };
+          
         }]);
-    })(window.angular);
+})(window.angular);

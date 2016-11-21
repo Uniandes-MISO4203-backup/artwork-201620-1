@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" style="position:fixed; width:100%; z-index: 10">{{alert.msg}} </alert>
 <h1 class="showcase-title">Galería</h1>
 <div class="list">         
     <div class="col-sm-12 no-padding" >
@@ -15,7 +16,10 @@
                             <div class="col-sm-5 icons no-padding">
                                 <a href="{{artwork.image}}" class="col-sm-2 no-padding"><i class="glyphicon glyphicon-search"></i></a>
                                 <div class="col-sm-1 no-padding"></div>
-                                <a href="#" class="col-sm-2 no-padding"><i class="glyphicon glyphicon-trash"></i></a>
+                                <!--a href ng-click="setearObraAEliminar(artwork.id)" class="col-sm-2 no-padding" data-target="#artwork-delete-modal"><i class="glyphicon glyphicon-trash"></i></a-->
+                                <button type="submit" ng-click="setearObraAEliminar(artwork.id)" 
+                                        class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#artwork-delete-modal" 
+                                        style="background-color: Transparent;background-repeat:no-repeat;border: none;cursor:pointer;overflow: hidden;outline:none;color:#cc0000"></button> 
                             </div>
                         </div>
                     </div>
@@ -46,6 +50,20 @@
                 </div>
             </div>
         </div>
+        <div id="artwork-delete-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">¿Seguro desea borrar la obra de arte?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" ng-click="eliminarObra();" data-dismiss="modal">Eliminar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div style="margin: 0 auto;display: table;">
         <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class="btn btn-default">
@@ -56,4 +74,5 @@
             Next
         </button>
     </div>
+    
 </div> 
