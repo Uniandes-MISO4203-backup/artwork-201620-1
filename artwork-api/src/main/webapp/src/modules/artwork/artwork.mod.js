@@ -254,7 +254,7 @@
                 }
             });
             $sp.state('artistGallery', {
-                url: '/artistGallery',
+                url: '/artistGallery?page&limit',
                 views: {
                     mainView: {
                         templateUrl: basePath + 'list/artist.gallery.tpl.html',
@@ -275,8 +275,8 @@
                     artworks: ['Restangular', 'model', function (r, model) {
                         return r.all(model.url).getList();
                     }],
-                    artistArtworks: ['$rootScope','artist', 'model', function ($rootScope, artist, model) {
-                        return artist.getList(model.url, {userName: $rootScope.usuario.$object.userName});
+                    artistArtworks: ['$rootScope','artist', 'model', '$stateParams', function ($rootScope, artist, model, $params) {
+                        return artist.getList(model.url, {userName: $rootScope.usuario.$object.userName, limit: $params.limit, page: $params.page});
                     }],
                     categories: ['Restangular',function(r){
                         return r.all("categorys").customGET('parents/').then(function (response) {

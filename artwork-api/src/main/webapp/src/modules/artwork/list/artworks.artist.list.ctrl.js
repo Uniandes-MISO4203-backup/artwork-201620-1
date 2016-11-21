@@ -7,9 +7,19 @@
     mod.controller("artistGalleryListCtrl", ["$rootScope","$scope", '$state','$stateParams',"artist","artworks", "artistArtworks","categories",
         function ($rootScope, $scope, $state, $params, artist, artworks, artistArtworks, categories) {
             $scope.records = artistArtworks;
+            
             //Paginación
+            $scope.currentPage = 0;
+            $scope.pageSize = 3;
+            $scope.alerts = []            
+            $scope.numberOfPages=function(){
+             return Math.ceil($scope.records.length/$scope.pageSize);                
+            };
+            $scope.galView = "latest";            
             this.itemsPerPage = $params.limit;
             this.currentPage = $params.page;
+            this.totalItems = artistArtworks.totalRecords;
+            
             $scope.categorys = categories;
             $scope.artwork = {};
             $scope.artwork.category = [];
@@ -54,7 +64,7 @@
                 console.log("Redireccionando para editar obra");
             };
             this.pageChanged = function () {
-                $state.go('artworkList', {page: this.currentPage});
+                $state.go('artistGallery', {page: this.currentPage});
             };
         }]);
     })(window.angular);

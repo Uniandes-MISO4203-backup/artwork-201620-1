@@ -7,7 +7,7 @@
                 <h3>No tienes obras agregadas</h3>
             </div>
             <ul ng-if="records.length > 0" class="col-sm-12 list-unstyled">
-                <li class="col-sm-4 no-padding" ng-repeat="artwork in records" style="position:relative">
+                <li class="col-sm-4 no-padding" ng-repeat="artwork in records | startFrom:currentPage*pageSize | limitTo:pageSize" style="position:relative">
                     <div class="col-sm-offset-2 col-sm-8 no-padding artwork">
                         <img class="img-responsive" ng-src="{{artwork.image}}" alt="{{artwork.name}}">
                         <div class="col-sm-12 detail no-padding">
@@ -46,5 +46,14 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div style="margin: 0 auto;display: table;">
+        <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class="btn btn-default">
+            Previous
+        </button>
+        {{currentPage+1}} de {{numberOfPages()}}
+        <button ng-disabled="currentPage >= records.length/pageSize - 1" ng-click="currentPage=currentPage+1" class="btn btn-default">
+            Next
+        </button>
     </div>
 </div> 
