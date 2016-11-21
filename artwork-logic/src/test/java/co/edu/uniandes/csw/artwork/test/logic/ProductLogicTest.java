@@ -157,6 +157,8 @@ public class ProductLogicTest {
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getPrice(), entity.getPrice());
+        Assert.assertNotNull(newEntity.hashCode());
+        Assert.assertNotNull(newEntity.toString());
     }
 
     /**

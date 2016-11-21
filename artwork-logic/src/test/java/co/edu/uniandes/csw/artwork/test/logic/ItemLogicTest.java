@@ -194,6 +194,10 @@ public class ItemLogicTest {
         ItemEntity entity = em.find(ItemEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getArtwork(), entity.getArtwork());
+        Assert.assertEquals(newEntity.getProduct(), entity.getProduct());
+        Assert.assertNotNull(newEntity.hashCode());
+        Assert.assertNotNull(newEntity.toString());
         Assert.assertEquals(newEntity.getQty(), entity.getQty());
     }
 

@@ -30,6 +30,7 @@ import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
 import co.edu.uniandes.csw.artwork.persistence.PaymentPersistence;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
 import co.edu.uniandes.csw.artwork.entities.ItemEntity;
+import co.edu.uniandes.csw.artwork.entities.ProductEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -59,6 +60,8 @@ public class PaymentLogicTest {
      * @generated
      */
     ClientEntity fatherEntity;
+   
+    
     /**
      * @generated
      */
@@ -166,6 +169,8 @@ public class PaymentLogicTest {
         Assert.assertEquals(newEntity.getName(), entity.getName());
          Assert.assertEquals(newEntity.getClient().getId(), entity.getClient().getId());
          Assert.assertEquals(newEntity.getItems(), entity.getItems());
+         Assert.assertNotNull(newEntity.hashCode());
+        Assert.assertNotNull(newEntity.toString());
         
     }
 

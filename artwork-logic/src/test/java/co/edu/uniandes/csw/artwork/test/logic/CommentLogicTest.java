@@ -166,6 +166,8 @@ public class CommentLogicTest {
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getComment(), entity.getComment());
         Assert.assertEquals(newEntity.getArtwork().getId(), entity.getArtwork().getId());
+        Assert.assertNotNull(newEntity.hashCode());
+        Assert.assertNotNull(newEntity.toString());
         
     }
 

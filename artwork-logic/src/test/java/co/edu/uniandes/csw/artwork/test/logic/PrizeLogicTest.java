@@ -185,6 +185,8 @@ public class PrizeLogicTest {
         Assert.assertEquals(newEntity.getDescription(), entity.getDescription());
         Assert.assertEquals(newEntity.getColor(), entity.getColor());
         Assert.assertEquals(newEntity.getTrophy(), entity.getTrophy());
+        Assert.assertNotNull(newEntity.hashCode());
+        Assert.assertNotNull(newEntity.toString());
         
     }
     
