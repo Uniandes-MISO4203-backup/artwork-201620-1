@@ -197,6 +197,7 @@ public class CategoryLogicTest {
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getParentCategory(),resultEntity.getParentCategory());
+        Assert.assertNotNull(entity.hashCode());
     }
 
     /**

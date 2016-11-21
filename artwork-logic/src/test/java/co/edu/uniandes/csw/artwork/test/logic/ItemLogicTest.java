@@ -316,7 +316,7 @@ public class ItemLogicTest {
     Assert.assertTrue(newEntity.equals(result));
     Assert.assertFalse(newEntity.equals(null));
     Assert.assertFalse(newEntity.equals(art));
-   Assert.assertFalse(newEntity.equals(obj));
+    Assert.assertFalse(newEntity.equals(obj));
     
     }
     
