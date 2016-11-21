@@ -140,10 +140,10 @@ public class CategoryLogicTest {
      * @generated
      */
     private void insertData() {
+   
         for (int i = 0; i < 3; i++) {
             CategoryEntity entity = factory.manufacturePojo(CategoryEntity.class);
-            
-
+      
             em.persist(entity);
             data.add(entity);
         }
@@ -196,6 +196,7 @@ public class CategoryLogicTest {
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
+        Assert.assertEquals(entity.getParentCategory(),resultEntity.getParentCategory());
     }
 
     /**
@@ -230,5 +231,6 @@ public class CategoryLogicTest {
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
     }
+    
 }
 

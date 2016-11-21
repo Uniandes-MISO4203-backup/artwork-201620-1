@@ -25,7 +25,11 @@ package co.edu.uniandes.csw.artwork.test.logic;
 
 import co.edu.uniandes.csw.artwork.ejbs.ClientLogic;
 import co.edu.uniandes.csw.artwork.api.IClientLogic;
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
+import co.edu.uniandes.csw.artwork.entities.ItemEntity;
+import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
+import co.edu.uniandes.csw.artwork.entities.ProductEntity;
 import co.edu.uniandes.csw.artwork.persistence.ClientPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +87,9 @@ public class ClientLogicTest {
      * @generated
      */
     private List<ClientEntity> data = new ArrayList<ClientEntity>();
-
+    private List<ItemEntity> itemData = new ArrayList<>();
+    private List<PaymentEntity> paymentData = new ArrayList<>();
+    
     /**
      * @generated
      */
@@ -138,7 +144,8 @@ public class ClientLogicTest {
     private void insertData() {
         for (int i = 0; i < 3; i++) {
             ClientEntity entity = factory.manufacturePojo(ClientEntity.class);
-
+            entity.setPayments(paymentData);
+            entity.setWishList(itemData);
             em.persist(entity);
             data.add(entity);
         }
@@ -149,6 +156,27 @@ public class ClientLogicTest {
      * @generated
      */
     @Test
+    public void countClientsTest(){
+    Assert.assertEquals(data.size(),clientLogic.countClients());
+    }
+    @Test
+    public void getClientsPagTest(){
+     int page=1;
+     int maxRecords=3;
+    List<ClientEntity> list = clientLogic.getClients(page, maxRecords);
+        Assert.assertEquals(data.size(), list.size());
+        for (ClientEntity entity : list) {
+            boolean found = false;
+            for (ClientEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    
+    @Test
     public void createClientTest() {
         ClientEntity newEntity = factory.manufacturePojo(ClientEntity.class);
         ClientEntity result = clientLogic.createClient(newEntity);
@@ -156,6 +184,11 @@ public class ClientLogicTest {
         ClientEntity entity = em.find(ClientEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getPayments().size(), entity.getPayments().size());
+        Assert.assertEquals(newEntity.getWishList().size(), entity.getWishList().size());
+        Assert.assertNotNull(newEntity.hashCode());
+        Assert.assertNotNull(newEntity.toString());
+        
     }
 
     /**
@@ -224,6 +257,18 @@ public class ClientLogicTest {
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
+    }
+    
+    @Test
+    public void clientEqualsTest(){
+     ArtworkEntity art = factory.manufacturePojo(ArtworkEntity.class);
+     Object obj=new java.lang.Object();
+     ClientEntity newEntity = factory.manufacturePojo(ClientEntity.class);
+        ClientEntity result = clientLogic.createClient(newEntity);
+    Assert.assertTrue(newEntity.equals(result));
+    Assert.assertFalse(newEntity.equals(null));
+    Assert.assertFalse(newEntity.equals(art));
+    Assert.assertFalse(newEntity.equals(obj)); 
     }
 }
 

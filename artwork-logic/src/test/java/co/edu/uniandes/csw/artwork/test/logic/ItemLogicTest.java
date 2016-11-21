@@ -194,6 +194,10 @@ public class ItemLogicTest {
         ItemEntity entity = em.find(ItemEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getArtwork(), entity.getArtwork());
+        Assert.assertEquals(newEntity.getProduct(), entity.getProduct());
+        Assert.assertNotNull(newEntity.hashCode());
+        Assert.assertNotNull(newEntity.toString());
         Assert.assertEquals(newEntity.getQty(), entity.getQty());
     }
 
@@ -303,7 +307,18 @@ public class ItemLogicTest {
             Assert.assertTrue(found);
         }
     }
+    @Test
+    public void itemEqualsTest(){
+      ArtworkEntity art = factory.manufacturePojo(ArtworkEntity.class);
+      Object obj=new java.lang.Object();
+     ItemEntity newEntity = factory.manufacturePojo(ItemEntity.class);
+        ItemEntity result = itemLogic.createItem(fatherEntity.getId(), newEntity);
+    Assert.assertTrue(newEntity.equals(result));
+    Assert.assertFalse(newEntity.equals(null));
+    Assert.assertFalse(newEntity.equals(art));
+   Assert.assertFalse(newEntity.equals(obj));
     
+    }
     
 }
 

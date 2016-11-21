@@ -26,6 +26,7 @@ package co.edu.uniandes.csw.artwork.test.logic;
 import co.edu.uniandes.csw.artwork.ejbs.ArtistLogic;
 import co.edu.uniandes.csw.artwork.api.IArtistLogic;
 import co.edu.uniandes.csw.artwork.entities.ArtistEntity;
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.persistence.ArtistPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -228,6 +229,18 @@ public class ArtistLogicTest {
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
+    }
+    
+     @Test
+    public void artistEqualsTest(){
+     ArtworkEntity art = factory.manufacturePojo(ArtworkEntity.class);
+     Object obj=new java.lang.Object();
+     ArtistEntity newEntity = factory.manufacturePojo(ArtistEntity.class);
+        ArtistEntity result = artistLogic.createArtist(newEntity);
+    Assert.assertTrue(newEntity.equals(result));
+    Assert.assertFalse(newEntity.equals(null));
+    Assert.assertFalse(newEntity.equals(art));
+    Assert.assertFalse(newEntity.equals(obj)); 
     }
 }
 

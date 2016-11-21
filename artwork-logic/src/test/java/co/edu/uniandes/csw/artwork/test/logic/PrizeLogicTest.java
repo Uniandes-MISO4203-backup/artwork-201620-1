@@ -185,7 +185,21 @@ public class PrizeLogicTest {
         Assert.assertEquals(newEntity.getDescription(), entity.getDescription());
         Assert.assertEquals(newEntity.getColor(), entity.getColor());
         Assert.assertEquals(newEntity.getTrophy(), entity.getTrophy());
+        Assert.assertNotNull(newEntity.hashCode());
+        Assert.assertNotNull(newEntity.toString());
         
+    }
+    
+    @Test
+    public void prizeEqualsTest(){
+     ArtworkEntity art = factory.manufacturePojo(ArtworkEntity.class);
+     Object obj=new java.lang.Object();
+     PrizeEntity newEntity = factory.manufacturePojo(PrizeEntity.class);
+        PrizeEntity result = prizeLogic.createPrize(newEntity);
+    Assert.assertTrue(newEntity.equals(result));
+    Assert.assertFalse(newEntity.equals(null));
+    Assert.assertFalse(newEntity.equals(art));
+    Assert.assertFalse(newEntity.equals(obj)); 
     }
     
 }

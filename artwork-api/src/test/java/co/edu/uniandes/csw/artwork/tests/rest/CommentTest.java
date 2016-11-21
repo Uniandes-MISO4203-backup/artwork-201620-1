@@ -23,11 +23,14 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.tests.rest;
 
+import co.edu.uniandes.csw.artwork.dtos.detail.CommentDetailDTO;
+import co.edu.uniandes.csw.artwork.dtos.minimum.ArtworkDTO;
 import co.edu.uniandes.csw.auth.model.UserDTO;
 import co.edu.uniandes.csw.auth.security.JWT;
-import co.edu.uniandes.csw.artwork.entities.CategoryEntity;
-import co.edu.uniandes.csw.artwork.dtos.minimum.CategoryDTO;
-import co.edu.uniandes.csw.artwork.resources.CategoryResource;
+import co.edu.uniandes.csw.artwork.entities.CommentEntity;
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
+import co.edu.uniandes.csw.artwork.dtos.minimum.CommentDTO;
+import co.edu.uniandes.csw.artwork.resources.CommentResource;
 import co.edu.uniandes.csw.artwork.tests.Utils;
 import java.io.File;
 import java.io.IOException;
@@ -61,10 +64,10 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /*
- * Testing URI: categorys/
+ * Testing URI: artworks/{commentsId: \\d+}/comments/
  */
 @RunWith(Arquillian.class)
-public class CategoryTest {
+public class CommentTest {
 
     private WebTarget target;
     private static final String API_PATH = Utils.API_PATH;
@@ -74,21 +77,23 @@ public class CategoryTest {
 
     private static final int OK = Status.OK.getStatusCode();
     private static final int CREATED = Status.CREATED.getStatusCode();
-    private static final int OK_WITHOUT_CONTENT = Status.NO_CONTENT.getStatusCode();
+   
 
-    private static final List<CategoryEntity> oraculo = new ArrayList<>();
+    private  static final List<CommentEntity> oraculo = new ArrayList<>();
 
-    private static final String CATEGORY_PATH = "categorys";
+  
+    private static final String COMMENT_PATH = "comments";
+    private static final String ARTWORK_PATH = "artworks";
+    ArtworkEntity fatherArtworkEntity;
+
+    @ArquillianResource
+    private URL deploymentURL;
     
-     @PersistenceContext(unitName = "ArtworkPU")
+    @PersistenceContext(unitName = "ArtworkPU")
     private EntityManager em;
 
     @Inject
     private UserTransaction utx;
-
-
-    @ArquillianResource
-    private URL deploymentURL;
 
     @Deployment
     public static WebArchive createDeployment() {
@@ -98,7 +103,7 @@ public class CategoryTest {
                         .importRuntimeDependencies().resolve()
                         .withTransitivity().asFile())
                 // Se agregan los compilados de los paquetes de servicios
-                .addPackage(CategoryResource.class.getPackage())
+                .addPackage(CommentResource.class.getPackage())
                 // El archivo que contiene la configuracion a la base de datos.
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 // El archivo beans.xml es necesario para injeccion de dependencias.
@@ -113,10 +118,11 @@ public class CategoryTest {
         return ClientBuilder.newClient().target(deploymentURL.toString()).path(API_PATH);
     }
 
-   
+    
 
     private void clearData() {
-        em.createQuery("delete from CategoryEntity").executeUpdate();
+        em.createQuery("delete from CommentEntity").executeUpdate();
+        em.createQuery("delete from ArtworkEntity").executeUpdate();
         oraculo.clear();
     }
 
@@ -126,11 +132,16 @@ public class CategoryTest {
      * @generated
      */
     public void insertData() {
+        fatherArtworkEntity = factory.manufacturePojo(ArtworkEntity.class);
+        fatherArtworkEntity.setId(1L);
+        em.persist(fatherArtworkEntity);
+
         for (int i = 0; i < 3; i++) {            
-            CategoryEntity category = factory.manufacturePojo(CategoryEntity.class);
-            category.setId(i + 1L);
-            em.persist(category);
-            oraculo.add(category);
+            CommentEntity comment = factory.manufacturePojo(CommentEntity.class);
+            comment.setId(i + 1L);
+            comment.setArtwork(fatherArtworkEntity);
+            em.persist(comment);
+            oraculo.add(comment);
         }
     }
 
@@ -155,7 +166,9 @@ public class CategoryTest {
             }
         }
         target = createWebTarget()
-                .path(CATEGORY_PATH);
+                
+                .path(COMMENT_PATH).queryParam("artworkId",fatherArtworkEntity.getId());
+                
     }
 
     /**
@@ -180,105 +193,36 @@ public class CategoryTest {
         }
     }
 
-    /**
-     * Prueba para crear un Category
-     *
-     * @generated
-     */
     @Test
-    public void createCategoryTest() throws IOException {
-        CategoryDTO category = factory.manufacturePojo(CategoryDTO.class);
+    public void createCommentTest() throws IOException {
+        CommentDTO comment = factory.manufacturePojo(CommentDTO.class);
+     
         Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         Response response = target
             .request().cookie(cookieSessionId)
-            .post(Entity.entity(category, MediaType.APPLICATION_JSON));
-
-        CategoryDTO  categoryTest = (CategoryDTO) response.readEntity(CategoryDTO.class);
+            .post(Entity.entity(comment, MediaType.APPLICATION_JSON));
+       
+         CommentDTO  commentTest = (CommentDTO) response.readEntity(CommentDTO.class);
 
         Assert.assertEquals(CREATED, response.getStatus());
 
-        Assert.assertEquals(category.getName(), categoryTest.getName());
-       
-        Assert.assertEquals(category.toEntity().getName(), categoryTest.toEntity().getName());
-
-        CategoryEntity entity = em.find(CategoryEntity.class, categoryTest.getId());
+        Assert.assertEquals(comment.getComment(), commentTest.getComment());
+        
+        CommentEntity entity = em.find(CommentEntity.class, commentTest.getId());
         Assert.assertNotNull(entity);
     }
 
-    /**
-     * Prueba para consultar un Category
-     *
-     * @generated
-     */
     @Test
-    public void getCategoryByIdTest() {
-        Cookie cookieSessionId = login(USERNAME, PASSWORD);
-
-        CategoryDTO categoryTest = target
-            .path(oraculo.get(0).getId().toString())
-            .request().cookie(cookieSessionId).get(CategoryDTO.class);
-        
-        Assert.assertEquals(categoryTest.getId(), oraculo.get(0).getId());
-        Assert.assertEquals(categoryTest.getName(), oraculo.get(0).getName());
-    }
-
-    /**
-     * Prueba para consultar la lista de Categorys
-     *
-     * @generated
-     */
-    @Test
-    public void listCategoryTest() throws IOException {
+    public void listCommentTest() throws IOException {
         Cookie cookieSessionId = login(USERNAME, PASSWORD);
 
         Response response = target
             .request().cookie(cookieSessionId).get();
 
-        String listCategory = response.readEntity(String.class);
-        List<CategoryDTO> listCategoryTest = new ObjectMapper().readValue(listCategory, List.class);
+        String listComment = response.readEntity(String.class);
+        List<CommentDTO> listCommentTest = new ObjectMapper().readValue(listComment, List.class);
         Assert.assertEquals(OK, response.getStatus());
-        Assert.assertEquals(3, listCategoryTest.size());
-    }
-
-    /**
-     * Prueba para actualizar un Category
-     *
-     * @generated
-     */
-    @Test
-    public void updateCategoryTest() throws IOException {
-        Cookie cookieSessionId = login(USERNAME, PASSWORD);
-        CategoryDTO category = new CategoryDTO(oraculo.get(0));
-
-        CategoryDTO categoryChanged = factory.manufacturePojo(CategoryDTO.class);
-
-        category.setName(categoryChanged.getName());
-
-        Response response = target
-            .path(category.getId().toString())
-            .request().cookie(cookieSessionId)
-            .put(Entity.entity(category, MediaType.APPLICATION_JSON));
-
-        CategoryDTO categoryTest = (CategoryDTO) response.readEntity(CategoryDTO.class);
-
-        Assert.assertEquals(OK, response.getStatus());
-        Assert.assertEquals(category.getName(), categoryTest.getName());
-    }
-
-    /**
-     * Prueba para eliminar un Category
-     *
-     * @generated
-     */
-    @Test
-    public void deleteCategoryTest() {
-        Cookie cookieSessionId = login(USERNAME, PASSWORD);
-        CategoryDTO category = new CategoryDTO(oraculo.get(0));
-        Response response = target
-            .path(category.getId().toString())
-            .request().cookie(cookieSessionId).delete();
-
-        Assert.assertEquals(OK_WITHOUT_CONTENT, response.getStatus());
-    }
+        Assert.assertEquals(3, listCommentTest.size());  
+}
 }

@@ -141,6 +141,22 @@ public class CommentLogicTest {
      * @generated
      */
     @Test
+    public void countCommentsTest(){
+    Assert.assertEquals(data.size(),commentLogic.countComments());
+    }
+    @Test
+    public void commentEqualsTest(){
+      ArtworkEntity art = factory.manufacturePojo(ArtworkEntity.class);
+      Object obj=new java.lang.Object();
+     CommentEntity newEntity = factory.manufacturePojo(CommentEntity.class);
+        CommentEntity result = commentLogic.createComment(fatherEntity.getId(), newEntity);
+    Assert.assertTrue(newEntity.equals(result));
+    Assert.assertFalse(newEntity.equals(null));
+    Assert.assertFalse(newEntity.equals(art));
+   Assert.assertFalse(newEntity.equals(obj));
+    
+    }
+    @Test
     public void createCommentTest() {
         CommentEntity newEntity = factory.manufacturePojo(CommentEntity.class);
         CommentEntity result = commentLogic.createComment(fatherEntity.getId(), newEntity);
@@ -149,6 +165,9 @@ public class CommentLogicTest {
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getComment(), entity.getComment());
+        Assert.assertEquals(newEntity.getArtwork().getId(), entity.getArtwork().getId());
+        Assert.assertNotNull(newEntity.hashCode());
+        Assert.assertNotNull(newEntity.toString());
         
     }
 

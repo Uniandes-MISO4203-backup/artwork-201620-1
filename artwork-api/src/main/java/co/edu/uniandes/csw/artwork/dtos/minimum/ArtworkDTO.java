@@ -193,7 +193,7 @@ public class ArtworkDTO implements Serializable {
  /**
   * @param widthArtworkDTO the widthArtworkDTO to set
   */
- public void setWidth(Integer widthArtworkDTO) {
+ public void setWidth(Integer width) {
   this.width = width;
  }
 

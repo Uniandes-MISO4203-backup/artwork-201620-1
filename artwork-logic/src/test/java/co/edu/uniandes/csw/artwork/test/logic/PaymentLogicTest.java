@@ -25,9 +25,12 @@ package co.edu.uniandes.csw.artwork.test.logic;
 
 import co.edu.uniandes.csw.artwork.ejbs.PaymentLogic;
 import co.edu.uniandes.csw.artwork.api.IPaymentLogic;
+import co.edu.uniandes.csw.artwork.entities.ArtworkEntity;
 import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
 import co.edu.uniandes.csw.artwork.persistence.PaymentPersistence;
 import co.edu.uniandes.csw.artwork.entities.ClientEntity;
+import co.edu.uniandes.csw.artwork.entities.ItemEntity;
+import co.edu.uniandes.csw.artwork.entities.ProductEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -57,6 +60,8 @@ public class PaymentLogicTest {
      * @generated
      */
     ClientEntity fatherEntity;
+   
+    
     /**
      * @generated
      */
@@ -84,6 +89,7 @@ public class PaymentLogicTest {
      * @generated
      */
     private List<PaymentEntity> data = new ArrayList<PaymentEntity>();
+    private List<ItemEntity> itemData = new ArrayList<>();
 
     /**
      * @generated
@@ -143,6 +149,7 @@ public class PaymentLogicTest {
         for (int i = 0; i < 3; i++) {
             PaymentEntity entity = factory.manufacturePojo(PaymentEntity.class);
             entity.setClient(fatherEntity);
+            entity.setItems(itemData);
             em.persist(entity);
             data.add(entity);
         }
@@ -160,6 +167,11 @@ public class PaymentLogicTest {
         PaymentEntity entity = em.find(PaymentEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
+         Assert.assertEquals(newEntity.getClient().getId(), entity.getClient().getId());
+         Assert.assertEquals(newEntity.getItems(), entity.getItems());
+         Assert.assertNotNull(newEntity.hashCode());
+        Assert.assertNotNull(newEntity.toString());
+        
     }
 
     /**
@@ -228,6 +240,17 @@ public class PaymentLogicTest {
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
+    }  
+    @Test
+    public void paymentEqualsTest(){
+     ArtworkEntity art = factory.manufacturePojo(ArtworkEntity.class);
+     Object obj=new java.lang.Object();
+     PaymentEntity newEntity = factory.manufacturePojo(PaymentEntity.class);
+        PaymentEntity result = paymentLogic.createPayment(fatherEntity.getId(), newEntity);
+    Assert.assertTrue(newEntity.equals(result));
+    Assert.assertFalse(newEntity.equals(null));
+    Assert.assertFalse(newEntity.equals(art));
+    Assert.assertFalse(newEntity.equals(obj)); 
     }
 }
 
