@@ -23,13 +23,17 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.artwork.tests.rest;
 
+import co.edu.uniandes.csw.artwork.dtos.detail.PaymentDetailDTO;
+import co.edu.uniandes.csw.artwork.dtos.minimum.ClientDTO;
 import co.edu.uniandes.csw.auth.model.UserDTO;
 import co.edu.uniandes.csw.auth.security.JWT;
 import co.edu.uniandes.csw.artwork.entities.PaymentEntity;
 import co.edu.uniandes.csw.artwork.dtos.minimum.PaymentDTO;
+import co.edu.uniandes.csw.artwork.entities.ClientEntity;
 import co.edu.uniandes.csw.artwork.resources.PaymentResource;
 import co.edu.uniandes.csw.artwork.tests.Utils;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,11 +76,15 @@ public class PaymentTest {
 
     private static final int OK = Status.OK.getStatusCode();
     
+    private static final int CREATED = Status.CREATED.getStatusCode();
+    
     private static final int OK_WITHOUT_CONTENT = Status.NO_CONTENT.getStatusCode();
 
     private static final  List<PaymentEntity> oraculo = new ArrayList<>();
 
     private static final String PAYMENT_PATH = "payments";
+    
+    private ClientEntity clientEntity;
  
       @PersistenceContext(unitName = "ArtworkPU")
     private EntityManager em;
@@ -114,6 +122,7 @@ public class PaymentTest {
 
     private void clearData() {
         em.createQuery("delete from PaymentEntity").executeUpdate();
+        em.createQuery("delete from ClientEntity").executeUpdate();
         oraculo.clear();
     }
 
@@ -123,9 +132,13 @@ public class PaymentTest {
      * @generated
      */
     public void insertData() {
+     clientEntity = factory.manufacturePojo(ClientEntity.class);
+        clientEntity.setId(1L);
+        em.persist(clientEntity);
         for (int i = 0; i < 3; i++) {            
             PaymentEntity payment = factory.manufacturePojo(PaymentEntity.class);
             payment.setId(i + 1L);
+            
             em.persist(payment);
             oraculo.add(payment);
         }
@@ -177,6 +190,28 @@ public class PaymentTest {
         }
     }
 
+    @Test
+    public void createPaymentTest() throws IOException {
+        PaymentDetailDTO payment = factory.manufacturePojo(PaymentDetailDTO.class);
+        payment.setClient(new ClientDTO(clientEntity));
+        Cookie cookieSessionId = login(USERNAME, PASSWORD);
+
+        Response response = target
+            .queryParam("clientsId", payment.getClient().getId().toString())
+            .request().cookie(cookieSessionId)
+            .post(Entity.entity(payment, MediaType.APPLICATION_JSON));
+
+        PaymentDetailDTO  paymentTest = (PaymentDetailDTO) response.readEntity(PaymentDetailDTO.class);
+
+        Assert.assertEquals(CREATED, response.getStatus());
+
+        Assert.assertEquals(payment.getName(), paymentTest.getName());
+        
+        
+
+        PaymentEntity entity = em.find(PaymentEntity.class, paymentTest.getId());
+        Assert.assertNotNull(entity);
+    }
     /**
      * Prueba para consultar un Payment
      *
