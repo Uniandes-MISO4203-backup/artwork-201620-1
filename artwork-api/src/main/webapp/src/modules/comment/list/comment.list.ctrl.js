@@ -42,14 +42,19 @@
             $scope.comment = {};
             $scope.commentSent = {};
             $scope.submitComment = function (comment) {
-                $scope.commentSent.name = comment.email;
-                $scope.commentSent.comment = comment.description;
-                $scope.commentSent.artwork = $scope.artwork.id;
-                comments.post(angular.toJson($scope.commentSent), {artworkId: $scope.artwork.id}).then(function () {
-                    getAllComments($scope.artwork.id);
-                    $scope.comment.email = "";
-                    $scope.comment.description = "";
-                });
+                if(typeof comment.email !== 'undefined' & comment.email !== "" & typeof comment.description!== 'undefined' & comment.description !== ""){
+                    $scope.commentSent.name = comment.email;
+                    $scope.commentSent.comment = comment.description;
+                    $scope.commentSent.artwork = $scope.artwork.id;
+                    comments.post(angular.toJson($scope.commentSent), {artworkId: $scope.artwork.id}).then(function () {
+                        getAllComments($scope.artwork.id);
+                        $scope.comment.email = "";
+                        $scope.comment.description = "";
+                    });
+                }else{
+                    showMessage("Debe introducir ambos valores", "info");
+                }
+                
             };
             $scope.addToCart = function () {
                 itemModel['name'] = artwork.name;
